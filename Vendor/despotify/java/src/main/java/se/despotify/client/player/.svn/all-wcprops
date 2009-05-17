@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/client/player
+END
+SpotifyOggHeader.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/client/player/SpotifyOggHeader.java
+END
+ChannelPlayer.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/player/ChannelPlayer.java
+END
+PlaybackListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/client/player/PlaybackListener.java
+END

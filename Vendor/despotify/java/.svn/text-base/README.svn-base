@@ -1,0 +1,22 @@
+Despotify Java Edition.
+
+Based on Jotify by Felix Bruns <felixbruns@web.de>
+that was based on the Despotify C edition.
+
+You need Maven 2 in order to build, test and install this project,
+which can be downloaded here: http://maven.apache.org/download.html
+
+$ mvn install -Dtest=false 
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+...
+
+
+It is however recommended that you do run the tests so you are sure that
+the Despotify API actually works. In order to do that you need to set
+your account information in src/test/resources/despotify.properties
+or pass the VM parameters -Ddespotify.username and -Ddepostify.password
+
+The test cases use a bit of memory, I give it -Xmx1g
+
+The docs is poor but the tests should be an easy study.

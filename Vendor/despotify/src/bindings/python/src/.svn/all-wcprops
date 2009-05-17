@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/despotify/!svn/ver/315/src/bindings/python/src
+END
+album.pxi
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/despotify/!svn/ver/309/src/bindings/python/src/album.pxi
+END
+despotify.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svnroot/despotify/!svn/ver/309/src/bindings/python/src/despotify.pxd
+END
+playlist.pxi
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/despotify/!svn/ver/315/src/bindings/python/src/playlist.pxi
+END
+spytify.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svnroot/despotify/!svn/ver/315/src/bindings/python/src/spytify.pxd
+END
+searchresult.pxi
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/despotify/!svn/ver/309/src/bindings/python/src/searchresult.pxi
+END
+track.pxi
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/despotify/!svn/ver/279/src/bindings/python/src/track.pxi
+END
+artist.pxi
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/despotify/!svn/ver/309/src/bindings/python/src/artist.pxi
+END
+spytify.pyx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svnroot/despotify/!svn/ver/315/src/bindings/python/src/spytify.pyx
+END
+sessionstruct.pxi
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/despotify/!svn/ver/315/src/bindings/python/src/sessionstruct.pxi
+END
+spytify.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/despotify/!svn/ver/315/src/bindings/python/src/spytify.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/despotify/!svn/ver/309/src/bindings/python/src/Makefile
+END
+callback.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/despotify/!svn/ver/200/src/bindings/python/src/callback.c
+END
+spytify.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/despotify/!svn/ver/200/src/bindings/python/src/spytify.h
+END

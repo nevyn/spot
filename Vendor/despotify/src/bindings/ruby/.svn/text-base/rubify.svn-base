@@ -1,0 +1,365 @@
+#!/usr/bin/env ruby
+# $Id$
+# Rubify is the example client for libdespotify-ruby.
+
+
+# allow running from source tree without installing
+$LOAD_PATH << 'build'
+
+
+require 'despotify'
+require 'readline'
+require 'pp'
+
+class String
+	def trim(max)
+		return self[0..(max-5)] + '...' if self.length > max
+		return self
+	end
+end
+
+class ColumnArray < Array
+	def set_headers(*headers)
+		@headers = headers
+	end
+
+	def set_sizes(*sizes)
+		@sizes = sizes
+	end
+
+	def display
+		termwidth = (ENV['COLUMNS'] || 80).to_i
+		widths = []
+		format = ''
+
+		@sizes.each do |p|
+			width = (termwidth * p) / 100
+			widths << width
+			format += "%-#{width}s"
+		end
+
+		puts format % @headers
+		each do |t|
+			trimmed = []
+			t.each_index { |i| trimmed <<  t[i].to_s.trim(widths[i]) }
+			puts format % trimmed
+		end
+
+		print "\n"
+	end
+end
+
+module Despotify
+	class Playlist
+		def display
+			puts 'Playlist name: %s' % name
+			puts 'Playlist author: %s' % author
+			print "\n"
+
+			col = ColumnArray.new
+			col.set_headers 'Index', 'Title', 'Artist', 'Length', 'Album'
+			col.set_sizes 5, 30, 25, 10, 25
+
+
+			tracks.each do |track|
+				length = '%02d:%02d' % [(track['length'] / 60000), (track['length'] % 60000 / 1000)]
+				index = tracks.index(track) + 1
+
+				col << [index, track['title'], track['artist'].join(', '), length, track['album']]
+			end
+
+			col.display
+		end
+	end
+
+	class Artist
+		def display
+			puts 'Name: %s' % metadata['name']
+			puts 'Genres: %s' % metadata['genres']
+			puts 'Years active: %s' % metadata['years_active']
+			puts 'Albums:' % metadata['num_albums']
+			print "\n"
+
+			col = ColumnArray.new
+			col.set_headers 'Name', 'Tracks', 'Year'
+			col.set_sizes 50, 10, 10
+
+			albums.each do |album|
+				col << [album['name'], album['num_tracks'], album['year']]
+			end
+
+			col.display
+		end
+	end
+end
+
+module Rubify
+	COMMANDS = []
+
+	class Command
+		def initialize(rubify)
+			@rubify = rubify
+			@ds = rubify.ds
+		end
+
+		def call(*args)
+		end
+	end
+
+	class List < Command
+		def call(id = 0)
+			@rubify.cache_lists
+
+			id = id.to_i
+			playlists = @rubify.playlists
+
+			if id > 0 and id <= playlists.size
+				list(playlists[id - 1])
+			else
+				lists(playlists)
+			end
+		end
+
+		def list(playlist)
+			playlist.display
+
+			@rubify.playlist = playlist
+		end
+
+		def lists(playlists)
+			if playlists.size > 0
+				col = ColumnArray.new
+				col.set_headers 'Index', 'Name', 'Tracks', 'Author'
+				col.set_sizes 5, 50, 6, 30
+
+				playlists.each do |playlist|
+					index = playlists.index(playlist) + 1
+
+					col << [index, playlist.name, playlist.tracks.size, playlist.author]
+				end
+
+				col.display
+			else
+				puts 'No playlists available'
+			end
+		end
+	end
+	COMMANDS << [List,	'list [num]', 'List stored playlists']
+
+
+	class Search < Command
+		def call(*args)
+			searchterm = args.join(' ')
+			puts 'Searching for: %s' % searchterm
+
+			results = @ds.search(searchterm)
+
+			if results
+				searchtimes = (results.search_info['total_tracks'].to_f / Despotify::MAX_SEARCH_RESULTS).ceil
+				searchtimes.times { results.search_more }
+
+				results.display
+
+				@rubify.playlists << results
+				@rubify.playlist = results
+			else
+				puts 'Nothing found'
+			end
+		end
+	end
+	COMMANDS << [Search, 'search <string>',	'Search tracks']
+
+
+	class Artist < Command
+		def call(*args)
+			name = args.join(' ')
+
+			results = @ds.search(name)
+
+			if results then
+				artist = nil
+
+				results.tracks.each do |track|
+					track['artist'].each_index do |i|
+						if name.downcase == track['artist'][i].downcase
+							artist = @ds.artist(track['artist_id'][i])
+						end
+					end
+					break if artist
+				end
+
+				artist.display if artist
+			end
+		end
+	end
+	COMMANDS << [Artist, 'artist <string>',	'Show information about artist']
+
+
+	class Play < Command
+		def call(id = 0)
+			id = id.to_i
+
+			if id == 0
+				if @rubify.paused
+					return @ds.resume
+				else
+					id = 1
+				end
+			end
+
+			playlist = @rubify.playlist
+			if playlist and id <= playlist.tracks.size
+				track = playlist.tracks[id - 1]
+				@ds.play(playlist, track)
+				@rubify.paused = false
+			end
+		end
+	end
+	COMMANDS << [Play, 'play [num]', 'Play track [num] in the last viewed list or resumes if currently playing']
+
+
+	class Stop < Command
+		def call(*args)
+			@ds.stop
+			@rubify.paused = false
+		end
+	end
+	COMMANDS << [Stop, 'stop', 'Stop playback']
+
+
+	class Pause < Command
+		def call(*args)
+			@ds.pause
+			@rubify.paused = true
+		end
+	end
+	COMMANDS << [Pause, 'pause', 'Pause playback']
+
+	class User < Command
+		def call(*args)
+			info = @ds.user_info
+
+			puts 'Username: %s' % info['username']
+			puts 'Account type: %s' % info['type']
+			puts 'Account expires: %s' % Time.at(info['expiry'])
+			puts 'Country: %s' % info['country']
+			puts 'Currently connected to %s' % info['server_host']
+		end
+	end
+	COMMANDS << [User, 'user', 'Display information about currently logged in user']
+
+	class Help < Command
+		def call(*args)
+			puts 'Available commands:'
+			COMMANDS.each do |cmd|
+				puts '%-20s %s' % [cmd[1], cmd[2]]
+			end
+		end
+	end
+	COMMANDS << [Help, 'help', 'This help text']
+
+
+	class Quit < Command
+		def call(*args)
+			exit
+		end
+	end
+	COMMANDS << [Quit, 'quit', 'Quit Rubify']
+
+
+	class CLI
+		attr_accessor :ds, :haslists, :paused, :playlist, :playlists
+		def initialize(ds)
+			@ds = ds
+
+			@playlists = []
+			@playlist = nil
+			@haslists = false
+			@paused = false
+		end
+
+		def create_prompt
+			if @playlist
+				name = @playlist.name
+				name = name[0..20] + '...' if name.length > 20
+
+				return '%s> ' % name
+			else
+				return 'rubify> '
+			end
+		end
+
+		def run
+			do_cmd 'help'
+
+			loop do
+				line = Readline::readline(create_prompt)
+
+				break if line.nil?
+				next if line.size == 0
+
+				Readline::HISTORY.push(line)
+				args = line.split
+				cmd = args.shift
+
+
+				do_cmd(cmd, *args)
+			end
+		end
+
+		def do_cmd(name, *args)
+			command = nil
+
+			COMMANDS.each do |cmd|
+				if cmd[0].inspect.downcase == 'rubify::' + name.downcase
+					command = cmd[0].new(self)
+					break
+				end
+			end
+
+			if command
+				begin
+					command.call(*args)
+				rescue ArgumentError
+					puts 'Incorrect amount of arguments to command: %s' % name
+				end
+			else
+				puts 'Unknown command: %s. Type "help" for a list of commands.' % name
+			end
+
+		end
+
+		def cache_lists
+			if not @haslists
+				@playlists += @ds.playlists
+				@haslists = true
+			end
+		end
+	end
+end
+
+
+username = ARGV.shift
+password = ARGV.shift
+
+if not (username and password)
+	puts 'Usage: rubyify <username> <password>'
+	exit
+end
+
+Despotify::Session.new do |ds|
+	begin
+		ds.authenticate(username, password)
+	rescue Despotify::DespotifyError
+		puts 'Failed to authenticate user: %s' % ds.get_error
+		exit
+	end
+
+	if ds.user_info['type'] != 'premium'
+		puts 'You need a premium account to user Rubify!'
+		exit
+	end
+
+	rubify = Rubify::CLI.new(ds)
+	rubify.run
+end

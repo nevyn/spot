@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/crypto
+END
+Hash.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/crypto/Hash.java
+END
+Shannon.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/crypto/Shannon.java
+END
+RSA.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/crypto/RSA.java
+END
+RandomBytes.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/crypto/RandomBytes.java
+END
+DH.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/crypto/DH.java
+END

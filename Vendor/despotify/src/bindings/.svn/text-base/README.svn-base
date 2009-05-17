@@ -1,0 +1,4 @@
+Here you can find various language bindings for libdespotify.
+Currently we only have one, python. They're built using cython
+(http://cython.org), but their C source is also distributed, so you most
+likely only need the python dev headers and lib. :-)

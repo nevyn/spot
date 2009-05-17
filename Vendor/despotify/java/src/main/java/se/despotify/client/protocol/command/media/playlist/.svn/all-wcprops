@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/client/protocol/command/media/playlist
+END
+LoadPlaylist.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/command/media/playlist/LoadPlaylist.java
+END
+AddTrackToPlaylist.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/client/protocol/command/media/playlist/AddTrackToPlaylist.java
+END
+RemovePlaylistFromUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/command/media/playlist/RemovePlaylistFromUser.java
+END
+LoadUserPlaylists.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/command/media/playlist/LoadUserPlaylists.java
+END
+ReservePlaylistUUID.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/command/media/playlist/ReservePlaylistUUID.java
+END
+SetPlaylistCollaborative.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/command/media/playlist/SetPlaylistCollaborative.java
+END
+CreatePlaylist.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/command/media/playlist/CreatePlaylist.java
+END
+ReserveRandomPlaylistUUID.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/command/media/playlist/ReserveRandomPlaylistUUID.java
+END
+CreatePlaylistWithReservedUUID.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/client/protocol/command/media/playlist/CreatePlaylistWithReservedUUID.java
+END
+RemoveTrackFromPlaylist.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/client/protocol/command/media/playlist/RemoveTrackFromPlaylist.java
+END
+RenamePlaylist.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/command/media/playlist/RenamePlaylist.java
+END

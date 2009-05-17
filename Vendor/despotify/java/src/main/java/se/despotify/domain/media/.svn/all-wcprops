@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/domain/media
+END
+Visitor.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/domain/media/Visitor.java
+END
+VisitorAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/domain/media/VisitorAdapter.java
+END
+Album.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/domain/media/Album.java
+END
+Playlist.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/domain/media/Playlist.java
+END
+Track.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/domain/media/Track.java
+END
+PlaylistContainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/domain/media/PlaylistContainer.java
+END
+Artist.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/domain/media/Artist.java
+END
+Copyright.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/domain/media/Copyright.java
+END
+Result.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/domain/media/Result.java
+END
+Media.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/domain/media/Media.java
+END
+Visitable.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/domain/media/Visitable.java
+END
+MediaTestCaseGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/domain/media/MediaTestCaseGenerator.java
+END
+Image.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/domain/media/Image.java
+END
+Biography.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/domain/media/Biography.java
+END
+Restrictions.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/domain/media/Restrictions.java
+END

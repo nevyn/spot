@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+  <appender name="console" class="org.apache.log4j.ConsoleAppender">
+    <param name="Target" value="System.out"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%-5p %c{1} - %m%n"/>
+    </layout>
+  </appender>
+
+  <root>
+    <priority value ="info" />
+    <appender-ref ref="console" />
+  </root>
+
+</log4j:configuration>
+
+<!--
+
+log4j.rootLogger=WARN, O
+
+# set DEBUG to get all package headers et c
+log4j.logger.se.despotify.client.protocol.Protocol = INFO, O
+
+# set DEBUG to get all gzipped packages, et c
+log4j.logger.se.despotify.client.Connection = INFO, O
+
+# set DEBUG to get information about waiting for data.
+log4j.logger.se.despotify.client.protocol.channel.ChannelCallback = DEBUG, O
+
+
+# Stdout
+log4j.appender.O=org.apache.log4j.ConsoleAppender
+
+# File
+#log4j.appender.R=org.apache.log4j.RollingFileAppender
+#log4j.appender.R.File=log4j.log
+
+# Control the maximum log file size
+#log4j.appender.R.MaxFileSize=100KB
+
+# Archive log files (one backup file here)
+#log4j.appender.R.MaxBackupIndex=1
+
+#log4j.appender.R.layout=org.apache.log4j.PatternLayout
+log4j.appender.O.layout=org.apache.log4j.PatternLayout
+
+#log4j.appender.R.layout.ConversionPattern=[%d{ISO8601}]%5p%6.6r[%t]%x - %C.%M(%F:%L) - %m%n
+log4j.appender.O.layout.ConversionPattern=[%d{ISO8601}]%5p%6.6r[%t]%x - %C.%M(%F:%L)\n%m%n
+
+
+-->

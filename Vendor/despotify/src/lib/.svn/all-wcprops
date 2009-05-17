@@ -1,0 +1,323 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svnroot/despotify/!svn/ver/303/src/lib
+END
+gstreamer.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/despotify/!svn/ver/182/src/lib/gstreamer.h
+END
+puzzle.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/despotify/!svn/ver/182/src/lib/puzzle.h
+END
+keyexchange.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/despotify/!svn/ver/182/src/lib/keyexchange.h
+END
+xml.c
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/despotify/!svn/ver/293/src/lib/xml.c
+END
+commands.c
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/despotify/!svn/ver/289/src/lib/commands.c
+END
+sha1.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/despotify/!svn/ver/278/src/lib/sha1.h
+END
+xml.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/despotify/!svn/ver/293/src/lib/xml.h
+END
+commands.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/despotify/!svn/ver/289/src/lib/commands.h
+END
+despotify.c
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/despotify/!svn/ver/303/src/lib/despotify.c
+END
+packet.c
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/despotify/!svn/ver/182/src/lib/packet.c
+END
+hmac.c
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/despotify/!svn/ver/228/src/lib/hmac.c
+END
+channel.c
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svnroot/despotify/!svn/ver/123/src/lib/channel.c
+END
+coreaudio.c
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/despotify/!svn/ver/100/src/lib/coreaudio.c
+END
+despotify.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/despotify/!svn/ver/300/src/lib/despotify.h
+END
+packet.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/despotify/!svn/ver/182/src/lib/packet.h
+END
+hmac.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/despotify/!svn/ver/182/src/lib/hmac.h
+END
+channel.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svnroot/despotify/!svn/ver/100/src/lib/channel.h
+END
+util.c
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/despotify/!svn/ver/182/src/lib/util.c
+END
+coreaudio.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/despotify/!svn/ver/100/src/lib/coreaudio.h
+END
+local.mk
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/despotify/!svn/ver/265/src/lib/local.mk
+END
+util.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/despotify/!svn/ver/263/src/lib/util.h
+END
+dns.c
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/despotify/!svn/ver/182/src/lib/dns.c
+END
+libao.c
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/despotify/!svn/ver/190/src/lib/libao.c
+END
+despotify.pc
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/despotify/!svn/ver/244/src/lib/despotify.pc
+END
+shn.c
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/despotify/!svn/ver/182/src/lib/shn.c
+END
+dns.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/despotify/!svn/ver/182/src/lib/dns.h
+END
+network.c
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svnroot/despotify/!svn/ver/182/src/lib/network.c
+END
+sndqueue.c
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/despotify/!svn/ver/182/src/lib/sndqueue.c
+END
+libao.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/despotify/!svn/ver/182/src/lib/libao.h
+END
+shn.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/despotify/!svn/ver/182/src/lib/shn.h
+END
+network.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svnroot/despotify/!svn/ver/182/src/lib/network.h
+END
+sndqueue.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/despotify/!svn/ver/182/src/lib/sndqueue.h
+END
+ezxml.c
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/despotify/!svn/ver/230/src/lib/ezxml.c
+END
+handlers.c
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/despotify/!svn/ver/286/src/lib/handlers.c
+END
+audio.c
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/despotify/!svn/ver/288/src/lib/audio.c
+END
+auth.c
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/despotify/!svn/ver/291/src/lib/auth.c
+END
+despotify-simple.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/despotify/!svn/ver/182/src/lib/despotify-simple.h
+END
+ezxml.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/despotify/!svn/ver/235/src/lib/ezxml.h
+END
+handlers.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/despotify/!svn/ver/182/src/lib/handlers.h
+END
+audio.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/despotify/!svn/ver/100/src/lib/audio.h
+END
+auth.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/despotify/!svn/ver/100/src/lib/auth.h
+END
+aes.c
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/despotify/!svn/ver/100/src/lib/aes.c
+END
+pulseaudio.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/despotify/!svn/ver/182/src/lib/pulseaudio.c
+END
+buf.c
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/despotify/!svn/ver/182/src/lib/buf.c
+END
+aes.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/despotify/!svn/ver/100/src/lib/aes.h
+END
+pulseaudio.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svnroot/despotify/!svn/ver/182/src/lib/pulseaudio.h
+END
+buf.h
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svnroot/despotify/!svn/ver/182/src/lib/buf.h
+END
+session.c
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svnroot/despotify/!svn/ver/294/src/lib/session.c
+END
+session.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svnroot/despotify/!svn/ver/291/src/lib/session.h
+END
+gstreamer.c
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/despotify/!svn/ver/182/src/lib/gstreamer.c
+END
+puzzle.c
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/despotify/!svn/ver/291/src/lib/puzzle.c
+END
+keyexchange.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/despotify/!svn/ver/295/src/lib/keyexchange.c
+END
+sha1.c
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/despotify/!svn/ver/182/src/lib/sha1.c
+END

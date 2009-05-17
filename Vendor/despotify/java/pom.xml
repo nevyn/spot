@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>se.despotify</groupId>
+  <artifactId>despotify</artifactId>
+  <version>0.3.2</version>
+
+  <name>Despotify</name>
+  <description>Spotify client API</description>
+  <url>http://despotify.se/</url>
+  <inceptionYear>2009</inceptionYear>
+
+  <packaging>jar</packaging>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.projectdarkstar.ext.jorbis</groupId>
+      <artifactId>jorbis</artifactId>
+      <version>0.0.17</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.tritonus</groupId>
+      <artifactId>tritonus-share</artifactId>
+      <version>0.3.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.tritonus</groupId>
+      <artifactId>tritonus-jorbis</artifactId>
+      <version>0.3.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.5.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.5.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.12</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.5</version>
+      <scope>test</scope>
+    </dependency>
+
+
+  </dependencies>
+
+
+  <repositories>
+    <repository>
+      <id>repo1</id>
+      <name>repo1</name>
+      <url>http://repo1.maven.org/maven2/</url>
+    </repository>    
+    <repository>
+      <id>java.net</id>
+      <name>java.net</name>
+      <url>http://download.java.net/maven/2</url>
+    </repository>
+    <repository>
+      <id>lius4compass</id>
+      <name>lius4compass</name>
+      <url>http://lius4compass.googlecode.com/svn-history/r65/maven2/</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>Codehaus repository</id>
+      <url>http://repository.codehaus.org/</url>
+    </pluginRepository>
+  </pluginRepositories>
+    
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <encoding>UTF8</encoding>
+            <source>1.5</source>
+            <target>1.5</target>
+          </configuration>
+        </plugin>
+
+
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <failIfNoTests>false</failIfNoTests>
+            <!--forkMode>pertest</forkMode-->
+            <childDelegation>false</childDelegation>
+            <useFile>true</useFile>
+          </configuration>
+        </plugin>
+      </plugins>
+
+    </pluginManagement>
+  </build>
+
+  <scm>
+    <tag>HEAD</tag>
+    <url>git://github.com/fxb/jotify.git</url>
+  </scm>
+
+  <!--
+        Reporting contains the elements that correspond specifically for the site
+        generation phase. Certain Maven plugins can generate reports defined and
+        configured under the reporting element, for example: generating Javadoc
+        reports. Much like the build element's ability to configure plugins,
+        reporting commands the same ability. The glaring difference is that rather
+        than fine-grained control of plug-in goals within the executions block,
+        reporting configures goals within reportSet elements. And the subtler
+        difference is that a plugin configuration under the reporting element works
+        as build plugin configuration, although the opposite is not true (a build
+        plugin configuration does not affect a reporting plugin). Settings defined
+        in a parent POM apply also to child modules.
+      -->
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <!--report>cim</report -->
+              <report>dependencies</report>
+              <!--report>dependency-convergency</report -->
+              <!--report>dependency-management</report -->
+              <report>index</report>
+              <report>issue-tracking</report>
+              <report>license</report>
+              <report>mailing-list</report>
+              <!--report>plugin-management</report -->
+              <report>project-team</report>
+              <report>scm</report>
+              <report>summary</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <!-- JXR - Source code as HTML -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <configuration>
+          <aggregate>true</aggregate>
+        </configuration>
+      </plugin>
+
+      <!-- JavaDoc - API-documentation -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <aggregate>true</aggregate>
+          <quiet>true</quiet>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>javadoc</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+      <!-- Surefire - JUnit testing -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+      </plugin>
+
+      <!-- JDepend - Package dependencies -->
+      <!--
+        plugin> <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jdepend-maven-plugin</artifactId> </plugin
+      -->
+      <!-- FindBugs - Finds potential bugs in your source code -->
+      <!--
+        plugin> <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId> </plugin
+      -->
+      <!--
+        DISABLE FINDBUGS FOR NOW <plugin> <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId> <configuration>
+        <xmlOutput>true</xmlOutput> <effort>Max</effort> </configuration>
+        </plugin>
+      -->
+
+      <!-- JavaNCSS - Source code metrics -->
+      <!--
+        plugin> <groupId>org.codehaus.mojo</groupId>
+        <artifactId>javancss-maven-plugin</artifactId> </plugin
+      -->
+
+      <!-- TagList - Creates a list with TODO:s etc -->
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>taglist-maven-plugin</artifactId>
+      </plugin>
+
+
+      <!-- Clover - Code Coverage -->
+      <!--
+        plugin> <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clover-plugin</artifactId> <configuration>
+        <generateXml>true</generateXml> </configuration> </plugin
+      -->
+
+      <!-- CheckStyle - Enforces coding style -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <linkXRef>false</linkXRef>
+        </configuration>
+      </plugin>
+
+      <!--
+        The dashboard plugin should be specified as the last report.
+      -->
+      <!--
+        DISABLE DASHBOARD FOR NOW - IT'S NOT READY FOR LIMELIGHT YET <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>dashboard-maven-plugin</artifactId> </plugin>
+      -->
+    </plugins>
+  </reporting>
+
+
+
+
+</project>
+  

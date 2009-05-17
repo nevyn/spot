@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/despotify/!svn/ver/182/src/lib/gstapp
+END
+gstappsrc.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/despotify/!svn/ver/182/src/lib/gstapp/gstappsrc.c
+END
+COPYING
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/despotify/!svn/ver/100/src/lib/gstapp/COPYING
+END
+gstappbuffer.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/despotify/!svn/ver/182/src/lib/gstapp/gstappbuffer.c
+END
+gstappsrc.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/despotify/!svn/ver/182/src/lib/gstapp/gstappsrc.h
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/despotify/!svn/ver/100/src/lib/gstapp/README
+END
+gstapp-marshal.list
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/despotify/!svn/ver/100/src/lib/gstapp/gstapp-marshal.list
+END
+gstappbuffer.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/despotify/!svn/ver/182/src/lib/gstapp/gstappbuffer.h
+END

@@ -1,0 +1,147 @@
+<?php require 'header.html' ?>
+<h1>Clients</h1>
+<p>Although not heavily commented, we hope the source code itself should provide some insight into how things work.</p>
+<h3>The simple client</h3>
+<p>
+The simple client is our console based multi-OS proof of concept client. 
+<pre>Available commands:
+
+list [num]              List stored playlists
+rename [num] [string]   Rename playlist
+collab [num]            Toggle playlist collaboration
+
+search [string]         Search for [string] or get next 100 results
+artist [num]            Show information about artist for track [num]
+album [num]             List album for track [num]
+uri [string]            Display info about Spotify URI
+portrait [num]          Save artist portrait to portrait.jpg
+
+play [num]              Play track [num] in the last viewed list
+playalbum [num]         Play album for track [num]
+stop, pause, resume     Control playback
+
+info                    Details about your account and current connection
+help                    This text
+quit                    Quit
+
+&gt; list 
+ 1: I <3 techno in the morning                58   christ0ph
+ 2: Electrogirls                              13   nshearing
+ 3: Binary Beats                              36   vengo
+
+&gt; list 2
+  1: Crimewave (Crystal Castles vs. Health)    4:18 Crystal Castles 
+  2: Paris Is Burning                          3:47 Ladyhawke 
+  3: Stuck On Repeat                           3:19 Little Boots 
+  4: Little Bit                                4:33 Lykke Li 
+ [ .. snip .. ]
+
+&gt; search foo
+
+Artists found (9):
+ Foo Fighters
+ Kung Foo
+ [ .. snip .. ]
+
+Albums found (4):
+ Foo Foo
+ Foo Fighters
+ [ .. snip .. ]
+
+Tracks found (100/195):
+  1: This Is a Call                            3:53 Foo Fighters 
+  2: Big Me                                    2:12 Foo Fighters 
+ [ .. snip .. ]
+</pre>
+</p>
+
+<h4>Supported commands</h4>
+<ul>
+	<li><strong>list</strong> <em>[number]</em><br />
+		List all playlists or select playlist with number [number]
+        </li>
+	<li><strong>rename</strong> <em>[number]</em> <em>[string]</em><br />
+		Rename playlist [number] to [string]
+        </li>
+        <li><strong>collab</strong> <em>[number]</em><br />
+                Toggle collaborative flag on playlist [number]
+        </li>
+        <li><strong>search</strong> <em>[string]</em><br />
+                Search for [string] or get next 100 results
+        </li>
+        <li><strong>artist</strong> <em>[num]</em><br />
+                Show information about artist for track [num]
+        </li>
+        <li><strong>album</strong> <em>[num]</em><br />
+                List album for track [num]
+        </li>
+        <li><strong>uri</strong> <em>[string]</em><br />
+                Display info about Spotify URI
+        </li>
+        <li><strong>portrait</strong> <em>[num]</em><br />
+                Save artist portrait to portrait.jpg
+        </li>
+
+        <li><strong>play</strong> <em>[num]</em><br />
+                Play track [num] in the last viewed list
+        </li>
+        <li><strong>playalbum</strong> <em>[num]</em><br />
+                Play album for track [num]
+        </li>
+        <li><strong>stop</strong>, <strong>pause</strong>, <strong>resume</strong><br />
+            Control playback
+        </li>
+        <li><strong>info</strong><br />
+                Details about your account and current connection
+        </li>
+        <li><strong>help</strong><br />
+                List of commands
+        </li>
+        <li><strong>quit</strong><br />
+                Quit the client
+        </li>
+</ul>
+
+
+<h3>The despotify Gateway</h3>
+<p>The gateway was implemented to support a HTTP REST API. The idea is to have the gateway running in the background and keep logged in sessions to Spotify alive. The frontend (HTTP) part can easily be implemented by making your favorite web scripting language talk to the backend over a socket.</p>
+<h4>Supported commands</h4>
+<ul>
+	<li><strong>login</strong> <em>username</em> <em>password</em><br />
+		Start a new session by logging in as <em>username</em> to Spotify</li>
+	<li><strong>session</strong> <em>sessionid</em><br />
+		Reconnect to an established session using a session ID reported by the <em>id</em> command.</li>
+	<li><strong>id</strong>
+		<br />Report the session ID of a logged in session.</li>
+	<li><strong>country</strong>
+		<br />Report the assigned country code for the logged in user.</li>
+	<li><strong>search</strong> <em>search-text</em><br />
+		Dump search result as XML. Use <em>tag:new</em> as search text to find out what's new.</li>
+	<li><strong>playlist</strong> <em>playlist-id</em><br />
+		Dump the playlist as XML. Playlist IDs are 34 characters (hex representation of 17 byte IDs). Use 34 zeroes to get a list of all playlists for the logged in user.</li>
+	<li><strong>browsetrack</strong> <em>track-id</em><br />
+		Dump the track metadata as XML. Track IDs are 32 characters (hex representation of 16 byte IDs). Use the 32 first characters from the playlist XML dump</li>
+	<li><strong>browseartist</strong> <em>artist-id</em><br />
+		Dump the artist metadata as XML. Artist IDs are 32 characters (hex representation of 16 byte IDs). Artist IDs are found in browsetrack or search replies.</li>
+	<li><strong>logout</strong><br />
+		Drop the established session.</li>
+	<li><strong>quit</strong><br />
+		Shutdown the connection to the gateway. This does not kill an eventual session to Spotify.</li>
+</ul>
+<h4>Interaction with the gateway</h4>
+<p>The gateway uses a text-based protocol to ease testing and integration with other software.</p>
+<p>
+The output format looks like this:<br />
+&lt;HTTP-style error code&gt; &lt;payload length&gt; &lt;OK/WARN/ERROR&gt; &lt;description&gt;\n<br />
+[eventual payload data, as long as "payload length" says]
+</p>
+<p>Here's an example.<br />
+<pre>
+this is going to fail
+501 0 WARN Invalid command 'this is going to fail'
+login foouser barpassword
+200 0 OK Login successful
+country
+200 2 OK Assigned country below
+SE</pre>
+<?php require 'footer.html' ?>

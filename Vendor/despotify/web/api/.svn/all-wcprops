@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svnroot/despotify/!svn/ver/3/web/api
+END
+auth.php
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svnroot/despotify/!svn/ver/3/web/api/auth.php
+END
+playlist.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/despotify/!svn/ver/3/web/api/playlist.php
+END
+flashplay.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/despotify/!svn/ver/3/web/api/flashplay.php
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/despotify/!svn/ver/3/web/api/index.html
+END
+config.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/despotify/!svn/ver/3/web/api/config.php
+END
+search.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/despotify/!svn/ver/3/web/api/search.php
+END
+browsetrack.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svnroot/despotify/!svn/ver/3/web/api/browsetrack.php
+END
+browseartist.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svnroot/despotify/!svn/ver/3/web/api/browseartist.php
+END

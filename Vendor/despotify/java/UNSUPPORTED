@@ -1,0 +1,6 @@
+
+  1. Remove multiple playlists from a user does not work as it should. The testcase Clean.java only
+     removes one playlist although it should remove multiple. Not sure what the problem is, removing
+     a single playlist seems to work fine though.
+
+     

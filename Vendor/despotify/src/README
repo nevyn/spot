@@ -1,0 +1,21 @@
+$Id: README 209 2009-03-13 14:41:33Z chripppa $
+
+Distribution information
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The distribution is organized as follows:
+
+ . 
+ |- lib      -- libdespotify lives here, and everything else either
+ |              depends on it or will eventually depend on it.
+ |- bindings -- language bindings are found here, e.g. python bindings
+ |              to libdespotify. they need to be built individually, and
+ |              not using the top level makefile. see bindings/README
+ |              for more information.
+ \- clients  -- here you can find the various stock clients, each in
+                it's own subdir. most of them are built by the top level
+                makefile, at least those that need to be built. see
+                clients/README for more information about the clients.
+
+See http://despotify.se/ for more information.
+  -- despotify@gmail.com

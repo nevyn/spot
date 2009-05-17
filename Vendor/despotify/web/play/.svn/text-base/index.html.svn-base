@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<!-- $Id$ -->
+<title>Despotify development - Spotify as open source</title>
+<style type="text/css">
+html, body {
+	font-size: 1em;
+	font-family: verdana;
+	margin: 0;
+	padding: 0;
+}
+strong, a {
+	font-size: 1.2em;
+}
+h1 { text-align: left }
+a.cur {
+	font-weight: bold;
+}
+#wrapper {
+	width: 800px;
+	margin: 10px auto;
+	background: #fff;
+	color: #000;
+	padding: 15px;
+}
+#h {
+	background: #000;
+	text-align:center;
+	padding: 25px;
+	color: #fff;
+}
+</style>
+<script type="text/javascript" src="swfobject.js"></script>
+<script type="text/javascript">
+	// <![CDATA[
+	function despotifyPlay() {
+		url = 'http://despotify.se/api/flashplay.php';
+		url += '?session=' + document.getElementById('session').value;
+		url += '%26id=' + document.getElementById('file').value;
+		url += '%26key=' + document.getElementById('key').value;
+		var so = new SWFObject("despotify.swf", "fOgg", "600", "600", "10", "#DDDDDD");
+		document.getElementById('url').value = url;
+		so.addVariable("playUrl", url);
+		so.write("flashcontent");
+	}
+	// ]]>
+</script>
+</head>
+
+<body>
+<div id="wrapper">
+<div id="despotify" class="nav">
+	<a href="/#despotify" class="cur">Despotify</a>
+	<strong>&raquo;</strong>
+	<a href="/#source">Source code</a>
+	<strong>&raquo;</strong>
+	<a href="/#news">News</a>
+	<strong>&raquo;</strong>
+	<a href="/#docs">Docs</a>
+	<strong>&raquo;</strong>
+	<a href="/#faq">FAQ</a>
+	<strong>&raquo;</strong>
+	<a href="/#criticism">Criticism</a>
+	<strong>&raquo;</strong>
+	<a href="/#legal">Legal</a>
+</div>
+<h1>Spotify player</h1>
+<form>
+	<div>
+	<strong>Session ID</strong>
+	<input type="text" size="10" id="session" />
+	</div>
+	<div>
+	<strong>File ID</strong>
+	<input type="text" size="40" id="file" value="2678bfe49104604c5ef1646dbf72b6ae05d6ff1e" />
+	</div>
+	<div>
+	<strong>Key</strong>
+	<input type="text" size="32" id="key" value="de1967d7a5253b47794f0d36da659db3" />
+	</div>
+	<div>
+	<strong>URL</strong>
+	<input type="text" size="100" id="url" readonly="true"  />
+	</div>
+</form>
+	<p>LOAD 8,1 ... <input type="button" onclick="despotifyPlay()" value="Press play on tape.." /> </p>
+	<div id="flashcontent">
+		<p>
+		<strong>Flash Player 10 is required. Consider upgrading if you have an older version!</strong>
+		</p>
+		<p><a href="http://www.adobe.com/products/flashplayer/">Download</a> the latest version.</p>
+	</div>
+<h1>Legal</h1>
+<p><em>"The <a href="http://en.wikipedia.org/wiki/Streisand_effect">Streisand effect</a> is a phenomenon on the Internet where an attempt to censor or remove a piece of information backfires, causing the information to be widely publicized."</em></p>
+
+</div>
+<!-- /wrapper -->
+
+
+
+<div id="h">
+<p>
+	<img src="../hack-se.jpg" alt="#hack.se" />
+</p>
+<p>
+	#hack.se <a href="http://demo.hack.se/">demo scene</a> division
+</p>
+</div>
+</body>
+</html>

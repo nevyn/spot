@@ -1,0 +1,6 @@
+K 10
+svn:ignore
+V 18
+Makefile.local.mk
+
+END

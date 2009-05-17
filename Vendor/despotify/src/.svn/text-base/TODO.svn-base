@@ -1,0 +1,20 @@
+$Id$
+
+* Fix AES decryption bug for last block
+
+* Command line history (arrow up, down) in the curses client?
+* Finish the scrolling window code to provide a file-listing like interface
+* Move handling of window resizing out of the signal handler
+* Fix resizing bug (crash in wrefresh() when screen area is reduced)
+* Make debugging code use DSFYDEBUG() macro
+
+* Clean up sound processing code
+
+* There is a mix of old and new code and concepts; convert to use the new code
+
+* Seek in ogg files
+[11:46] http://lists.xiph.org/pipermail/vorbis-dev/2006-August/018530.html
+[11:49] http://www.xiph.org/ogg/doc/ogg-multiplex.html
+[11:53] http://www.hydrogenaudio.org/forums/lofiversion/index.php/t41160.html
+
+* Replace the current buffer functions with esbuf --rKA

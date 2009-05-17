@@ -1,0 +1,58 @@
+<?php require 'header.html' ?>
+<h1>Despotify - the open source Spotify client</h1>
+<p>#hack.se proudly presents an open source <a href="http://www.spotify.com">Spotify</a> client</p>
+<h3>Features</h3>
+<ul>
+	<li>C implementation based on F/OSS code</li>
+	<li>Proof of Concept multi-OS client with text-based UI</li>
+        <li>Proof of Concept gateway to the Spotify service (text-based protocol, for supporting REST)</li>
+        <li>Language bindings for <a href="http://despotify.svn.sourceforge.net/viewvc/despotify/src/bindings/python/">Python</a> and <a href="http://despotify.svn.sourceforge.net/viewvc/despotify/src/bindings/ruby/">Ruby</a></li>
+</ul>
+<div style="padding-left: 10px">
+    <p><em>
+        &nbsp;Quite a few Spotify related sites have appeared since we launched in October, I've previously mentioned a number of them which are dedicated to sharing playlists but there are lots of other sites that talk about Spotify or have used Spotify in interesting ways.<br />...<br />
+        &nbsp;We love stuff like this so if you've done something creative with Spotify please let us know, we'd like to see it and share it with everyone.
+    </em></p>
+    <strong>Source:</strong> <a href="http://www.spotify.com/blog/archives/2009/02/19/spotified-cd-collection-and-some-other-community-sites/">Spotified CD collection and some other community sites</a>
+    </p>
+</div>
+
+<h3>Video intro (old ncurses client)</h3>
+<ul>
+	<li><a href="http://www.youtube.com/watch?v=9LUySm2Z8Yk">despotify ncurses</a> (youtube.com)</li>
+</ul>
+
+<h1><a name="source">Source code for Despotify</a></h1>
+<p>The latest version of the source code is available in our <a href="http://sourceforge.net/svn/?group_id=254350">Subversion repository</a></p>
+<p>Feel free to <a href="http://despotify.svn.sourceforge.net/src/">browse the source code</a></p>
+<p>You'll need OpenSSL, zlib, libvorbis and one of the packages to support the audio backends. Under Linux you can choose between pulseaudio, gstreamer and libao.</p>
+<p><pre>Installation command for dependencies under Debian/Ubuntu
+  aptitude install libssl-dev zlib1g-dev libvorbis-dev libtool
+  aptitude install libpulse-dev # For pulseaudio backend
+  aptitude install libgstreamer-plugins-base0.10-0 libgstreamer0.10-dev # For GStreamer backend
+  aptitude install libao-dev # For libao backend
+</pre></p>
+
+<h1><a name="news">News</a></h1>
+<h2>March 6th, 2009 - Protocol implementation in Java</h2>
+<p>A Spotify protocol implementation in Java is being developed at <a href="http://github.com/fxb/jotify">http://github.com/fxb/jotify</a>.</p>
+<p><strong>Are you a developer without a premium subscription on Spotify?</strong><br />
+We've decided to sponsor five people who contact us with details about their project<br />
+This will be done by refunding (PayPal only) their first month as a premium subscriber.
+</p>
+<p>
+<a href="mailto:despotify at gmail.com">Contact</a> us for more information.
+</p>
+
+<h2>March 5th, 2009 - Statement regarding security breach</h2>
+<p>Despotify is actively and falsely being accused of hacking into Spotify.<br />
+Under <a href="#criticism">Criticism</a> is our statement on the matter.
+</p>
+<p><strong>despotify</strong> is about providing an open source client to Spotify's service and providing tools to allow third parties to develop new and cool services that make use of Spotify's platform and services.<br />
+Please see our <a href="#faq">FAQ</a> for more information.
+</p>
+<h2>February 26th, 2009 - Update regarding the usage of 'Free' accounts</h2>
+<p>Despotify has been blocked for users using 'Free' accounts.<br />
+You can still use Despotify using 'Premium' accounts.</p>
+<p>We will not attempt to circumvent this block, nor accept any patches circumventing it. If you disagree with this decision, you are free to fork the code.</p>
+<?php require 'footer.html' ?>

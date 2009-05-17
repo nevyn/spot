@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/exceptions
+END
+DespotifyException.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/exceptions/DespotifyException.java
+END
+TimeoutException.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/exceptions/TimeoutException.java
+END
+MissingChildElement.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/exceptions/MissingChildElement.java
+END
+AuthenticationException.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/exceptions/AuthenticationException.java
+END
+ConnectionException.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/exceptions/ConnectionException.java
+END

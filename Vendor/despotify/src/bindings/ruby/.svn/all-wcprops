@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svnroot/despotify/!svn/ver/287/src/bindings/ruby
+END
+rubify
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svnroot/despotify/!svn/ver/287/src/bindings/ruby/rubify
+END
+configure
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/despotify/!svn/ver/266/src/bindings/ruby/configure
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/despotify/!svn/ver/276/src/bindings/ruby/LICENSE
+END
+extconf.rb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/despotify/!svn/ver/266/src/bindings/ruby/extconf.rb
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svnroot/despotify/!svn/ver/266/src/bindings/ruby/README
+END

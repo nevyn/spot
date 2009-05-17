@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/despotify/!svn/ver/308/java/src/test/java/se/despotify/client/protocol/command/media/playlist
+END
+TestRemovePlaylist.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnroot/despotify/!svn/ver/308/java/src/test/java/se/despotify/client/protocol/command/media/playlist/TestRemovePlaylist.java
+END
+TestLoadPlaylist.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svnroot/despotify/!svn/ver/305/java/src/test/java/se/despotify/client/protocol/command/media/playlist/TestLoadPlaylist.java
+END
+TestLoadUserPlaylists.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnroot/despotify/!svn/ver/305/java/src/test/java/se/despotify/client/protocol/command/media/playlist/TestLoadUserPlaylists.java
+END
+TestAddTracksToPlaylist.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svnroot/despotify/!svn/ver/307/java/src/test/java/se/despotify/client/protocol/command/media/playlist/TestAddTracksToPlaylist.java
+END
+TestCreatePlaylist.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svnroot/despotify/!svn/ver/307/java/src/test/java/se/despotify/client/protocol/command/media/playlist/TestCreatePlaylist.java
+END
+TestCreatePlaylistUUID.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svnroot/despotify/!svn/ver/307/java/src/test/java/se/despotify/client/protocol/command/media/playlist/TestCreatePlaylistUUID.java
+END
+TestStore.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svnroot/despotify/!svn/ver/308/java/src/test/java/se/despotify/client/protocol/command/media/playlist/TestStore.java
+END

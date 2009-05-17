@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/despotify/!svn/ver/307/java/src/test/resources
+END
+despotify.properties
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/despotify/!svn/ver/305/java/src/test/resources/despotify.properties
+END
+log4j.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/despotify/!svn/ver/307/java/src/test/resources/log4j.xml
+END

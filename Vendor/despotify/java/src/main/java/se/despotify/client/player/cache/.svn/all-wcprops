@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/client/player/cache
+END
+Cache.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/client/player/cache/Cache.java
+END
+FileCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/client/player/cache/FileCache.java
+END
+SubstreamCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/client/player/cache/SubstreamCache.java
+END
+MemoryCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/client/player/cache/MemoryCache.java
+END

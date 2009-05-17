@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/client/protocol/command
+END
+ChecksumException.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/command/ChecksumException.java
+END
+LoadImage.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/command/LoadImage.java
+END
+Command.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/command/Command.java
+END

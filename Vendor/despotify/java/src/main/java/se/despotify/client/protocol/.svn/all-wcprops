@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/client/protocol
+END
+Protocol.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/Protocol.java
+END
+Session.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/Session.java
+END
+CommandListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/client/protocol/CommandListener.java
+END
+PacketType.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/client/protocol/PacketType.java
+END

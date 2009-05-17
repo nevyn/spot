@@ -1,0 +1,720 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0518906D0FBEDD5F00A28F12 /* puzzle.c in Sources */ = {isa = PBXBuildFile; fileRef = 051890390FBEDD5F00A28F12 /* puzzle.c */; };
+		0518906E0FBEDD5F00A28F12 /* hmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518903A0FBEDD5F00A28F12 /* hmac.h */; };
+		0518906F0FBEDD5F00A28F12 /* ezxml.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518903B0FBEDD5F00A28F12 /* ezxml.h */; };
+		051890700FBEDD5F00A28F12 /* session.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518903C0FBEDD5F00A28F12 /* session.h */; };
+		051890720FBEDD5F00A28F12 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518903E0FBEDD5F00A28F12 /* sha1.c */; };
+		051890730FBEDD5F00A28F12 /* keyexchange.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518903F0FBEDD5F00A28F12 /* keyexchange.c */; };
+		051890740FBEDD5F00A28F12 /* handlers.c in Sources */ = {isa = PBXBuildFile; fileRef = 051890400FBEDD5F00A28F12 /* handlers.c */; };
+		051890750FBEDD5F00A28F12 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 051890410FBEDD5F00A28F12 /* hmac.c */; };
+		051890760FBEDD5F00A28F12 /* commands.c in Sources */ = {isa = PBXBuildFile; fileRef = 051890420FBEDD5F00A28F12 /* commands.c */; };
+		051890770FBEDD5F00A28F12 /* auth.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890430FBEDD5F00A28F12 /* auth.h */; };
+		051890780FBEDD5F00A28F12 /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890440FBEDD5F00A28F12 /* sha1.h */; };
+		051890790FBEDD5F00A28F12 /* despotify.c in Sources */ = {isa = PBXBuildFile; fileRef = 051890450FBEDD5F00A28F12 /* despotify.c */; };
+		0518907A0FBEDD5F00A28F12 /* aes.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890460FBEDD5F00A28F12 /* aes.h */; };
+		0518907B0FBEDD5F00A28F12 /* packet.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890470FBEDD5F00A28F12 /* packet.h */; };
+		0518907C0FBEDD5F00A28F12 /* handlers.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890480FBEDD5F00A28F12 /* handlers.h */; };
+		0518907D0FBEDD5F00A28F12 /* session.c in Sources */ = {isa = PBXBuildFile; fileRef = 051890490FBEDD5F00A28F12 /* session.c */; };
+		0518907E0FBEDD5F00A28F12 /* auth.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518904A0FBEDD5F00A28F12 /* auth.c */; };
+		0518907F0FBEDD5F00A28F12 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518904B0FBEDD5F00A28F12 /* util.c */; };
+		051890800FBEDD5F00A28F12 /* puzzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518904C0FBEDD5F00A28F12 /* puzzle.h */; };
+		051890820FBEDD5F00A28F12 /* channel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518904F0FBEDD5F00A28F12 /* channel.h */; };
+		051890840FBEDD5F00A28F12 /* dns.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890510FBEDD5F00A28F12 /* dns.h */; };
+		051890850FBEDD5F00A28F12 /* shn.c in Sources */ = {isa = PBXBuildFile; fileRef = 051890520FBEDD5F00A28F12 /* shn.c */; };
+		051890860FBEDD5F00A28F12 /* audio.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890530FBEDD5F00A28F12 /* audio.h */; };
+		051890870FBEDD5F00A28F12 /* audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 051890540FBEDD5F00A28F12 /* audio.c */; };
+		051890890FBEDD5F00A28F12 /* dns.c in Sources */ = {isa = PBXBuildFile; fileRef = 051890560FBEDD5F00A28F12 /* dns.c */; };
+		0518908A0FBEDD5F00A28F12 /* shn.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890570FBEDD5F00A28F12 /* shn.h */; };
+		0518908B0FBEDD5F00A28F12 /* commands.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890580FBEDD5F00A28F12 /* commands.h */; };
+		0518908C0FBEDD5F00A28F12 /* despotify-simple.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890590FBEDD5F00A28F12 /* despotify-simple.h */; };
+		0518908D0FBEDD5F00A28F12 /* buf.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518905A0FBEDD5F00A28F12 /* buf.h */; };
+		0518908E0FBEDD5F00A28F12 /* xml.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518905B0FBEDD5F00A28F12 /* xml.h */; };
+		0518908F0FBEDD5F00A28F12 /* gstreamer.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518905C0FBEDD5F00A28F12 /* gstreamer.h */; };
+		051890900FBEDD5F00A28F12 /* sndqueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518905D0FBEDD5F00A28F12 /* sndqueue.h */; };
+		051890910FBEDD5F00A28F12 /* channel.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518905E0FBEDD5F00A28F12 /* channel.c */; };
+		051890920FBEDD5F00A28F12 /* buf.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518905F0FBEDD5F00A28F12 /* buf.c */; };
+		051890930FBEDD5F00A28F12 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 051890600FBEDD5F00A28F12 /* aes.c */; };
+		051890940FBEDD5F00A28F12 /* ezxml.c in Sources */ = {isa = PBXBuildFile; fileRef = 051890610FBEDD5F00A28F12 /* ezxml.c */; };
+		051890950FBEDD5F00A28F12 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890620FBEDD5F00A28F12 /* util.h */; };
+		051890960FBEDD5F00A28F12 /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = 051890630FBEDD5F00A28F12 /* xml.c */; };
+		051890970FBEDD5F00A28F12 /* network.c in Sources */ = {isa = PBXBuildFile; fileRef = 051890640FBEDD5F00A28F12 /* network.c */; };
+		051890990FBEDD5F00A28F12 /* packet.c in Sources */ = {isa = PBXBuildFile; fileRef = 051890660FBEDD5F00A28F12 /* packet.c */; };
+		0518909A0FBEDD5F00A28F12 /* pulseaudio.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890670FBEDD5F00A28F12 /* pulseaudio.h */; };
+		0518909B0FBEDD5F00A28F12 /* network.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890680FBEDD5F00A28F12 /* network.h */; };
+		0518909D0FBEDD5F00A28F12 /* despotify.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518906A0FBEDD5F00A28F12 /* despotify.h */; };
+		0518909E0FBEDD5F00A28F12 /* sndqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518906B0FBEDD5F00A28F12 /* sndqueue.c */; };
+		0518909F0FBEDD5F00A28F12 /* keyexchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518906C0FBEDD5F00A28F12 /* keyexchange.h */; };
+		051890E50FBEE09700A28F12 /* libdespotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051890300FBEDCF400A28F12 /* libdespotify.a */; };
+		051890FB0FBEE0DC00A28F12 /* SpotTrack.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890F90FBEE0DC00A28F12 /* SpotTrack.h */; };
+		051890FC0FBEE0DC00A28F12 /* SpotTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 051890FA0FBEE0DC00A28F12 /* SpotTrack.m */; };
+		051890FF0FBEE34900A28F12 /* SpotSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890FD0FBEE34900A28F12 /* SpotSession.h */; };
+		051891000FBEE34900A28F12 /* SpotSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 051890FE0FBEE34900A28F12 /* SpotSession.m */; };
+		051891250FBF35FF00A28F12 /* audioqueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 051891230FBF35FF00A28F12 /* audioqueue.h */; };
+		051891260FBF35FF00A28F12 /* audioqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 051891240FBF35FF00A28F12 /* audioqueue.c */; };
+		051891290FBF365000A28F12 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051891280FBF365000A28F12 /* AudioToolbox.framework */; };
+		0518916B0FC0456B00A28F12 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518916A0FC0456B00A28F12 /* LoginViewController.m */; };
+		0518916D0FC045B000A28F12 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0518916C0FC045B000A28F12 /* LoginView.xib */; };
+		051891710FC0466E00A28F12 /* PlaylistsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051891700FC0466E00A28F12 /* PlaylistsView.xib */; };
+		0518918E0FC0489F00A28F12 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0518918D0FC0489F00A28F12 /* logo.png */; };
+		051891A20FC051B300A28F12 /* LoggingInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 051891A10FC051B300A28F12 /* LoggingInController.m */; };
+		051891A40FC051BC00A28F12 /* LoggingIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051891A30FC051BC00A28F12 /* LoggingIn.xib */; };
+		051892300FC060A500A28F12 /* CoSpotify.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518922E0FC060A500A28F12 /* CoSpotify.h */; };
+		051892310FC060A500A28F12 /* CoSpotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518922F0FC060A500A28F12 /* CoSpotify.m */; };
+		0518923F0FC0612700A28F12 /* libCospotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051890DC0FBEE08C00A28F12 /* libCospotify.a */; };
+		1D3623260D0F684500981E51 /* SpotAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SpotAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		28C286E10D94DF7D0034E888 /* PlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* PlaylistsViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		051890DF0FBEE09100A28F12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0518902F0FBEDCF400A28F12 /* despotify */;
+			remoteInfo = despotify;
+		};
+		051892340FC060D200A28F12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 051890DB0FBEE08C00A28F12 /* Cospotify */;
+			remoteInfo = Cospotify;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		051890300FBEDCF400A28F12 /* libdespotify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdespotify.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		051890390FBEDD5F00A28F12 /* puzzle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = puzzle.c; path = Vendor/despotify/src/lib/puzzle.c; sourceTree = "<group>"; };
+		0518903A0FBEDD5F00A28F12 /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hmac.h; path = Vendor/despotify/src/lib/hmac.h; sourceTree = "<group>"; };
+		0518903B0FBEDD5F00A28F12 /* ezxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ezxml.h; path = Vendor/despotify/src/lib/ezxml.h; sourceTree = "<group>"; };
+		0518903C0FBEDD5F00A28F12 /* session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = session.h; path = Vendor/despotify/src/lib/session.h; sourceTree = "<group>"; };
+		0518903E0FBEDD5F00A28F12 /* sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sha1.c; path = Vendor/despotify/src/lib/sha1.c; sourceTree = "<group>"; };
+		0518903F0FBEDD5F00A28F12 /* keyexchange.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = keyexchange.c; path = Vendor/despotify/src/lib/keyexchange.c; sourceTree = "<group>"; };
+		051890400FBEDD5F00A28F12 /* handlers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = handlers.c; path = Vendor/despotify/src/lib/handlers.c; sourceTree = "<group>"; };
+		051890410FBEDD5F00A28F12 /* hmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hmac.c; path = Vendor/despotify/src/lib/hmac.c; sourceTree = "<group>"; };
+		051890420FBEDD5F00A28F12 /* commands.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = commands.c; path = Vendor/despotify/src/lib/commands.c; sourceTree = "<group>"; };
+		051890430FBEDD5F00A28F12 /* auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = auth.h; path = Vendor/despotify/src/lib/auth.h; sourceTree = "<group>"; };
+		051890440FBEDD5F00A28F12 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha1.h; path = Vendor/despotify/src/lib/sha1.h; sourceTree = "<group>"; };
+		051890450FBEDD5F00A28F12 /* despotify.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = despotify.c; path = Vendor/despotify/src/lib/despotify.c; sourceTree = "<group>"; };
+		051890460FBEDD5F00A28F12 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aes.h; path = Vendor/despotify/src/lib/aes.h; sourceTree = "<group>"; };
+		051890470FBEDD5F00A28F12 /* packet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = packet.h; path = Vendor/despotify/src/lib/packet.h; sourceTree = "<group>"; };
+		051890480FBEDD5F00A28F12 /* handlers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = handlers.h; path = Vendor/despotify/src/lib/handlers.h; sourceTree = "<group>"; };
+		051890490FBEDD5F00A28F12 /* session.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = session.c; path = Vendor/despotify/src/lib/session.c; sourceTree = "<group>"; };
+		0518904A0FBEDD5F00A28F12 /* auth.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = auth.c; path = Vendor/despotify/src/lib/auth.c; sourceTree = "<group>"; };
+		0518904B0FBEDD5F00A28F12 /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = util.c; path = Vendor/despotify/src/lib/util.c; sourceTree = "<group>"; };
+		0518904C0FBEDD5F00A28F12 /* puzzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = puzzle.h; path = Vendor/despotify/src/lib/puzzle.h; sourceTree = "<group>"; };
+		0518904F0FBEDD5F00A28F12 /* channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = channel.h; path = Vendor/despotify/src/lib/channel.h; sourceTree = "<group>"; };
+		051890510FBEDD5F00A28F12 /* dns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dns.h; path = Vendor/despotify/src/lib/dns.h; sourceTree = "<group>"; };
+		051890520FBEDD5F00A28F12 /* shn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = shn.c; path = Vendor/despotify/src/lib/shn.c; sourceTree = "<group>"; };
+		051890530FBEDD5F00A28F12 /* audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = audio.h; path = Vendor/despotify/src/lib/audio.h; sourceTree = "<group>"; };
+		051890540FBEDD5F00A28F12 /* audio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = audio.c; path = Vendor/despotify/src/lib/audio.c; sourceTree = "<group>"; };
+		051890560FBEDD5F00A28F12 /* dns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dns.c; path = Vendor/despotify/src/lib/dns.c; sourceTree = "<group>"; };
+		051890570FBEDD5F00A28F12 /* shn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shn.h; path = Vendor/despotify/src/lib/shn.h; sourceTree = "<group>"; };
+		051890580FBEDD5F00A28F12 /* commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = commands.h; path = Vendor/despotify/src/lib/commands.h; sourceTree = "<group>"; };
+		051890590FBEDD5F00A28F12 /* despotify-simple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "despotify-simple.h"; path = "Vendor/despotify/src/lib/despotify-simple.h"; sourceTree = "<group>"; };
+		0518905A0FBEDD5F00A28F12 /* buf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = buf.h; path = Vendor/despotify/src/lib/buf.h; sourceTree = "<group>"; };
+		0518905B0FBEDD5F00A28F12 /* xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xml.h; path = Vendor/despotify/src/lib/xml.h; sourceTree = "<group>"; };
+		0518905C0FBEDD5F00A28F12 /* gstreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gstreamer.h; path = Vendor/despotify/src/lib/gstreamer.h; sourceTree = "<group>"; };
+		0518905D0FBEDD5F00A28F12 /* sndqueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sndqueue.h; path = Vendor/despotify/src/lib/sndqueue.h; sourceTree = "<group>"; };
+		0518905E0FBEDD5F00A28F12 /* channel.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = channel.c; path = Vendor/despotify/src/lib/channel.c; sourceTree = "<group>"; };
+		0518905F0FBEDD5F00A28F12 /* buf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = buf.c; path = Vendor/despotify/src/lib/buf.c; sourceTree = "<group>"; };
+		051890600FBEDD5F00A28F12 /* aes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = aes.c; path = Vendor/despotify/src/lib/aes.c; sourceTree = "<group>"; };
+		051890610FBEDD5F00A28F12 /* ezxml.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ezxml.c; path = Vendor/despotify/src/lib/ezxml.c; sourceTree = "<group>"; };
+		051890620FBEDD5F00A28F12 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util.h; path = Vendor/despotify/src/lib/util.h; sourceTree = "<group>"; };
+		051890630FBEDD5F00A28F12 /* xml.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xml.c; path = Vendor/despotify/src/lib/xml.c; sourceTree = "<group>"; };
+		051890640FBEDD5F00A28F12 /* network.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = network.c; path = Vendor/despotify/src/lib/network.c; sourceTree = "<group>"; };
+		051890660FBEDD5F00A28F12 /* packet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = packet.c; path = Vendor/despotify/src/lib/packet.c; sourceTree = "<group>"; };
+		051890670FBEDD5F00A28F12 /* pulseaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pulseaudio.h; path = Vendor/despotify/src/lib/pulseaudio.h; sourceTree = "<group>"; };
+		051890680FBEDD5F00A28F12 /* network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = network.h; path = Vendor/despotify/src/lib/network.h; sourceTree = "<group>"; };
+		0518906A0FBEDD5F00A28F12 /* despotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = despotify.h; path = Vendor/despotify/src/lib/despotify.h; sourceTree = "<group>"; };
+		0518906B0FBEDD5F00A28F12 /* sndqueue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sndqueue.c; path = Vendor/despotify/src/lib/sndqueue.c; sourceTree = "<group>"; };
+		0518906C0FBEDD5F00A28F12 /* keyexchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = keyexchange.h; path = Vendor/despotify/src/lib/keyexchange.h; sourceTree = "<group>"; };
+		051890D30FBEE01F00A28F12 /* simple.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = simple.c; path = Vendor/despotify/src/clients/simple/simple.c; sourceTree = "<group>"; };
+		051890DC0FBEE08C00A28F12 /* libCospotify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCospotify.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		051890F90FBEE0DC00A28F12 /* SpotTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotTrack.h; sourceTree = "<group>"; };
+		051890FA0FBEE0DC00A28F12 /* SpotTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotTrack.m; sourceTree = "<group>"; };
+		051890FD0FBEE34900A28F12 /* SpotSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotSession.h; sourceTree = "<group>"; };
+		051890FE0FBEE34900A28F12 /* SpotSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotSession.m; sourceTree = "<group>"; };
+		0518911F0FBF34D500A28F12 /* coreaudio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = coreaudio.c; path = Vendor/despotify/src/lib/coreaudio.c; sourceTree = "<group>"; };
+		051891200FBF34DE00A28F12 /* coreaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = coreaudio.h; path = Vendor/despotify/src/lib/coreaudio.h; sourceTree = "<group>"; };
+		051891230FBF35FF00A28F12 /* audioqueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audioqueue.h; sourceTree = "<group>"; };
+		051891240FBF35FF00A28F12 /* audioqueue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = audioqueue.c; sourceTree = "<group>"; };
+		051891280FBF365000A28F12 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		051891690FC0456B00A28F12 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		0518916A0FC0456B00A28F12 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		0518916C0FC045B000A28F12 /* LoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
+		051891700FC0466E00A28F12 /* PlaylistsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaylistsView.xib; sourceTree = "<group>"; };
+		0518918D0FC0489F00A28F12 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		051891A00FC051B300A28F12 /* LoggingInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingInController.h; sourceTree = "<group>"; };
+		051891A10FC051B300A28F12 /* LoggingInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggingInController.m; sourceTree = "<group>"; };
+		051891A30FC051BC00A28F12 /* LoggingIn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoggingIn.xib; sourceTree = "<group>"; };
+		0518922E0FC060A500A28F12 /* CoSpotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoSpotify.h; sourceTree = "<group>"; };
+		0518922F0FC060A500A28F12 /* CoSpotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoSpotify.m; sourceTree = "<group>"; };
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* SpotAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* SpotAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* Spot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28A0AAE50D9B0CCF005BE974 /* Spot_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot_Prefix.pch; sourceTree = "<group>"; };
+		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28C286DF0D94DF7D0034E888 /* PlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistsViewController.h; sourceTree = "<group>"; };
+		28C286E00D94DF7D0034E888 /* PlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistsViewController.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Spot-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Spot-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0518902E0FBEDCF400A28F12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				051891290FBF365000A28F12 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		051890DA0FBEE08C00A28F12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				051890E50FBEE09700A28F12 /* libdespotify.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0518923F0FC0612700A28F12 /* libCospotify.a in Frameworks */,
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		051890350FBEDD2800A28F12 /* despotify */ = {
+			isa = PBXGroup;
+			children = (
+				051891230FBF35FF00A28F12 /* audioqueue.h */,
+				051891240FBF35FF00A28F12 /* audioqueue.c */,
+				051891200FBF34DE00A28F12 /* coreaudio.h */,
+				0518911F0FBF34D500A28F12 /* coreaudio.c */,
+				051890390FBEDD5F00A28F12 /* puzzle.c */,
+				0518903A0FBEDD5F00A28F12 /* hmac.h */,
+				0518903B0FBEDD5F00A28F12 /* ezxml.h */,
+				0518903C0FBEDD5F00A28F12 /* session.h */,
+				0518903E0FBEDD5F00A28F12 /* sha1.c */,
+				0518903F0FBEDD5F00A28F12 /* keyexchange.c */,
+				051890400FBEDD5F00A28F12 /* handlers.c */,
+				051890410FBEDD5F00A28F12 /* hmac.c */,
+				051890420FBEDD5F00A28F12 /* commands.c */,
+				051890430FBEDD5F00A28F12 /* auth.h */,
+				051890440FBEDD5F00A28F12 /* sha1.h */,
+				051890450FBEDD5F00A28F12 /* despotify.c */,
+				051890460FBEDD5F00A28F12 /* aes.h */,
+				051890470FBEDD5F00A28F12 /* packet.h */,
+				051890480FBEDD5F00A28F12 /* handlers.h */,
+				051890490FBEDD5F00A28F12 /* session.c */,
+				0518904A0FBEDD5F00A28F12 /* auth.c */,
+				0518904B0FBEDD5F00A28F12 /* util.c */,
+				0518904C0FBEDD5F00A28F12 /* puzzle.h */,
+				0518904F0FBEDD5F00A28F12 /* channel.h */,
+				051890510FBEDD5F00A28F12 /* dns.h */,
+				051890520FBEDD5F00A28F12 /* shn.c */,
+				051890530FBEDD5F00A28F12 /* audio.h */,
+				051890540FBEDD5F00A28F12 /* audio.c */,
+				051890560FBEDD5F00A28F12 /* dns.c */,
+				051890570FBEDD5F00A28F12 /* shn.h */,
+				051890580FBEDD5F00A28F12 /* commands.h */,
+				051890590FBEDD5F00A28F12 /* despotify-simple.h */,
+				0518905A0FBEDD5F00A28F12 /* buf.h */,
+				0518905B0FBEDD5F00A28F12 /* xml.h */,
+				0518905C0FBEDD5F00A28F12 /* gstreamer.h */,
+				0518905D0FBEDD5F00A28F12 /* sndqueue.h */,
+				0518905E0FBEDD5F00A28F12 /* channel.c */,
+				0518905F0FBEDD5F00A28F12 /* buf.c */,
+				051890600FBEDD5F00A28F12 /* aes.c */,
+				051890610FBEDD5F00A28F12 /* ezxml.c */,
+				051890620FBEDD5F00A28F12 /* util.h */,
+				051890630FBEDD5F00A28F12 /* xml.c */,
+				051890640FBEDD5F00A28F12 /* network.c */,
+				051890660FBEDD5F00A28F12 /* packet.c */,
+				051890670FBEDD5F00A28F12 /* pulseaudio.h */,
+				051890680FBEDD5F00A28F12 /* network.h */,
+				0518906A0FBEDD5F00A28F12 /* despotify.h */,
+				0518906B0FBEDD5F00A28F12 /* sndqueue.c */,
+				0518906C0FBEDD5F00A28F12 /* keyexchange.h */,
+			);
+			name = despotify;
+			sourceTree = "<group>";
+		};
+		051890F60FBEE0BF00A28F12 /* CoSpotify */ = {
+			isa = PBXGroup;
+			children = (
+				051890F90FBEE0DC00A28F12 /* SpotTrack.h */,
+				051890FA0FBEE0DC00A28F12 /* SpotTrack.m */,
+				051890FD0FBEE34900A28F12 /* SpotSession.h */,
+				051890FE0FBEE34900A28F12 /* SpotSession.m */,
+				0518922E0FC060A500A28F12 /* CoSpotify.h */,
+				0518922F0FC060A500A28F12 /* CoSpotify.m */,
+			);
+			path = CoSpotify;
+			sourceTree = "<group>";
+		};
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				28C286DF0D94DF7D0034E888 /* PlaylistsViewController.h */,
+				28C286E00D94DF7D0034E888 /* PlaylistsViewController.m */,
+				051891700FC0466E00A28F12 /* PlaylistsView.xib */,
+				1D3623240D0F684500981E51 /* SpotAppDelegate.h */,
+				1D3623250D0F684500981E51 /* SpotAppDelegate.m */,
+				051890F60FBEE0BF00A28F12 /* CoSpotify */,
+				051891690FC0456B00A28F12 /* LoginViewController.h */,
+				0518916A0FC0456B00A28F12 /* LoginViewController.m */,
+				0518916C0FC045B000A28F12 /* LoginView.xib */,
+				051891A00FC051B300A28F12 /* LoggingInController.h */,
+				051891A10FC051B300A28F12 /* LoggingInController.m */,
+				051891A30FC051BC00A28F12 /* LoggingIn.xib */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* Spot.app */,
+				051890300FBEDCF400A28F12 /* libdespotify.a */,
+				051890DC0FBEE08C00A28F12 /* libCospotify.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				28A0AAE50D9B0CCF005BE974 /* Spot_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0518918D0FC0489F00A28F12 /* logo.png */,
+				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* Spot-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				051891280FBF365000A28F12 /* AudioToolbox.framework */,
+				051890D30FBEE01F00A28F12 /* simple.c */,
+				051890350FBEDD2800A28F12 /* despotify */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0518902C0FBEDCF400A28F12 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0518906E0FBEDD5F00A28F12 /* hmac.h in Headers */,
+				0518906F0FBEDD5F00A28F12 /* ezxml.h in Headers */,
+				051890700FBEDD5F00A28F12 /* session.h in Headers */,
+				051890770FBEDD5F00A28F12 /* auth.h in Headers */,
+				051890780FBEDD5F00A28F12 /* sha1.h in Headers */,
+				0518907A0FBEDD5F00A28F12 /* aes.h in Headers */,
+				0518907B0FBEDD5F00A28F12 /* packet.h in Headers */,
+				0518907C0FBEDD5F00A28F12 /* handlers.h in Headers */,
+				051890800FBEDD5F00A28F12 /* puzzle.h in Headers */,
+				051890820FBEDD5F00A28F12 /* channel.h in Headers */,
+				051890840FBEDD5F00A28F12 /* dns.h in Headers */,
+				051890860FBEDD5F00A28F12 /* audio.h in Headers */,
+				0518908A0FBEDD5F00A28F12 /* shn.h in Headers */,
+				0518908B0FBEDD5F00A28F12 /* commands.h in Headers */,
+				0518908C0FBEDD5F00A28F12 /* despotify-simple.h in Headers */,
+				0518908D0FBEDD5F00A28F12 /* buf.h in Headers */,
+				0518908E0FBEDD5F00A28F12 /* xml.h in Headers */,
+				0518908F0FBEDD5F00A28F12 /* gstreamer.h in Headers */,
+				051890900FBEDD5F00A28F12 /* sndqueue.h in Headers */,
+				051890950FBEDD5F00A28F12 /* util.h in Headers */,
+				0518909A0FBEDD5F00A28F12 /* pulseaudio.h in Headers */,
+				0518909B0FBEDD5F00A28F12 /* network.h in Headers */,
+				0518909D0FBEDD5F00A28F12 /* despotify.h in Headers */,
+				0518909F0FBEDD5F00A28F12 /* keyexchange.h in Headers */,
+				051891250FBF35FF00A28F12 /* audioqueue.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		051890D80FBEE08C00A28F12 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				051890FB0FBEE0DC00A28F12 /* SpotTrack.h in Headers */,
+				051890FF0FBEE34900A28F12 /* SpotSession.h in Headers */,
+				051892300FC060A500A28F12 /* CoSpotify.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0518902F0FBEDCF400A28F12 /* despotify */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 051890330FBEDD2100A28F12 /* Build configuration list for PBXNativeTarget "despotify" */;
+			buildPhases = (
+				0518902C0FBEDCF400A28F12 /* Headers */,
+				0518902D0FBEDCF400A28F12 /* Sources */,
+				0518902E0FBEDCF400A28F12 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = despotify;
+			productName = despotify;
+			productReference = 051890300FBEDCF400A28F12 /* libdespotify.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		051890DB0FBEE08C00A28F12 /* Cospotify */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 051890F30FBEE0A000A28F12 /* Build configuration list for PBXNativeTarget "Cospotify" */;
+			buildPhases = (
+				051890D80FBEE08C00A28F12 /* Headers */,
+				051890D90FBEE08C00A28F12 /* Sources */,
+				051890DA0FBEE08C00A28F12 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				051890E00FBEE09100A28F12 /* PBXTargetDependency */,
+			);
+			name = Cospotify;
+			productName = Cospotify;
+			productReference = 051890DC0FBEE08C00A28F12 /* libCospotify.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		1D6058900D05DD3D006BFB54 /* Spot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Spot" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				051892350FC060D200A28F12 /* PBXTargetDependency */,
+			);
+			name = Spot;
+			productName = Spot;
+			productReference = 1D6058910D05DD3D006BFB54 /* Spot.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Spot" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* Spot */,
+				0518902F0FBEDCF400A28F12 /* despotify */,
+				051890DB0FBEE08C00A28F12 /* Cospotify */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
+				0518916D0FC045B000A28F12 /* LoginView.xib in Resources */,
+				051891710FC0466E00A28F12 /* PlaylistsView.xib in Resources */,
+				0518918E0FC0489F00A28F12 /* logo.png in Resources */,
+				051891A40FC051BC00A28F12 /* LoggingIn.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0518902D0FBEDCF400A28F12 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0518906D0FBEDD5F00A28F12 /* puzzle.c in Sources */,
+				051890720FBEDD5F00A28F12 /* sha1.c in Sources */,
+				051890730FBEDD5F00A28F12 /* keyexchange.c in Sources */,
+				051890740FBEDD5F00A28F12 /* handlers.c in Sources */,
+				051890750FBEDD5F00A28F12 /* hmac.c in Sources */,
+				051890760FBEDD5F00A28F12 /* commands.c in Sources */,
+				051890790FBEDD5F00A28F12 /* despotify.c in Sources */,
+				0518907D0FBEDD5F00A28F12 /* session.c in Sources */,
+				0518907E0FBEDD5F00A28F12 /* auth.c in Sources */,
+				0518907F0FBEDD5F00A28F12 /* util.c in Sources */,
+				051890850FBEDD5F00A28F12 /* shn.c in Sources */,
+				051890870FBEDD5F00A28F12 /* audio.c in Sources */,
+				051890890FBEDD5F00A28F12 /* dns.c in Sources */,
+				051890910FBEDD5F00A28F12 /* channel.c in Sources */,
+				051890920FBEDD5F00A28F12 /* buf.c in Sources */,
+				051890930FBEDD5F00A28F12 /* aes.c in Sources */,
+				051890940FBEDD5F00A28F12 /* ezxml.c in Sources */,
+				051890960FBEDD5F00A28F12 /* xml.c in Sources */,
+				051890970FBEDD5F00A28F12 /* network.c in Sources */,
+				051890990FBEDD5F00A28F12 /* packet.c in Sources */,
+				0518909E0FBEDD5F00A28F12 /* sndqueue.c in Sources */,
+				051891260FBF35FF00A28F12 /* audioqueue.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		051890D90FBEE08C00A28F12 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				051890FC0FBEE0DC00A28F12 /* SpotTrack.m in Sources */,
+				051891000FBEE34900A28F12 /* SpotSession.m in Sources */,
+				051892310FC060A500A28F12 /* CoSpotify.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* SpotAppDelegate.m in Sources */,
+				28C286E10D94DF7D0034E888 /* PlaylistsViewController.m in Sources */,
+				0518916B0FC0456B00A28F12 /* LoginViewController.m in Sources */,
+				051891A20FC051B300A28F12 /* LoggingInController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		051890E00FBEE09100A28F12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0518902F0FBEDCF400A28F12 /* despotify */;
+			targetProxy = 051890DF0FBEE09100A28F12 /* PBXContainerItemProxy */;
+		};
+		051892350FC060D200A28F12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 051890DB0FBEE08C00A28F12 /* Cospotify */;
+			targetProxy = 051892340FC060D200A28F12 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		051890310FBEDCF500A28F12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = /opt/local/include;
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				OTHER_CFLAGS = "-Wno-pointer-sign";
+				PREBINDING = NO;
+				PRODUCT_NAME = despotify;
+				WARNING_CFLAGS = "-Wno-pointer-sign";
+			};
+			name = Debug;
+		};
+		051890320FBEDCF500A28F12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = despotify;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		051890DD0FBEE08C00A28F12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PREBINDING = NO;
+				PRODUCT_NAME = Cospotify;
+			};
+			name = Debug;
+		};
+		051890DE0FBEE08C00A28F12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PREBINDING = NO;
+				PRODUCT_NAME = Cospotify;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Spot_Prefix.pch;
+				INFOPLIST_FILE = "Spot-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
+				);
+				PRODUCT_NAME = Spot;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Spot_Prefix.pch;
+				INFOPLIST_FILE = "Spot-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
+				);
+				PRODUCT_NAME = Spot;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		051890330FBEDD2100A28F12 /* Build configuration list for PBXNativeTarget "despotify" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				051890310FBEDCF500A28F12 /* Debug */,
+				051890320FBEDCF500A28F12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		051890F30FBEE0A000A28F12 /* Build configuration list for PBXNativeTarget "Cospotify" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				051890DD0FBEE08C00A28F12 /* Debug */,
+				051890DE0FBEE08C00A28F12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Spot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Spot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

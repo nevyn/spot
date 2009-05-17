@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<!-- $Id$ -->
+<title>Despotify API - Spotify as open source</title>
+<style type="text/css">
+html, body {
+	font-size: 1em;
+	font-family: verdana;
+	margin: 0;
+	padding: 0;
+}
+strong, a {
+	font-size: 1.2em;
+}
+h1 { text-align: left }
+a.cur {
+	font-weight: bold;
+}
+#wrapper {
+	width: 800px;
+	margin: 10px auto;
+	background: #fff;
+	color: #000;
+	padding: 15px;
+}
+#h {
+	background: #000;
+	text-align:center;
+	padding: 25px;
+	color: #fff;
+}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+<div id="despotify" class="nav">
+	<a href="/#despotify" class="cur">Despotify</a>
+	<strong>&raquo;</strong>
+	<a href="/#source">Source code</a>
+	<strong>&raquo;</strong>
+	<a href="/#news">News</a>
+	<strong>&raquo;</strong>
+	<a href="/#docs">Docs</a>
+	<strong>&raquo;</strong>
+	<a href="/#faq">FAQ</a>
+	<strong>&raquo;</strong>
+	<a href="/#criticism">Criticism</a>
+	<strong>&raquo;</strong>
+	<a href="/#legal">Legal</a>
+</div>
+<h1>Despotify REST API</h3>
+<hr />
+
+<h2>Authentication</h2>
+<p>To authenticate as <em>foo</em> with password <em>bar</em>, request the URL:<br />
+ http://despotify.se/api/auth.php?user=foo&amp;pass=bar</p>
+<p>The XML output will let you know the <em>session ID</em> if things succeeded.</p>
+<p>Once this has been done, you'll know the session ID assigned to your account's Spotify session. This value should be sent as <em>session=&lt;id&gt;</em> to <strong>all</strong> URLs below!</p>
+<hr />
+
+<h2>Searching for tracks, artists and albums</h2>
+<p>Search is done by issuing a call to:<br />
+http://despotify.se/api/search.php?q=&lt;search text&gt;</p>
+<p><strong>Example:</strong><br />
+http://despotify.se/api/search.php?session=1&amp;q=rock</p>
+<hr />
+
+<h2>Downloading a list of all your playlists</h2>
+<p>To get a list of the all the logged in user's playlist, issue a call to:<br />
+http://despotify.se/api/playlist.php?id=*</p>
+<p><strong>Example:</strong><br />
+http://despotify.se/api/playlist.php?session=1&amp;id=*</p>
+<p>In the returned XML there are an <em>items</em>-element with a comma separated list of 34 character playlist IDs (hexadecimal representation of 17 bytes).</p>
+<hr />
+
+<h2>Downloading a single playlist</h2>
+<p>To get the contents of a playlist, issue a call to:<br />
+http://despotify.se/api/playlist.php?id=&lt;playlist ID&gt;</p>
+<p>Playlist IDs are 34 characters long (hexadecimal representation of 17 bytes).</p>
+<p><strong>Example:</strong><br />
+http://despotify.se/api/playlist.php?session=1&amp;id=00112233445566778899aabbccddeeff00</p>
+<p>In the returned XML there are an <em>items</em>-element with a comma separated list of 34 byte IDs.<br />
+The 32 first characters in each item are track IDs (which means you should ignore the last two characters!)</p>
+<hr />
+
+<h2>Get track meta data</h2>
+<p>To get the meta data for a track ID, issue a call to:<br />
+http://despotify.se/api/browsetrack.php?id=&lt;track ID&gt;</p>
+<p>Track IDs are 32 characters long (hexadecimal representation of 16 bytes).</p>
+<p><strong>Example:</strong><br />
+http://despotify.se/api/browsetrack.php?session=1&amp;id=8d9f8d18d8bf43149f6b265735b50e39</p>
+<hr />
+
+<h2>Get artist meta data</h2>
+<p>To get the meta data for an artist ID, issue a call to:<br />
+http://despotify.se/api/browseartist.php?id=&lt;artist ID&gt;</p>
+<p>Artist IDs are 32 characters long (hexadecimal representation of 16 bytes).</p>
+<p><strong>Example:</strong><br />
+http://despotify.se/api/browseartist.php?session=1&amp;id=20af8d18d8bf43149f6b265735b50e1f</p>
+<hr />
+
+</div>
+<!-- /wrapper -->
+
+
+
+<div id="h">
+<p>
+	<img src="../hack-se.jpg" alt="#hack.se" />
+</p>
+<p>
+	#hack.se <a href="http://demo.hack.se/">demo scene</a> division
+</p>
+</div>
+</body>
+</html>

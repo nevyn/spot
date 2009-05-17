@@ -1,0 +1,9 @@
+Here you can find various clients.
+
+despotify -- this is the original ncurses client, it's built by the
+             toplevel makefile
+gateway   -- this is a REST gateway to the spotify servers, i.e. it
+             interfaces HTTP requests with spotify. (like a bridge)
+PHP       -- this isn't a standalone client, per se, but a PHP class
+             that simplifies communication with the gateway.
+simple    -- this is a simple client used for testing, with a CLI.

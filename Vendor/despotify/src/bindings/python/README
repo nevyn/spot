@@ -1,0 +1,18 @@
+About
+~~~~~
+spytify is a python binding for libdespotify, it uses Cython to create
+the bindings, but they're not required to build them (since the .c-files
+should be shipped with this README).
+
+The bindings are licensed under the three-clause BSD license, see the
+file LICENSE for details.
+
+Instructions
+~~~~~~~~~~~~
+ > To build the bindings from .pyx, do make -C src/
+ > To build the extension files (from .c), do python setup.py build
+   (then do python setup.py install to install them)
+
+-- 
+Kindest regards, 
+  Jørgen P. Tjernø, <jorgen@devsoft.no>

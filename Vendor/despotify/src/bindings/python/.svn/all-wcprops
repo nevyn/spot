@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svnroot/despotify/!svn/ver/316/src/bindings/python
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/despotify/!svn/ver/200/src/bindings/python/LICENSE
+END
+cambodia.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svnroot/despotify/!svn/ver/316/src/bindings/python/cambodia.py
+END
+test.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/despotify/!svn/ver/316/src/bindings/python/test.py
+END
+setup.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/despotify/!svn/ver/203/src/bindings/python/setup.py
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/despotify/!svn/ver/273/src/bindings/python/Makefile
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svnroot/despotify/!svn/ver/200/src/bindings/python/README
+END
+shell.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/despotify/!svn/ver/274/src/bindings/python/shell.py
+END

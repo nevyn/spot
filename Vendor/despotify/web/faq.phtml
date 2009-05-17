@@ -1,0 +1,152 @@
+<?php require 'header.html' ?>
+<h1>FAQ</h1>
+<h3>Why did you release an open source Spotify client?</h3>
+<p>While Spotify is totally awesome, it currently only runs on Windows and Mac OS X (and Linux, if you can live with WINE).</p>
+<p>We wanted to be able to use Spotify in more operating systems and in more products. Let's just agree on the fact that it would be awesome if your random open source media center solution could do Spotify too!
+</p>
+
+<h3>How long will it take before Spotify blocks your code?</h3>
+<p>We hope this does not trigger panic reactions at Spotify and that they can find a way to support our cause.<br />
+For a number of reasons, it will probably take us (or anyone else up for the challenge) less time to workaround whatever fix they attempt, than for them to roll out a new release.</p>
+<p>We strongly believe Spotify need to support people like us. People that have the time and energy to experiment with new ideas and to develop new tools and services. We don't want to be held back by a company whose key priority is to make money.</p>
+<p>Unless they haven't already, they will realize it's pointless to try to prevent hundreds of talented researchers, coders, hackers and curious users from tinkering with their product. The gaming industry, as well as both software and hardware manufacturers, have been trying to do exactly that for the last 20 years, and most have failed.
+To this date, the Sony PS3 is the only gaming console out there that has not been cracked. Why?<br />
+Likely because Sony decided to open up the platform right from the start, enabling console owners to do anything - from gaming to networking them to break SSL.</p>
+<p>Obviously the only solution for Spotify is to open up their platform and still make money from it. One such possibility would be to officially open up their platform for third party products, but only allow premium subscribers to make use of the open API. But that's not for us to decide.</p>
+
+<h3>This is going to destroy Spotify!</h3>
+<p>That's the kind of groundless panic reaction we were talking about earlier.</p>
+
+<p>Spotify won't go away over night and, if anything, our project is nothing but a minor speedbump.</p>
+<p>Relax and consider why Spotify rocks for a while. Done?<br />
+If you're still seeing problems - or solutions to these imaginary problems, repeat the above procedure.</p>
+
+
+<h3>This code will ultimately allow people to download music from Spotify!</h3>
+<p>First of all, people download music anyway. That's just the way it works, be it legal or not.<br />
+Live with it. <p/>
+<p>Secondly, there are far better places to download music from (with better quality!) than Spotify. 
+Downloding/Ripping music from Spotify is just as illegal as anywhere else, the main difference is that the 
+bitrate/soundquality is lower in the music ripped from Spotify.</p>
+<p>That being said, please don't use our software to cause problems for Spotify!<br />
+A lot of people love this excellent service, and are willing to pay for it, us included.</p>
+
+<h3>Why not make the music decryption routine binary only?</h3>
+<p>We thought about doing just that, to prevent people from using this code to download music from Spotify, but decided against it.</p>
+<p>By definition, that would mean we couldn't call our code free or open source. It would also require us to compile the code for all the platforms people would like to use , which defeats the whole purpose of this project.</p>
+<p>In the end it would leave us in the same position as Spotify, i.e. it would only be a matter of time before someone figured things out anyway.</p>
+
+<h3>Can I use Despotify with my 'Free' account?</h3>
+<p>We see a number of problems with providing an open source client for non-paying users and hence this implementation does not support it out of the box. Sorry!</p>
+
+<p>Consider buying a daypass or upgrading to a premium account to support not only Spotify, but also despotify's cause of opening up their service to their paying (i.e, loyal) user base.</p>
+
+<h3>Can I use your code to skip the ads?</h3>
+<p> We have not implemented support for ads since its pointless in an open source client. Patching 
+away the ad-routine is just too simple. We strongly believe that you should pay for the premium service
+if you want to use the open source client. </p>
+
+<h3>Does your software impose the country restrictions?</h3>
+<p>No. So called <em>Geographic Rights Management</em> is just stupid and client side restrictions in open source software is silly. The movie industry already proved how insane and futile this is by region coding DVDs. If you want (optional) GRM support, feel free to submit a patch. :)</p>
+
+<h3>How much bandwidth does the client need?</h3>
+<p>This question has so far gone unanswered in Spotify's corner at GetSatisfaction.com.</p>
+<p>You'll need somewhere around 250-300kbit/s (~25-30 kbyte/s) downstream to be able to play music without interruption. The upstream requirements are neglible since we do not support P2P.</p>
+
+<h3>Why is there no support for P2P?</h3>
+<p>Even though supporting P2P would be good for Spotify and most users (except in some mobile environments), it isn't essential for playing music from their service.</p>
+<p>We do have some demo code that does P2P authentication, peer exchange and basic file transfers but so far none of us have had time or interest in implementing it properly in the main client.<br />
+For now we've decided to focus on delivering an open source alternative that does the basic stuff you'll need, and P2P was not one of them. Maybe in v2.0 ;)<br />
+(everything needs a 2.0 version with new features, eyecandy and all bugs and annoyances gone!)</p>
+
+<h3>What license is Despotify under?</h3>
+<p>We've choosen a two-clause BSD license. We're serious about making Despotify available to everyone, including those who don't believe in open source.<br />
+If the two-clause BSD license doesn't cut it for you, let us know and we'll work something out.
+</p>
+
+<h3>Supported operating systems</h3>
+<p> Most of the code will compile without complaints on any POSIX and ANSI C compatible platform.<br />
+ As of now the audio routines supports CoreAudio for Mac OS X and PulseAudio that in turn supports:
+<ul>
+<li>Linux</li>
+<li>Solaris</li>
+<li>FreeBSD</li>
+<li>NetBSD</li>
+<li>Windows</li>
+</ul>
+
+<h3>What about iPhone, WindowsMobile, XBMC or my dishwasher?</h3>
+<p> The beauty of open source is that it's now possible to integrate Spotify support into anything
+capable of decoding ogg and playing sound. Feel free to port our code to whatever media 
+platform fits your lifestyle! </p>
+<p>This software relies on OpenSSL for encryption, something that might not be available or suitable for your platform of choice. As an alternative you might consider another free, open source building block like libtommath to do the crypto.</p>
+
+<h3>Is there any documentation on Spotify's protocol?</h3>
+<p>We gave a law firm a few hours (see, we're already back a few thousand SEK :/) to investigate the legal aspects of this project before going public.<br />
+They recommended against releasing any documentation on Spotify's internals.</p>
+<p>Hence we won't provide you with any ordinary documentation on whatever we may know. For now, provided that you've got some basic understanding of code, you may want to checkout the source code of despotify to see how things work.</p>
+
+<h3>I've found a bug or have a patch!</h3>
+<p>Contact us and we'll look into it.</p>
+
+<h3>What's with the name?</h3>
+<p>We don't believe that anyone should control music in the way despots control their countries. <br />
+We love both music and free software!
+</p>
+
+<h3>How can I get in touch with you?</h3>
+<p>Use electronic mail. Try <em>despotify</em> at <em>gmail.com</em>.<br />
+Assume no privacy.</p>
+<p>You can also try #despotify on EFNet if you prefer IRC.</p>
+
+<h3>Who are you?</h3>
+<p>We are a group of loosely related Swedish computer science researchers, security professionals and geeks that believe strongly in the right to tinker with technology. Because there is money involved and because Spotify has connections to the music industry we won't announce our identities at this time.</p>
+
+<h3>PGP identities</h3>
+<p>
+<a href="researcher-a.asc">researcher-a.asc</a><br />
+<a href="researcher-b.asc">researcher-b.asc</a><br />
+<a href="researcher-c.asc">researcher-c.asc</a><br />
+(more on this later)
+</p>
+
+<h1><a name="criticism">Criticism</a></h1>
+<p>Spotify recently notified its users about a possible <a href="http://www.spotify.com/blog/archives/2009/03/04/spotify-security-notice/">information leak</a> (<a href="http://www.spotify.com/blog/archives/2009/03/04/updated-security-notice/">updated</a>).</p>
+<p>An unknown group, who was later identified in an interview with Spotify's CEO as <a href="http://www.idg.se/2.1085/1.215898/despotify-bakom-hacket">being the despotify team</a>, could have compromised the security and privacy of individual user accounts.</p>
+<p>Several news sites wrote articles about the incident, most of them not comprehending what really happened despite Spotify's detailed blog posts on the matter. UK <a href="http://www.guardian.co.uk">The Guardian</a> initially named us <a href="http://www.guardian.co.uk/technology/2009/mar/05/spotify-hackers-password">computer criminals</a> and many Swedish news sites falsely reported that someone had broken into Spotify and had stolen a lot of passwords and details about their users (Swedish: <a href="http://www.aftonbladet.se/nyheter/article4562242.ab">here</a>, <a href="http://www.affarsvarlden.se/hem/nyheter/article531193.ece">here</a>, and <a href="http://sydsvenskan.se/digitalt/article417522/Spotify-hackat---losenord-pa-vift.html">here</a>). That's not what happened.
+</p>
+<h3>So what really happened?</h3>
+<p>While auditing Spotify's software back in November 2008 we monitored data the Spotify client exchanged with the server and things it processed internally.</p>
+<p>It turned out that whenever you added someone else's shared playlist, the Spotify client software would request information from Spotify's servers about the author of that playlist.<br />
+The information returned contained things like a <a href="http://en.wikipedia.org/wiki/Cryptographic_hash_function">hash</a> (based on a <a href="http://en.wikipedia.org/wiki/Salt_(cryptography)">salt</a> and the user's password), date of birth, city and other things that Spotify knew about this user.
+</p>
+<p>We realized that the password hash that was transfered to the client when you added someone else's playlist, could be used as a way of autenticating to the server as the owner of the playlist, without knowing his or her password. That was bad.</p>
+<p>A few days before Spotify finally stopped relaying the password hash (and some other unnecessary information) we realized that this hash actually was a <a href="http://en.wikipedia.org/wiki/SHA_hash_functions">SHA-1</a> hash over a 10 character <em>salt</em>, a space character, and the user's password.<br />
+Since we by this time both knew the resulting hash value and part of the message that was hashed (i.e, salt and the space character), we now had everything we needed to successfully <a href="http://en.wikipedia.org/wiki/Brute_force_attack">brute force</a> the original password.</p>
+<p>
+During the 18th of December 2008, Spotify removed parts of the information that was returned to the client when it asked for a user's details, notably the password hash.<br />
+<strong>For us</strong>, that meant that the <strong>possibility</strong> to steal a lot of password hashes now was gone.</p>
+<p>In fact, we were left with previously requested information (stored for research purposes) for approximately <strong>40 different users</strong>. These users were mostly people whose playlists we were listening to. Others were employees of Spotify, because we thought it would be interesting to see if, and in that case how, employee's details differed from Joe Average's account.
+</p>
+
+<p>
+On February 17th, 2009 we released despotify, our open source Spotify client.<br />
+It still had support for requesting details about a particular user's account, as is also shown in our <a href="#despotify">video introduction</a>. This information was made up of things like the account holder's email address, date of birth (YYYY-mm-dd), postal code and a few other not-interesting details.</p>
+<p>
+Hours after making despotify public, Spotify realized the privacy issues involved and stopped leaking the above mentioned information. Shortly afterwards, we also removed support for requesting that information (it didn't work anymore) from the despotify code in our Subversion repository.
+</p>
+<p>On March 4th, 2009 Spotify posted information about these issues on their <a href="http://www.spotify.com/blog/">blog</a>.<br />
+</p>
+<h3>Am I at risk?</h3>
+<p>While we only got our hands on ~40 different user's details, there's still a risk that <strong>others also</strong> found the same issue that we did.<br />
+It's impossible to know for sure and hence full disclosure and notifying those that <strong>could</strong> be affected is required.<br />
+In other words, Spotify has responded to this issue in an exceptionally good way.
+</p>
+<h3>Why did you not report this issue to Spotify?</h3>
+<p>If we would have reported this, Spotify would have understood that there was people out there actively thinkering with the internals of their software.<br />
+We simply didn't want to risk jeopardizing the continued research we were doing by reporting the issue.
+</p>
+<h3>So you didn't really hack into Spotify?</h3>
+<p>No. We did not hack into their servers and we certainly did not exploit a weakness in their web platform, as some media reports claim.</p>
+<p>We've only used a feature already part of the communication protocol between the client and the server to obtain the data. Even the official client software (version 0.3.8 and before) did just this, although you could not request data for arbitrary users.</p>
+<?php require 'footer.html' ?>

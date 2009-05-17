@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/util
+END
+SpotifyURL.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/util/SpotifyURL.java
+END
+XML.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/util/XML.java
+END
+DNS.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/util/DNS.java
+END
+Hex.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/util/Hex.java
+END
+MathUtilities.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/util/MathUtilities.java
+END
+GZIP.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/util/GZIP.java
+END
+IntegerUtilities.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/util/IntegerUtilities.java
+END
+XMLElement.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/util/XMLElement.java
+END
+ShortUtilities.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/util/ShortUtilities.java
+END
+ChecksumCalculator.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/util/ChecksumCalculator.java
+END
+SpotifyURI.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/util/SpotifyURI.java
+END

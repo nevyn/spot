@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/despotify/!svn/ver/302/src/clients/simple
+END
+local.mk
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/despotify/!svn/ver/209/src/clients/simple/local.mk
+END
+simple.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svnroot/despotify/!svn/ver/302/src/clients/simple/simple.c
+END

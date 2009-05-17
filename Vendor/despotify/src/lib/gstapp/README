@@ -1,0 +1,5 @@
+This is gstreamer's gstapp. It's a part of gstreamer-plugins-base >= 0.10.22,
+but since this is not available in any widespread fashion, it's embedded in
+the source tree.
+
+It's licensed under the LGPL, see LICENSE for more information.

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/channel
+END
+ChannelCallback.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/channel/ChannelCallback.java
+END
+Channel.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/client/protocol/channel/Channel.java
+END
+ChannelAudioHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/client/protocol/channel/ChannelAudioHandler.java
+END
+ChannelAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/client/protocol/channel/ChannelAdapter.java
+END
+ChannelListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svnroot/despotify/!svn/ver/305/java/src/main/java/se/despotify/client/protocol/channel/ChannelListener.java
+END

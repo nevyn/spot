@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/despotify/!svn/ver/308/java/src/test/java/se/despotify/client/protocol/command/media
+END
+TestLoadAlbum.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svnroot/despotify/!svn/ver/305/java/src/test/java/se/despotify/client/protocol/command/media/TestLoadAlbum.java
+END
+TestLoadArtist.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svnroot/despotify/!svn/ver/308/java/src/test/java/se/despotify/client/protocol/command/media/TestLoadArtist.java
+END
+TestLoadTracks.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svnroot/despotify/!svn/ver/305/java/src/test/java/se/despotify/client/protocol/command/media/TestLoadTracks.java
+END

@@ -1,0 +1,18 @@
+#!/bin/sh
+# $Id$
+
+mkdir -p build
+cd build
+ruby ../extconf.rb $*
+cd ..
+
+
+OUT=Makefile
+echo ".PHONY: all clean build install" > $OUT
+echo "all: build" >> $OUT
+echo "clean:" >> $OUT
+echo "	\$(MAKE) -C build -f Makefile clean" >> $OUT
+echo "build:" >> $OUT
+echo "	\$(MAKE) -C build -f Makefile" >> $OUT
+echo "install:" >> $OUT
+echo "	\$(MAKE) -C build -f Makefile install" >> $OUT
