@@ -13,6 +13,9 @@
 -(id)init;
 {
 	if( ! [super initWithNibName:@"LoginView" bundle:nil] ) return nil;
+	
+	self.title = @"Log in";
+	
 	return self;
 }
 /*
@@ -67,10 +70,12 @@
 
 -(void)viewWillAppear:(BOOL)animated;
 {
-	[username becomeFirstResponder];
 	[self.navigationController setNavigationBarHidden:YES animated:animated];
 	username.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
 	password.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
+	
+	if([username.text isEqual:@""])
+		[username becomeFirstResponder];
 }
 -(void)viewWillDisappear:(BOOL)animated;
 {

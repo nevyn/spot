@@ -33,6 +33,7 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 }
 -(void)dealloc;
 {
+	NSLog(@"Logged out");
 	despotify_exit(session);
 	despotify_cleanup();
 	[super dealloc];
@@ -49,6 +50,8 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 	BOOL success = despotify_authenticate(session, [user UTF8String], [password UTF8String]);
 	if(!success && error)
 		*error = [NSError errorWithDomain:SpotSessionErrorDomain code:SpotSessionErrorCodeDefault userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%s", despotify_get_error(session)] forKey:NSLocalizedDescriptionKey]];
+	if(success)
+		NSLog(@"Successfully logged in as %@", user);
 	return success;
 }
 @end

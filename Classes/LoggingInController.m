@@ -83,15 +83,22 @@
 	}
 	spinner.hidden = YES;
 	
-	[self.navigationController popViewControllerAnimated:NO];
-	UIViewController *next = [[[PlaylistsViewController alloc] init] autorelease];
-	[self.navigationController pushViewController:next animated:YES];
+	UINavigationController *navController = self.navigationController;
 	
+	[[self retain] autorelease]; // We will disappear after the pop
+	//[self.navigationController popViewControllerAnimated:NO];
+	UIViewController *next = [[[PlaylistsViewController alloc] init] autorelease];
+	
+	NSMutableArray *controllers = [[navController.viewControllers mutableCopy] autorelease];
+	[controllers removeLastObject];
+	navController.viewControllers = controllers;
+	[navController pushViewController:next animated: YES];	
 }
 
 
 -(void)viewWillAppear:(BOOL)animated;
 {
+	self.title = @"Logging in…";
 	tryAgain.hidden = error.hidden = YES;
 	spinner.hidden = NO;
 }

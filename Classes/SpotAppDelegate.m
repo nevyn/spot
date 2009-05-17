@@ -36,7 +36,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	// Save data if appropriate
-	[[SpotSession defaultSession] cleanup];
+	//[[SpotSession defaultSession] cleanup];
 }
 
 
