@@ -73,7 +73,6 @@
 		051893280FC09C2E00A28F12 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051891280FBF365000A28F12 /* AudioToolbox.framework */; };
 		051893F40FC0B49000A28F12 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518938C0FC0AB9A00A28F12 /* libresolv.dylib */; };
 		051893F50FC0B49000A28F12 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518938F0FC0ABBE00A28F12 /* libz.dylib */; };
-		051893F60FC0B49000A28F12 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518939A0FC0AD2B00A28F12 /* libcrypto.a */; };
 		051893F70FC0B49000A28F12 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518939F0FC0AD8800A28F12 /* libssl.a */; };
 		051893F80FC0B49000A28F12 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051893A10FC0AE2A00A28F12 /* libcrypto.a */; };
 		051893FD0FC0B4BE00A28F12 /* libCospotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051890DC0FBEE08C00A28F12 /* libCospotify.a */; };
@@ -82,6 +81,7 @@
 		0518945D0FC0B9B300A28F12 /* SpotPlaylist.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518945B0FC0B9B300A28F12 /* SpotPlaylist.h */; };
 		0518945E0FC0B9B300A28F12 /* SpotPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518945C0FC0B9B300A28F12 /* SpotPlaylist.m */; };
 		051894960FC0C25100A28F12 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 051894950FC0C25100A28F12 /* icon.png */; };
+		051895080FC0D13800A28F12 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051893A10FC0AE2A00A28F12 /* libcrypto.a */; };
 		1D3623260D0F684500981E51 /* SpotAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SpotAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -179,7 +179,6 @@
 		051893040FC097A900A28F12 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = Vendor/libvorbisfile.a; sourceTree = "<group>"; };
 		0518938C0FC0AB9A00A28F12 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = /usr/lib/libresolv.dylib; sourceTree = "<absolute>"; };
 		0518938F0FC0ABBE00A28F12 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = /usr/lib/libz.dylib; sourceTree = "<absolute>"; };
-		0518939A0FC0AD2B00A28F12 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = /opt/local/lib/libcrypto.a; sourceTree = "<absolute>"; };
 		0518939F0FC0AD8800A28F12 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Vendor/libssl.a; sourceTree = "<group>"; };
 		051893A10FC0AE2A00A28F12 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Vendor/libcrypto.a; sourceTree = "<group>"; };
 		0518945B0FC0B9B300A28F12 /* SpotPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotPlaylist.h; sourceTree = "<group>"; };
@@ -210,7 +209,6 @@
 				051893050FC097A900A28F12 /* libvorbisfile.a in Frameworks */,
 				051893F40FC0B49000A28F12 /* libresolv.dylib in Frameworks */,
 				051893F50FC0B49000A28F12 /* libz.dylib in Frameworks */,
-				051893F60FC0B49000A28F12 /* libcrypto.a in Frameworks */,
 				051893F70FC0B49000A28F12 /* libssl.a in Frameworks */,
 				051893F80FC0B49000A28F12 /* libcrypto.a in Frameworks */,
 			);
@@ -228,6 +226,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				051895080FC0D13800A28F12 /* libcrypto.a in Frameworks */,
 				051893FF0FC0B4D200A28F12 /* libresolv.dylib in Frameworks */,
 				051894010FC0B4D800A28F12 /* libz.dylib in Frameworks */,
 				051893FD0FC0B4BE00A28F12 /* libCospotify.a in Frameworks */,
@@ -382,7 +381,6 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				0518938C0FC0AB9A00A28F12 /* libresolv.dylib */,
-				0518939A0FC0AD2B00A28F12 /* libcrypto.a */,
 				0518938F0FC0ABBE00A28F12 /* libz.dylib */,
 				051893A10FC0AE2A00A28F12 /* libcrypto.a */,
 				0518939F0FC0AD8800A28F12 /* libssl.a */,
