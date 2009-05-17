@@ -8,6 +8,7 @@
 
 #import "LoggingInController.h"
 #import "CoSpotify.h"
+#import "PlaylistsViewController.h"
 
 @implementation LoggingInController
 @synthesize username, password;
@@ -80,8 +81,11 @@
 		tryAgain.hidden = error.hidden = NO;
 		return;
 	}
-	
 	spinner.hidden = YES;
+	
+	[self.navigationController popViewControllerAnimated:NO];
+	UIViewController *next = [[[PlaylistsViewController alloc] init] autorelease];
+	[self.navigationController pushViewController:next animated:YES];
 	
 }
 

@@ -8,6 +8,7 @@
 
 #import "SpotAppDelegate.h"
 #import "LoginViewController.h"
+#import "CoSpotify.h"
 
 @implementation SpotAppDelegate
 
@@ -35,6 +36,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	// Save data if appropriate
+	[[SpotSession defaultSession] cleanup];
 }
 
 

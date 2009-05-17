@@ -71,39 +71,14 @@
 		051893010FC096C800A28F12 /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051892FA0FC096A700A28F12 /* libogg.a */; };
 		051893050FC097A900A28F12 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051893040FC097A900A28F12 /* libvorbisfile.a */; };
 		051893280FC09C2E00A28F12 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051891280FBF365000A28F12 /* AudioToolbox.framework */; };
-		051893290FC09C2E00A28F12 /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051892FB0FC096A700A28F12 /* libvorbis.a */; };
-		0518932A0FC09C2E00A28F12 /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051892FA0FC096A700A28F12 /* libogg.a */; };
-		0518932C0FC09C2E00A28F12 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051893040FC097A900A28F12 /* libvorbisfile.a */; };
-		051893340FC09C4B00A28F12 /* puzzle.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892760FC0654400A28F12 /* puzzle.c */; };
-		051893350FC09C4B00A28F12 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518927B0FC0654400A28F12 /* sha1.c */; };
-		051893360FC09C4B00A28F12 /* keyexchange.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518927C0FC0654400A28F12 /* keyexchange.c */; };
-		051893370FC09C4B00A28F12 /* handlers.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518927D0FC0654400A28F12 /* handlers.c */; };
-		051893380FC09C4B00A28F12 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518927E0FC0654400A28F12 /* hmac.c */; };
-		051893390FC09C4B00A28F12 /* commands.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518927F0FC0654400A28F12 /* commands.c */; };
-		0518933A0FC09C4B00A28F12 /* despotify.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892820FC0654400A28F12 /* despotify.c */; };
-		0518933B0FC09C4B00A28F12 /* session.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892860FC0654400A28F12 /* session.c */; };
-		0518933C0FC09C4B00A28F12 /* auth.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892870FC0654400A28F12 /* auth.c */; };
-		0518933D0FC09C4B00A28F12 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892880FC0654400A28F12 /* util.c */; };
-		0518933E0FC09C4B00A28F12 /* shn.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518928D0FC0654400A28F12 /* shn.c */; };
-		0518933F0FC09C4B00A28F12 /* audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518928F0FC0654400A28F12 /* audio.c */; };
-		051893400FC09C4B00A28F12 /* dns.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892900FC0654400A28F12 /* dns.c */; };
-		051893410FC09C4B00A28F12 /* channel.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892970FC0654400A28F12 /* channel.c */; };
-		051893420FC09C4B00A28F12 /* buf.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892980FC0654400A28F12 /* buf.c */; };
-		051893430FC09C4B00A28F12 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892990FC0654400A28F12 /* aes.c */; };
-		051893440FC09C4B00A28F12 /* ezxml.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518929A0FC0654400A28F12 /* ezxml.c */; };
-		051893450FC09C4B00A28F12 /* audioqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518929C0FC0654400A28F12 /* audioqueue.c */; };
-		051893460FC09C4B00A28F12 /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518929D0FC0654400A28F12 /* xml.c */; };
-		051893470FC09C4B00A28F12 /* network.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518929E0FC0654400A28F12 /* network.c */; };
-		051893480FC09C4B00A28F12 /* packet.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892A00FC0654400A28F12 /* packet.c */; };
-		051893490FC09C4B00A28F12 /* sndqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892A40FC0654400A28F12 /* sndqueue.c */; };
-		0518934A0FC09C5A00A28F12 /* SpotTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 051890FA0FBEE0DC00A28F12 /* SpotTrack.m */; };
-		0518934B0FC09C5A00A28F12 /* SpotSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 051890FE0FBEE34900A28F12 /* SpotSession.m */; };
-		0518934C0FC09C5A00A28F12 /* CoSpotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518922F0FC060A500A28F12 /* CoSpotify.m */; };
-		0518938D0FC0AB9A00A28F12 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518938C0FC0AB9A00A28F12 /* libresolv.dylib */; };
-		051893900FC0ABBE00A28F12 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518938F0FC0ABBE00A28F12 /* libz.dylib */; };
-		0518939B0FC0AD2B00A28F12 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518939A0FC0AD2B00A28F12 /* libcrypto.a */; };
-		051893A00FC0AD8800A28F12 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518939F0FC0AD8800A28F12 /* libssl.a */; };
-		051893A20FC0AE2A00A28F12 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051893A10FC0AE2A00A28F12 /* libcrypto.a */; };
+		051893F40FC0B49000A28F12 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518938C0FC0AB9A00A28F12 /* libresolv.dylib */; };
+		051893F50FC0B49000A28F12 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518938F0FC0ABBE00A28F12 /* libz.dylib */; };
+		051893F60FC0B49000A28F12 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518939A0FC0AD2B00A28F12 /* libcrypto.a */; };
+		051893F70FC0B49000A28F12 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518939F0FC0AD8800A28F12 /* libssl.a */; };
+		051893F80FC0B49000A28F12 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051893A10FC0AE2A00A28F12 /* libcrypto.a */; };
+		051893FD0FC0B4BE00A28F12 /* libCospotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051890DC0FBEE08C00A28F12 /* libCospotify.a */; };
+		051893FF0FC0B4D200A28F12 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518938C0FC0AB9A00A28F12 /* libresolv.dylib */; };
+		051894010FC0B4D800A28F12 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518938F0FC0ABBE00A28F12 /* libz.dylib */; };
 		1D3623260D0F684500981E51 /* SpotAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SpotAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -120,6 +95,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0518902F0FBEDCF400A28F12;
 			remoteInfo = despotify;
+		};
+		051893F20FC0B47800A28F12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 051890DB0FBEE08C00A28F12 /* Cospotify */;
+			remoteInfo = Cospotify;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -220,6 +202,11 @@
 				051893000FC096C400A28F12 /* libvorbis.a in Frameworks */,
 				051893010FC096C800A28F12 /* libogg.a in Frameworks */,
 				051893050FC097A900A28F12 /* libvorbisfile.a in Frameworks */,
+				051893F40FC0B49000A28F12 /* libresolv.dylib in Frameworks */,
+				051893F50FC0B49000A28F12 /* libz.dylib in Frameworks */,
+				051893F60FC0B49000A28F12 /* libcrypto.a in Frameworks */,
+				051893F70FC0B49000A28F12 /* libssl.a in Frameworks */,
+				051893F80FC0B49000A28F12 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,18 +222,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				051893FF0FC0B4D200A28F12 /* libresolv.dylib in Frameworks */,
+				051894010FC0B4D800A28F12 /* libz.dylib in Frameworks */,
+				051893FD0FC0B4BE00A28F12 /* libCospotify.a in Frameworks */,
 				051893280FC09C2E00A28F12 /* AudioToolbox.framework in Frameworks */,
-				051893290FC09C2E00A28F12 /* libvorbis.a in Frameworks */,
-				0518932A0FC09C2E00A28F12 /* libogg.a in Frameworks */,
-				0518932C0FC09C2E00A28F12 /* libvorbisfile.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
-				0518938D0FC0AB9A00A28F12 /* libresolv.dylib in Frameworks */,
-				051893900FC0ABBE00A28F12 /* libz.dylib in Frameworks */,
-				0518939B0FC0AD2B00A28F12 /* libcrypto.a in Frameworks */,
-				051893A00FC0AD8800A28F12 /* libssl.a in Frameworks */,
-				051893A20FC0AE2A00A28F12 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +477,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				051893F30FC0B47800A28F12 /* PBXTargetDependency */,
 			);
 			name = Spot;
 			productName = Spot;
@@ -591,31 +574,6 @@
 				28C286E10D94DF7D0034E888 /* PlaylistsViewController.m in Sources */,
 				0518916B0FC0456B00A28F12 /* LoginViewController.m in Sources */,
 				051891A20FC051B300A28F12 /* LoggingInController.m in Sources */,
-				051893340FC09C4B00A28F12 /* puzzle.c in Sources */,
-				051893350FC09C4B00A28F12 /* sha1.c in Sources */,
-				051893360FC09C4B00A28F12 /* keyexchange.c in Sources */,
-				051893370FC09C4B00A28F12 /* handlers.c in Sources */,
-				051893380FC09C4B00A28F12 /* hmac.c in Sources */,
-				051893390FC09C4B00A28F12 /* commands.c in Sources */,
-				0518933A0FC09C4B00A28F12 /* despotify.c in Sources */,
-				0518933B0FC09C4B00A28F12 /* session.c in Sources */,
-				0518933C0FC09C4B00A28F12 /* auth.c in Sources */,
-				0518933D0FC09C4B00A28F12 /* util.c in Sources */,
-				0518933E0FC09C4B00A28F12 /* shn.c in Sources */,
-				0518933F0FC09C4B00A28F12 /* audio.c in Sources */,
-				051893400FC09C4B00A28F12 /* dns.c in Sources */,
-				051893410FC09C4B00A28F12 /* channel.c in Sources */,
-				051893420FC09C4B00A28F12 /* buf.c in Sources */,
-				051893430FC09C4B00A28F12 /* aes.c in Sources */,
-				051893440FC09C4B00A28F12 /* ezxml.c in Sources */,
-				051893450FC09C4B00A28F12 /* audioqueue.c in Sources */,
-				051893460FC09C4B00A28F12 /* xml.c in Sources */,
-				051893470FC09C4B00A28F12 /* network.c in Sources */,
-				051893480FC09C4B00A28F12 /* packet.c in Sources */,
-				051893490FC09C4B00A28F12 /* sndqueue.c in Sources */,
-				0518934A0FC09C5A00A28F12 /* SpotTrack.m in Sources */,
-				0518934B0FC09C5A00A28F12 /* SpotSession.m in Sources */,
-				0518934C0FC09C5A00A28F12 /* CoSpotify.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +584,11 @@
 			isa = PBXTargetDependency;
 			target = 0518902F0FBEDCF400A28F12 /* despotify */;
 			targetProxy = 051890DF0FBEE09100A28F12 /* PBXContainerItemProxy */;
+		};
+		051893F30FC0B47800A28F12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 051890DB0FBEE08C00A28F12 /* Cospotify */;
+			targetProxy = 051893F20FC0B47800A28F12 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
