@@ -95,7 +95,7 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
     
-	// Configure the cell.
+	// Configure the cell. 
 	cell.text = track.title;
 
     return cell;
