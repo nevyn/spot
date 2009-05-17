@@ -50,7 +50,10 @@
 	return [[[SpotTrack alloc] initWithTrack:tr] autorelease];
 }
 
-@dynamic tracks;
+-(NSArray*)tracks;
+{
+	return [self valueForKey:@"tracks"];
+}
 
 -(NSString*)description;
 {
