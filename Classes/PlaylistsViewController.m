@@ -96,7 +96,6 @@
     }
     
 	// Configure the cell.
-	
 	cell.text = track.title;
 
     return cell;
