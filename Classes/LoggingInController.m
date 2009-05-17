@@ -72,6 +72,7 @@
 -(void)createSessionAndLogin;
 {
 	SpotSession *session = [SpotSession defaultSession];
+	session = session;
 	
 }
 

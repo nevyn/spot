@@ -21,7 +21,6 @@
 		051891A40FC051BC00A28F12 /* LoggingIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051891A30FC051BC00A28F12 /* LoggingIn.xib */; };
 		051892300FC060A500A28F12 /* CoSpotify.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518922E0FC060A500A28F12 /* CoSpotify.h */; };
 		051892310FC060A500A28F12 /* CoSpotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518922F0FC060A500A28F12 /* CoSpotify.m */; };
-		0518923F0FC0612700A28F12 /* libCospotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051890DC0FBEE08C00A28F12 /* libCospotify.a */; };
 		051892A70FC0654400A28F12 /* puzzle.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892760FC0654400A28F12 /* puzzle.c */; };
 		051892A80FC0654400A28F12 /* hmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 051892770FC0654400A28F12 /* hmac.h */; };
 		051892A90FC0654400A28F12 /* ezxml.h in Headers */ = {isa = PBXBuildFile; fileRef = 051892780FC0654400A28F12 /* ezxml.h */; };
@@ -68,6 +67,43 @@
 		051892D50FC0654400A28F12 /* sndqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892A40FC0654400A28F12 /* sndqueue.c */; };
 		051892D60FC0654400A28F12 /* keyexchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 051892A50FC0654400A28F12 /* keyexchange.h */; };
 		051892D70FC0654400A28F12 /* audioqueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 051892A60FC0654400A28F12 /* audioqueue.h */; };
+		051893000FC096C400A28F12 /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051892FB0FC096A700A28F12 /* libvorbis.a */; };
+		051893010FC096C800A28F12 /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051892FA0FC096A700A28F12 /* libogg.a */; };
+		051893050FC097A900A28F12 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051893040FC097A900A28F12 /* libvorbisfile.a */; };
+		051893280FC09C2E00A28F12 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051891280FBF365000A28F12 /* AudioToolbox.framework */; };
+		051893290FC09C2E00A28F12 /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051892FB0FC096A700A28F12 /* libvorbis.a */; };
+		0518932A0FC09C2E00A28F12 /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051892FA0FC096A700A28F12 /* libogg.a */; };
+		0518932C0FC09C2E00A28F12 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051893040FC097A900A28F12 /* libvorbisfile.a */; };
+		051893340FC09C4B00A28F12 /* puzzle.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892760FC0654400A28F12 /* puzzle.c */; };
+		051893350FC09C4B00A28F12 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518927B0FC0654400A28F12 /* sha1.c */; };
+		051893360FC09C4B00A28F12 /* keyexchange.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518927C0FC0654400A28F12 /* keyexchange.c */; };
+		051893370FC09C4B00A28F12 /* handlers.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518927D0FC0654400A28F12 /* handlers.c */; };
+		051893380FC09C4B00A28F12 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518927E0FC0654400A28F12 /* hmac.c */; };
+		051893390FC09C4B00A28F12 /* commands.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518927F0FC0654400A28F12 /* commands.c */; };
+		0518933A0FC09C4B00A28F12 /* despotify.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892820FC0654400A28F12 /* despotify.c */; };
+		0518933B0FC09C4B00A28F12 /* session.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892860FC0654400A28F12 /* session.c */; };
+		0518933C0FC09C4B00A28F12 /* auth.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892870FC0654400A28F12 /* auth.c */; };
+		0518933D0FC09C4B00A28F12 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892880FC0654400A28F12 /* util.c */; };
+		0518933E0FC09C4B00A28F12 /* shn.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518928D0FC0654400A28F12 /* shn.c */; };
+		0518933F0FC09C4B00A28F12 /* audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518928F0FC0654400A28F12 /* audio.c */; };
+		051893400FC09C4B00A28F12 /* dns.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892900FC0654400A28F12 /* dns.c */; };
+		051893410FC09C4B00A28F12 /* channel.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892970FC0654400A28F12 /* channel.c */; };
+		051893420FC09C4B00A28F12 /* buf.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892980FC0654400A28F12 /* buf.c */; };
+		051893430FC09C4B00A28F12 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892990FC0654400A28F12 /* aes.c */; };
+		051893440FC09C4B00A28F12 /* ezxml.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518929A0FC0654400A28F12 /* ezxml.c */; };
+		051893450FC09C4B00A28F12 /* audioqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518929C0FC0654400A28F12 /* audioqueue.c */; };
+		051893460FC09C4B00A28F12 /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518929D0FC0654400A28F12 /* xml.c */; };
+		051893470FC09C4B00A28F12 /* network.c in Sources */ = {isa = PBXBuildFile; fileRef = 0518929E0FC0654400A28F12 /* network.c */; };
+		051893480FC09C4B00A28F12 /* packet.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892A00FC0654400A28F12 /* packet.c */; };
+		051893490FC09C4B00A28F12 /* sndqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892A40FC0654400A28F12 /* sndqueue.c */; };
+		0518934A0FC09C5A00A28F12 /* SpotTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 051890FA0FBEE0DC00A28F12 /* SpotTrack.m */; };
+		0518934B0FC09C5A00A28F12 /* SpotSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 051890FE0FBEE34900A28F12 /* SpotSession.m */; };
+		0518934C0FC09C5A00A28F12 /* CoSpotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518922F0FC060A500A28F12 /* CoSpotify.m */; };
+		0518938D0FC0AB9A00A28F12 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518938C0FC0AB9A00A28F12 /* libresolv.dylib */; };
+		051893900FC0ABBE00A28F12 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518938F0FC0ABBE00A28F12 /* libz.dylib */; };
+		0518939B0FC0AD2B00A28F12 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518939A0FC0AD2B00A28F12 /* libcrypto.a */; };
+		051893A00FC0AD8800A28F12 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0518939F0FC0AD8800A28F12 /* libssl.a */; };
+		051893A20FC0AE2A00A28F12 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051893A10FC0AE2A00A28F12 /* libcrypto.a */; };
 		1D3623260D0F684500981E51 /* SpotAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SpotAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -84,13 +120,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0518902F0FBEDCF400A28F12;
 			remoteInfo = despotify;
-		};
-		051892340FC060D200A28F12 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 051890DB0FBEE08C00A28F12;
-			remoteInfo = Cospotify;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -160,6 +189,14 @@
 		051892A40FC0654400A28F12 /* sndqueue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sndqueue.c; path = src/lib/sndqueue.c; sourceTree = "<group>"; };
 		051892A50FC0654400A28F12 /* keyexchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = keyexchange.h; path = src/lib/keyexchange.h; sourceTree = "<group>"; };
 		051892A60FC0654400A28F12 /* audioqueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = audioqueue.h; path = src/lib/audioqueue.h; sourceTree = "<group>"; };
+		051892FA0FC096A700A28F12 /* libogg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libogg.a; path = Vendor/libogg.a; sourceTree = "<group>"; };
+		051892FB0FC096A700A28F12 /* libvorbis.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbis.a; path = Vendor/libvorbis.a; sourceTree = "<group>"; };
+		051893040FC097A900A28F12 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = Vendor/libvorbisfile.a; sourceTree = "<group>"; };
+		0518938C0FC0AB9A00A28F12 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = /usr/lib/libresolv.dylib; sourceTree = "<absolute>"; };
+		0518938F0FC0ABBE00A28F12 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = /usr/lib/libz.dylib; sourceTree = "<absolute>"; };
+		0518939A0FC0AD2B00A28F12 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = /opt/local/lib/libcrypto.a; sourceTree = "<absolute>"; };
+		0518939F0FC0AD8800A28F12 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Vendor/libssl.a; sourceTree = "<group>"; };
+		051893A10FC0AE2A00A28F12 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Vendor/libcrypto.a; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SpotAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* SpotAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotAppDelegate.m; sourceTree = "<group>"; };
@@ -180,6 +217,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				051891290FBF365000A28F12 /* AudioToolbox.framework in Frameworks */,
+				051893000FC096C400A28F12 /* libvorbis.a in Frameworks */,
+				051893010FC096C800A28F12 /* libogg.a in Frameworks */,
+				051893050FC097A900A28F12 /* libvorbisfile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,10 +235,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0518923F0FC0612700A28F12 /* libCospotify.a in Frameworks */,
+				051893280FC09C2E00A28F12 /* AudioToolbox.framework in Frameworks */,
+				051893290FC09C2E00A28F12 /* libvorbis.a in Frameworks */,
+				0518932A0FC09C2E00A28F12 /* libogg.a in Frameworks */,
+				0518932C0FC09C2E00A28F12 /* libvorbisfile.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+				0518938D0FC0AB9A00A28F12 /* libresolv.dylib in Frameworks */,
+				051893900FC0ABBE00A28F12 /* libz.dylib in Frameworks */,
+				0518939B0FC0AD2B00A28F12 /* libcrypto.a in Frameworks */,
+				051893A00FC0AD8800A28F12 /* libssl.a in Frameworks */,
+				051893A20FC0AE2A00A28F12 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +390,14 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+				0518938C0FC0AB9A00A28F12 /* libresolv.dylib */,
+				0518939A0FC0AD2B00A28F12 /* libcrypto.a */,
+				0518938F0FC0ABBE00A28F12 /* libz.dylib */,
+				051893A10FC0AE2A00A28F12 /* libcrypto.a */,
+				0518939F0FC0AD8800A28F12 /* libssl.a */,
+				051892FA0FC096A700A28F12 /* libogg.a */,
+				051893040FC097A900A28F12 /* libvorbisfile.a */,
+				051892FB0FC096A700A28F12 /* libvorbis.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -439,7 +495,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				051892350FC060D200A28F12 /* PBXTargetDependency */,
 			);
 			name = Spot;
 			productName = Spot;
@@ -536,6 +591,31 @@
 				28C286E10D94DF7D0034E888 /* PlaylistsViewController.m in Sources */,
 				0518916B0FC0456B00A28F12 /* LoginViewController.m in Sources */,
 				051891A20FC051B300A28F12 /* LoggingInController.m in Sources */,
+				051893340FC09C4B00A28F12 /* puzzle.c in Sources */,
+				051893350FC09C4B00A28F12 /* sha1.c in Sources */,
+				051893360FC09C4B00A28F12 /* keyexchange.c in Sources */,
+				051893370FC09C4B00A28F12 /* handlers.c in Sources */,
+				051893380FC09C4B00A28F12 /* hmac.c in Sources */,
+				051893390FC09C4B00A28F12 /* commands.c in Sources */,
+				0518933A0FC09C4B00A28F12 /* despotify.c in Sources */,
+				0518933B0FC09C4B00A28F12 /* session.c in Sources */,
+				0518933C0FC09C4B00A28F12 /* auth.c in Sources */,
+				0518933D0FC09C4B00A28F12 /* util.c in Sources */,
+				0518933E0FC09C4B00A28F12 /* shn.c in Sources */,
+				0518933F0FC09C4B00A28F12 /* audio.c in Sources */,
+				051893400FC09C4B00A28F12 /* dns.c in Sources */,
+				051893410FC09C4B00A28F12 /* channel.c in Sources */,
+				051893420FC09C4B00A28F12 /* buf.c in Sources */,
+				051893430FC09C4B00A28F12 /* aes.c in Sources */,
+				051893440FC09C4B00A28F12 /* ezxml.c in Sources */,
+				051893450FC09C4B00A28F12 /* audioqueue.c in Sources */,
+				051893460FC09C4B00A28F12 /* xml.c in Sources */,
+				051893470FC09C4B00A28F12 /* network.c in Sources */,
+				051893480FC09C4B00A28F12 /* packet.c in Sources */,
+				051893490FC09C4B00A28F12 /* sndqueue.c in Sources */,
+				0518934A0FC09C5A00A28F12 /* SpotTrack.m in Sources */,
+				0518934B0FC09C5A00A28F12 /* SpotSession.m in Sources */,
+				0518934C0FC09C5A00A28F12 /* CoSpotify.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,11 +626,6 @@
 			isa = PBXTargetDependency;
 			target = 0518902F0FBEDCF400A28F12 /* despotify */;
 			targetProxy = 051890DF0FBEE09100A28F12 /* PBXContainerItemProxy */;
-		};
-		051892350FC060D200A28F12 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 051890DB0FBEE08C00A28F12 /* Cospotify */;
-			targetProxy = 051892340FC060D200A28F12 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -563,7 +638,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = /opt/local/include;
-				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					/opt/local/lib,
+					"\"$(SRCROOT)/Vendor\"",
+				);
 				OTHER_CFLAGS = "-Wno-pointer-sign";
 				PREBINDING = NO;
 				PRODUCT_NAME = despotify;
@@ -578,6 +656,11 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Vendor\"",
+					/opt/local/lib,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = despotify;
 				ZERO_LINK = NO;
@@ -591,6 +674,10 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Vendor\"",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Cospotify;
 			};
@@ -603,6 +690,10 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Vendor\"",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Cospotify;
 				ZERO_LINK = NO;
@@ -618,10 +709,12 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Other Sources/Spot_Prefix.pch";
+				HEADER_SEARCH_PATHS = /opt/local/include;
 				INFOPLIST_FILE = "Resources/Spot-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/Vendor\"",
 				);
 				PRODUCT_NAME = Spot;
 			};
@@ -638,6 +731,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/Vendor\"",
+					/opt/local/lib,
 				);
 				PRODUCT_NAME = Spot;
 			};
@@ -651,6 +746,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = Vendor;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.0;
