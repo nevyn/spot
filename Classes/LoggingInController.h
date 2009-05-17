@@ -13,9 +13,14 @@
 {
 	NSString *username;
 	NSString *password;
+	IBOutlet UILabel *error;
+	IBOutlet UIButton *tryAgain;
+	IBOutlet UIActivityIndicatorView *spinner;
 }
 @property (retain) NSString *username;
 @property (retain) NSString *password;
 
 -(id)initLoggingInAs:(NSString*)name_ password:(NSString*)password_;
+
+-(IBAction)tryAgain;
 @end

@@ -72,15 +72,33 @@
 -(void)createSessionAndLogin;
 {
 	SpotSession *session = [SpotSession defaultSession];
-	session = session;
+	
+	NSError *err;
+	BOOL success = [session authenticate:self.username password:self.password error:&err];
+	if(!success) {
+		error.text = [NSString stringWithFormat:@"I couldn't log you in: %@", err.localizedDescription];
+		tryAgain.hidden = error.hidden = NO;
+		return;
+	}
+	
+	spinner.hidden = YES;
 	
 }
 
 
-
+-(void)viewWillAppear:(BOOL)animated;
+{
+	tryAgain.hidden = error.hidden = YES;
+	spinner.hidden = NO;
+}
 -(void)viewDidAppear:(BOOL)animated;
 {
 	[self createSessionAndLogin];
+}
+
+-(IBAction)tryAgain;
+{
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

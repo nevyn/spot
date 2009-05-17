@@ -69,12 +69,18 @@
 {
 	[username becomeFirstResponder];
 	[self.navigationController setNavigationBarHidden:YES animated:animated];
+	username.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
+	password.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
 }
 -(void)viewWillDisappear:(BOOL)animated;
 {
 	[self.navigationController setNavigationBarHidden:NO animated:animated];	
 }
 
+- (BOOL)textFieldShouldClear:(UITextField *)textField;
+{
+	return NO;
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
 	if(textField == username)
@@ -89,6 +95,9 @@
 	[username resignFirstResponder];
 	[password resignFirstResponder];
 	[self.navigationController pushViewController:[[[LoggingInController alloc] initLoggingInAs:username.text password:password.text] autorelease] animated:YES];
+	[[NSUserDefaults standardUserDefaults] setObject:username.text forKey:@"username"];
+	[[NSUserDefaults standardUserDefaults] setObject:password.text forKey:@"password"];
+	
 }
 
 @end
