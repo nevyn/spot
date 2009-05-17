@@ -7,9 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "despotify.h"
 
+@interface SpotTrack : NSObject {
+	struct track track;
+}
+-(id)initWithTrack:(struct track*)track_;
 
-@interface SpotTrack : NSObject
-//@property (readonly, retain, nonatomic) NSString *title;
-//@property (readonly, retain, nonatomic) 
+@property (readonly) NSString *title;
+@property (readonly) NSString *albumName;
+@property (readonly) NSArray *artists;
 @end

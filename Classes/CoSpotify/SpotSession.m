@@ -7,6 +7,7 @@
 //
 
 #import "SpotSession.h"
+#import "SpotPlaylist.h"
 
 SpotSession *SpotSessionSingleton;
 
@@ -53,5 +54,19 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 	if(success)
 		NSLog(@"Successfully logged in as %@", user);
 	return success;
+}
+
+-(NSArray*)playlists;
+{
+	NSMutableArray *playlists = [NSMutableArray array];
+	
+	struct playlist *rootlist = despotify_get_stored_playlists(session);
+	for(struct playlist *pl = rootlist; pl; pl = pl->next) {
+		SpotPlaylist *playlist = [[[SpotPlaylist alloc] initWithPlaylist:pl] autorelease];
+		[playlists addObject:playlist];
+	}
+	despotify_free_playlist(rootlist);
+	
+	return playlists;
 }
 @end

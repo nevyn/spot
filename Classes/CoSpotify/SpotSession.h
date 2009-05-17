@@ -17,6 +17,8 @@
 
 -(BOOL)authenticate:(NSString *)user password:(NSString*)password error:(NSError**)error;
 
+-(NSArray*)playlists;
+
 @end
 
 extern NSString *SpotSessionErrorDomain;

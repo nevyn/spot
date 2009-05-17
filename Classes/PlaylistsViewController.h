@@ -7,6 +7,7 @@
 //
 
 @interface PlaylistsViewController : UITableViewController {
+	NSArray *playlists;
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "PlaylistsViewController.h"
-
+#import "CoSpotify.h"
 
 @implementation PlaylistsViewController
 
@@ -61,22 +61,32 @@
 	// e.g. self.myOutlet = nil;
 }
 
+-(NSArray*)playlists;
+{
+	if(!playlists)
+		playlists = [[[SpotSession defaultSession] playlists] retain];
+	NSLog(@"Playlists: %@", playlists);
+	return playlists;
+}
 
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.playlists.count;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [[self.playlists objectAtIndex:section] tracks].count;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+	SpotPlaylist *playlist = [self.playlists objectAtIndex:[indexPath indexAtPosition:0]];
+	SpotTrack *track = [[playlist tracks] objectAtIndex:[indexPath indexAtPosition:1]];
     
     static NSString *CellIdentifier = @"Cell";
     
@@ -86,6 +96,8 @@
     }
     
 	// Configure the cell.
+	
+	cell.text = track.title;
 
     return cell;
 }
