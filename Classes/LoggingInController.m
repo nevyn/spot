@@ -74,6 +74,8 @@
 {
 	SpotSession *session = [SpotSession defaultSession];
 	
+	spinner.hidden = YES;
+	
 	NSError *err;
 	BOOL success = [session authenticate:self.username password:self.password error:&err];
 	if(!success) {
@@ -81,7 +83,6 @@
 		tryAgain.hidden = error.hidden = NO;
 		return;
 	}
-	spinner.hidden = YES;
 	
 	UINavigationController *navController = self.navigationController;
 	
