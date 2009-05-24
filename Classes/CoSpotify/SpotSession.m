@@ -40,8 +40,15 @@ static void print_info(struct despotify_session* ds)
     }
 }
 
+@interface SpotSession ()
+@property (nonatomic, readwrite) BOOL loggedIn;
+
+@end
+
 
 @implementation SpotSession
+@synthesize loggedIn;
+
 +(SpotSession*)defaultSession;
 {
 	if(!SpotSessionSingleton)
@@ -66,6 +73,8 @@ static void print_info(struct despotify_session* ds)
 		[self release];
 		return nil;
 	}
+	
+	self.loggedIn = NO;
 	
 	return self;
 }
@@ -92,7 +101,8 @@ static void print_info(struct despotify_session* ds)
 	if(success) {
 		print_info(session);
 		NSLog(@"Successfully logged in as %@", user);
-	}	
+	}
+	self.loggedIn = success;
 	return success;
 }
 
@@ -108,5 +118,45 @@ static void print_info(struct despotify_session* ds)
 	despotify_free_playlist(rootlist);
 	
 	return playlists;
+}
+/*
+ static void print_info(struct despotify_session* ds)
+ {
+ struct user_info* user = ds->user_info;
+ wprintf(L"Username       : %s\n", user->username);
+ wprintf(L"Country        : %s\n", user->country);
+ wprintf(L"Account type   : %s\n", user->type);
+ wprintf(L"Account expiry : %s", ctime(&user->expiry));
+ wprintf(L"Host           : %s:%d\n", user->server_host, user->server_port);
+ wprintf(L"Last ping      : %s", ctime(&user->last_ping));
+
+ */
+-(NSString*)username;
+{
+	return [NSString stringWithUTF8String:session->user_info->username];	
+}
+-(NSString*)country;
+{
+	return [NSString stringWithUTF8String:session->user_info->country];
+}
+-(NSString*)accountType;
+{
+	return [NSString stringWithUTF8String:session->user_info->type];
+}
+-(NSDate*)expires;
+{
+	return [NSDate dateWithTimeIntervalSince1970:session->user_info->expiry];
+}
+-(NSString*)serverHost;
+{
+	return [NSString stringWithUTF8String:session->user_info->server_host];
+}
+-(NSUInteger)serverPort;
+{
+	return session->user_info->server_port;
+}
+-(NSDate*)lastPing;
+{
+	return [NSDate dateWithTimeIntervalSince1970:session->user_info->last_ping];
 }
 @end

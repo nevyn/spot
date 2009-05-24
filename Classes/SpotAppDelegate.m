@@ -7,29 +7,63 @@
 //
 
 #import "SpotAppDelegate.h"
-#import "LoginViewController.h"
 #import "CoSpotify.h"
+
+#import "LoginViewController.h"
+#import "ProfileViewController.h"
 
 @implementation SpotAppDelegate
 
-@synthesize window;
-@synthesize navigationController;
+@synthesize window, loginNav, tabs;
 
 
 #pragma mark -
 #pragma mark Application lifecycle
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
-	[navigationController viewWillAppear:NO];
-	[window addSubview:[navigationController view]];
-	[navigationController viewDidAppear:NO];
-	[navigationController setNavigationBarHidden:YES];
+- (void)applicationDidFinishLaunching:(UIApplication *)application {   
 	
+	///// Prepare the main UI
+	
+	self.tabs = [[[UITabBarController alloc] init] autorelease];
+	
+	// Profile page
+	UINavigationController *profilePage;
+	{
+		profilePage = [[[UINavigationController alloc] init] autorelease];
+		profilePage.title = @"Profile";
+		
+		ProfileViewController *profile = [[[ProfileViewController alloc] init] autorelease];
+		[profilePage pushViewController:profile animated:NO];
+	}
+	
+	// Playlists
+	UINavigationController *playlistPage;
+	{
+		playlistPage = [[[UINavigationController alloc] init] autorelease];
+		
+		//PlaylistsViewController *playlists = [[[PlaylistsViewController alloc] init] autorelease];
+		//[playlistPage pushViewController:playlists animated:NO];
+	}
+	
+	NSArray *pages = [NSArray arrayWithObjects:
+					  profilePage,
+					  //playlistPage,
+					  nil];
+	
+	// Add it to the root
+	[tabs setViewControllers:pages animated:NO];
+	
+	[tabs viewWillAppear:NO];
+	[window addSubview:tabs.view];
+	[tabs viewDidAppear:NO];
+	
+	///// Prepare to login
 	LoginViewController *login = [[[LoginViewController alloc] init] autorelease];
-	[login viewWillAppear:NO];
-	[navigationController pushViewController:login animated:NO];
-	[login viewDidAppear:NO];
+	self.loginNav = [[[UINavigationController alloc] initWithRootViewController:login] autorelease];
 	
+	[self.tabs presentModalViewController:self.loginNav animated:YES];
+	
+	/// Display it!
     [window makeKeyAndVisible];
 }
 
@@ -44,8 +78,9 @@
 #pragma mark Memory management
 
 - (void)dealloc {
-	[navigationController release];
-	[window release];
+	self.loginNav = nil;
+	self.tabs = nil;
+	self.window = nil;
 	[super dealloc];
 }
 

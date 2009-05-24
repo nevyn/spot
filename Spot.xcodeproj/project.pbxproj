@@ -82,6 +82,8 @@
 		0518945E0FC0B9B300A28F12 /* SpotPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518945C0FC0B9B300A28F12 /* SpotPlaylist.m */; };
 		051894960FC0C25100A28F12 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 051894950FC0C25100A28F12 /* icon.png */; };
 		051895080FC0D13800A28F12 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051893A10FC0AE2A00A28F12 /* libcrypto.a */; };
+		0518953B0FC280A100A28F12 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518953A0FC280A100A28F12 /* ProfileViewController.m */; };
+		0518953D0FC280C500A28F12 /* Profile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0518953C0FC280C500A28F12 /* Profile.xib */; };
 		1D3623260D0F684500981E51 /* SpotAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SpotAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -184,6 +186,9 @@
 		0518945B0FC0B9B300A28F12 /* SpotPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotPlaylist.h; sourceTree = "<group>"; };
 		0518945C0FC0B9B300A28F12 /* SpotPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotPlaylist.m; sourceTree = "<group>"; };
 		051894950FC0C25100A28F12 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		051895390FC280A100A28F12 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		0518953A0FC280A100A28F12 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		0518953C0FC280C500A28F12 /* Profile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Profile.xib; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SpotAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* SpotAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotAppDelegate.m; sourceTree = "<group>"; };
@@ -325,6 +330,9 @@
 				051891A00FC051B300A28F12 /* LoggingInController.h */,
 				051891A10FC051B300A28F12 /* LoggingInController.m */,
 				051891A30FC051BC00A28F12 /* LoggingIn.xib */,
+				051895390FC280A100A28F12 /* ProfileViewController.h */,
+				0518953A0FC280A100A28F12 /* ProfileViewController.m */,
+				0518953C0FC280C500A28F12 /* Profile.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -529,6 +537,7 @@
 				0518918E0FC0489F00A28F12 /* logo.png in Resources */,
 				051891A40FC051BC00A28F12 /* LoggingIn.xib in Resources */,
 				051894960FC0C25100A28F12 /* icon.png in Resources */,
+				0518953D0FC280C500A28F12 /* Profile.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +593,7 @@
 				28C286E10D94DF7D0034E888 /* PlaylistsViewController.m in Sources */,
 				0518916B0FC0456B00A28F12 /* LoginViewController.m in Sources */,
 				051891A20FC051B300A28F12 /* LoggingInController.m in Sources */,
+				0518953B0FC280A100A28F12 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

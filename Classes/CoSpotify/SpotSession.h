@@ -11,6 +11,7 @@
 
 @interface SpotSession : NSObject {
 	struct despotify_session *session;
+	BOOL loggedIn;
 }
 +(SpotSession*)defaultSession;
 -(void)cleanup;
@@ -19,6 +20,14 @@
 
 -(NSArray*)playlists;
 
+@property (nonatomic, readonly) BOOL loggedIn;
+@property (readonly) NSString *username;
+@property (readonly) NSString *country;
+@property (readonly) NSString *accountType;
+@property (readonly) NSDate *expires;
+@property (readonly) NSString *serverHost;
+@property (readonly) NSUInteger serverPort;
+@property (readonly) NSDate *lastPing;
 @end
 
 extern NSString *SpotSessionErrorDomain;

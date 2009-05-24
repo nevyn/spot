@@ -14,8 +14,6 @@
 {
 	if( ! [super initWithNibName:@"LoginView" bundle:nil] ) return nil;
 	
-	self.title = @"Log in";
-	
 	return self;
 }
 /*
@@ -70,16 +68,25 @@
 
 -(void)viewWillAppear:(BOOL)animated;
 {
-	[self.navigationController setNavigationBarHidden:YES animated:animated];
+	[self.navigationController setNavigationBarHidden:YES animated:NO];
+	
+	// Todo: Log out here if we're logged in
+	
 	username.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
 	password.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
+	
+	self.title = @"Log in";
 	
 	if([username.text isEqual:@""])
 		[username becomeFirstResponder];
 }
 -(void)viewWillDisappear:(BOOL)animated;
 {
-	[self.navigationController setNavigationBarHidden:NO animated:animated];	
+	//[self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+-(void)viewDidDisappear:(BOOL)animated;
+{
+	self.title = @"Log out";
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField;

@@ -8,7 +8,6 @@
 
 #import "LoggingInController.h"
 #import "CoSpotify.h"
-#import "PlaylistsViewController.h"
 
 @implementation LoggingInController
 @synthesize username, password;
@@ -72,12 +71,11 @@
 
 -(void)createSessionAndLogin;
 {
-	SpotSession *session = [SpotSession defaultSession];
 	
 	spinner.hidden = YES;
 	
 	NSError *err;
-	BOOL success = [session authenticate:self.username password:self.password error:&err];
+	BOOL success = [[SpotSession defaultSession] authenticate:self.username password:self.password error:&err];
 	if(!success) {
 		error.text = [NSString stringWithFormat:@"I couldn't log you in: %@", err.localizedDescription];
 		tryAgain.hidden = error.hidden = NO;
@@ -85,15 +83,15 @@
 	}
 	
 	UINavigationController *navController = self.navigationController;
+	[navController setNavigationBarHidden:YES animated:NO];
 	
 	[[self retain] autorelease]; // We will disappear after the pop
-	//[self.navigationController popViewControllerAnimated:NO];
-	UIViewController *next = [[[PlaylistsViewController alloc] init] autorelease];
 	
 	NSMutableArray *controllers = [[navController.viewControllers mutableCopy] autorelease];
 	[controllers removeLastObject];
 	navController.viewControllers = controllers;
-	[navController pushViewController:next animated: YES];	
+	
+	[navController dismissModalViewControllerAnimated:YES];
 }
 
 
