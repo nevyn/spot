@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import "ProfileViewController.h"
 #import "PlaylistsViewController.h"
+#import "SearchViewController.h"
 
 @implementation SpotAppDelegate
 
@@ -46,8 +47,18 @@
 		[playlistPage pushViewController:playlists animated:NO];
 	}
 	
+	// Search
+	UINavigationController *searchPage;
+	{
+		searchPage = [[[UINavigationController alloc] init] autorelease];
+		
+		SearchViewController *search = [[[SearchViewController alloc] init] autorelease];
+		[searchPage pushViewController:search animated:NO];
+	}
+	
 	NSArray *pages = [NSArray arrayWithObjects:
 					  profilePage,
+					  searchPage,
 					  playlistPage,
 					  nil];
 	
@@ -62,7 +73,7 @@
 	LoginViewController *login = [[[LoginViewController alloc] init] autorelease];
 	self.loginNav = [[[UINavigationController alloc] initWithRootViewController:login] autorelease];
 	
-	[self.tabs presentModalViewController:self.loginNav animated:YES];
+	[self.tabs presentModalViewController:self.loginNav animated:NO];
 	
 	/// Display it!
     [window makeKeyAndVisible];

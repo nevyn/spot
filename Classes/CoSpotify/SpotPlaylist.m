@@ -8,6 +8,7 @@
 
 #import "SpotPlaylist.h"
 #import "SpotTrack.h"
+#import "SpotSession.h"
 
 @implementation SpotPlaylist
 -(id)initWithPlaylist:(struct playlist*)playlist_;
@@ -15,13 +16,16 @@
 	if( ! [super init] ) return nil;
 	
 	memcpy(&playlist, playlist_, sizeof(struct playlist));
-	playlist_->tracks = NULL; // I'll take responsibility for those, thank you very much.
+	
+	tracks = [[NSMutableArray alloc] initWithCapacity:playlist.num_tracks];
+	for(struct track *track = playlist.tracks; track != NULL; track = track->next)
+		[(NSMutableArray*)tracks addObject:[[[SpotTrack alloc] initWithTrack:track] autorelease]];
 	
 	return self;
 }
 -(void)dealloc;
 {
-	despotify_free_track(playlist.tracks);
+	[tracks release];
 	[super dealloc];
 }
 
@@ -31,29 +35,11 @@
 }
 -(void)setName:(NSString*)name_;
 {
-	//despotify_rename_playlist(ds, playlist, [name_ UTF8String]);
+	despotify_rename_playlist([SpotSession defaultSession].session, &playlist, (char*)[name_ UTF8String]);
+	// todo: handle error
 }
 
--(NSUInteger)countOfTracks;
-{
-	return playlist.num_tracks;
-}
--(SpotTrack*)objectInTracksAtIndex:(NSUInteger)index;
-{
-	if(index > self.countOfTracks) return nil;
-	
-	struct track *tr = playlist.tracks;
-	for(int i = 0; i != index; i++) {
-		tr = tr->next;
-	}
-	
-	return [[[SpotTrack alloc] initWithTrack:tr] autorelease];
-}
-
--(NSArray*)tracks;
-{
-	return [self valueForKey:@"tracks"];
-}
+@synthesize tracks;
 
 -(NSString*)description;
 {

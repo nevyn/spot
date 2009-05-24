@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "despotify.h"
+#import "SpotArtist.h"
 
 @interface SpotTrack : NSObject {
 	struct track track;
+	SpotArtist *artist;
 }
 -(id)initWithTrack:(struct track*)track_;
 
 @property (readonly) NSString *title;
 @property (readonly) NSString *albumName;
-@property (readonly) NSArray *artists;
+@property (readonly) SpotArtist *artist;
 @end

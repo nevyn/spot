@@ -12,10 +12,10 @@
 @implementation PlaylistsViewController
 -(id)init;
 {
-	if(![super init]) return nil;
+	if(![super initWithNibName:@"PlaylistsView" bundle:nil]) return nil;
 	
 	self.title = @"Playlists";
-	self.tabBarItem.image = [UIImage imageNamed:@"playlists.png"];
+	self.tabBarItem.image = [UIImage imageNamed:@"playlists.png"]; // from http://glyphish.com/ yay!
 	
 	return self;
 }

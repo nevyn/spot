@@ -28,7 +28,7 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 
 
 @implementation SpotSession
-@synthesize loggedIn;
+@synthesize loggedIn, session;
 
 +(SpotSession*)defaultSession;
 {

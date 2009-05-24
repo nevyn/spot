@@ -9,6 +9,7 @@
 #import "SpotTrack.h"
 #import "xml.h"
 
+
 @implementation SpotTrack
 -(id)initWithTrack:(struct track*)track_;
 {
@@ -17,14 +18,15 @@
 	memcpy(&track, track_, sizeof(struct track));
 	// I assume responsibility for these:
 	track_->key = NULL;
-	track_->artist = NULL;
+	
+	artist = [[SpotArtist alloc] initWithArtist:track.artist];
 	
 	return self;
 }
 -(void)dealloc;
 {
 	free(track.key);
-	xml_free_artist(track.artist);
+	[artist release];
 	[super dealloc];
 }
 
@@ -36,9 +38,9 @@
 {
 	return [NSString stringWithUTF8String:track.album];
 }
--(NSArray*)artists;
+-(SpotArtist*)artist;
 {
-	return nil;
+	return artist;
 }
 
 -(NSString*)description;

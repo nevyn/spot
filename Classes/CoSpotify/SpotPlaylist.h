@@ -11,6 +11,7 @@
 
 @interface SpotPlaylist : NSObject {
 	struct playlist playlist;
+	NSArray *tracks;
 }
 -(id)initWithPlaylist:(struct playlist*)playlist_;
 

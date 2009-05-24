@@ -28,6 +28,8 @@
 @property (readonly) NSString *serverHost;
 @property (readonly) NSUInteger serverPort;
 @property (readonly) NSDate *lastPing;
+
+@property (readonly) struct despotify_session *session;
 @end
 
 extern NSString *SpotSessionErrorDomain;
