@@ -2,3 +2,5 @@ build
 .DS_Store
 Spot.xcodeproj/*.mode2v3
 Spot.xcodeproj/*.pbxuser
+Vendor/despotify/src/clients/gateway/gateway
+Vendor/despotify/src/clients/simple/simple

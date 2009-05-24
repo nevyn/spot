@@ -11,6 +11,7 @@
 
 #import "LoginViewController.h"
 #import "ProfileViewController.h"
+#import "PlaylistsViewController.h"
 
 @implementation SpotAppDelegate
 
@@ -41,13 +42,13 @@
 	{
 		playlistPage = [[[UINavigationController alloc] init] autorelease];
 		
-		//PlaylistsViewController *playlists = [[[PlaylistsViewController alloc] init] autorelease];
-		//[playlistPage pushViewController:playlists animated:NO];
+		PlaylistsViewController *playlists = [[[PlaylistsViewController alloc] init] autorelease];
+		[playlistPage pushViewController:playlists animated:NO];
 	}
 	
 	NSArray *pages = [NSArray arrayWithObjects:
 					  profilePage,
-					  //playlistPage,
+					  playlistPage,
 					  nil];
 	
 	// Add it to the root

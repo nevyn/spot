@@ -14,6 +14,8 @@
 {
 	if( ! [super initWithNibName:@"Profile" bundle:nil] ) return nil;
 	self.title = @"Profile";
+	self.tabBarItem.image = [UIImage imageNamed:@"profile.png"];
+	
 	return self;
 }
 /*

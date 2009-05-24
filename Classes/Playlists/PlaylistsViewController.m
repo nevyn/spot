@@ -72,13 +72,17 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.playlists.count;
+	if( ! [SpotSession defaultSession].loggedIn) return 1;
+	
+	return 1;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[self.playlists objectAtIndex:section] tracks].count;
+	if( ! [SpotSession defaultSession].loggedIn) return 0;
+	
+    return self.playlists.count;
 }
 
 
@@ -86,7 +90,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	SpotPlaylist *playlist = [self.playlists objectAtIndex:[indexPath indexAtPosition:0]];
-	SpotTrack *track = [[playlist tracks] objectAtIndex:[indexPath indexAtPosition:1]];
+	//SpotTrack *track = [[playlist tracks] objectAtIndex:[indexPath indexAtPosition:1]];
     
     static NSString *CellIdentifier = @"Cell";
     
@@ -94,9 +98,9 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
-    
+	
 	// Configure the cell. 
-	cell.text = track.title;
+	cell.text = playlist.name;
 
     return cell;
 }
