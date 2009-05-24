@@ -1,23 +1,15 @@
 //
-//  AlbumBrowseViewController.m
+//  PlayViewController.m
 //  Spot
 //
 //  Created by Joachim Bengtsson on 2009-05-24.
 //  Copyright 2009 Third Cog Software. All rights reserved.
 //
 
-#import "AlbumBrowseViewController.h"
+#import "PlayViewController.h"
 
 
-@implementation AlbumBrowseViewController
--(id)initBrowsingAlbum:(SpotAlbum*)album;
-{
-	if( ! [super initWithNibName:@"AlbumBrowseView" bundle:nil])
-		return nil;
-	
-	return self;
-	
-}
+@implementation PlayViewController
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.

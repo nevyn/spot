@@ -1,5 +1,5 @@
 //
-//  ArtistBrowseViewController.h
+//  PlayViewController.h
 //  Spot
 //
 //  Created by Joachim Bengtsson on 2009-05-24.
@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SpotArtist.h"
 
-@interface ArtistBrowseViewController : UIViewController {
+
+@interface PlayViewController : UIViewController {
 
 }
--(id)initBrowsingArtist:(SpotArtist*)artist;
+
 @end

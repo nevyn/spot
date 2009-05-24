@@ -11,6 +11,9 @@
 #import "SpotArtist.h"
 #import "SpotTrack.h"
 
+#import "AlbumBrowseViewController.h"
+#import "ArtistBrowseViewController.h"
+
 @implementation SearchViewController
 
 #pragma mark 
@@ -58,7 +61,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated;
 {
-	[self.navigationController setNavigationBarHidden:NO animated:NO];
+	[self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 #pragma mark 
@@ -117,25 +120,47 @@ enum {
 		case ArtistsSection: {
 			SpotArtist *artist = [resultArtists objectAtIndex:idx];
 			
+			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 			cell.text = artist.name;
-			break;
-		}
+		} break;
 		case TracksSection: {
 			SpotTrack *track = [resultPlaylist.tracks objectAtIndex:idx];
-			
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			cell.text = [NSString stringWithFormat:@"%@ - %@", track.artist.name, track.title];
-			break;
-		}
-		case AlbumsSection:
+		} break;
+		case AlbumsSection: {
 			
+			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 			cell.text = @"An album";
-			break;
+		} break;
 	}
 	
 	// Configure the cell. 
 
 	
     return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	int idx = [indexPath indexAtPosition:1];
+	switch([indexPath indexAtPosition:0]) {
+		case TracksSection: {
+			
+		} break;
+		case ArtistsSection: {
+			SpotArtist *artist = [resultArtists objectAtIndex:idx];
+			
+			[[self navigationController] pushViewController:[[[ArtistBrowseViewController alloc] initBrowsingArtist:artist] autorelease] animated:YES];
+		} break;
+		case AlbumsSection: {
+			SpotAlbum *album = nil;
+			
+			[[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
+			break;
+		}
+	}
 }
 
 #pragma mark 

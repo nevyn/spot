@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SpotAlbum.h"
 
 @interface AlbumBrowseViewController : UIViewController {
-
+	
 }
-
+-(id)initBrowsingAlbum:(SpotAlbum*)album;
 @end

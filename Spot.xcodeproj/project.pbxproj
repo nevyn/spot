@@ -93,6 +93,12 @@
 		051898290FC99AB600A28F12 /* SpotArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 051898270FC99AB600A28F12 /* SpotArtist.m */; };
 		051898D90FC9A4F400A28F12 /* ArtistBrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 051898D80FC9A4F400A28F12 /* ArtistBrowseViewController.m */; };
 		051898DC0FC9A50400A28F12 /* AlbumBrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 051898DB0FC9A50400A28F12 /* AlbumBrowseViewController.m */; };
+		051898E10FC9A61C00A28F12 /* SpotAlbum.h in Headers */ = {isa = PBXBuildFile; fileRef = 051898DF0FC9A61C00A28F12 /* SpotAlbum.h */; };
+		051898E20FC9A61C00A28F12 /* SpotAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 051898E00FC9A61C00A28F12 /* SpotAlbum.m */; };
+		051898E60FC9A65000A28F12 /* ArtistBrowseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051898E50FC9A65000A28F12 /* ArtistBrowseView.xib */; };
+		051898E80FC9A65C00A28F12 /* AlbumBrowseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 051898E70FC9A65C00A28F12 /* AlbumBrowseView.xib */; };
+		0518993D0FC9AEFE00A28F12 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518993C0FC9AEFE00A28F12 /* PlayViewController.m */; };
+		0518993F0FC9AF0700A28F12 /* PlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0518993E0FC9AF0700A28F12 /* PlayView.xib */; };
 		1D3623260D0F684500981E51 /* SpotAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SpotAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -210,6 +216,13 @@
 		051898D80FC9A4F400A28F12 /* ArtistBrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistBrowseViewController.m; sourceTree = "<group>"; };
 		051898DA0FC9A50400A28F12 /* AlbumBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumBrowseViewController.h; sourceTree = "<group>"; };
 		051898DB0FC9A50400A28F12 /* AlbumBrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumBrowseViewController.m; sourceTree = "<group>"; };
+		051898DF0FC9A61C00A28F12 /* SpotAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotAlbum.h; sourceTree = "<group>"; };
+		051898E00FC9A61C00A28F12 /* SpotAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotAlbum.m; sourceTree = "<group>"; };
+		051898E50FC9A65000A28F12 /* ArtistBrowseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArtistBrowseView.xib; sourceTree = "<group>"; };
+		051898E70FC9A65C00A28F12 /* AlbumBrowseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumBrowseView.xib; sourceTree = "<group>"; };
+		0518993B0FC9AEFE00A28F12 /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
+		0518993C0FC9AEFE00A28F12 /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
+		0518993E0FC9AF0700A28F12 /* PlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayView.xib; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SpotAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* SpotAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotAppDelegate.m; sourceTree = "<group>"; };
@@ -332,6 +345,8 @@
 				0518945C0FC0B9B300A28F12 /* SpotPlaylist.m */,
 				051898260FC99AB600A28F12 /* SpotArtist.h */,
 				051898270FC99AB600A28F12 /* SpotArtist.m */,
+				051898DF0FC9A61C00A28F12 /* SpotAlbum.h */,
+				051898E00FC9A61C00A28F12 /* SpotAlbum.m */,
 			);
 			path = CoSpotify;
 			sourceTree = "<group>";
@@ -393,10 +408,22 @@
 			children = (
 				051898D70FC9A4F400A28F12 /* ArtistBrowseViewController.h */,
 				051898D80FC9A4F400A28F12 /* ArtistBrowseViewController.m */,
+				051898E50FC9A65000A28F12 /* ArtistBrowseView.xib */,
 				051898DA0FC9A50400A28F12 /* AlbumBrowseViewController.h */,
 				051898DB0FC9A50400A28F12 /* AlbumBrowseViewController.m */,
+				051898E70FC9A65C00A28F12 /* AlbumBrowseView.xib */,
 			);
 			path = Browse;
+			sourceTree = "<group>";
+		};
+		0518993A0FC9AEEA00A28F12 /* Play */ = {
+			isa = PBXGroup;
+			children = (
+				0518993B0FC9AEFE00A28F12 /* PlayViewController.h */,
+				0518993C0FC9AEFE00A28F12 /* PlayViewController.m */,
+				0518993E0FC9AF0700A28F12 /* PlayView.xib */,
+			);
+			path = Play;
 			sourceTree = "<group>";
 		};
 		080E96DDFE201D6D7F000001 /* Classes */ = {
@@ -410,6 +437,7 @@
 				051896F00FC97A1600A28F12 /* Profile */,
 				051897470FC9806600A28F12 /* Search */,
 				0518974B0FC980A500A28F12 /* Browse */,
+				0518993A0FC9AEEA00A28F12 /* Play */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -520,6 +548,7 @@
 				051892300FC060A500A28F12 /* CoSpotify.h in Headers */,
 				0518945D0FC0B9B300A28F12 /* SpotPlaylist.h in Headers */,
 				051898280FC99AB600A28F12 /* SpotArtist.h in Headers */,
+				051898E10FC9A61C00A28F12 /* SpotAlbum.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +649,9 @@
 				051897020FC97AC100A28F12 /* profile.png in Resources */,
 				0518973B0FC97FA200A28F12 /* playlists.png in Resources */,
 				0518975C0FC9817E00A28F12 /* SearchView.xib in Resources */,
+				051898E60FC9A65000A28F12 /* ArtistBrowseView.xib in Resources */,
+				051898E80FC9A65C00A28F12 /* AlbumBrowseView.xib in Resources */,
+				0518993F0FC9AF0700A28F12 /* PlayView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +696,7 @@
 				051892310FC060A500A28F12 /* CoSpotify.m in Sources */,
 				0518945E0FC0B9B300A28F12 /* SpotPlaylist.m in Sources */,
 				051898290FC99AB600A28F12 /* SpotArtist.m in Sources */,
+				051898E20FC9A61C00A28F12 /* SpotAlbum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,6 +713,7 @@
 				0518974A0FC9809E00A28F12 /* SearchViewController.m in Sources */,
 				051898D90FC9A4F400A28F12 /* ArtistBrowseViewController.m in Sources */,
 				051898DC0FC9A50400A28F12 /* AlbumBrowseViewController.m in Sources */,
+				0518993D0FC9AEFE00A28F12 /* PlayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
