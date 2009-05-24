@@ -8,7 +8,7 @@
 
 #import "SpotTrack.h"
 #import "xml.h"
-
+#import "SpotPlaylist.h"
 
 @implementation SpotTrack
 -(id)initWithTrack:(struct track*)track_;
@@ -16,8 +16,7 @@
 	if( ! [super init] ) return nil;
 	
 	memcpy(&track, track_, sizeof(struct track));
-	// I assume responsibility for these:
-	track_->key = NULL;
+	track.key = NULL; // I don't own the memory it points to and I don't need it right now
 	
 	artist = [[SpotArtist alloc] initWithArtist:track.artist];
 	
@@ -29,6 +28,8 @@
 	[artist release];
 	[super dealloc];
 }
+
+@synthesize playlist;
 
 -(NSString*)title;
 {
@@ -46,5 +47,10 @@
 -(NSString*)description;
 {
 	return [NSString stringWithFormat:@"<SpotTrack %@>", self.title];
+}
+
+-(struct track*)track;
+{
+	return &track;
 }
 @end

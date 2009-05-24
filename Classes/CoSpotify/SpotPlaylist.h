@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "despotify.h"
-
+@class SpotTrack;
 @interface SpotPlaylist : NSObject {
 	struct playlist playlist;
 	NSArray *tracks;
 }
 -(id)initWithPlaylist:(struct playlist*)playlist_;
+-(id)initWithTrack:(SpotTrack*)track;
 
 @property (readwrite, copy) NSString *name;
 @property (readonly) NSArray *tracks;

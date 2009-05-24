@@ -13,7 +13,7 @@
 #import "ProfileViewController.h"
 #import "PlaylistsViewController.h"
 #import "SearchViewController.h"
-
+#import  "PlayViewController.h"
 @implementation SpotAppDelegate
 
 @synthesize window, loginNav, tabs;
@@ -25,6 +25,9 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {   
 	
 	///// Prepare the main UI
+	
+	// Warm it up
+	[PlayViewController defaultController];
 	
 	self.tabs = [[[UITabBarController alloc] init] autorelease];
 	

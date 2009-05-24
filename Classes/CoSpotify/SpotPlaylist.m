@@ -18,8 +18,23 @@
 	memcpy(&playlist, playlist_, sizeof(struct playlist));
 	
 	tracks = [[NSMutableArray alloc] initWithCapacity:playlist.num_tracks];
-	for(struct track *track = playlist.tracks; track != NULL; track = track->next)
-		[(NSMutableArray*)tracks addObject:[[[SpotTrack alloc] initWithTrack:track] autorelease]];
+	for(struct track *track = playlist.tracks; track != NULL; track = track->next) {
+		SpotTrack *strack = [[(SpotTrack*)[SpotTrack alloc] initWithTrack:track] autorelease];
+		[(NSMutableArray*)tracks addObject:strack];
+		strack.playlist = self;
+	}
+	
+	return self;
+}
+-(id)initWithTrack:(SpotTrack*)track;
+{
+	if( ! [super init] ) return nil;
+	
+	memset(&playlist, 0, sizeof(struct playlist));
+	tracks = [[NSMutableArray alloc] initWithObjects:track, nil];
+	track.playlist = self;
+	track.track->next = NULL;
+	playlist.num_tracks = 1;
 	
 	return self;
 }

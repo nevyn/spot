@@ -13,6 +13,7 @@
 
 #import "AlbumBrowseViewController.h"
 #import "ArtistBrowseViewController.h"
+#import "PlayViewController.h"
 
 @implementation SearchViewController
 
@@ -147,7 +148,10 @@ enum {
 	int idx = [indexPath indexAtPosition:1];
 	switch([indexPath indexAtPosition:0]) {
 		case TracksSection: {
-			
+			SpotTrack *track = [[resultPlaylist tracks] objectAtIndex:idx];
+			PlayViewController *player = [PlayViewController defaultController];
+			[player playTrack:track];
+			[self.navigationController pushViewController:player animated:YES];
 		} break;
 		case ArtistsSection: {
 			SpotArtist *artist = [resultArtists objectAtIndex:idx];
