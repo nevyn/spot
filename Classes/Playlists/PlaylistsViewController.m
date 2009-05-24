@@ -10,15 +10,24 @@
 #import "CoSpotify.h"
 
 @implementation PlaylistsViewController
+-(id)init;
+{
+	if(![super init]) return nil;
+	
+	self.title = @"Playlists";
+	self.tabBarItem.image = [UIImage imageNamed:@"playlists.png"];
+	
+	return self;
+}
 
-/*
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-*/
+
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,7 +74,6 @@
 {
 	if(!playlists)
 		playlists = [[[SpotSession defaultSession] playlists] retain];
-	NSLog(@"Playlists: %@", playlists);
 	return playlists;
 }
 
@@ -160,6 +168,7 @@
 
 
 - (void)dealloc {
+	[playlists release];
     [super dealloc];
 }
 

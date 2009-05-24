@@ -89,6 +89,7 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 -(NSArray*)playlists;
 {
 	NSMutableArray *playlists = [NSMutableArray array];
+	return playlists; // until they fix their playlist servers
 	
 	struct playlist *rootlist = despotify_get_stored_playlists(session);
 	for(struct playlist *pl = rootlist; pl; pl = pl->next) {

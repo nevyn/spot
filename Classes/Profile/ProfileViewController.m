@@ -51,7 +51,6 @@
 
 -(void)viewWillAppear:(BOOL)animated;
 {
-	NSLog(@"Profile will appear");
 	SpotSession *session = [SpotSession defaultSession];
 	if(session.loggedIn) {
 		username.text = session.username;
