@@ -16,9 +16,11 @@
 #include <unistd.h>
 #include <wchar.h>
 
-#include "SpotArtist.h"
+#import "SpotArtist.h"
+#import "SpotAlbum.h"
+#import "SpotTrack.h"
 
-#include <UIKit/UIKit.h>
+#import <UIKit/UIKit.h>
 
 SpotSession *SpotSessionSingleton;
 
@@ -138,20 +140,34 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 
 -(SpotArtist *)artistById:(SpotId *)id;
 {
-  struct artist_browse *artist = despotify_get_artist(session, id.artistId);
-  if(artist) return [[SpotArtist alloc] initWithArtistBrowse:artist];
+  struct artist_browse *artist = despotify_get_artist(session, id.id);
+  if(artist) return [[[SpotArtist alloc] initWithArtistBrowse:artist] autorelease];
   return nil;
 }
 
 -(void *)imageById:(SpotId*)id;
 {
   int len = 0;
-  void *jpegdata = despotify_get_image(session, id.coverId, &len);
+  void *jpegdata = despotify_get_image(session, id.id, &len);
   if(len > 0){
     UIImage *image = [UIImage imageWithData:[NSData dataWithBytes:jpegdata length:len]];
     free(jpegdata);
     return image;
   } 
+  return nil;
+}
+
+-(SpotAlbum *)albumById:(SpotId *)id;
+{
+  struct album_browse *ab = despotify_get_album(session, id.id);
+  if(ab) return [[[SpotAlbum alloc] initWithAlbumBrowse:ab] autorelease];
+  return nil;
+}
+
+-(SpotTrack *)trackById:(SpotId *)id;
+{
+  struct track *track = despotify_get_track(session, id.id);
+  if(track) return [[[SpotTrack alloc] initWithTrack:track] autorelease];
   return nil;
 }
 

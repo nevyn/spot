@@ -23,6 +23,8 @@
 -(id)initWithArtist:(struct artist*)artist;
 -(id)initWithArtistBrowse:(struct artist_browse*)artistBrowse;
 
+-(SpotArtist *)moreInfo;
+
 @property (readonly) SpotId *id;
 @property (readonly) NSString *name;
 @property (readonly) float popularity;
@@ -33,5 +35,7 @@
 @property (readonly) NSArray *albums;
 @property (readonly) NSString *yearsActive;
 @property (readonly) NSString *genres;
+
+@property (readonly, nonatomic) BOOL browsing;
 
 @end

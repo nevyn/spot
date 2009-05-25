@@ -339,7 +339,6 @@
 				051892990FC0654400A28F12 /* aes.c */,
 				0518929A0FC0654400A28F12 /* ezxml.c */,
 				0518929B0FC0654400A28F12 /* util.h */,
-				0518929C0FC0654400A28F12 /* audioqueue.c */,
 				0518929D0FC0654400A28F12 /* xml.c */,
 				0518929E0FC0654400A28F12 /* network.c */,
 				051892A00FC0654400A28F12 /* packet.c */,
@@ -348,6 +347,7 @@
 				051892A40FC0654400A28F12 /* sndqueue.c */,
 				051892A50FC0654400A28F12 /* keyexchange.h */,
 				051892A60FC0654400A28F12 /* audioqueue.h */,
+				0518929C0FC0654400A28F12 /* audioqueue.c */,
 			);
 			name = despotify;
 			path = Vendor/despotify;

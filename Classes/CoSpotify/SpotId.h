@@ -23,13 +23,6 @@
 -(id)initWithId:(char*)id_ size:(char)size;
 
 @property (readonly) char *id;
-@property (readonly) char *trackId;
-@property (readonly) char *fileId;
-@property (readonly) char *albumId;
-@property (readonly) char *coverId;
-@property (readonly) char *artistId;
-@property (readonly) char *playlistId;
-@property (readonly) char *portraitId;
 
 
 @end

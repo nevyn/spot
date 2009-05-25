@@ -156,6 +156,7 @@ PlayViewController *GlobalPlayViewController;
 @synthesize currentPlaylist, currentTrack;
 -(void)setCurrentTrack:(SpotTrack*)newTrack;
 {
+  NSLog(@"setTrack %@", newTrack);
 	if(newTrack == currentTrack) return;
 	
 	if(!artistLabel) {
@@ -171,8 +172,10 @@ PlayViewController *GlobalPlayViewController;
 	artistLabel.text = newTrack.artist.name;
 	trackLabel.text = newTrack.title;
 	albumLabel.text = newTrack.albumName;
-	
-	despotify_play([SpotSession defaultSession].session, newTrack.track, NO);
+  NSLog(@"playing %@", newTrack);
+  struct track *tt = newTrack.track;
+	BOOL playing = despotify_play([SpotSession defaultSession].session, newTrack.track, NO);
+  NSLog(@"isplaying= %d", playing);
 	// todo: notice end of song and play next
 }
 

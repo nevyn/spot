@@ -8,13 +8,18 @@
 
 #import "ArtistBrowseViewController.h"
 #import "SpotSession.h"
+#import "SpotAlbum.h"
+#import "AlbumBrowseViewController.h"
 
 @implementation ArtistBrowseViewController
 -(id)initBrowsingArtist:(SpotArtist*)artist_;
 {
 	if( ! [super initWithNibName:@"ArtistBrowseView" bundle:nil])
 		return nil;
-	artist = artist_;
+  
+  //Load full artist profile
+  if(!artist_.browsing) artist_ = [artist_ moreInfo]; 
+	artist = [artist_ retain];
 	return self;
 }
 
@@ -31,6 +36,8 @@
   UIImage *image = [[SpotSession defaultSession] imageById:artist.portraitId];
   NSLog(@"image: %@ %@ %@", portrait, image, artist.portraitId);
   [portrait setImage:image];
+  [artistName setText:artist.name];
+  [popularity setValue:artist.popularity];
 }
 
 
@@ -56,8 +63,51 @@
 
 
 - (void)dealloc {
-    [super dealloc];
+  [artist release];
+  [super dealloc];
 }
 
+#pragma mark Table view callbacks
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  return 1;
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+{
+  return [artist.albums count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
+{
+	return @"Albums";
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView_ cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+  static NSString *CellIdentifier = @"Cell";
+  
+  UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (cell == nil) {
+    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+  }
+  
+	int idx = [indexPath indexAtPosition:1]; idx = idx;
+  SpotAlbum *album = [artist.albums objectAtIndex:idx];
+  cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+  cell.text = [NSString stringWithFormat:@"%@", album.name];
+  
+  return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	int idx = [indexPath indexAtPosition:1];
+
+  SpotAlbum *album = [artist.albums objectAtIndex:idx];
+  [[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
+}
 
 @end

@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "SpotArtist.h"
 
-@interface ArtistBrowseViewController : UIViewController {
+@interface ArtistBrowseViewController : UIViewController <UITableViewDelegate>{
   SpotArtist *artist;
   IBOutlet UIImageView *portrait;
+  IBOutlet UILabel *artistName;
+  IBOutlet UITableView *albums;
+  IBOutlet UISlider *popularity;
 }
 -(id)initBrowsingArtist:(SpotArtist*)artist;
 @end

@@ -10,15 +10,22 @@
 #import <UIKit/UIKit.h>
 #import "despotify.h"
 #import "SpotArtist.h"
+#import "SpotPlaylist.h"
 
 @interface SpotAlbum : NSObject {
 	struct album album;
   struct album_browse albumBrowse;
   BOOL browsing;
   NSArray *tracks;
+  
+  SpotPlaylist *playlist;
 }
 -(id)initWithAlbum:(struct album*)album;
 -(id)initWithAlbumBrowse:(struct album_browse*)album;
+
+-(SpotAlbum *)moreInfo;
+
+@property (readonly, nonatomic) BOOL browsing;
 
 //shared
 @property (readonly) SpotId *id;

@@ -11,6 +11,17 @@
 #import "SpotSession.h"
 
 @implementation SpotPlaylist
+-(id)init;
+{
+  if( ! [super init] ) return nil;
+  
+  memset(&playlist, 0, sizeof(struct playlist));
+	tracks = [[NSMutableArray alloc] init];
+	playlist.num_tracks = 0;
+
+  return self;
+}
+
 -(id)initWithPlaylist:(struct playlist*)playlist_;
 {
 	if( ! [super init] ) return nil;
@@ -76,9 +87,26 @@
 +(SpotPlaylist *)byId:(SpotId *)id session:(SpotSession*)session;
 {
   if(!session) session = [SpotSession defaultSession];
-  struct playlist* pl = despotify_get_playlist(session.session, id.playlistId);
+  struct playlist* pl = despotify_get_playlist(session.session, id.id);
   if(!pl) return nil;
   return [[[SpotPlaylist alloc] initWithPlaylist:pl] autorelease];
 }
 
 @end
+
+
+@implementation SpotMutablePlaylist
+
+-(void)addTrack:(SpotTrack*)track;
+{
+  SpotTrack *lastTrack = [tracks lastObject];
+  if(lastTrack)
+    lastTrack.track->next = track.track;
+  track.track->next = NULL;
+  track.playlist = self;
+  [(NSMutableArray*)tracks addObject: track];
+  playlist.num_tracks = [tracks count];
+}
+
+@end
+

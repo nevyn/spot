@@ -8,6 +8,8 @@
 
 #import "AlbumBrowseViewController.h"
 #import "SpotSession.h"
+#import "SpotTrack.h"
+#import "PlayViewController.h"
 
 @implementation AlbumBrowseViewController
 -(id)initBrowsingAlbum:(SpotAlbum*)album_;
@@ -15,7 +17,9 @@
 	if( ! [super initWithNibName:@"AlbumBrowseView" bundle:nil])
 		return nil;
   
-  album = album_;
+  //load full profile
+  if(!album_.browsing) album_ = [album_ moreInfo];
+  album = [album_ retain];
   
 	return self;
 	
@@ -45,7 +49,8 @@
   
   UIImage *image = [[SpotSession defaultSession] imageById:album.coverId];
   [albumArt setImage:image];
-  
+  [albumName setText:album.name];
+  [popularity setValue:album.popularity];
 	NSLog(@"art: %@ %@", albumArt, image);
 }
 
@@ -72,8 +77,58 @@
 
 
 - (void)dealloc {
-    [super dealloc];
+  [album release];
+  [super dealloc];
 }
+
+
+#pragma mark Table view callbacks
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  return 1;
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+{
+  return [album.tracks count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
+{
+	return @"Tracks";
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView_ cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+  static NSString *CellIdentifier = @"Cell";
+  
+  UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (cell == nil) {
+    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+  }
+  
+	int idx = [indexPath indexAtPosition:1]; idx = idx;
+  SpotTrack *track = [album.tracks objectAtIndex:idx];
+  cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+  cell.text = [NSString stringWithFormat:@"%d. %@", track.number, track.title];
+  
+  return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	int idx = [indexPath indexAtPosition:1];
+  
+  SpotTrack *track = [album.tracks objectAtIndex:idx];
+  PlayViewController *player = [PlayViewController defaultController];
+  [player playTrack:track];
+  [self.navigationController pushViewController:player animated:YES];
+  NSLog(@"heeeeeeelp! %@ %@", track, track.playlist);
+//  [[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
+}
+
 
 
 @end

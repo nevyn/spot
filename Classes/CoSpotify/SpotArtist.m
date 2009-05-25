@@ -12,6 +12,9 @@
 #import "SpotSession.h"
 
 @implementation SpotArtist
+
+@synthesize browsing;
+
 -(id)initWithArtist:(struct artist*)artist_;
 {
 	if( ! [super init] ) return nil;
@@ -58,6 +61,11 @@
 -(void)dealloc;
 {
 	[super dealloc];
+}
+
+-(SpotArtist *)moreInfo;
+{
+  return [[SpotSession defaultSession] artistById:self.id];
 }
 
 -(SpotId *)id;

@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "despotify.h"
 #import "SpotId.h"
-@class SpotArtist;
 
+@class SpotArtist;
+@class SpotAlbum;
+@class SpotTrack;
 
 @interface SpotSession : NSObject {
 	struct despotify_session *session;
@@ -25,6 +27,8 @@
 
 -(SpotArtist *)artistById:(SpotId *)id_;
 -(void *)imageById:(SpotId*)id;
+-(SpotAlbum *)albumById:(SpotId *)id;
+-(SpotTrack *)trackById:(SpotId *)id;
 
 @property (nonatomic, readonly) BOOL loggedIn;
 @property (readonly) NSString *username;

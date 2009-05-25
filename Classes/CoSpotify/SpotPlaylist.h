@@ -23,3 +23,11 @@
 @property (readonly) NSArray *tracks;
 
 @end
+
+@interface SpotMutablePlaylist : SpotPlaylist {
+
+}
+
+-(void) addTrack:(SpotTrack*)track;
+
+@end

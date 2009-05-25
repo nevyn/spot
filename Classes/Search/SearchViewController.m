@@ -144,10 +144,7 @@ enum {
 		} break;
 	}
 	
-	// Configure the cell. 
-
-	
-    return cell;
+  return cell;
 }
 
 
