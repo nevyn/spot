@@ -47,7 +47,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">logo.png</string>
+							<string key="NSResourceName">icon.png</string>
 						</object>
 					</object>
 					<object class="IBUIActivityIndicatorView" id="130069890">
@@ -117,7 +117,7 @@
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">2</int>
-					<bytes key="NSRGB">MC40MTE3NjQ3NCAwLjY3NDUwOTgyIDAuMDYyNzQ1MTAyIDAuNDAwMDAwMDEAA</bytes>
+					<bytes key="NSRGB">MC41MTk3NjU5MSAwLjcwMTIwMjA5IDAuNzQ1MDk3OTQgMC40Nzk5OTk5OQA</bytes>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 			</object>

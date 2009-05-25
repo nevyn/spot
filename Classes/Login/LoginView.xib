@@ -47,7 +47,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">logo.png</string>
+							<string key="NSResourceName">icon.png</string>
 						</object>
 					</object>
 					<object class="IBUITextField" id="356447538">
@@ -118,13 +118,13 @@
 						<string key="IBUIDisabledTitle">Log in</string>
 						<string key="IBUISelectedTitle">Log in</string>
 						<string key="IBUINormalTitle">Log in</string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="975807811">
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="436715829">
 							<int key="NSColorSpace">2</int>
-							<bytes key="NSRGB">MC40NzA1ODgyNyAwLjcxMzcyNTUxIDAuMDc4NDMxMzc1AA</bytes>
+							<bytes key="NSRGB">MC40NDMxMzcyOSAwLjY4NjI3NDUzIDAuNzQ1MDk4MDUAA</bytes>
 						</object>
-						<reference key="IBUIDisabledTitleColor" ref="975807811"/>
-						<reference key="IBUISelectedTitleColor" ref="975807811"/>
-						<reference key="IBUINormalTitleColor" ref="975807811"/>
+						<reference key="IBUIDisabledTitleColor" ref="436715829"/>
+						<reference key="IBUISelectedTitleColor" ref="436715829"/>
+						<reference key="IBUINormalTitleColor" ref="436715829"/>
 						<object class="NSColor" key="IBUIHighlightedTitleShadowColor" id="55064891">
 							<int key="NSColorSpace">2</int>
 							<bytes key="NSRGB">MC40NTg4MjM1NiAwLjcwOTgwMzk0IDAuMDc0NTA5ODA3AA</bytes>
@@ -138,7 +138,7 @@
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">2</int>
-					<bytes key="NSRGB">MC40MTE3NjQ3NCAwLjY3NDUwOTgyIDAuMDYyNzQ1MTAyIDAuNDAwMDAwMDEAA</bytes>
+					<bytes key="NSRGB">MC41MTk3NjU5MSAwLjcwMTIwMjA5IDAuNzQ1MDk3OTQgMC40Nzk5OTk5OQA</bytes>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 			</object>
@@ -269,7 +269,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>LoginViewController</string>
 					<string>UIResponder</string>
-					<string>{{430, 376}, {320, 480}}</string>
+					<string>{{284, 376}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

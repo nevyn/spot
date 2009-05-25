@@ -13,7 +13,6 @@
 		051890FF0FBEE34900A28F12 /* SpotSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 051890FD0FBEE34900A28F12 /* SpotSession.h */; };
 		051891000FBEE34900A28F12 /* SpotSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 051890FE0FBEE34900A28F12 /* SpotSession.m */; };
 		051891290FBF365000A28F12 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051891280FBF365000A28F12 /* AudioToolbox.framework */; };
-		0518918E0FC0489F00A28F12 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0518918D0FC0489F00A28F12 /* logo.png */; };
 		051892300FC060A500A28F12 /* CoSpotify.h in Headers */ = {isa = PBXBuildFile; fileRef = 0518922E0FC060A500A28F12 /* CoSpotify.h */; };
 		051892310FC060A500A28F12 /* CoSpotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 0518922F0FC060A500A28F12 /* CoSpotify.m */; };
 		051892A70FC0654400A28F12 /* puzzle.c in Sources */ = {isa = PBXBuildFile; fileRef = 051892760FC0654400A28F12 /* puzzle.c */; };
@@ -141,7 +140,6 @@
 		051890FD0FBEE34900A28F12 /* SpotSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotSession.h; sourceTree = "<group>"; };
 		051890FE0FBEE34900A28F12 /* SpotSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotSession.m; sourceTree = "<group>"; };
 		051891280FBF365000A28F12 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		0518918D0FC0489F00A28F12 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		0518922E0FC060A500A28F12 /* CoSpotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoSpotify.h; sourceTree = "<group>"; };
 		0518922F0FC060A500A28F12 /* CoSpotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoSpotify.m; sourceTree = "<group>"; };
 		051892760FC0654400A28F12 /* puzzle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = puzzle.c; path = src/lib/puzzle.c; sourceTree = "<group>"; };
@@ -509,7 +507,6 @@
 				051897000FC97AC100A28F12 /* toolbar */,
 				051899410FC9B3E600A28F12 /* buttons */,
 				0518994C0FC9B3F200A28F12 /* playergloss.png */,
-				0518918D0FC0489F00A28F12 /* logo.png */,
 				051894950FC0C25100A28F12 /* icon.png */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Spot-Info.plist */,
@@ -672,7 +669,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
-				0518918E0FC0489F00A28F12 /* logo.png in Resources */,
 				051894960FC0C25100A28F12 /* icon.png in Resources */,
 				051896F40FC97A1600A28F12 /* PlaylistsView.xib in Resources */,
 				051896F60FC97A1600A28F12 /* LoggingIn.xib in Resources */,
