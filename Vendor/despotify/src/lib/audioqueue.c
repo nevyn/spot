@@ -20,24 +20,193 @@
 
 #include <AudioToolbox/AudioQueue.h>
 
+#define kNumberBuffers 3
+static struct AQPlayerState {
+    AudioStreamBasicDescription   mDataFormat;
+    AudioQueueRef                 mQueue;
+    AudioQueueBufferRef           mBuffers[kNumberBuffers];
+    volatile bool                          mIsRunning;
+	AUDIOCTX *actx;
+	unsigned bufferByteSize;
+} state;
+
+static int audio_callback (
+ void *ignore,
+ AudioQueueRef aq,
+ AudioQueueBufferRef bufout
+);
+
+#include <CoreFoundation/CoreFoundation.h>
+static char errstr[16];
+void CAX4CCString(OSStatus error) {
+	// see if it appears to be a 4-char-code
+	char *str = errstr;
+	*(UInt32 *)(str + 1) = CFSwapInt32HostToBig(error);
+	if (isprint(str[1]) && isprint(str[2]) && isprint(str[3]) && isprint(str[4])) {
+		str[0] = str[5] = '\'';
+		str[6] = '\0';
+	} else if (error > -200000 && error < 200000)
+		// no, format it as an integer
+		sprintf(str, "%d", (int)error);
+	else
+		sprintf(str, "0x%x", (int)error);
+}
+
+#define check(x) do { \
+	OSStatus __err = x; \
+	if(__err != noErr) { \
+		CAX4CCString(__err); \
+		fprintf(stderr, "audioqueue driver error: %s\n", errstr);\
+		return __err; \
+	} \
+} while(0)
+
+void printFmt(AudioStreamBasicDescription fmt) {
+	printf("kAudioDevicePropertyStreamFormat: mSampleRate %f\n",
+			   fmt.mSampleRate);
+	printf("kAudioDevicePropertyStreamFormat: mFormatFlags 0x%08lx "
+		   "(IsSignedInteger:%s, isFloat:%s, isBigEndian:%s, "
+		   "kLinearPCMFormatFlagIsNonInterleaved:%s, "
+		   "kAudioFormatFlagIsPacked:%s)\n",
+		   fmt.mFormatFlags,
+		   fmt.mFormatFlags & kLinearPCMFormatFlagIsSignedInteger ? "yes":"no",
+		   fmt.mFormatFlags & kLinearPCMFormatFlagIsFloat ? "yes" : "no",
+		   fmt.mFormatFlags & kLinearPCMFormatFlagIsBigEndian ? "yes" : "no",
+		   fmt.mFormatFlags & kLinearPCMFormatFlagIsNonInterleaved ? "yes":"no",
+		   fmt.mFormatFlags & kAudioFormatFlagIsPacked ? "yes" : "no"
+	);
+	
+	printf("kAudioDevicePropertyStreamFormat: mBitsPerChannel %lu\n",
+		   fmt.mBitsPerChannel);
+	printf("kAudioDevicePropertyStreamFormat: mChannelsPerFrame %lu\n",
+		   fmt.mChannelsPerFrame);
+	printf("kAudioDevicePropertyStreamFormat: mFramesPerPacket %lu\n",
+			   fmt.mFramesPerPacket);
+	printf("kAudioDevicePropertyStreamFormat: mBytesPerFrame %lu\n",
+			   fmt.mBytesPerFrame);
+	printf("kAudioDevicePropertyStreamFormat: mBytesPerPacket %lu\n",
+			   fmt.mBytesPerPacket);	
+}
+
 int audioqueue_init_device (void *dev)
 {
+	printf("init device\n");
+	memset(&state, 0, sizeof(state));
 	return 0;
 }
-int audioqueue_free_device (void *dev)
+int audioqueue_free_device ()
 {
+	printf("free device\n");
+	if( ! state.mQueue )
+		return 0;
+	
+	audioqueue_stop(NULL);
+	
+	
+	for (int i = 0; i < kNumberBuffers; ++i)
+		AudioQueueFreeBuffer(state.mQueue, state.mBuffers[i]);
+	
+	check(AudioQueueDispose(state.mQueue, TRUE));
+	state.mQueue = NULL;
 	return 0;
 }
-int audioqueue_prepare_device (AUDIOCTX *ctx)
+int audioqueue_prepare_device (AUDIOCTX *actx)
 {
+	printf("preparing device\n");
+	audioqueue_free_device();
+	
+	AudioStreamBasicDescription *fmt = &state.mDataFormat;
+	
+	fmt->mFormatID = kAudioFormatLinearPCM;
+	fmt->mFormatFlags = kAudioFormatFlagIsSignedInteger | 
+						kAudioFormatFlagIsPacked | 
+						kAudioFormatFlagIsBigEndian;
+	fmt->mSampleRate = actx->samplerate;
+	fmt->mChannelsPerFrame = actx->channels;
+	fmt->mFramesPerPacket = 1;
+	fmt->mBytesPerFrame = sizeof (short) * fmt->mChannelsPerFrame;
+	fmt->mBytesPerPacket = fmt->mBytesPerFrame;
+	
+	fmt->mBitsPerChannel = (fmt->mBytesPerFrame*8)/fmt->mChannelsPerFrame;
+	fmt->mReserved = 0;
+	
+	state.actx = actx;	
+	state.bufferByteSize = 32768;
+	
+	//printFmt(*fmt);
+	
+	check(AudioQueueNewOutput(
+		fmt,
+		(AudioQueueOutputCallback)audio_callback,
+		NULL,
+		NULL,
+		NULL,
+		0,
+		&state.mQueue
+	));
+	
+	
+	
 	return 0;
 }
 int audioqueue_play (AUDIOCTX *ctx)
 {
+	printf("playing device\n");
+	
+	if(!state.mBuffers[0])
+		for (int i = 0; i < kNumberBuffers; ++i) {               
+			check(AudioQueueAllocateBuffer (                           
+											state.mQueue,             
+											state.bufferByteSize,     
+											&state.mBuffers[i]        
+											));
+			// Prime with data
+			audio_callback (&state,                        
+							state.mQueue,                  
+							state.mBuffers[i]              
+							);
+			
+		}		
+	
+	
+	check(AudioQueueStart(state.mQueue, NULL));
+	state.mIsRunning = TRUE;
+	
 	return 0;
 }
 int audioqueue_stop (AUDIOCTX *ctx)
 {
+	printf("stopping device\n");
+	state.mIsRunning = FALSE;
+	check(AudioQueueStop(state.mQueue, TRUE));
+	return 0;
+}
+
+
+static int audio_callback (
+	void *ignore,
+	AudioQueueRef aq,
+	AudioQueueBufferRef bufout
+) {
+	bufout->mAudioDataByteSize = state.bufferByteSize;
+	int channelCount = state.mDataFormat.mChannelsPerFrame;
+	//memset(bufout->mAudioData, 0, bufout->mAudioDataByteSize);
+	int samples_available = bufout->mAudioDataByteSize / sizeof(short) / channelCount;
+	
+	while(samples_available) {
+		int samplesRead = pcm_read(
+			state.actx->pcmprivate, // Audio context
+			bufout->mAudioData, // Buffer
+			samples_available*sizeof(short)*channelCount, // Bytes to read
+			state.mDataFormat.mFormatFlags & kAudioFormatFlagIsBigEndian, // Big endian?
+			state.mDataFormat.mBitsPerChannel/8, // Word size?
+			TRUE, // Signed?
+			NULL
+		);
+		samples_available -= samplesRead;
+	}
+	
+	AudioQueueEnqueueBuffer(state.mQueue, bufout, 0, NULL);
 	return 0;
 }
 

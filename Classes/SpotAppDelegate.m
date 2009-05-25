@@ -27,7 +27,7 @@
 	///// Prepare the main UI
 	
 	// Warm it up
-	[PlayViewController defaultController];
+	[[PlayViewController defaultController] view];
 	
 	self.tabs = [[[UITabBarController alloc] init] autorelease];
 	

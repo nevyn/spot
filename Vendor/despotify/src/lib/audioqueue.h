@@ -13,7 +13,7 @@
 #include "audio.h"
 
 int audioqueue_init_device (void *);
-int audioqueue_free_device (void *);
+int audioqueue_free_device ();
 int audioqueue_prepare_device (AUDIOCTX *);
 int audioqueue_play (AUDIOCTX *);
 int audioqueue_stop (AUDIOCTX *);
