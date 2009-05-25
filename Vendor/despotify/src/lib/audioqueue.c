@@ -20,7 +20,7 @@
 
 #include <AudioToolbox/AudioQueue.h>
 
-#define kNumberBuffers 3
+#define kNumberBuffers 5
 static struct AQPlayerState {
     AudioStreamBasicDescription   mDataFormat;
     AudioQueueRef                 mQueue;
