@@ -105,6 +105,8 @@
 		0518994B0FC9B3E600A28F12 /* prev.png in Resources */ = {isa = PBXBuildFile; fileRef = 051899460FC9B3E600A28F12 /* prev.png */; };
 		0518994D0FC9B3F200A28F12 /* playergloss.png in Resources */ = {isa = PBXBuildFile; fileRef = 0518994C0FC9B3F200A28F12 /* playergloss.png */; };
 		051899530FC9BAFA00A28F12 /* SpotNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 051899520FC9BAFA00A28F12 /* SpotNavigationController.m */; };
+		05F4B4B40FCA377F00110954 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051893040FC097A900A28F12 /* libvorbisfile.a */; };
+		05F4B4B60FCA378800110954 /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051892FB0FC096A700A28F12 /* libvorbis.a */; };
 		1D3623260D0F684500981E51 /* SpotAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SpotAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -284,6 +286,8 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+				05F4B4B40FCA377F00110954 /* libvorbisfile.a in Frameworks */,
+				05F4B4B60FCA378800110954 /* libvorbis.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,10 +779,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = /opt/local/include;
-				LIBRARY_SEARCH_PATHS = (
-					/opt/local/lib,
-					"\"$(SRCROOT)/Vendor\"",
-				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/Vendor\"";
 				OTHER_CFLAGS = "-Wno-pointer-sign";
 				PREBINDING = NO;
 				PRODUCT_NAME = despotify;
