@@ -10,6 +10,7 @@
 #import "SpotSession.h"
 #import "SpotArtist.h"
 #import "SpotTrack.h"
+#import "SpotSearch.h"
 
 #import "AlbumBrowseViewController.h"
 #import "ArtistBrowseViewController.h"
@@ -184,8 +185,11 @@ enum {
 	[searchBar resignFirstResponder];
 	
 	self.searchResults = NULL;
-	
+  
+  SpotSearch *ss = [SpotSearch searchFor:searchBar.text maxResults:50];
+
 	self.searchResults = despotify_search([SpotSession defaultSession].session, (char*)[searchBar.text UTF8String], 50);
+  
 }
 
 
@@ -203,21 +207,17 @@ enum {
 	
 	searchResults = searchResults_;
 	
-	
 	// No new results? Don't continue.
-	if(!searchResults) goto endSetSearchResults;
+	if(searchResults && searchResults->total_tracks != 0){	
+    // 2. Setup the browsable structures
+    self.resultPlaylist = [[[SpotPlaylist alloc] initWithPlaylist:searchResults->playlist] autorelease];
 	
+    NSMutableArray *artists = [NSMutableArray array];
+    for(struct artist *art = searchResults->artists; art != NULL; art = art->next)
+      [artists addObject:[[[SpotArtist alloc] initWithArtist:art] autorelease]];
+    self.resultArtists = artists;
+	}
 	
-	// 2. Setup the browsable structures
-	self.resultPlaylist = [[[SpotPlaylist alloc] initWithPlaylist:searchResults->playlist] autorelease];
-	
-	NSMutableArray *artists = [NSMutableArray array];
-	for(struct artist *art = searchResults->artists; art != NULL; art = art->next)
-		[artists addObject:[[[SpotArtist alloc] initWithArtist:art] autorelease]];
-	self.resultArtists = artists;
-	
-	
-endSetSearchResults:
 	[tableView reloadData];
 }
 @end

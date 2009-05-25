@@ -7,10 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
+#import "despotify.h"
+#import "SpotArtist.h"
 
 @interface SpotAlbum : NSObject {
-
+	struct album album;
 }
+-(id)initWithAlbum:(struct album*)album;
 
+@property (readonly) NSString *name;
+@property (readonly) NSString *artistName;
+@property (readonly) UIImage *cover;
+@property (readonly) float popularity;
+@property (readonly) SpotArtist *artist;
 @end

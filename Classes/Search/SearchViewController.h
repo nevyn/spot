@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "despotify.h"
 #import "SpotPlaylist.h"
+#import "SpotSearch.h"
 
 @interface SearchViewController : UIViewController
 	<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
