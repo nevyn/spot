@@ -138,7 +138,7 @@ int audioqueue_prepare_device (AUDIOCTX *actx)
 		fmt,
 		(AudioQueueOutputCallback)audio_callback,
 		NULL,
-		NULL,
+		NULL, //CFRunLoopGetCurrent(),
 		NULL,
 		0,
 		&state.mQueue
@@ -149,13 +149,10 @@ int audioqueue_prepare_device (AUDIOCTX *actx)
 	return 0;
 }
 
-static FILE *file;
 
 int audioqueue_play (AUDIOCTX *ctx)
 {
 	printf("playing device\n");
-	
-	file = fopen("/tmp/foo.raw", "w");
 	
 	if(!state.mBuffers[0])
 		for (int i = 0; i < kNumberBuffers; ++i) {               
@@ -175,6 +172,11 @@ int audioqueue_play (AUDIOCTX *ctx)
 	
 	check(AudioQueueStart(state.mQueue, NULL));
 	state.mIsRunning = TRUE;
+	
+	/*do {
+		CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.25, false);
+	} while (state.mIsRunning);*/
+	
 	
 	return 0;
 }
@@ -203,7 +205,6 @@ static int audio_callback (
 	);
 
 	bufout->mAudioDataByteSize = samplesRead;
-	fwrite(bufout->mAudioData, bufout->mAudioDataByteSize, 1, file);
 	AudioQueueEnqueueBuffer(state.mQueue, bufout, 0, NULL);
 	return 0;
 }
