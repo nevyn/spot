@@ -1,3 +1,9 @@
+What is voxar doing?
+-----
+wrapping like crazy, adding more functionality to the classes.
+
+Original:
+
 Spot
 =========================
 
@@ -7,6 +13,6 @@ All dependencies are bundled.
 
 Known bugs
 ------------------------
-- Searching for something with no hits crashes
 - Buttons in play view don't work
 - Browsing artists and albums don't work
+- Playlists don't work
