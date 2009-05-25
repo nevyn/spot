@@ -30,7 +30,7 @@ static struct AQPlayerState {
 	unsigned bufferByteSize;
 } state;
 
-static int audio_callback (
+static void audio_callback (
  void *ignore,
  AudioQueueRef aq,
  AudioQueueBufferRef bufout
@@ -113,7 +113,9 @@ int audioqueue_free_device ()
 int audioqueue_prepare_device (AUDIOCTX *actx)
 {
 	printf("preparing device\n");
-	audioqueue_free_device();
+	
+	if(state.mQueue)
+		return 0;
 	
 	AudioStreamBasicDescription *fmt = &state.mDataFormat;
 	
@@ -136,7 +138,7 @@ int audioqueue_prepare_device (AUDIOCTX *actx)
 	
 	check(AudioQueueNewOutput(
 		fmt,
-		(AudioQueueOutputCallback)audio_callback,
+		audio_callback,
 		NULL,
 		NULL, //CFRunLoopGetCurrent(),
 		NULL,
@@ -153,6 +155,7 @@ int audioqueue_prepare_device (AUDIOCTX *actx)
 int audioqueue_play (AUDIOCTX *ctx)
 {
 	printf("playing device\n");
+	state.mIsRunning = TRUE;
 	
 	if(!state.mBuffers[0])
 		for (int i = 0; i < kNumberBuffers; ++i) {               
@@ -171,7 +174,6 @@ int audioqueue_play (AUDIOCTX *ctx)
 	
 	
 	check(AudioQueueStart(state.mQueue, NULL));
-	state.mIsRunning = TRUE;
 	
 	/*do {
 		CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.25, false);
@@ -184,16 +186,18 @@ int audioqueue_stop (AUDIOCTX *ctx)
 {
 	printf("stopping device\n");
 	state.mIsRunning = FALSE;
-	check(AudioQueueStop(state.mQueue, TRUE));
+	check(AudioQueuePause(state.mQueue));
 	return 0;
 }
 
 
-static int audio_callback (
+static void audio_callback (
 	void *ignore,
 	AudioQueueRef aq,
 	AudioQueueBufferRef bufout
 ) {
+	if(!state.mIsRunning) return;
+	
 	int samplesRead = pcm_read(
 		state.actx->pcmprivate, // Audio context
 		bufout->mAudioData, // Buffer
@@ -203,10 +207,15 @@ static int audio_callback (
 		TRUE, // Signed?
 		NULL
 	);
+	
+	if(samplesRead < 0) {
+		fprintf(stderr, "pcm_read failed: %d", samplesRead);
+		return;
+	}
 
 	bufout->mAudioDataByteSize = samplesRead;
 	AudioQueueEnqueueBuffer(state.mQueue, bufout, 0, NULL);
-	return 0;
+	return;
 }
 
 
