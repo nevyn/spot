@@ -171,8 +171,7 @@ enum {
 			[[self navigationController] pushViewController:[[[ArtistBrowseViewController alloc] initBrowsingArtist:artist] autorelease] animated:YES];
 		} break;
 		case AlbumsSection: {
-			SpotAlbum *album = nil;
-			
+			SpotAlbum *album = [searchResults.albums objectAtIndex:idx];
 			[[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
 			break;
 		}

@@ -9,6 +9,7 @@
 #import "SpotArtist.h"
 #import "SpotAlbum.h"
 #import "SpotId.h"
+#import "SpotSession.h"
 
 @implementation SpotArtist
 -(id)initWithArtist:(struct artist*)artist_;
@@ -20,8 +21,8 @@
 	memcpy(&artist, artist_, sizeof(struct artist));
   
   strcpy(artistBrowse.name, artist.name);
-  strcpy(artistBrowse.id, artist.name);
-  strcpy(artistBrowse.portrait_id, artist.name);
+  strcpy(artistBrowse.id, artist.id);
+  strcpy(artistBrowse.portrait_id, artist.portrait_id);
   artistBrowse.popularity = artist.popularity;
   
   artistBrowse.text = "";
@@ -72,10 +73,16 @@
 {
 	return artistBrowse.popularity;
 }
+
+-(SpotId *)portraitId;
+{ 
+  return [SpotId portraitId:artistBrowse.portrait_id];
+}
+
 -(UIImage*)portrait;
 {
-	// TODO
-	return nil;
+  if(!portrait) portrait = [[SpotSession defaultSession] imageById:self.portraitId];
+  return portrait;
 }
 
 -(NSString*)description;

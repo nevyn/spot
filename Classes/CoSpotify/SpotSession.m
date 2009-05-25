@@ -18,6 +18,8 @@
 
 #include "SpotArtist.h"
 
+#include <UIKit/UIKit.h>
+
 SpotSession *SpotSessionSingleton;
 
 NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
@@ -138,6 +140,18 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 {
   struct artist_browse *artist = despotify_get_artist(session, id.artistId);
   if(artist) return [[SpotArtist alloc] initWithArtistBrowse:artist];
+  return nil;
+}
+
+-(void *)imageById:(SpotId*)id;
+{
+  int len = 0;
+  void *jpegdata = despotify_get_image(session, id.coverId, &len);
+  if(len > 0){
+    UIImage *image = [UIImage imageWithData:[NSData dataWithBytes:jpegdata length:len]];
+    free(jpegdata);
+    return image;
+  } 
   return nil;
 }
 

@@ -7,14 +7,14 @@
 //
 
 #import "ArtistBrowseViewController.h"
-
+#import "SpotSession.h"
 
 @implementation ArtistBrowseViewController
--(id)initBrowsingArtist:(SpotArtist*)artist;
+-(id)initBrowsingArtist:(SpotArtist*)artist_;
 {
 	if( ! [super initWithNibName:@"ArtistBrowseView" bundle:nil])
 		return nil;
-	
+	artist = artist_;
 	return self;
 }
 
@@ -24,12 +24,15 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
+  UIImage *image = [[SpotSession defaultSession] imageById:artist.portraitId];
+  NSLog(@"image: %@ %@ %@", portrait, image, artist.portraitId);
+  [portrait setImage:image];
 }
-*/
+
 
 /*
 // Override to allow orientations other than the default portrait orientation.

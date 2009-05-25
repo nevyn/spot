@@ -7,14 +7,16 @@
 //
 
 #import "AlbumBrowseViewController.h"
-
+#import "SpotSession.h"
 
 @implementation AlbumBrowseViewController
--(id)initBrowsingAlbum:(SpotAlbum*)album;
+-(id)initBrowsingAlbum:(SpotAlbum*)album_;
 {
 	if( ! [super initWithNibName:@"AlbumBrowseView" bundle:nil])
 		return nil;
-	
+  
+  album = album_;
+  
 	return self;
 	
 }
@@ -35,12 +37,18 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+  
+  
+  UIImage *image = [[SpotSession defaultSession] imageById:album.coverId];
+  [albumArt setImage:image];
+  
+	NSLog(@"art: %@ %@", albumArt, image);
 }
-*/
+
 
 /*
 // Override to allow orientations other than the default portrait orientation.

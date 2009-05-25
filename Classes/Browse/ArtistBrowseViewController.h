@@ -10,7 +10,8 @@
 #import "SpotArtist.h"
 
 @interface ArtistBrowseViewController : UIViewController {
-
+  SpotArtist *artist;
+  IBOutlet UIImageView *portrait;
 }
 -(id)initBrowsingArtist:(SpotArtist*)artist;
 @end

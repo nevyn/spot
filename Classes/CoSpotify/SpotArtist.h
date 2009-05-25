@@ -18,6 +18,7 @@
   BOOL browsing;
   
   NSArray *albums;
+  UIImage *portrait;
 }
 -(id)initWithArtist:(struct artist*)artist;
 -(id)initWithArtistBrowse:(struct artist_browse*)artistBrowse;
@@ -25,6 +26,7 @@
 @property (readonly) SpotId *id;
 @property (readonly) NSString *name;
 @property (readonly) float popularity;
+@property (readonly) SpotId *portraitId;
 @property (readonly) UIImage *portrait;
 
 //Need to be inited from _browse for these props

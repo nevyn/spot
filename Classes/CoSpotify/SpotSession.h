@@ -24,6 +24,7 @@
 -(NSArray*)playlists;
 
 -(SpotArtist *)artistById:(SpotId *)id_;
+-(void *)imageById:(SpotId*)id;
 
 @property (nonatomic, readonly) BOOL loggedIn;
 @property (readonly) NSString *username;

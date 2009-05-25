@@ -24,6 +24,9 @@
 +(SpotId*)coverId:(char[41])id;
 {  return [[[SpotId alloc] initWithId:id size:41] autorelease];  }
 
++(SpotId*)portraitId:(char[41])id;
+{  return [[[SpotId alloc] initWithId:id size:41] autorelease];  }
+
 +(SpotId*)artistId:(char[33])id;
 {  return [[[SpotId alloc] initWithId:id size:33] autorelease];  }
 
@@ -39,11 +42,18 @@
   return self;
 }
 
+-(char *)id; { return _id; };
 -(char *)trackId; { return _id; };
 -(char *)fileId; { return _id; };
 -(char *)albumId; { return _id; };
 -(char *)coverId; { return _id; };
 -(char *)artistId; { return _id; };
 -(char *)playlistId; { return _id; };
+-(char *)portraitId; { return _id; };
+
+-(NSString *)description;
+{
+  return [NSString stringWithFormat:@"ID: %s", _id];
+}
 
 @end

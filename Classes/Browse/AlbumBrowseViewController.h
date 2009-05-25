@@ -10,7 +10,8 @@
 #import "SpotAlbum.h"
 
 @interface AlbumBrowseViewController : UIViewController {
-	
+  SpotAlbum *album;
+	IBOutlet UIImageView *albumArt;
 }
 -(id)initBrowsingAlbum:(SpotAlbum*)album;
 @end
