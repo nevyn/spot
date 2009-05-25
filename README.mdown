@@ -1,9 +1,3 @@
-What is voxar doing?
------
-wrapping like crazy, adding more functionality to the classes.
-
-Original:
-
 Spot
 =========================
 
