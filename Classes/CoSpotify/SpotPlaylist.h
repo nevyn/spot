@@ -19,7 +19,7 @@
 
 @property (readwrite, copy) NSString *name;
 @property (readonly) NSString *author;
-@property (readonly) BOOL collaborative;
+@property (readwrite) BOOL collaborative;
 @property (readonly) NSArray *tracks;
 
 @end

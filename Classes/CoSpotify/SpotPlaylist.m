@@ -27,6 +27,7 @@
   }	
 	return self;
 }
+
 -(id)initWithTrack:(SpotTrack*)track;
 {
 	if( ! [super init] ) return nil;
@@ -39,6 +40,7 @@
 	
 	return self;
 }
+
 -(void)dealloc;
 {
 	[tracks release];
@@ -49,6 +51,7 @@
 {
 	return [NSString stringWithUTF8String:playlist.name];
 }
+
 -(void)setName:(NSString*)name_;
 {
 	despotify_rename_playlist([SpotSession defaultSession].session, &playlist, (char*)[name_ UTF8String]);
@@ -57,6 +60,11 @@
 
 -(NSString *)author; { return [NSString stringWithCString:playlist.author];}
 -(BOOL) collaborative; {return playlist.is_collaborative; } 
+-(void) setCollaborative:(BOOL)collab;
+{
+  despotify_set_playlist_collaboration([SpotSession defaultSession].session, &playlist, collab);
+  // todo: handle error
+}
 
 @synthesize tracks;
 
@@ -64,4 +72,13 @@
 {
 	return [NSString stringWithFormat:@"<SpotPlaylist %@ %@>", self.name, self.tracks];
 }
+
++(SpotPlaylist *)byId:(SpotId *)id session:(SpotSession*)session;
+{
+  if(!session) session = [SpotSession defaultSession];
+  struct playlist* pl = despotify_get_playlist(session.session, id.playlistId);
+  if(!pl) return nil;
+  return [[[SpotPlaylist alloc] initWithPlaylist:pl] autorelease];
+}
+
 @end

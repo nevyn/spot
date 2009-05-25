@@ -46,7 +46,7 @@
   NSMutableArray *a_albums = [[NSMutableArray alloc] initWithCapacity:artistBrowse.num_albums];
   if(artistBrowse.num_albums > 0){
     for(struct album_browse *album = artistBrowse.albums; album != NULL; album = album->next){
-      [a_albums addObject:[[SpotAlbum alloc] initWithAlbumBrowse:album]];
+      [a_albums addObject:[[[SpotAlbum alloc] initWithAlbumBrowse:album] autorelease]];
     }
   }
   albums = a_albums;

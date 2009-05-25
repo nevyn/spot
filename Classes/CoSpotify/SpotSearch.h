@@ -22,6 +22,11 @@
   int totalTracks;
   int totalArtists;
   int totalAlbums;
+  
+  //for -moreResults
+  SpotSession *session;
+  int maxResults;
+  struct search_result *searchResult;
 }
 
 +(SpotSearch *)searchFor:(NSString *)searchText session:(SpotSession*)session maxResults:(int)maxResults;
@@ -31,7 +36,7 @@
 -(id)initWithSearchResult:(struct search_result*)sr;
 
 //Get next batch of results
--(SpotSearch *)more;
+-(SpotSearch *)moreResults;
 
 @property (readonly) NSArray *tracks;
 @property (readonly) NSArray *artists;

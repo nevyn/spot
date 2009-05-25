@@ -213,7 +213,7 @@ enum {
 	[searchResults_ retain];
   [searchResults release];
   searchResults = searchResults_;
-  NSLog(@"reloading data");
+  NSLog(@"SearchResults: %@", searchResults);
 	[tableView reloadData];
 }
 @end

@@ -38,7 +38,7 @@
   NSMutableArray *a_tracks = [[NSMutableArray alloc] initWithCapacity:albumBrowse.num_tracks];
   if(albumBrowse.num_tracks > 0){
     for(struct track *track = albumBrowse.tracks; track != NULL; track = track->next){
-      [a_tracks addObject:[[SpotTrack alloc] initWithTrack:track]];
+      [a_tracks addObject:[[[SpotTrack alloc] initWithTrack:track] autorelease]];
     }
   }
   tracks = a_tracks;
