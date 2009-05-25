@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SpotId.h"
 #import "despotify.h"
 #import "SpotArtist.h"
 @class SpotPlaylist;
@@ -20,7 +21,17 @@
 @property (readonly, nonatomic) NSString *title;
 @property (readonly, nonatomic) NSString *albumName;
 @property (readonly, nonatomic) SpotArtist *artist;
+@property (readonly, nonatomic) int length;
+@property (readonly, nonatomic) int number;
+@property (readonly, nonatomic) float popularity;
+@property (readonly, nonatomic) BOOL playable;
 
 @property (readonly, nonatomic) struct track *track;
 @property (readwrite, assign, nonatomic) SpotPlaylist *playlist;
+
+@property (readonly) SpotId *id;
+@property (readonly) SpotId *fileId;
+@property (readonly) SpotId *albumId;
+@property (readonly) SpotId *coverId;
+
 @end

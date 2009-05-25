@@ -44,6 +44,12 @@
 	return artist;
 }
 
+-(int) length; {return track.length;}
+-(int) number;{return track.tracknumber;}
+-(float) popularity;{return track.popularity;}
+-(BOOL) playable;{return track.playable;}
+
+
 -(NSString*)description;
 {
 	return [NSString stringWithFormat:@"<SpotTrack %@>", self.title];
@@ -53,4 +59,12 @@
 {
 	return &track;
 }
+
+-(SpotId *)id; { return [SpotId trackId:track.track_id]; }
+
+-(SpotId *)fileId; { return [SpotId fileId:track.file_id]; }
+
+-(SpotId *)albumId; { return [SpotId albumId:track.album_id]; }
+-(SpotId *)coverId; { return [SpotId coverId:track.cover_id]; }
+
 @end

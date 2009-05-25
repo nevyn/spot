@@ -14,18 +14,28 @@
 
 @implementation SpotSearch
 
-@synthesize tracks, artists, albums, playlist;
+@synthesize tracks, artists, albums, playlist, suggestion, query;
 @synthesize totalTracks, totalArtists, totalAlbums;
 
 +(SpotSearch *)searchFor:(NSString *)searchText session:(SpotSession*)session maxResults:(int)maxResults;
 {
-  struct search_result *sr = despotify_search(session.session, (char*)[searchText UTF8String], maxResults);
-  return [[[SpotSearch alloc] initWithSearchResult:sr] autorelease];
+  return [[[SpotSearch alloc] initWithSearchText:searchText session:session maxResults:maxResults] autorelease];
 }
 
 +(SpotSearch *)searchFor:(NSString *)searchText maxResults:(int)maxResults;
 {
   return [SpotSearch searchFor:searchText session:[SpotSession defaultSession] maxResults:maxResults];
+}
+
+-(id)initWithSearchText:(NSString *)searchText session:(SpotSession*)session maxResults:(int)maxResults;
+{
+  if( ! [super init] ) return nil;
+  
+  struct search_result *sr = despotify_search(session.session, (char*)[searchText UTF8String], maxResults);
+  [self initWithSearchResult:sr];
+  despotify_free_search(sr);
+  
+  return self;
 }
 
 -(id)initWithSearchResult:(struct search_result*)sr;
@@ -37,34 +47,38 @@
   playlist = [[SpotPlaylist alloc] initWithPlaylist:sr->playlist];
   
   query = [[NSString alloc] initWithCString:(char*)sr->query];
-  suggestion = [[NSString alloc] initWithCString:(char*)sr->suggestion];
+  if(sr->suggestion[0] != '\0')
+    suggestion = [[NSString alloc] initWithCString:(char*)sr->suggestion];
+  else suggestion = nil;
   
   totalAlbums = sr->total_albums;
   totalTracks = sr->total_tracks;
   totalArtists = sr->total_artists;
   
   NSMutableArray *a_tracks = [[NSMutableArray alloc] init];
-  for(struct track *track = sr->tracks; track != NULL; track = track->next){
-    [a_tracks addObject:[[SpotTrack alloc] initWithTrack:track]];
+  if(totalTracks > 0){
+    for(struct track *track = sr->tracks; track != NULL; track = track->next){
+      [a_tracks addObject:[[SpotTrack alloc] initWithTrack:track]];
+    }
   }
   tracks = a_tracks;
   
   NSMutableArray *a_artists = [[NSMutableArray alloc] init];
-  for(struct artist *artist = sr->artists; artist != NULL; artist = artist->next){
-    [a_artists addObject:[[SpotArtist alloc] initWithArtist:artist]];
+  if(totalArtists > 0){
+    for(struct artist *artist = sr->artists; artist != NULL; artist = artist->next){
+      [a_artists addObject:[[SpotArtist alloc] initWithArtist:artist]];
+    }
   }
   artists = a_artists;
   
+
   NSMutableArray *a_albums = [[NSMutableArray alloc] init];
-  for(struct album *album = sr->albums; album != NULL; album = album->next){
-    [a_albums addObject:[[SpotAlbum alloc] initWithAlbum:album]];
+  if(totalAlbums > 0){
+    for(struct album *album = sr->albums; album != NULL; album = album->next){
+      [a_albums addObject:[[SpotAlbum alloc] initWithAlbum:album]];
+    }
   }
   albums = a_albums;
-
-  
-  
-  //memcpy(&searchResult, sr, sizeof(struct search_result)); //TODO: whole size
-  
   
   return self;
 }

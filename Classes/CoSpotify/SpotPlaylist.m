@@ -18,12 +18,13 @@
 	memcpy(&playlist, playlist_, sizeof(struct playlist));
 	
 	tracks = [[NSMutableArray alloc] initWithCapacity:playlist.num_tracks];
-	for(struct track *track = playlist.tracks; track != NULL; track = track->next) {
-		SpotTrack *strack = [[(SpotTrack*)[SpotTrack alloc] initWithTrack:track] autorelease];
-		[(NSMutableArray*)tracks addObject:strack];
-		strack.playlist = self;
-	}
-	
+  if(playlist.num_tracks > 0){
+    for(struct track *track = playlist.tracks; track != NULL; track = track->next) {
+      SpotTrack *strack = [[(SpotTrack*)[SpotTrack alloc] initWithTrack:track] autorelease];
+      [(NSMutableArray*)tracks addObject:strack];
+      strack.playlist = self;
+    }
+  }	
 	return self;
 }
 -(id)initWithTrack:(SpotTrack*)track;
@@ -53,6 +54,9 @@
 	despotify_rename_playlist([SpotSession defaultSession].session, &playlist, (char*)[name_ UTF8String]);
 	// todo: handle error
 }
+
+-(NSString *)author; { return [NSString stringWithCString:playlist.author];}
+-(BOOL) collaborative; {return playlist.is_collaborative; } 
 
 @synthesize tracks;
 

@@ -16,6 +16,7 @@
 #include <unistd.h>
 #include <wchar.h>
 
+#include "SpotArtist.h"
 
 SpotSession *SpotSessionSingleton;
 
@@ -130,4 +131,14 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 {
 	return [NSDate dateWithTimeIntervalSince1970:session->user_info->last_ping];
 }
+
+#pragma mark Get by id functions
+
+-(SpotArtist *)artistById:(SpotId *)id;
+{
+  struct artist_browse *artist = despotify_get_artist(session, id.artistId);
+  if(artist) return [[SpotArtist alloc] initWithArtistBrowse:artist];
+  return nil;
+}
+
 @end

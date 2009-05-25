@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "despotify.h"
+#import "SpotId.h"
+@class SpotArtist;
+
 
 @interface SpotSession : NSObject {
 	struct despotify_session *session;
@@ -19,6 +22,8 @@
 -(BOOL)authenticate:(NSString *)user password:(NSString*)password error:(NSError**)error;
 
 -(NSArray*)playlists;
+
+-(SpotArtist *)artistById:(SpotId *)id_;
 
 @property (nonatomic, readonly) BOOL loggedIn;
 @property (readonly) NSString *username;

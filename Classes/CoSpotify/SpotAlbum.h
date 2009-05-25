@@ -13,12 +13,25 @@
 
 @interface SpotAlbum : NSObject {
 	struct album album;
+  struct album_browse albumBrowse;
+  BOOL browsing;
+  NSArray *tracks;
 }
 -(id)initWithAlbum:(struct album*)album;
+-(id)initWithAlbumBrowse:(struct album_browse*)album;
 
+//shared
+@property (readonly) SpotId *id;
 @property (readonly) NSString *name;
-@property (readonly) NSString *artistName;
-@property (readonly) UIImage *cover;
+@property (readonly) SpotId *coverId;
 @property (readonly) float popularity;
-@property (readonly) SpotArtist *artist;
+
+//album only
+@property (readonly) NSString *artistName;
+@property (readonly) SpotId *artistId;
+
+//browse only
+@property (readonly) int year;
+@property (readonly) NSArray *tracks;
+           
 @end
