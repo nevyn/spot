@@ -1,0 +1,12 @@
+Spot
+=========================
+
+Spot is a Spotify client for iPhone based on [despotify](http://despotify.se/ "despotify - the open source Spotify client library"). You can see a [video of it in action on youtube](http://www.youtube.com/watch?v=ARKnvnOCJJg "YouTube - The Birth of Spot, the iPhone Spotify Client").
+
+All dependencies are bundled.
+
+Known bugs
+------------------------
+- Searching for something with no hits crashes
+- Buttons in play view don't work
+- Browsing artists and albums don't work
