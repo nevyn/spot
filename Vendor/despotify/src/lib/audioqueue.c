@@ -118,9 +118,8 @@ int audioqueue_prepare_device (AUDIOCTX *actx)
 	AudioStreamBasicDescription *fmt = &state.mDataFormat;
 	
 	fmt->mFormatID = kAudioFormatLinearPCM;
-	fmt->mFormatFlags = kAudioFormatFlagIsSignedInteger | 
-						kAudioFormatFlagIsPacked | 
-						kAudioFormatFlagIsBigEndian;
+	fmt->mFormatFlags = kAudioFormatFlagIsSignedInteger
+					  | kAudioFormatFlagIsPacked;
 	fmt->mSampleRate = actx->samplerate;
 	fmt->mChannelsPerFrame = actx->channels;
 	fmt->mFramesPerPacket = 1;
@@ -149,9 +148,14 @@ int audioqueue_prepare_device (AUDIOCTX *actx)
 	
 	return 0;
 }
+
+static FILE *file;
+
 int audioqueue_play (AUDIOCTX *ctx)
 {
 	printf("playing device\n");
+	
+	file = fopen("/tmp/foo.raw", "w");
 	
 	if(!state.mBuffers[0])
 		for (int i = 0; i < kNumberBuffers; ++i) {               
@@ -188,24 +192,18 @@ static int audio_callback (
 	AudioQueueRef aq,
 	AudioQueueBufferRef bufout
 ) {
-	bufout->mAudioDataByteSize = state.bufferByteSize;
-	int channelCount = state.mDataFormat.mChannelsPerFrame;
-	//memset(bufout->mAudioData, 0, bufout->mAudioDataByteSize);
-	int samples_available = bufout->mAudioDataByteSize / sizeof(short) / channelCount;
-	
-	while(samples_available) {
-		int samplesRead = pcm_read(
-			state.actx->pcmprivate, // Audio context
-			bufout->mAudioData, // Buffer
-			samples_available*sizeof(short)*channelCount, // Bytes to read
-			state.mDataFormat.mFormatFlags & kAudioFormatFlagIsBigEndian, // Big endian?
-			state.mDataFormat.mBitsPerChannel/8, // Word size?
-			TRUE, // Signed?
-			NULL
-		);
-		samples_available -= samplesRead;
-	}
-	
+	int samplesRead = pcm_read(
+		state.actx->pcmprivate, // Audio context
+		bufout->mAudioData, // Buffer
+		state.bufferByteSize, // Bytes to read
+		state.mDataFormat.mFormatFlags & kAudioFormatFlagIsBigEndian, // Big endian?
+		state.mDataFormat.mBitsPerChannel/8, // Word size?
+		TRUE, // Signed?
+		NULL
+	);
+
+	bufout->mAudioDataByteSize = samplesRead;
+	fwrite(bufout->mAudioData, bufout->mAudioDataByteSize, 1, file);
 	AudioQueueEnqueueBuffer(state.mQueue, bufout, 0, NULL);
 	return 0;
 }
