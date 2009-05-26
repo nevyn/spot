@@ -12,7 +12,10 @@
 #import "SpotId.h"
 
 @implementation SpotImageView
-
+-(SpotId*)artId;
+{
+	return artId;
+}
 -(void)setArtId:(SpotId*)id;
 {
   [id retain];

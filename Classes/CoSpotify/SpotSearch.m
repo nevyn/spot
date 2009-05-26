@@ -60,7 +60,7 @@
   NSMutableArray *a_tracks = [[NSMutableArray alloc] init];
   if(totalTracks > 0){
     for(struct track *track = sr->tracks; track != NULL; track = track->next){
-      [a_tracks addObject:[[[SpotTrack alloc] initWithTrack:track] autorelease]];
+      [a_tracks addObject:[[(SpotTrack*)[SpotTrack alloc] initWithTrack:track] autorelease]];
     }
   }
   [a_tracks sortUsingSelector:@selector(compare:)];

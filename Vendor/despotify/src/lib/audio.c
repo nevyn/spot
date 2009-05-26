@@ -127,7 +127,7 @@ int audio_stop (AUDIOCTX * a)
 /* Pause audio */
 int audio_pause (AUDIOCTX * a)
 {
-	if (!a->is_playing)
+	if (!a || !a->is_playing)
 		return 0;
 
 	DSFYDEBUG ("audio_pause(): calling driver's ->pause() routine..\n")

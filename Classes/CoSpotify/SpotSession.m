@@ -172,7 +172,7 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 -(SpotTrack *)trackById:(SpotId *)id;
 {
   struct track *track = despotify_get_track(session, id.id);
-  if(track) return [[[SpotTrack alloc] initWithTrack:track] autorelease];
+  if(track) return [[(SpotTrack*)[SpotTrack alloc] initWithTrack:track] autorelease];
   return nil;
 }
 
@@ -192,7 +192,7 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 -(SpotAlbum*)trackByURI:(SpotURI*)uri;
 {
   struct track* track = despotify_link_get_track(session, uri.link);
-  return [[[SpotTrack alloc] initWithTrack:track] autorelease];
+  return [[(SpotTrack*)[SpotTrack alloc] initWithTrack:track] autorelease];
 }
 
 -(SpotAlbum*)playlistByURI:(SpotURI*)uri;

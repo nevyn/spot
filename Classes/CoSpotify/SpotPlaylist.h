@@ -24,6 +24,7 @@
 -(SpotTrack*) trackBefore:(SpotTrack*)current;
 -(SpotTrack*) trackAfter:(SpotTrack*)current;
 
+-(SpotTrack*) trackWithId:(SpotId*)id;
 
 @property (readwrite, copy) NSString *name;
 @property (readonly) NSString *author;
