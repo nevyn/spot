@@ -71,7 +71,6 @@
 
 -(void)createSessionAndLogin;
 {
-	
 	spinner.hidden = YES;
 	
 	NSError *err;

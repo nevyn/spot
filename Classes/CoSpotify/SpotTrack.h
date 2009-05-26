@@ -10,6 +10,9 @@
 #import "SpotId.h"
 #import "despotify.h"
 #import "SpotArtist.h"
+
+#import <UIKit/UIKit.h>
+
 @class SpotPlaylist;
 @interface SpotTrack : NSObject {
 	struct track track;
@@ -17,6 +20,8 @@
 	SpotPlaylist *playlist;
 }
 -(id)initWithTrack:(struct track*)track_;
+
+-(NSComparisonResult)compare:(SpotTrack*)other;
 
 @property (readonly, nonatomic) NSString *title;
 @property (readonly, nonatomic) NSString *albumName;
@@ -33,5 +38,11 @@
 @property (readonly) SpotId *fileId;
 @property (readonly) SpotId *albumId;
 @property (readonly) SpotId *coverId;
+
+@property (readonly) UIImage *coverImage;
+
+@property (readonly) SpotTrack *nextTrack; //next in playlist
+@property (readonly) SpotTrack *prevTrack; //next in playlist
+
 
 @end

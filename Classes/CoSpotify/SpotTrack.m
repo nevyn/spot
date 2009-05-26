@@ -9,6 +9,7 @@
 #import "SpotTrack.h"
 #import "xml.h"
 #import "SpotPlaylist.h"
+#import "SpotSession.h"
 
 @implementation SpotTrack
 -(id)initWithTrack:(struct track*)track_;
@@ -27,6 +28,11 @@
 	free(track.key);
 	[artist release];
 	[super dealloc];
+}
+
+-(NSComparisonResult)compare:(SpotTrack*)other;
+{
+  return [self.title compare:other.title];
 }
 
 @synthesize playlist;
@@ -66,5 +72,23 @@
 
 -(SpotId *)albumId; { return [SpotId albumId:track.album_id]; }
 -(SpotId *)coverId; { return [SpotId coverId:track.cover_id]; }
+-(UIImage*)coverImage;
+{
+  if(self.coverId)
+    return [[SpotSession defaultSession] imageById:self.coverId];
+  return nil;
+}
+
+-(SpotTrack *)nextTrack;
+{
+  if(!playlist) return nil;
+  return [playlist trackAfter:self];
+}
+
+-(SpotTrack *)prevTrack;
+{
+  if(!playlist) return nil;
+  return [playlist trackBefore:self];
+}
 
 @end

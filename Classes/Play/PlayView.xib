@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.03">
 	<data>
 		<int key="IBDocument.SystemTarget">528</int>
-		<string key="IBDocument.SystemVersion">9G55</string>
+		<string key="IBDocument.SystemVersion">9J61</string>
 		<string key="IBDocument.InterfaceBuilderVersion">677</string>
-		<string key="IBDocument.AppKitVersion">949.43</string>
+		<string key="IBDocument.AppKitVersion">949.46</string>
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -53,12 +53,16 @@
 					<object class="IBUIImageView" id="960345096">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 69}, {320, 220}}</string>
+						<string key="NSFrame">{{0, 69}, {320, 217}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<int key="IBUIContentMode">4</int>
+						<int key="IBUIContentMode">1</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">icon.png</string>
+						</object>
 					</object>
 					<object class="IBUIButton" id="1031098777">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -331,12 +335,12 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="960345096"/>
 							<reference ref="893589459"/>
-							<reference ref="288898960"/>
 							<reference ref="593420951"/>
 							<reference ref="1031098777"/>
 							<reference ref="970533069"/>
 							<reference ref="346239068"/>
 							<reference ref="1026199428"/>
+							<reference ref="288898960"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -414,7 +418,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>PlayViewController</string>
 					<string>UIResponder</string>
-					<string>{{473, 499}, {320, 480}}</string>
+					<string>{{602, 340}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

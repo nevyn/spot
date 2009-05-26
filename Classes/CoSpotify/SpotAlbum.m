@@ -58,6 +58,11 @@
   return [[SpotSession defaultSession] albumById:self.id];
 }
 
+-(NSComparisonResult)compare:(SpotAlbum*)other;
+{
+  return [self.name compare:other.name];
+}
+
 #pragma mark shared
 -(SpotId *)id; { return [SpotId albumId:album.id]; }
 -(NSString *)name; { return [NSString stringWithCString:album.name]; }

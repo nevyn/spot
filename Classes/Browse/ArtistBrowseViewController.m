@@ -20,6 +20,9 @@
   //Load full artist profile
   if(!artist_.browsing) artist_ = [artist_ moreInfo]; 
 	artist = [artist_ retain];
+  
+  self.title = artist.name;
+  
 	return self;
 }
 
@@ -33,10 +36,13 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
   [super viewDidLoad];
-  UIImage *image = [[SpotSession defaultSession] imageById:artist.portraitId];
-  NSLog(@"image: %@ %@ %@", portrait, image, artist.portraitId);
-  [portrait setImage:image];
-  [artistName setText:artist.name];
+  if(artist.portraitId){
+    UIImage *image = [[SpotSession defaultSession] imageById:artist.portraitId];
+    [portrait setImage:image];
+  }
+  NSString *html = [NSString stringWithFormat:@"<html><body>%@</body></html>", artist.text];
+  NSLog(@"html: %@", html);
+  [artistText loadHTMLString:html baseURL:[NSURL URLWithString:@"http://www.google.com"]];
   [popularity setValue:artist.popularity];
 }
 

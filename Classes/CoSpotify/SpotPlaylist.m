@@ -58,6 +58,20 @@
 	[super dealloc];
 }
 
+-(SpotTrack*) trackBefore:(SpotTrack*)current;
+{
+  int i = [tracks indexOfObject:current]-1;
+  if(i < 0) return nil;
+  return [tracks objectAtIndex:i];
+}
+
+-(SpotTrack*) trackAfter:(SpotTrack*)current;
+{
+  int i = [tracks indexOfObject:current]+1;
+  if(i >= tracks.count) return nil;
+  return [tracks objectAtIndex:i];  
+}
+
 -(NSString*)name;
 {
 	return [NSString stringWithUTF8String:playlist.name];

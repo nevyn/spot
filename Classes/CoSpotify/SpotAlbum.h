@@ -25,6 +25,8 @@
 
 -(SpotAlbum *)moreInfo;
 
+-(NSComparisonResult)compare:(SpotAlbum*)other;
+
 @property (readonly, nonatomic) BOOL browsing;
 
 //shared

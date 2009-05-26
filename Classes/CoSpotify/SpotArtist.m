@@ -68,6 +68,11 @@
   return [[SpotSession defaultSession] artistById:self.id];
 }
 
+-(NSComparisonResult)compare:(SpotArtist*)other;
+{
+  return [self.name compare:other.name];
+}
+
 -(SpotId *)id;
 {
   return [SpotId artistId:artistBrowse.id];
@@ -113,6 +118,12 @@
 -(NSString *)genres;
 {
   return [NSString stringWithCString:artistBrowse.genres];
+}
+
+-(NSString *)text;
+{
+  if(!artistBrowse.text) return nil;
+  return [NSString stringWithCString:artistBrowse.text];
 }
 
 @end

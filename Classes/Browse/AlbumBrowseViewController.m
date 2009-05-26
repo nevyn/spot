@@ -20,6 +20,7 @@
   //load full profile
   if(!album_.browsing) album_ = [album_ moreInfo];
   album = [album_ retain];
+  self.title = album.name;
   
 	return self;
 	
@@ -47,11 +48,12 @@
     [super viewDidLoad];
   
   
-  UIImage *image = [[SpotSession defaultSession] imageById:album.coverId];
-  [albumArt setImage:image];
+  if(album.coverId){
+    UIImage *image = [[SpotSession defaultSession] imageById:album.coverId];
+    [albumArt setImage:image];
+  }
   [albumName setText:album.name];
   [popularity setValue:album.popularity];
-	NSLog(@"art: %@ %@", albumArt, image);
 }
 
 
@@ -111,7 +113,7 @@
   
 	int idx = [indexPath indexAtPosition:1]; idx = idx;
   SpotTrack *track = [album.tracks objectAtIndex:idx];
-  cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+  cell.accessoryType = track.playable ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
   cell.text = [NSString stringWithFormat:@"%d. %@", track.number, track.title];
   
   return cell;
@@ -122,10 +124,11 @@
 	int idx = [indexPath indexAtPosition:1];
   
   SpotTrack *track = [album.tracks objectAtIndex:idx];
-  PlayViewController *player = [PlayViewController defaultController];
-  [player playTrack:track];
-  [self.navigationController pushViewController:player animated:YES];
-  NSLog(@"heeeeeeelp! %@ %@", track, track.playlist);
+  if(track.playable){
+    PlayViewController *player = [PlayViewController defaultController];
+    [player playTrack:track];
+    [self.navigationController pushViewController:player animated:YES];
+  }
 //  [[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
 }
 

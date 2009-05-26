@@ -143,11 +143,15 @@ PlayViewController *GlobalPlayViewController;
 }
 -(IBAction)next;
 {
-	
+  SpotTrack *t = self.currentTrack.nextTrack;
+  if(!t) t = [self.currentTrack.playlist.tracks objectAtIndex:0];//TODO: if(repeat)
+  self.currentTrack = t;
 }
 -(IBAction)prev;
 {
-	
+  SpotTrack *t = self.currentTrack.prevTrack;
+  if(!t) t = [self.currentTrack.playlist.tracks lastObject];//TODO: if(repeat)
+	self.currentTrack = t;
 }
 
 
@@ -172,8 +176,9 @@ PlayViewController *GlobalPlayViewController;
 	artistLabel.text = newTrack.artist.name;
 	trackLabel.text = newTrack.title;
 	albumLabel.text = newTrack.albumName;
+  albumArt.image = newTrack.coverImage;
   NSLog(@"playing %@", newTrack);
-  struct track *tt = newTrack.track;
+  
 	BOOL playing = despotify_play([SpotSession defaultSession].session, newTrack.track, NO);
   NSLog(@"isplaying= %d", playing);
 	// todo: notice end of song and play next

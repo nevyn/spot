@@ -25,6 +25,8 @@
 
 -(SpotArtist *)moreInfo;
 
+-(NSComparisonResult)compare:(SpotArtist*)other;
+
 @property (readonly) SpotId *id;
 @property (readonly) NSString *name;
 @property (readonly) float popularity;
@@ -35,6 +37,7 @@
 @property (readonly) NSArray *albums;
 @property (readonly) NSString *yearsActive;
 @property (readonly) NSString *genres;
+@property (readonly) NSString *text;
 
 @property (readonly, nonatomic) BOOL browsing;
 

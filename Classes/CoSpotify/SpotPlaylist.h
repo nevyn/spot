@@ -17,6 +17,9 @@
 -(id)initWithPlaylist:(struct playlist*)playlist_;
 -(id)initWithTrack:(SpotTrack*)track;
 
+-(SpotTrack*) trackBefore:(SpotTrack*)current;
+-(SpotTrack*) trackAfter:(SpotTrack*)current;
+
 @property (readwrite, copy) NSString *name;
 @property (readonly) NSString *author;
 @property (readwrite) BOOL collaborative;

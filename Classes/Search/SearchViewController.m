@@ -135,7 +135,7 @@ enum {
 		case TracksSection: {
 			SpotTrack *track = [searchResults.tracks objectAtIndex:idx];
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-			cell.text = [NSString stringWithFormat:@"%@ - %@", track.artist.name, track.title];
+			cell.text = [NSString stringWithFormat:@"%@", track.title];
 		} break;
 		case AlbumsSection: {
 			SpotAlbum *album = [searchResults.albums objectAtIndex:idx];

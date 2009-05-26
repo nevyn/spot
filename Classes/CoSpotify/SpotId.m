@@ -38,6 +38,10 @@
 {
   if( ! [super init] ) return nil;
 
+  if(memcmp(id_, "\0\0\0\0\0\0\0\0\0\0", 10) == 0) //if no id
+    return nil;
+    
+  memset(_id, 0, 50);
   memcpy(_id, id_, size);
   
   return self;
