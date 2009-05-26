@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "SpotId.h"
 #import "despotify.h"
+#import "SpotItem.h"
 
-@interface SpotArtist : NSObject {
+@interface SpotArtist : SpotItem {
 	struct artist artist;
   struct artist_browse artistBrowse;
   
@@ -27,7 +27,6 @@
 
 -(NSComparisonResult)compare:(SpotArtist*)other;
 
-@property (readonly) SpotId *id;
 @property (readonly) NSString *name;
 @property (readonly) float popularity;
 @property (readonly) SpotId *portraitId;

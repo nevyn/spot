@@ -11,8 +11,9 @@
 #import "despotify.h"
 #import "SpotArtist.h"
 #import "SpotPlaylist.h"
+#import "SpotItem.h"
 
-@interface SpotAlbum : NSObject {
+@interface SpotAlbum : SpotItem {
 	struct album album;
   struct album_browse albumBrowse;
   BOOL browsing;
@@ -29,8 +30,8 @@
 
 @property (readonly, nonatomic) BOOL browsing;
 
+
 //shared
-@property (readonly) SpotId *id;
 @property (readonly) NSString *name;
 @property (readonly) SpotId *coverId;
 @property (readonly) float popularity;

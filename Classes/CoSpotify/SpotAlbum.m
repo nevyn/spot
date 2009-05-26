@@ -9,6 +9,7 @@
 #import "SpotAlbum.h"
 #import "SpotTrack.h"
 #import "SpotSession.h"
+#import "SpotURI.h"
 
 @implementation SpotAlbum
 
@@ -66,6 +67,12 @@
 
 #pragma mark shared
 -(SpotId *)id; { return [SpotId albumId:album.id]; }
+-(SpotURI*)uri;
+{
+  char uri[50];
+  return [SpotURI uriWithURI:despotify_album_to_uri(&albumBrowse, uri)];  
+}
+
 -(NSString *)name; { return [NSString stringWithUTF8String:album.name]; }
 -(SpotId *)coverId; { return [SpotId coverId:album.cover_id]; }
 -(float) popularity; { return album.popularity; }
@@ -77,6 +84,11 @@
 #pragma mark browsing only
 -(int) year; { return browsing ? albumBrowse.year : 0; }
 -(NSArray *)tracks; { return tracks; } 
+
+-(BOOL)isEqual:(SpotAlbum*)other;
+{
+  return [self hash] == [other hash];
+}
 
 -(NSInteger)hash;
 {

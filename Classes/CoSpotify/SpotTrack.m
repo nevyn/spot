@@ -10,6 +10,7 @@
 #import "xml.h"
 #import "SpotPlaylist.h"
 #import "SpotSession.h"
+#import "SpotURI.h"
 
 @implementation SpotTrack
 -(id)initWithTrack:(struct track*)track_;
@@ -61,17 +62,25 @@
 	return [NSString stringWithFormat:@"<SpotTrack %@>", self.title];
 }
 
+#pragma mark Properties
+
 -(struct track*)track;
 {
 	return &track;
 }
 
--(SpotId *)id; { return [SpotId trackId:track.track_id]; }
+-(SpotId *)id; { return [SpotId trackId:(char*)track.track_id]; }
 
--(SpotId *)fileId; { return [SpotId fileId:track.file_id]; }
+-(SpotURI*)uri;
+{
+  char uri[50];
+  return [SpotURI uriWithURI:despotify_track_to_uri(&track, uri)];  
+}
 
--(SpotId *)albumId; { return [SpotId albumId:track.album_id]; }
--(SpotId *)coverId; { return [SpotId coverId:track.cover_id]; }
+-(SpotId *)fileId; { return [SpotId fileId:(char*)track.file_id]; }
+
+-(SpotId *)albumId; { return [SpotId albumId:(char*)track.album_id]; }
+-(SpotId *)coverId; { return [SpotId coverId:(char*)track.cover_id]; }
 -(UIImage*)coverImage;
 {
   if(self.coverId)
@@ -89,6 +98,11 @@
 {
   if(!playlist) return nil;
   return [playlist trackBefore:self];
+}
+
+-(BOOL)isEqual:(SpotTrack*)other;
+{
+  return [self hash] == [other hash];
 }
 
 -(NSUInteger)hash;

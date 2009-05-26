@@ -12,9 +12,12 @@
 #import "SpotArtist.h"
 
 #import <UIKit/UIKit.h>
+#import "SpotItem.h"
 
 @class SpotPlaylist;
-@interface SpotTrack : NSObject {
+@class SpotURI;
+
+@interface SpotTrack : SpotItem {
 	struct track track;
 	SpotArtist *artist;
 	SpotPlaylist *playlist;
@@ -34,7 +37,6 @@
 @property (readonly, nonatomic) struct track *track;
 @property (readwrite, assign, nonatomic) SpotPlaylist *playlist;
 
-@property (readonly) SpotId *id;
 @property (readonly) SpotId *fileId;
 @property (readonly) SpotId *albumId;
 @property (readonly) SpotId *coverId;

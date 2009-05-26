@@ -55,7 +55,15 @@
   if(!playlist && !track) return;
   if(!track) track = [playlist.tracks objectAtIndex:0];
   if(!playlist) playlist = track.playlist;
-  if(!playlist) playlist = [[[SpotPlaylist alloc] initWithTrack:track] autorelease];
+  if(!playlist){
+    //Get the playlist for the track's album
+    playlist = [[[SpotSession defaultSession] albumById:track.albumId] playlist];
+    track = [playlist trackWithId:track.id];
+//    playlist = [[[SpotPlaylist alloc] initWithTrack:track] autorelease];
+  }
+  
+  if(![playlist.tracks containsObject:track])
+    [NSException raise:NSInvalidArgumentException format:@"The 'track' argument must be in the playlist given"];
   
   [self setCurrentPlaylist:playlist];
   
@@ -68,6 +76,7 @@
 {
   //stop playback
   if(self.isPlaying){
+    [UIApplication sharedApplication].idleTimerDisabled = NO; //can sleep while paused
     isPlaying = !despotify_pause([SpotSession defaultSession].session) && isPlaying;
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"pause" object:self]];
   }
@@ -78,6 +87,9 @@
   if(self.isPlaying) return;
   //start playback if we have something to play
   if(self.currentTrack){
+    [UIApplication sharedApplication].idleTimerDisabled = YES; //dont sleep while playing music
+    //if([self.savedTrack isEqual:self.currentTrack])
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"willplay" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:currentPlaylist, @"playlist", currentTrack, @"track", nil]]];
     if([self.savedTrack isEqual:self.currentTrack])
       isPlaying = despotify_resume([SpotSession defaultSession].session);
     else
@@ -89,6 +101,7 @@
 -(void)stop;
 {
   if(self.isPlaying){
+    [UIApplication sharedApplication].idleTimerDisabled = NO; //can sleep while not playing
     isPlaying = !despotify_pause([SpotSession defaultSession].session) && isPlaying;
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"stop" object:self]];
   }

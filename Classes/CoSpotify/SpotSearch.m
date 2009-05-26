@@ -10,6 +10,7 @@
 #import "SpotTrack.h"
 #import "SpotAlbum.h"
 #import "SpotArtist.h"
+#import "SpotURI.h"
 
 
 @implementation SpotSearch
@@ -27,13 +28,13 @@
   return [SpotSearch searchFor:searchText session:[SpotSession defaultSession] maxResults:maxResults];
 }
 
--(id)initWithSearchText:(NSString *)searchText session:(SpotSession*)session maxResults:(int)maxResults;
+-(id)initWithSearchText:(NSString *)searchText session:(SpotSession*)session_ maxResults:(int)maxResults;
 {
   if( ! [super init] ) return nil;
   if(searchResult){
     despotify_free_search(searchResult);
   }
-  searchResult = despotify_search(session.session, (char*)[searchText UTF8String], maxResults);
+  searchResult = despotify_search(session_.session, (char*)[searchText UTF8String], maxResults);
   [self initWithSearchResult:searchResult];
   
   return self;
@@ -112,6 +113,12 @@
   struct search_result *sr = despotify_search_more(session.session, searchResult, offset, maxResults);
   if( !sr ) return nil;
   return [[[SpotSearch alloc] initWithSearchResult:sr] autorelease];
+}
+
+-(SpotURI*)uri;
+{
+  char uri[50];
+  return [SpotURI uriWithURI:despotify_search_to_uri(searchResult, uri)];  
 }
 
 @end

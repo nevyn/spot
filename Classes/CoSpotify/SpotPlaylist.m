@@ -9,6 +9,7 @@
 #import "SpotPlaylist.h"
 #import "SpotTrack.h"
 #import "SpotSession.h"
+#import "SpotURI.h"
 
 @implementation SpotPlaylist
 -(id)init;
@@ -72,6 +73,15 @@
   return [tracks objectAtIndex:i];  
 }
 
+-(SpotTrack*) trackWithId:(SpotId*)id;
+{
+  for(SpotTrack *track in tracks)
+    if([track.id isEqual:id]) return track;
+  return nil;
+}
+
+#pragma mark Properties
+
 -(NSString*)name;
 {
   if(strlen(playlist.name) == 0) return @"Untitled";
@@ -123,9 +133,25 @@
   playlist.num_tracks = [tracks count];
 }
 
+-(BOOL)isEqual:(SpotPlaylist*)other;
+{
+  return [self hash] == [other hash];
+}
+
 -(NSInteger)hash;
 {
   return [[NSString stringWithFormat:@"%@%@", self.author, self.name] hash];
+}
+
+-(SpotId*)id;
+{
+  return [SpotId playlistId:playlist.playlist_id];
+}
+
+-(SpotURI*)uri;
+{
+  char uri[50];
+  return [SpotURI uriWithURI:despotify_playlist_to_uri(&playlist, uri)];  
 }
 
 @end

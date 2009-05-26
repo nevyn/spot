@@ -100,7 +100,8 @@ PlayViewController *GlobalPlayViewController;
 {
   if(self.defaultPlayer.currentPlaylist && self.defaultPlayer.currentTrack){
     int idx = [self.defaultPlayer.currentPlaylist.tracks indexOfObject:self.defaultPlayer.currentTrack];
-    [trackList selectRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    if(idx != NSNotFound)
+      [trackList selectRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
   }
 }
 
@@ -136,8 +137,9 @@ PlayViewController *GlobalPlayViewController;
 
 -(void)showInfoForTrack:(SpotTrack*)track;
 {
-  artistLabel.text = track.artist.name;
-	trackLabel.text = track.title;
+  NSLog(@"uri: '%@'", track.artist.uri.url);
+  artistLabel.text = track.artist.uri.url;
+	trackLabel.text = track.uri.url;
 	albumLabel.text = track.albumName;
   albumArt.artId = track.coverId;
 }
@@ -145,15 +147,25 @@ PlayViewController *GlobalPlayViewController;
 -(void)playerNotification:(NSNotification*)n;
 {
   NSLog(@"PlayerView got notification %@", n);
+  if([[n name] isEqual:@"willplay"]){
+    [waitForPlaySpinner setHidden:NO];
+    [playPauseButton setHidden:YES];
+  }
   if([[n name] isEqual:@"play"]){
     [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
+    [playPauseButton setHidden:NO];
+    [waitForPlaySpinner setHidden:YES];
     [self selectCurrentTrack];
   }
   if([[n name] isEqual:@"pause"]){
-    	[playPauseButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
+    [playPauseButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
+    [playPauseButton setHidden:NO];
+    [waitForPlaySpinner setHidden:YES];
   }
   if([[n name] isEqual:@"stop"]){
-      [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
+    [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
+    [playPauseButton setHidden:NO];
+    [waitForPlaySpinner setHidden:YES];
   }
   if([[n name] isEqual:@"playlist"]){
     playlistDataSource.playlist = [[n userInfo] valueForKey:@"playlist"];

@@ -10,6 +10,7 @@
 #import "SpotAlbum.h"
 #import "SpotId.h"
 #import "SpotSession.h"
+#import "SpotURI.h"
 
 @implementation SpotArtist
 
@@ -73,10 +74,19 @@
   return [self.name compare:other.name];
 }
 
+#pragma mark Properties
+
 -(SpotId *)id;
 {
   return [SpotId artistId:artistBrowse.id];
 }
+
+-(SpotURI*)uri;
+{
+  char uri[50];
+  return [SpotURI uriWithURI:despotify_artist_to_uri(&artistBrowse, uri)];  
+}
+
 
 -(NSString*)name;
 {
@@ -124,6 +134,11 @@
 {
   if(!artistBrowse.text) return nil;
   return [NSString stringWithCString:artistBrowse.text];
+}
+
+-(BOOL)isEqual:(SpotArtist*)other;
+{
+  return [self hash] == [other hash];
 }
 
 -(NSInteger)hash;

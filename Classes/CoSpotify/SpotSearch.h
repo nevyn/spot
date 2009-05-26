@@ -11,8 +11,9 @@
 #import "SpotSession.h"
 
 #import "despotify.h"
+#import "SpotItem.h"
 
-@interface SpotSearch : NSObject { 
+@interface SpotSearch : SpotItem { 
   NSArray *artists;
   NSArray *tracks;
   NSArray *albums;

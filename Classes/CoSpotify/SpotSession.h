@@ -10,6 +10,7 @@
 #import "despotify.h"
 #import "SpotId.h"
 #import "SpotPlayer.h"
+#import "SpotURI.h"
 
 @class SpotArtist;
 @class SpotAlbum;
@@ -32,6 +33,12 @@
 -(void *)imageById:(SpotId*)id;
 -(SpotAlbum *)albumById:(SpotId *)id;
 -(SpotTrack *)trackById:(SpotId *)id;
+
+-(SpotAlbum*)albumByURI:(SpotURI*)uri;
+-(SpotAlbum*)artistByURI:(SpotURI*)uri;
+-(SpotAlbum*)trackByURI:(SpotURI*)uri;
+-(SpotAlbum*)playlistByURI:(SpotURI*)uri;
+-(SpotAlbum*)searchByURI:(SpotURI*)uri;
 
 @property (nonatomic, readonly) BOOL loggedIn;
 @property (readonly) NSString *username;

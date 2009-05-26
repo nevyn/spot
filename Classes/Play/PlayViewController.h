@@ -16,6 +16,7 @@
   BOOL isPlaying;
 	
 	IBOutlet UIButton *playPauseButton;
+  IBOutlet UIActivityIndicatorView *waitForPlaySpinner;
 	IBOutlet UILabel *artistLabel;
 	IBOutlet UILabel *trackLabel;
 	IBOutlet UILabel *albumLabel;

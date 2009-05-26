@@ -54,6 +54,11 @@
   return [NSString stringWithFormat:@"ID: %s", _id];
 }
 
+-(BOOL)isEqual:(SpotId*)other;
+{
+  return [self hash] == [other hash];
+}
+
 -(NSInteger)hash;
 {
   return [[NSString stringWithCString:_id] hash];

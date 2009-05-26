@@ -19,6 +19,7 @@
 #import "SpotArtist.h"
 #import "SpotAlbum.h"
 #import "SpotTrack.h"
+#import "SpotSearch.h"
 
 #import <UIKit/UIKit.h>
 
@@ -174,5 +175,37 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
   if(track) return [[[SpotTrack alloc] initWithTrack:track] autorelease];
   return nil;
 }
+
+#pragma mark Get by uri
+-(SpotAlbum*)albumByURI:(SpotURI*)uri;
+{
+  struct album_browse* ab = despotify_link_get_album(session, uri.link);
+  return [[[SpotAlbum alloc] initWithAlbumBrowse:ab] autorelease];
+}
+
+-(SpotAlbum*)artistByURI:(SpotURI*)uri;
+{
+  struct artist_browse* ab = despotify_link_get_artist(session, uri.link);
+  return [[[SpotArtist alloc] initWithArtistBrowse:ab] autorelease];
+}
+
+-(SpotAlbum*)trackByURI:(SpotURI*)uri;
+{
+  struct track* track = despotify_link_get_track(session, uri.link);
+  return [[[SpotTrack alloc] initWithTrack:track] autorelease];
+}
+
+-(SpotAlbum*)playlistByURI:(SpotURI*)uri;
+{
+  struct playlist* pl = despotify_link_get_playlist(session, uri.link);
+  return [[[SpotPlaylist alloc] initWithPlaylist:pl] autorelease];
+}
+
+-(SpotAlbum*)searchByURI:(SpotURI*)uri;
+{
+  struct search_result* sr = despotify_link_get_search(session, uri.link);
+  return [[[SpotSearch alloc] initWithSearchResult:sr] autorelease];
+}
+
 
 @end
