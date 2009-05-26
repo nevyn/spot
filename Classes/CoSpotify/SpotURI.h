@@ -31,14 +31,16 @@ typedef enum {
 }
 
 +(SpotURI*)uriWithId:(SpotId*)id;
-+(SpotURI*)uriWithURI:(char *)uri;
++(SpotURI*)uriWithURI:(const char *)uri;
++(SpotURI*)uriWithString:(NSString *)string;
 
--(id)initWithURI:(char*)uri;
+-(id)initWithURI:(const char*)uri;
 
 @property (readonly, nonatomic) SpotLinkType type;
 @property (readonly, nonatomic) NSString *uri;
 @property (readonly, nonatomic) NSString *url;
 @property (readonly, nonatomic) struct link *link;
+@property (readonly, nonatomic) NSString *typeString;
 
 @end
 

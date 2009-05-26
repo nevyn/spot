@@ -7,7 +7,7 @@ All dependencies are bundled.
 
 Known bugs
 ------------------------
-- Playlists don't work
+- Playlists don't work (despotify need fixing)
 
 
 TODO

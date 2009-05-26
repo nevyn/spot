@@ -18,6 +18,7 @@
 
 @synthesize window, loginNav, tabs;
 
+#import "SpotURI.h"
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -25,7 +26,6 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {   
 	
 	///// Prepare the main UI
-	
 	// Warm it up
 	[[PlayViewController defaultController] view];
 	

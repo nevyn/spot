@@ -145,7 +145,7 @@
 
 -(SpotId*)id;
 {
-  return [SpotId playlistId:playlist.playlist_id];
+  return [SpotId playlistId:(char*)playlist.playlist_id];
 }
 
 -(SpotURI*)uri;

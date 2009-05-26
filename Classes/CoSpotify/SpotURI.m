@@ -25,13 +25,33 @@
   return [SpotURI uriWithURI:uri];
 }
 
-+(SpotURI*)uriWithURI:(char *)uri;
++(SpotURI*)uriWithURI:(const char *)uri;
 {
   return [[[SpotURI alloc] initWithURI:uri] autorelease];
 }
 
++(SpotURI*)uriWithURL:(NSURL *)url;
+{
+  NSArray *a = [[url path] componentsSeparatedByString:@"/"];
+  NSString *typestr = [a objectAtIndex:1];
+  NSString *arg = [a objectAtIndex:2];
+  const char *ctypestr = [typestr cStringUsingEncoding:NSASCIIStringEncoding];
+  const char *carg = [arg cStringUsingEncoding:NSASCIIStringEncoding];
+  char uri[256];
+  sprintf(uri, "spotify:%s:%s", ctypestr, carg);
+  return [[[SpotURI alloc] initWithURI:uri] autorelease];
+}
 
--(id)initWithURI:(char*)uri_;
++(SpotURI*)uriWithString:(NSString *)string;
+{
+  if([string hasPrefix:@"spotify:"])
+    return [SpotURI uriWithURI:[string cStringUsingEncoding:NSASCIIStringEncoding]];
+  else if([string hasPrefix:@"http://"])
+    return [SpotURI uriWithURL:[NSURL URLWithString:string]];
+  return nil;
+}
+
+-(id)initWithURI:(const char*)uri_;
 {
   if( ! [super init] ) return nil;
   strcpy(uriBuffer, uri_);
@@ -56,9 +76,9 @@
   return [NSString stringWithCString:link->uri encoding:NSASCIIStringEncoding];
 }
 
--(NSString *)url;
+-(NSString *)typeString;
 {
-  char *typestrings[6] = {
+  static char *typestrings[6] = {
     "",
     "album",
     "artist",
@@ -66,7 +86,17 @@
     "search",
     "track"
   };
-  return [NSString stringWithFormat:@"http://open.spotify.com/%s/%s", typestrings[link->type], link->arg];
+  return [NSString stringWithUTF8String:typestrings[link->type]];
+}
+
+-(NSString *)url;
+{
+  return [NSString stringWithFormat:@"http://open.spotify.com/%@/%s", [self typeString], link->arg];
+}
+
+-(NSString *)description;
+{
+  return [NSString stringWithFormat:@"<SpotURI type:%@ arg:%s uri:%@ url:%@>", [self typeString], link->arg, [self uri], [self url]];
 }
 
 @end
