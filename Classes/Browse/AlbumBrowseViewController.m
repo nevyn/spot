@@ -22,6 +22,7 @@
   album = [album_ retain];
   self.title = album.name;
   
+  
 	return self;
 	
 }
@@ -47,13 +48,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
-  
   if(album.coverId){
-    UIImage *image = [[SpotSession defaultSession] imageById:album.coverId];
-    [albumArt setImage:image];
+    albumArt.artId = album.coverId;
   }
   [albumName setText:album.name];
   [popularity setValue:album.popularity];
+  
+  playlistDataSource.playlist = album.playlist;
+  [tracks reloadData];
 }
 
 
@@ -86,48 +88,14 @@
 
 #pragma mark Table view callbacks
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
-}
-
-// Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
-{
-  return [album.tracks count];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
-{
-	return @"Tracks";
-}
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView_ cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-{
-  static NSString *CellIdentifier = @"Cell";
-  
-  UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
-  if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-  }
-  
-	int idx = [indexPath indexAtPosition:1]; idx = idx;
-  SpotTrack *track = [album.tracks objectAtIndex:idx];
-  cell.accessoryType = track.playable ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
-  cell.text = [NSString stringWithFormat:@"%d. %@", track.number, track.title];
-  
-  return cell;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	int idx = [indexPath indexAtPosition:1];
   
   SpotTrack *track = [album.tracks objectAtIndex:idx];
   if(track.playable){
-    PlayViewController *player = [PlayViewController defaultController];
-    [player playTrack:track];
-    [self.navigationController pushViewController:player animated:YES];
+    [[SpotSession defaultSession].player playPlaylist:track.playlist firstTrack:track];
+    [self.navigationController pushViewController:[PlayViewController defaultController] animated:YES];
   }
 //  [[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
 }

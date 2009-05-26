@@ -33,7 +33,7 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 
 
 @implementation SpotSession
-@synthesize loggedIn, session;
+@synthesize loggedIn, session, player;
 
 +(SpotSession*)defaultSession;
 {
@@ -59,14 +59,18 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 		[self release];
 		return nil;
 	}
+  
+  player = [[SpotPlayer alloc] initWithSession:self];
 	
 	self.loggedIn = NO;
 	
 	return self;
 }
+
 -(void)dealloc;
 {
 	NSLog(@"Logged out");
+  [player release];
 	despotify_exit(session);
 	despotify_cleanup();
 	[super dealloc];

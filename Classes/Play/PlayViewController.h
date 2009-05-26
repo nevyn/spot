@@ -8,27 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "SpotPlaylist.h"
+#import "SpotImageView.h"
+#import "SpotPlaylistTableViewDataSource.h"
 
 @interface PlayViewController : UIViewController {
-	SpotPlaylist *currentPlaylist;
-	SpotTrack *currentTrack;
-  
+
   BOOL isPlaying;
 	
 	IBOutlet UIButton *playPauseButton;
 	IBOutlet UILabel *artistLabel;
 	IBOutlet UILabel *trackLabel;
 	IBOutlet UILabel *albumLabel;
+  
+  IBOutlet SpotPlaylistTableViewDataSource *playlistDataSource;
 	
-	IBOutlet UIImageView *albumArt;
+	IBOutlet SpotImageView *albumArt;
   IBOutlet UITableView *trackList;
   IBOutlet UIView *flipView;
 }
 +defaultController;
-
--(void)playPlaylist:(SpotPlaylist*)playlist;
--(void)playPlaylist:(SpotPlaylist*)playlist startingAtTrack:(SpotTrack*)track;
--(void)playTrack:(SpotTrack*)track;
 
 -(IBAction)togglePlaying:(id)sender;
 -(IBAction)pause;
@@ -39,7 +37,6 @@
 //-(IBAction)takeLooping:(id)sender;
 //-(IBAction)takeShuffling:(id)sender;
 
-@property (readonly, retain, nonatomic) SpotPlaylist *currentPlaylist;
-@property (readonly, retain, nonatomic) SpotTrack *currentTrack;
-@property (readonly, nonatomic) BOOL playing;
+-(void)playerNotification:(NSNotification*)n;
+
 @end

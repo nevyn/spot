@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "despotify.h"
 #import "SpotId.h"
+#import "SpotPlayer.h"
 
 @class SpotArtist;
 @class SpotAlbum;
@@ -17,6 +18,8 @@
 @interface SpotSession : NSObject {
 	struct despotify_session *session;
 	BOOL loggedIn;
+  
+  SpotPlayer *player;
 }
 +(SpotSession*)defaultSession;
 -(void)cleanup;
@@ -38,6 +41,7 @@
 @property (readonly) NSString *serverHost;
 @property (readonly) NSUInteger serverPort;
 @property (readonly) NSDate *lastPing;
+@property (readonly) SpotPlayer *player;
 
 @property (readonly) struct despotify_session *session;
 @end

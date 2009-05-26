@@ -158,9 +158,8 @@ enum {
     } break;
 		case TracksSection: {
 			SpotTrack *track = [searchResults.tracks objectAtIndex:idx];
-			PlayViewController *player = [PlayViewController defaultController];
-			[player playTrack:track];
-			[self.navigationController pushViewController:player animated:YES];
+			[[SpotSession defaultSession].player playTrack:track rewind:NO];
+			[self.navigationController pushViewController:[PlayViewController defaultController] animated:YES];
 		} break;
 		case ArtistsSection: {
 			SpotArtist *artist = [searchResults.artists objectAtIndex:idx];

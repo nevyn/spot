@@ -91,4 +91,9 @@
   return [playlist trackBefore:self];
 }
 
+-(NSUInteger)hash;
+{
+  return [self.id hash];
+}
+
 @end

@@ -126,4 +126,9 @@
   return [NSString stringWithCString:artistBrowse.text];
 }
 
+-(NSInteger)hash;
+{
+  return [self.id hash];
+}
+
 @end

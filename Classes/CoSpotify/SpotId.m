@@ -54,4 +54,9 @@
   return [NSString stringWithFormat:@"ID: %s", _id];
 }
 
+-(NSInteger)hash;
+{
+  return [[NSString stringWithCString:_id] hash];
+}
+
 @end

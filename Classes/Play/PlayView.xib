@@ -207,16 +207,16 @@
 						<float key="IBUIMinimumFontSize">1.000000e+01</float>
 						<int key="IBUITextAlignment">1</int>
 					</object>
-					<object class="IBUIView" id="669966045">
+					<object class="IBUIView" id="448823421">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUITableView" id="82871569">
-								<reference key="NSNextResponder" ref="669966045"/>
+							<object class="IBUITableView" id="803104920">
+								<reference key="NSNextResponder" ref="448823421"/>
 								<int key="NSvFlags">-2147483374</int>
 								<string key="NSFrameSize">{215, 217}</string>
-								<reference key="NSSuperview" ref="669966045"/>
+								<reference key="NSSuperview" ref="448823421"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
@@ -232,11 +232,11 @@
 								<float key="IBUISectionHeaderHeight">2.200000e+01</float>
 								<float key="IBUISectionFooterHeight">2.200000e+01</float>
 							</object>
-							<object class="IBUIImageView" id="287346085">
-								<reference key="NSNextResponder" ref="669966045"/>
+							<object class="IBUIImageView" id="275088530">
+								<reference key="NSNextResponder" ref="448823421"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{215, 217}</string>
-								<reference key="NSSuperview" ref="669966045"/>
+								<string key="NSFrame">{{8, 8}, {215, 217}}</string>
+								<reference key="NSSuperview" ref="448823421"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
@@ -250,11 +250,11 @@
 									<string key="NSResourceName">icon.png</string>
 								</object>
 							</object>
-							<object class="IBUIButton" id="368879569">
-								<reference key="NSNextResponder" ref="669966045"/>
+							<object class="IBUIButton" id="156178219">
+								<reference key="NSNextResponder" ref="448823421"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{194, 195}, {18, 19}}</string>
-								<reference key="NSSuperview" ref="669966045"/>
+								<reference key="NSSuperview" ref="448823421"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -293,6 +293,7 @@
 				</object>
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 			</object>
+			<object class="IBUICustomObject" id="1054795357"/>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -368,7 +369,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">albumArt</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="287346085"/>
+						<reference key="destination" ref="275088530"/>
 					</object>
 					<int key="connectionID">29</int>
 				</object>
@@ -376,7 +377,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">trackList</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="82871569"/>
+						<reference key="destination" ref="803104920"/>
 					</object>
 					<int key="connectionID">30</int>
 				</object>
@@ -384,34 +385,42 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">flipView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="669966045"/>
+						<reference key="destination" ref="448823421"/>
 					</object>
 					<int key="connectionID">31</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">flip</string>
+						<reference key="source" ref="156178219"/>
+						<reference key="destination" ref="448823421"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">39</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">dataSource</string>
-						<reference key="source" ref="82871569"/>
-						<reference key="destination" ref="372490531"/>
+						<reference key="source" ref="803104920"/>
+						<reference key="destination" ref="1054795357"/>
 					</object>
-					<int key="connectionID">32</int>
+					<int key="connectionID">41</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playlistDataSource</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1054795357"/>
+					</object>
+					<int key="connectionID">42</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="82871569"/>
+						<reference key="source" ref="803104920"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
-					<int key="connectionID">33</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">flip</string>
-						<reference key="source" ref="368879569"/>
-						<reference key="destination" ref="669966045"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">39</int>
+					<int key="connectionID">44</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -437,7 +446,7 @@
 							<reference ref="346239068"/>
 							<reference ref="1026199428"/>
 							<reference ref="288898960"/>
-							<reference ref="669966045"/>
+							<reference ref="448823421"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -489,29 +498,34 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">26</int>
-						<reference key="object" ref="669966045"/>
+						<reference key="object" ref="448823421"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="82871569"/>
-							<reference ref="287346085"/>
-							<reference ref="368879569"/>
+							<reference ref="156178219"/>
+							<reference ref="803104920"/>
+							<reference ref="275088530"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">27</int>
-						<reference key="object" ref="82871569"/>
-						<reference key="parent" ref="669966045"/>
+						<reference key="object" ref="803104920"/>
+						<reference key="parent" ref="448823421"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">28</int>
-						<reference key="object" ref="287346085"/>
-						<reference key="parent" ref="669966045"/>
+						<reference key="object" ref="275088530"/>
+						<reference key="parent" ref="448823421"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">37</int>
-						<reference key="object" ref="368879569"/>
-						<reference key="parent" ref="669966045"/>
+						<reference key="object" ref="156178219"/>
+						<reference key="parent" ref="448823421"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">40</int>
+						<reference key="object" ref="1054795357"/>
+						<reference key="parent" ref="360949347"/>
 					</object>
 				</object>
 			</object>
@@ -529,8 +543,11 @@
 					<string>26.CustomClassName</string>
 					<string>26.IBPluginDependency</string>
 					<string>27.IBPluginDependency</string>
+					<string>28.CustomClassName</string>
 					<string>28.IBPluginDependency</string>
 					<string>37.IBPluginDependency</string>
+					<string>40.CustomClassName</string>
+					<string>40.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
@@ -548,7 +565,10 @@
 					<string>FlipView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>SpotImageView</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>SpotPlaylistTableViewDataSource</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -576,7 +596,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">39</int>
+			<int key="maxID">44</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -624,16 +644,18 @@
 							<string>artistLabel</string>
 							<string>flipView</string>
 							<string>playPauseButton</string>
+							<string>playlistDataSource</string>
 							<string>trackLabel</string>
 							<string>trackList</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UIImageView</string>
+							<string>SpotImageView</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UIView</string>
 							<string>UIButton</string>
+							<string>SpotPlaylistTableViewDataSource</string>
 							<string>UILabel</string>
 							<string>UITableView</string>
 						</object>
@@ -641,6 +663,22 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/Play/PlayViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SpotImageView</string>
+					<string key="superclassName">UIImageView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/Browse/SpotImageView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SpotPlaylistTableViewDataSource</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/SpotPlaylistTableViewDataSource.h</string>
 					</object>
 				</object>
 			</object>

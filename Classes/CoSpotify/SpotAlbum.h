@@ -42,5 +42,6 @@
 //browse only
 @property (readonly) int year;
 @property (readonly) NSArray *tracks;
+@property (readonly) SpotPlaylist *playlist;
            
 @end

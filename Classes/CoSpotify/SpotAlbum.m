@@ -12,7 +12,7 @@
 
 @implementation SpotAlbum
 
-@synthesize browsing;
+@synthesize browsing, playlist;
 
 -(id)initWithAlbum:(struct album*)album_;
 {
@@ -78,5 +78,9 @@
 -(int) year; { return browsing ? albumBrowse.year : 0; }
 -(NSArray *)tracks; { return tracks; } 
 
+-(NSInteger)hash;
+{
+  return [self.id hash];
+}
 
 @end

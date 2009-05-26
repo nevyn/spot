@@ -44,5 +44,6 @@
 @property (readonly) SpotTrack *nextTrack; //next in playlist
 @property (readonly) SpotTrack *prevTrack; //next in playlist
 
+-(NSUInteger)hash;
 
 @end

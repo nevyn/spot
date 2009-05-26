@@ -14,8 +14,7 @@
 PlayViewController *GlobalPlayViewController;
 
 @interface PlayViewController ()
-@property (readwrite, retain, nonatomic) SpotPlaylist *currentPlaylist;
-@property (readwrite, retain, nonatomic) SpotTrack *currentTrack;
+@property (readonly) SpotPlayer * defaultPlayer;
 @end
 
 
@@ -48,12 +47,15 @@ PlayViewController *GlobalPlayViewController;
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
+  
+  //register self as observer for the default player
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerNotification:) name:nil object:[self defaultPlayer]];
 }
-*/
+
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -77,7 +79,8 @@ PlayViewController *GlobalPlayViewController;
 
 
 - (void)dealloc {
-    [super dealloc];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [super dealloc];
 }
 
 #pragma mark
@@ -93,42 +96,12 @@ PlayViewController *GlobalPlayViewController;
 	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
--(void)selectTrack;
+-(void)selectCurrentTrack;
 {
-  if(currentPlaylist && currentTrack){
-    int idx = [currentPlaylist.tracks indexOfObject:currentTrack];
+  if(self.defaultPlayer.currentPlaylist && self.defaultPlayer.currentTrack){
+    int idx = [self.defaultPlayer.currentPlaylist.tracks indexOfObject:self.defaultPlayer.currentTrack];
     [trackList selectRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
   }
-}
-
-
-#pragma mark 
-#pragma mark Playing
--(void)playPlaylist:(SpotPlaylist*)playlist;
-{
-	[self playPlaylist:playlist startingAtTrack:nil];
-}
--(void)playPlaylist:(SpotPlaylist*)playlist startingAtTrack:(SpotTrack*)track;
-{
-	if(!playlist) {
-		if(track.playlist)
-			playlist = track.playlist;
-		else
-			playlist = [[[SpotPlaylist alloc] initWithTrack:track] autorelease];
-	}
-	
-	if(!track)
-		track = [playlist.tracks objectAtIndex:0];
-	
-	if( ! [playlist.tracks containsObject:track] )
-		[NSException raise:NSInvalidArgumentException format:@"The 'track' argument must be in the playlist given"];
-	
-	self.currentPlaylist = playlist;
-	self.currentTrack = track;
-}
--(void)playTrack:(SpotTrack*)track;
-{
-	[self playPlaylist:nil startingAtTrack:track];
 }
 
 
@@ -136,7 +109,7 @@ PlayViewController *GlobalPlayViewController;
 #pragma mark Actions
 -(IBAction)togglePlaying:(id)sender;
 {
-	if(!self.playing)
+	if(!self.defaultPlayer.isPlaying)
 		[self play];
 	else
 		[self pause];
@@ -144,122 +117,68 @@ PlayViewController *GlobalPlayViewController;
 }
 -(IBAction)pause;
 {
-	[playPauseButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
-  isPlaying = !despotify_pause([SpotSession defaultSession].session) && isPlaying;
+  [[SpotSession defaultSession].player pause];
 }
 
 -(IBAction)play;
 {
-	[playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
-  isPlaying = despotify_resume([SpotSession defaultSession].session);
+  [[SpotSession defaultSession].player play];
 }
 -(IBAction)next;
 {
-  SpotTrack *t = self.currentTrack.nextTrack;
-  if(!t) t = [self.currentTrack.playlist.tracks objectAtIndex:0];//TODO: if(repeat)
-  self.currentTrack = t;
-  [self selectTrack];
+  [[SpotSession defaultSession].player playNextTrack];
 }
 
 -(IBAction)prev;
 {
-  SpotTrack *t = self.currentTrack.prevTrack;
-  if(!t) t = [self.currentTrack.playlist.tracks lastObject];//TODO: if(repeat)
-	self.currentTrack = t;
-  [self selectTrack];
+  [[SpotSession defaultSession].player playPreviousTrack];
 }
 
-
-#pragma mark 
-#pragma mark Properties
-@synthesize currentPlaylist, currentTrack;
--(void)setCurrentPlaylist:(SpotPlaylist*)newList;
+-(void)showInfoForTrack:(SpotTrack*)track;
 {
-  [newList retain];
-  [currentPlaylist release];
-  currentPlaylist = newList;
-  [trackList reloadData];
+  artistLabel.text = track.artist.name;
+	trackLabel.text = track.title;
+	albumLabel.text = track.albumName;
+  albumArt.artId = track.coverId;
 }
 
-
-
--(void)setCurrentTrack:(SpotTrack*)newTrack;
+-(void)playerNotification:(NSNotification*)n;
 {
-  NSLog(@"setTrack %@", newTrack);
-	if(newTrack == currentTrack) return;
-	
-	if(!artistLabel) {
-		NSLog(@"Hmmm");
-	}
-	despotify_stop([SpotSession defaultSession].session);
-	[newTrack retain];
-	[currentTrack release];
-	currentTrack = newTrack;
-	if( ! newTrack )
-		return;
-	
-	artistLabel.text = newTrack.artist.name;
-	trackLabel.text = newTrack.title;
-	albumLabel.text = newTrack.albumName;
-  albumArt.image = newTrack.coverImage;
-  NSLog(@"playing %@", newTrack);
-  
-	isPlaying = despotify_play([SpotSession defaultSession].session, newTrack.track, NO);
-	// todo: notice end of song and play next
-
-  [self selectTrack];
-}
-
--(BOOL)playing;
-{
-	return isPlaying;
-}
-
-
-#pragma mark Table view callbacks
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
-}
-
-// Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
-{
-  return [currentPlaylist.tracks count];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
-{
-  return currentPlaylist.name;
-}
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView_ cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-{
-  static NSString *CellIdentifier = @"Cell";
-  
-  UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
-  if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+  NSLog(@"PlayerView got notification %@", n);
+  if([[n name] isEqual:@"play"]){
+    [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
   }
-  
-	int idx = [indexPath indexAtPosition:1]; idx = idx;
-  SpotTrack *track = [currentPlaylist.tracks objectAtIndex:idx];
-  cell.accessoryType = track.playable ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
-  cell.text = [NSString stringWithFormat:@"%@", track.title];
-  
-  return cell;
+  if([[n name] isEqual:@"pause"]){
+    	[playPauseButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
+  }
+  if([[n name] isEqual:@"stop"]){
+      [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
+  }
+  if([[n name] isEqual:@"playlist"]){
+    playlistDataSource.playlist = [[n userInfo] valueForKey:@"playlist"];
+    [trackList reloadData];
+  }
+  if([[n name] isEqual:@"track"]){
+    [self showInfoForTrack:[[n userInfo] valueForKey:@"track"]];
+    [trackList reloadData];
+  }
 }
+
+-(SpotPlayer *)defaultPlayer;
+{
+  return [SpotSession defaultSession].player;
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	int idx = [indexPath indexAtPosition:1];
-  
-  SpotTrack *track = [currentPlaylist.tracks objectAtIndex:idx];
+  SpotTrack *track = [playlistDataSource.playlist.tracks objectAtIndex:idx];
   if(track.playable){
-    self.currentTrack = nil;
-    self.currentTrack = track;
+    [[SpotSession defaultSession].player playTrack:track rewind:YES];
   }
 }
+
+
 
 @end

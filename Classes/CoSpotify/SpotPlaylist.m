@@ -123,5 +123,10 @@
   playlist.num_tracks = [tracks count];
 }
 
+-(NSInteger)hash;
+{
+  return [[NSString stringWithFormat:@"%@%@", self.author, self.name] hash];
+}
+
 @end
 

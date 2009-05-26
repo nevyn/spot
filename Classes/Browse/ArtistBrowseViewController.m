@@ -37,8 +37,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   if(artist.portraitId){
-    UIImage *image = [[SpotSession defaultSession] imageById:artist.portraitId];
-    [portrait setImage:image];
+    portrait.artId = artist.portraitId;
   }
   NSString *html = [NSString stringWithFormat:@"<html><body>%@</body></html>", artist.text];
   NSLog(@"html: %@", html);
