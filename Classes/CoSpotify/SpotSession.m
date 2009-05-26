@@ -16,6 +16,12 @@
 #include <unistd.h>
 #include <wchar.h>
 
+#import "SpotArtist.h"
+#import "SpotAlbum.h"
+#import "SpotTrack.h"
+#import "SpotSearch.h"
+
+#import <UIKit/UIKit.h>
 
 SpotSession *SpotSessionSingleton;
 
@@ -28,7 +34,7 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 
 
 @implementation SpotSession
-@synthesize loggedIn, session;
+@synthesize loggedIn, session, player;
 
 +(SpotSession*)defaultSession;
 {
@@ -54,14 +60,18 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 		[self release];
 		return nil;
 	}
+  
+  player = [[SpotPlayer alloc] initWithSession:self];
 	
 	self.loggedIn = NO;
 	
 	return self;
 }
+
 -(void)dealloc;
 {
 	NSLog(@"Logged out");
+  [player release];
 	despotify_exit(session);
 	despotify_cleanup();
 	[super dealloc];
@@ -130,4 +140,72 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 {
 	return [NSDate dateWithTimeIntervalSince1970:session->user_info->last_ping];
 }
+
+#pragma mark Get by id functions
+
+-(SpotArtist *)artistById:(SpotId *)id;
+{
+  struct artist_browse *artist = despotify_get_artist(session, id.id);
+  if(artist) return [[[SpotArtist alloc] initWithArtistBrowse:artist] autorelease];
+  return nil;
+}
+
+-(void *)imageById:(SpotId*)id;
+{
+  int len = 0;
+  void *jpegdata = despotify_get_image(session, id.id, &len);
+  if(len > 0){
+    UIImage *image = [UIImage imageWithData:[NSData dataWithBytes:jpegdata length:len]];
+    free(jpegdata);
+    return image;
+  } 
+  return nil;
+}
+
+-(SpotAlbum *)albumById:(SpotId *)id;
+{
+  struct album_browse *ab = despotify_get_album(session, id.id);
+  if(ab) return [[[SpotAlbum alloc] initWithAlbumBrowse:ab] autorelease];
+  return nil;
+}
+
+-(SpotTrack *)trackById:(SpotId *)id;
+{
+  struct track *track = despotify_get_track(session, id.id);
+  if(track) return [[[SpotTrack alloc] initWithTrack:track] autorelease];
+  return nil;
+}
+
+#pragma mark Get by uri
+-(SpotAlbum*)albumByURI:(SpotURI*)uri;
+{
+  struct album_browse* ab = despotify_link_get_album(session, uri.link);
+  return [[[SpotAlbum alloc] initWithAlbumBrowse:ab] autorelease];
+}
+
+-(SpotAlbum*)artistByURI:(SpotURI*)uri;
+{
+  struct artist_browse* ab = despotify_link_get_artist(session, uri.link);
+  return [[[SpotArtist alloc] initWithArtistBrowse:ab] autorelease];
+}
+
+-(SpotAlbum*)trackByURI:(SpotURI*)uri;
+{
+  struct track* track = despotify_link_get_track(session, uri.link);
+  return [[[SpotTrack alloc] initWithTrack:track] autorelease];
+}
+
+-(SpotAlbum*)playlistByURI:(SpotURI*)uri;
+{
+  struct playlist* pl = despotify_link_get_playlist(session, uri.link);
+  return [[[SpotPlaylist alloc] initWithPlaylist:pl] autorelease];
+}
+
+-(SpotAlbum*)searchByURI:(SpotURI*)uri;
+{
+  struct search_result* sr = despotify_link_get_search(session, uri.link);
+  return [[[SpotSearch alloc] initWithSearchResult:sr] autorelease];
+}
+
+
 @end

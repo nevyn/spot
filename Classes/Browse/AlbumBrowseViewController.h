@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "SpotAlbum.h"
+#import "SpotImageView.h"
+#import "SpotPlaylistTableViewDataSource.h"
 
-@interface AlbumBrowseViewController : UIViewController {
-	
+@interface AlbumBrowseViewController : UIViewController <UITableViewDelegate> {
+  SpotAlbum *album;
+  IBOutlet SpotPlaylistTableViewDataSource *playlistDataSource;
+	IBOutlet SpotImageView *albumArt;
+  IBOutlet UILabel *albumName;
+  IBOutlet UITableView *tracks;
+  IBOutlet UISlider *popularity;
 }
 -(id)initBrowsingAlbum:(SpotAlbum*)album;
+
 @end

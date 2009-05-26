@@ -7,14 +7,22 @@
 //
 
 #import "AlbumBrowseViewController.h"
-
+#import "SpotSession.h"
+#import "SpotTrack.h"
+#import "PlayViewController.h"
 
 @implementation AlbumBrowseViewController
--(id)initBrowsingAlbum:(SpotAlbum*)album;
+-(id)initBrowsingAlbum:(SpotAlbum*)album_;
 {
 	if( ! [super initWithNibName:@"AlbumBrowseView" bundle:nil])
 		return nil;
-	
+  
+  //load full profile
+  if(!album_.browsing) album_ = [album_ moreInfo];
+  album = [album_ retain];
+  self.title = album.name;
+  
+  
 	return self;
 	
 }
@@ -35,12 +43,21 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+  
+  if(album.coverId){
+    albumArt.artId = album.coverId;
+  }
+  [albumName setText:album.name];
+  [popularity setValue:album.popularity];
+  
+  playlistDataSource.playlist = album.playlist;
+  [tracks reloadData];
 }
-*/
+
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -64,8 +81,25 @@
 
 
 - (void)dealloc {
-    [super dealloc];
+  [album release];
+  [super dealloc];
 }
+
+
+#pragma mark Table view callbacks
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	int idx = [indexPath indexAtPosition:1];
+  
+  SpotTrack *track = [album.tracks objectAtIndex:idx];
+  if(track.playable){
+    [[SpotSession defaultSession].player playPlaylist:track.playlist firstTrack:track];
+    [self.navigationController pushViewController:[PlayViewController defaultController] animated:YES];
+  }
+//  [[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
+}
+
 
 
 @end

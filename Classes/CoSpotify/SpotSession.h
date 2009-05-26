@@ -8,10 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "despotify.h"
+#import "SpotId.h"
+#import "SpotPlayer.h"
+#import "SpotURI.h"
+
+@class SpotArtist;
+@class SpotAlbum;
+@class SpotTrack;
 
 @interface SpotSession : NSObject {
 	struct despotify_session *session;
 	BOOL loggedIn;
+  
+  SpotPlayer *player;
 }
 +(SpotSession*)defaultSession;
 -(void)cleanup;
@@ -19,6 +28,17 @@
 -(BOOL)authenticate:(NSString *)user password:(NSString*)password error:(NSError**)error;
 
 -(NSArray*)playlists;
+
+-(SpotArtist *)artistById:(SpotId *)id_;
+-(void *)imageById:(SpotId*)id;
+-(SpotAlbum *)albumById:(SpotId *)id;
+-(SpotTrack *)trackById:(SpotId *)id;
+
+-(SpotAlbum*)albumByURI:(SpotURI*)uri;
+-(SpotAlbum*)artistByURI:(SpotURI*)uri;
+-(SpotAlbum*)trackByURI:(SpotURI*)uri;
+-(SpotAlbum*)playlistByURI:(SpotURI*)uri;
+-(SpotAlbum*)searchByURI:(SpotURI*)uri;
 
 @property (nonatomic, readonly) BOOL loggedIn;
 @property (readonly) NSString *username;
@@ -28,6 +48,7 @@
 @property (readonly) NSString *serverHost;
 @property (readonly) NSUInteger serverPort;
 @property (readonly) NSDate *lastPing;
+@property (readonly) SpotPlayer *player;
 
 @property (readonly) struct despotify_session *session;
 @end

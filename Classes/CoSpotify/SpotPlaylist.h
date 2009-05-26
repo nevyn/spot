@@ -8,14 +8,34 @@
 
 #import <Foundation/Foundation.h>
 #import "despotify.h"
+#import "SpotItem.h"
+
 @class SpotTrack;
-@interface SpotPlaylist : NSObject {
+@class SpotId;
+@class SpotURI;
+
+@interface SpotPlaylist : SpotItem {
 	struct playlist playlist;
 	NSArray *tracks;
 }
 -(id)initWithPlaylist:(struct playlist*)playlist_;
 -(id)initWithTrack:(SpotTrack*)track;
 
+-(SpotTrack*) trackBefore:(SpotTrack*)current;
+-(SpotTrack*) trackAfter:(SpotTrack*)current;
+
+
 @property (readwrite, copy) NSString *name;
+@property (readonly) NSString *author;
+@property (readwrite) BOOL collaborative;
 @property (readonly) NSArray *tracks;
+
+@end
+
+@interface SpotMutablePlaylist : SpotPlaylist {
+
+}
+
+-(void) addTrack:(SpotTrack*)track;
+
 @end

@@ -10,6 +10,7 @@
 #import "SpotSession.h"
 #import "SpotArtist.h"
 #import "SpotTrack.h"
+#import "SpotSearch.h"
 
 #import "AlbumBrowseViewController.h"
 #import "ArtistBrowseViewController.h"
@@ -68,15 +69,15 @@
 #pragma mark 
 #pragma mark Table view callbacks
 enum {
-	TracksSection,
+  SuggestionSection,
 	ArtistsSection,
-	AlbumsSection
+	AlbumsSection,
+  TracksSection
 };
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if( ! [SpotSession defaultSession].loggedIn || !searchResults) return 1;
-	
-	return 2;
+	return 4;
 }
 
 
@@ -86,9 +87,10 @@ enum {
 	if( ! [SpotSession defaultSession].loggedIn || !searchResults) return 0;
 	
 	switch (section) {
-		case ArtistsSection: return resultArtists.count;
-		case TracksSection: return resultPlaylist.tracks.count;
-		case AlbumsSection: return searchResults->total_albums;
+    case SuggestionSection: return searchResults.suggestion ? 1 : 0;
+		case ArtistsSection: return searchResults.artists.count;
+		case TracksSection:  return searchResults.tracks.count;
+		case AlbumsSection:  return searchResults.albums.count;
 	}
 	return 0;	
 }
@@ -98,6 +100,7 @@ enum {
 	if( ! [SpotSession defaultSession].loggedIn || !searchResults) return @"Search results";
 	
 	switch (section) {
+    case SuggestionSection: return @"Did you mean";
 		case ArtistsSection: return @"Artists";
 		case TracksSection: return @"Tracks";
 		case AlbumsSection: return @"Albums";
@@ -115,31 +118,33 @@ enum {
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
-	
+
+
 	int idx = [indexPath indexAtPosition:1]; idx = idx;
 	switch([indexPath indexAtPosition:0]) {
+    case SuggestionSection:{			
+			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+			cell.text = searchResults.suggestion;
+    } break;
 		case ArtistsSection: {
-			SpotArtist *artist = [resultArtists objectAtIndex:idx];
+			SpotArtist *artist = [searchResults.artists objectAtIndex:idx];
 			
 			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 			cell.text = artist.name;
 		} break;
 		case TracksSection: {
-			SpotTrack *track = [resultPlaylist.tracks objectAtIndex:idx];
+			SpotTrack *track = [searchResults.tracks objectAtIndex:idx];
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-			cell.text = [NSString stringWithFormat:@"%@ - %@", track.artist.name, track.title];
+			cell.text = [NSString stringWithFormat:@"%@", track.title];
 		} break;
 		case AlbumsSection: {
-			
+			SpotAlbum *album = [searchResults.albums objectAtIndex:idx];
 			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-			cell.text = @"An album";
+      cell.text = [NSString stringWithFormat:@"%@ by %@", album.name, album.artistName];
 		} break;
 	}
 	
-	// Configure the cell. 
-
-	
-    return cell;
+  return cell;
 }
 
 
@@ -147,20 +152,22 @@ enum {
 {
 	int idx = [indexPath indexAtPosition:1];
 	switch([indexPath indexAtPosition:0]) {
+    case SuggestionSection:{
+      [searchBar setText:searchResults.suggestion];
+      [self doSearch];
+    } break;
 		case TracksSection: {
-			SpotTrack *track = [[resultPlaylist tracks] objectAtIndex:idx];
-			PlayViewController *player = [PlayViewController defaultController];
-			[player playTrack:track];
-			[self.navigationController pushViewController:player animated:YES];
+			SpotTrack *track = [searchResults.tracks objectAtIndex:idx];
+			[[SpotSession defaultSession].player playPlaylist:nil firstTrack:track];
+			[self.navigationController pushViewController:[PlayViewController defaultController] animated:YES];
 		} break;
 		case ArtistsSection: {
-			SpotArtist *artist = [resultArtists objectAtIndex:idx];
+			SpotArtist *artist = [searchResults.artists objectAtIndex:idx];
 			
 			[[self navigationController] pushViewController:[[[ArtistBrowseViewController alloc] initBrowsingArtist:artist] autorelease] animated:YES];
 		} break;
 		case AlbumsSection: {
-			SpotAlbum *album = nil;
-			
+			SpotAlbum *album = [searchResults.albums objectAtIndex:idx];
 			[[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
 			break;
 		}
@@ -178,46 +185,30 @@ enum {
 	// Do short search maybe
 }
 
+-(void)doSearch;
+{
+  // Do extensive search
+	[searchBar resignFirstResponder];
+	self.searchResults = nil;
+  //NSLog(@"searching");
+	self.searchResults = [SpotSearch searchFor:searchBar.text maxResults:50];
+}
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar_;  
 {
-	// Do extensive search
-	[searchBar resignFirstResponder];
-	
-	self.searchResults = NULL;
-	
-	self.searchResults = despotify_search([SpotSession defaultSession].session, (char*)[searchBar.text UTF8String], 50);
+  [self doSearch];
 }
 
 
 #pragma mark 
 #pragma mark Accessors
-@synthesize searchResults, resultPlaylist, resultArtists;
--(void)setSearchResults:(struct search_result*)searchResults_;
+@synthesize searchResults;
+-(void)setSearchResults:(SpotSearch*)searchResults_;
 {
-	// 1. Clean up
-	if(searchResults)
-		despotify_free_search(searchResults);
-	
-	self.resultPlaylist = nil;
-	self.resultArtists = nil;
-	
-	searchResults = searchResults_;
-	
-	
-	// No new results? Don't continue.
-	if(!searchResults) goto endSetSearchResults;
-	
-	
-	// 2. Setup the browsable structures
-	self.resultPlaylist = [[[SpotPlaylist alloc] initWithPlaylist:searchResults->playlist] autorelease];
-	
-	NSMutableArray *artists = [NSMutableArray array];
-	for(struct artist *art = searchResults->artists; art != NULL; art = art->next)
-		[artists addObject:[[[SpotArtist alloc] initWithArtist:art] autorelease]];
-	self.resultArtists = artists;
-	
-	
-endSetSearchResults:
+	[searchResults_ retain];
+  [searchResults release];
+  searchResults = searchResults_;
+  NSLog(@"SearchResults: %@", searchResults);
 	[tableView reloadData];
 }
 @end

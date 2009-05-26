@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "despotify.h"
 #import "SpotPlaylist.h"
+#import "SpotSearch.h"
 
 @interface SearchViewController : UIViewController
 	<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
@@ -16,11 +17,10 @@
 	IBOutlet UITableView *tableView;
 	IBOutlet UISearchBar *searchBar;
 	
-	struct search_result *searchResults;
-	SpotPlaylist *resultPlaylist;
-	NSArray *resultArtists;
+	SpotSearch *searchResults;
 }
-@property (nonatomic, assign) struct search_result *searchResults;
-@property (nonatomic, retain) SpotPlaylist *resultPlaylist;
-@property (nonatomic, retain) NSArray *resultArtists;
+-(void)doSearch;
+
+@property (nonatomic, assign) SpotSearch *searchResults;
+
 @end
