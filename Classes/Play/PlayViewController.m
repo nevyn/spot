@@ -147,6 +147,7 @@ PlayViewController *GlobalPlayViewController;
   NSLog(@"PlayerView got notification %@", n);
   if([[n name] isEqual:@"play"]){
     [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
+    [self selectCurrentTrack];
   }
   if([[n name] isEqual:@"pause"]){
     	[playPauseButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
@@ -157,10 +158,12 @@ PlayViewController *GlobalPlayViewController;
   if([[n name] isEqual:@"playlist"]){
     playlistDataSource.playlist = [[n userInfo] valueForKey:@"playlist"];
     [trackList reloadData];
+    [self selectCurrentTrack];
   }
   if([[n name] isEqual:@"track"]){
     [self showInfoForTrack:[[n userInfo] valueForKey:@"track"]];
     [trackList reloadData];
+    [self selectCurrentTrack];
   }
 }
 
