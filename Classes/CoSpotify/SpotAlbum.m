@@ -66,12 +66,12 @@
 
 #pragma mark shared
 -(SpotId *)id; { return [SpotId albumId:album.id]; }
--(NSString *)name; { return [NSString stringWithCString:album.name]; }
+-(NSString *)name; { return [NSString stringWithUTF8String:album.name]; }
 -(SpotId *)coverId; { return [SpotId coverId:album.cover_id]; }
 -(float) popularity; { return album.popularity; }
 
 #pragma mark artist only  
--(NSString *)artistName; { return browsing ? nil : [NSString stringWithCString:album.artist]; }
+-(NSString *)artistName; { return browsing ? nil : [NSString stringWithUTF8String:album.artist]; }
 -(SpotId *)artistId; { return browsing ? nil : [SpotId artistId:album.artist_id]; }
   
 #pragma mark browsing only

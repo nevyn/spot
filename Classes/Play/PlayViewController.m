@@ -257,6 +257,7 @@ PlayViewController *GlobalPlayViewController;
   
   SpotTrack *track = [currentPlaylist.tracks objectAtIndex:idx];
   if(track.playable){
+    self.currentTrack = nil;
     self.currentTrack = track;
   }
 }
