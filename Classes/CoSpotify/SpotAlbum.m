@@ -38,6 +38,7 @@
   album.popularity = albumBrowse.popularity;
   
   SpotMutablePlaylist *a_playlist = [[SpotMutablePlaylist alloc] init];
+  a_playlist.name = self.name;
   NSMutableArray *a_tracks = [[NSMutableArray alloc] initWithCapacity:albumBrowse.num_tracks];
   if(albumBrowse.num_tracks > 0){
     for(struct track *track = albumBrowse.tracks; track != NULL; track = track->next){

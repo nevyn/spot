@@ -93,6 +93,14 @@ PlayViewController *GlobalPlayViewController;
 	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
+-(void)selectTrack;
+{
+  if(currentPlaylist && currentTrack){
+    int idx = [currentPlaylist.tracks indexOfObject:currentTrack];
+    [trackList selectRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+  }
+}
+
 
 #pragma mark 
 #pragma mark Playing
@@ -132,32 +140,49 @@ PlayViewController *GlobalPlayViewController;
 		[self play];
 	else
 		[self pause];
+
 }
 -(IBAction)pause;
 {
 	[playPauseButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
+  isPlaying = !despotify_pause([SpotSession defaultSession].session) && isPlaying;
 }
+
 -(IBAction)play;
 {
 	[playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
+  isPlaying = despotify_resume([SpotSession defaultSession].session);
 }
 -(IBAction)next;
 {
   SpotTrack *t = self.currentTrack.nextTrack;
   if(!t) t = [self.currentTrack.playlist.tracks objectAtIndex:0];//TODO: if(repeat)
   self.currentTrack = t;
+  [self selectTrack];
 }
+
 -(IBAction)prev;
 {
   SpotTrack *t = self.currentTrack.prevTrack;
   if(!t) t = [self.currentTrack.playlist.tracks lastObject];//TODO: if(repeat)
 	self.currentTrack = t;
+  [self selectTrack];
 }
 
 
 #pragma mark 
 #pragma mark Properties
 @synthesize currentPlaylist, currentTrack;
+-(void)setCurrentPlaylist:(SpotPlaylist*)newList;
+{
+  [newList retain];
+  [currentPlaylist release];
+  currentPlaylist = newList;
+  [trackList reloadData];
+}
+
+
+
 -(void)setCurrentTrack:(SpotTrack*)newTrack;
 {
   NSLog(@"setTrack %@", newTrack);
@@ -179,13 +204,61 @@ PlayViewController *GlobalPlayViewController;
   albumArt.image = newTrack.coverImage;
   NSLog(@"playing %@", newTrack);
   
-	BOOL playing = despotify_play([SpotSession defaultSession].session, newTrack.track, NO);
-  NSLog(@"isplaying= %d", playing);
+	isPlaying = despotify_play([SpotSession defaultSession].session, newTrack.track, NO);
 	// todo: notice end of song and play next
+
+  [self selectTrack];
 }
 
 -(BOOL)playing;
 {
-	return self.currentTrack != nil;
+	return isPlaying;
 }
+
+
+#pragma mark Table view callbacks
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  return 1;
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+{
+  return [currentPlaylist.tracks count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
+{
+  return currentPlaylist.name;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView_ cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+  static NSString *CellIdentifier = @"Cell";
+  
+  UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (cell == nil) {
+    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+  }
+  
+	int idx = [indexPath indexAtPosition:1]; idx = idx;
+  SpotTrack *track = [currentPlaylist.tracks objectAtIndex:idx];
+  cell.accessoryType = track.playable ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
+  cell.text = [NSString stringWithFormat:@"%@", track.title];
+  
+  return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	int idx = [indexPath indexAtPosition:1];
+  
+  SpotTrack *track = [currentPlaylist.tracks objectAtIndex:idx];
+  if(track.playable){
+    self.currentTrack = track;
+  }
+}
+
 @end

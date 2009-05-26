@@ -18,7 +18,7 @@
   memset(&playlist, 0, sizeof(struct playlist));
 	tracks = [[NSMutableArray alloc] init];
 	playlist.num_tracks = 0;
-
+  self.name = @"Untitled";
   return self;
 }
 
@@ -74,6 +74,7 @@
 
 -(NSString*)name;
 {
+  if(strlen(playlist.name) == 0) return @"Untitled";
 	return [NSString stringWithUTF8String:playlist.name];
 }
 

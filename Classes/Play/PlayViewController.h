@@ -12,6 +12,8 @@
 @interface PlayViewController : UIViewController {
 	SpotPlaylist *currentPlaylist;
 	SpotTrack *currentTrack;
+  
+  BOOL isPlaying;
 	
 	IBOutlet UIButton *playPauseButton;
 	IBOutlet UILabel *artistLabel;
@@ -19,6 +21,8 @@
 	IBOutlet UILabel *albumLabel;
 	
 	IBOutlet UIImageView *albumArt;
+  IBOutlet UITableView *trackList;
+  IBOutlet UIView *flipView;
 }
 +defaultController;
 
