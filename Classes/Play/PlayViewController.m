@@ -137,9 +137,8 @@ PlayViewController *GlobalPlayViewController;
 
 -(void)showInfoForTrack:(SpotTrack*)track;
 {
-  NSLog(@"uri: '%@'", track.artist.uri.url);
-  artistLabel.text = track.artist.uri.url;
-	trackLabel.text = track.uri.url;
+  artistLabel.text = track.artist.name;
+	trackLabel.text = track.title;
 	albumLabel.text = track.albumName;
   albumArt.artId = track.coverId;
 }
