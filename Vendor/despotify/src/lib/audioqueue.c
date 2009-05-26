@@ -198,22 +198,29 @@ static void audio_callback (
 ) {
 	if(!state.mIsRunning) return;
 	
-	int samplesRead = pcm_read(
-		state.actx->pcmprivate, // Audio context
-		bufout->mAudioData, // Buffer
-		state.bufferByteSize, // Bytes to read
-		state.mDataFormat.mFormatFlags & kAudioFormatFlagIsBigEndian, // Big endian?
-		state.mDataFormat.mBitsPerChannel/8, // Word size?
-		TRUE, // Signed?
-		NULL
-	);
+	int totalSamplesRead = 0;
 	
-	if(samplesRead < 0) {
-		fprintf(stderr, "pcm_read failed: %d", samplesRead);
-		return;
+	while (totalSamplesRead < state.bufferByteSize) {
+
+		int samplesRead = pcm_read(
+			state.actx->pcmprivate, // Audio context
+			bufout->mAudioData + totalSamplesRead, // Buffer
+			state.bufferByteSize - totalSamplesRead, // Bytes to read
+			state.mDataFormat.mFormatFlags & kAudioFormatFlagIsBigEndian, // Big endian?
+			state.mDataFormat.mBitsPerChannel/8, // Word size?
+			TRUE, // Signed?
+			NULL
+		);
+		
+		if(samplesRead < 0) {
+			fprintf(stderr, "pcm_read failed: %d", samplesRead);
+			return;
+		}
+		
+		totalSamplesRead += samplesRead;
 	}
 
-	bufout->mAudioDataByteSize = samplesRead;
+	bufout->mAudioDataByteSize = totalSamplesRead;
 	AudioQueueEnqueueBuffer(state.mQueue, bufout, 0, NULL);
 	return;
 }
