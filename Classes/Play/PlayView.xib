@@ -149,7 +149,7 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">Yakira Yamaoka</string>
+						<string key="IBUIText">Artist</string>
 						<object class="NSFont" key="IBUIFont" id="1027873091">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">1.300000e+01</double>
@@ -175,7 +175,7 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">End of Small Sanctuary</string>
+						<string key="IBUIText">Title</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">1.300000e+01</double>
@@ -199,7 +199,7 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">Silent Hill 3</string>
+						<string key="IBUIText">Album</string>
 						<reference key="IBUIFont" ref="1027873091"/>
 						<reference key="IBUITextColor" ref="565746156"/>
 						<nil key="IBUIHighlightedColor"/>

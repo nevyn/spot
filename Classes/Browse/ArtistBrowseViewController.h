@@ -10,7 +10,9 @@
 #import "SpotArtist.h"
 #import "SpotImageView.h"
 
-@interface ArtistBrowseViewController : UIViewController <UITableViewDelegate>{
+@interface ArtistBrowseViewController : UIViewController
+<UITableViewDelegate>
+{
   SpotArtist *artist;
   IBOutlet SpotImageView *portrait;
   IBOutlet UIWebView *artistText;

@@ -104,6 +104,8 @@
 		0518994B0FC9B3E600A28F12 /* prev.png in Resources */ = {isa = PBXBuildFile; fileRef = 051899460FC9B3E600A28F12 /* prev.png */; };
 		0518994D0FC9B3F200A28F12 /* playergloss.png in Resources */ = {isa = PBXBuildFile; fileRef = 0518994C0FC9B3F200A28F12 /* playergloss.png */; };
 		051899530FC9BAFA00A28F12 /* SpotNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 051899520FC9BAFA00A28F12 /* SpotNavigationController.m */; };
+		052A5E220FCD464E005190EA /* ArtistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 052A5E210FCD464E005190EA /* ArtistDetailViewController.m */; };
+		052A5E240FCD4656005190EA /* ArtistDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 052A5E230FCD4656005190EA /* ArtistDetailView.xib */; };
 		05F4B4B40FCA377F00110954 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051893040FC097A900A28F12 /* libvorbisfile.a */; };
 		05F4B4B60FCA378800110954 /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051892FB0FC096A700A28F12 /* libvorbis.a */; };
 		05FB43970FCB2AAF00BB4972 /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05FB43960FCB2AAF00BB4972 /* dist.plist */; };
@@ -245,6 +247,9 @@
 		0518994C0FC9B3F200A28F12 /* playergloss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playergloss.png; sourceTree = "<group>"; };
 		051899510FC9BAFA00A28F12 /* SpotNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotNavigationController.h; sourceTree = "<group>"; };
 		051899520FC9BAFA00A28F12 /* SpotNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotNavigationController.m; sourceTree = "<group>"; };
+		052A5E200FCD464E005190EA /* ArtistDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistDetailViewController.h; sourceTree = "<group>"; };
+		052A5E210FCD464E005190EA /* ArtistDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistDetailViewController.m; sourceTree = "<group>"; };
+		052A5E230FCD4656005190EA /* ArtistDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArtistDetailView.xib; sourceTree = "<group>"; };
 		05FB43960FCB2AAF00BB4972 /* dist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dist.plist; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SpotAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotAppDelegate.h; sourceTree = "<group>"; };
@@ -464,6 +469,9 @@
 				051898DA0FC9A50400A28F12 /* AlbumBrowseViewController.h */,
 				051898DB0FC9A50400A28F12 /* AlbumBrowseViewController.m */,
 				051898E70FC9A65C00A28F12 /* AlbumBrowseView.xib */,
+				052A5E200FCD464E005190EA /* ArtistDetailViewController.h */,
+				052A5E210FCD464E005190EA /* ArtistDetailViewController.m */,
+				052A5E230FCD4656005190EA /* ArtistDetailView.xib */,
 			);
 			path = Browse;
 			sourceTree = "<group>";
@@ -738,6 +746,7 @@
 				0518994B0FC9B3E600A28F12 /* prev.png in Resources */,
 				0518994D0FC9B3F200A28F12 /* playergloss.png in Resources */,
 				05FB43970FCB2AAF00BB4972 /* dist.plist in Resources */,
+				052A5E240FCD4656005190EA /* ArtistDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -809,6 +818,7 @@
 				219540950FCC2127005254F6 /* SpotPlaylistTableViewDataSource.m in Sources */,
 				219542480FCC429A005254F6 /* SpotURI.m in Sources */,
 				219542810FCC4A6B005254F6 /* SpotItem.m in Sources */,
+				052A5E220FCD464E005190EA /* ArtistDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -903,7 +913,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Joachim Bengtsson";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joachim Bengtsson";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -911,7 +920,6 @@
 				LIBRARY_SEARCH_PATHS = Vendor;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "31203235-A64E-4B8E-AE84-45344114D77C";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "31203235-A64E-4B8E-AE84-45344114D77C";
 				SDKROOT = iphoneos3.0;
 			};
