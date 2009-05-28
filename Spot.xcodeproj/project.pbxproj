@@ -83,6 +83,7 @@
 		05A664FC0FCF215300C8DC40 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A664FB0FCF215300C8DC40 /* AudioToolbox.framework */; };
 		05A664FF0FCF217D00C8DC40 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A664FE0FCF217D00C8DC40 /* libz.1.dylib */; };
 		05A665080FCF21D500C8DC40 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A665070FCF21D500C8DC40 /* libresolv.dylib */; };
+		05A665500FCF2F4400C8DC40 /* SpotTrackList.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A6654E0FCF2F4400C8DC40 /* SpotTrackList.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -223,6 +224,8 @@
 		05A664FB0FCF215300C8DC40 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		05A664FE0FCF217D00C8DC40 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = usr/lib/libz.1.dylib; sourceTree = SDKROOT; };
 		05A665070FCF21D500C8DC40 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		05A6654E0FCF2F4400C8DC40 /* SpotTrackList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotTrackList.m; sourceTree = "<group>"; };
+		05A6654F0FCF2F4400C8DC40 /* SpotTrackList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotTrackList.h; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Spot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -309,6 +312,8 @@
 				05447ED80FCF1167004CC539 /* SpotArtist.m */,
 				05447ED90FCF1167004CC539 /* SpotId.h */,
 				05447EDA0FCF1167004CC539 /* SpotId.m */,
+				05A6654E0FCF2F4400C8DC40 /* SpotTrackList.m */,
+				05A6654F0FCF2F4400C8DC40 /* SpotTrackList.h */,
 				05447EDB0FCF1167004CC539 /* SpotItem.h */,
 				05447EDC0FCF1167004CC539 /* SpotItem.m */,
 				05447EDD0FCF1167004CC539 /* SpotPlayer.h */,
@@ -637,6 +642,7 @@
 				05A664A20FCF1B1B00C8DC40 /* sndqueue.c in Sources */,
 				05A664A30FCF1B1B00C8DC40 /* util.c in Sources */,
 				05A664A40FCF1B1B00C8DC40 /* xml.c in Sources */,
+				05A665500FCF2F4400C8DC40 /* SpotTrackList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
