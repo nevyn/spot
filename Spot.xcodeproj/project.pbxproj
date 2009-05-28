@@ -1023,7 +1023,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Spot_Prefix.pch;
-				INFOPLIST_FILE = "Spot-Info.plist";
+				INFOPLIST_FILE = "Resources/Spot-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/build/Debug-iphonesimulator\"",
