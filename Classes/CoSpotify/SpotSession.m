@@ -27,8 +27,32 @@ SpotSession *SpotSessionSingleton;
 
 NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 
+#pragma mark Callbacks
+
+@interface SpotPlayer (ForSessionOnly)
+-(void)trackDidStart;
+-(void)trackDidEnd;
+@end
+
+
+void cb_got_xml(struct despotify_session *ds, char* xml){
+  SpotSession *ss = (SpotSession*)ds->user_data;
+  [ss performSelectorOnMainThread:@selector(receivedXML:) withObject:[NSString stringWithUTF8String:xml] waitUntilDone:NO];
+}
+
+void cb_track_start(struct despotify_session *ds){
+  SpotSession *ss = (SpotSession*)ds->user_data;
+  [ss.player performSelectorOnMainThread:@selector(trackDidStart) withObject:nil waitUntilDone:NO];
+}
+
+void cb_track_end(struct despotify_session *ds){
+  SpotSession *ss = (SpotSession*)ds->user_data;
+  [ss.player performSelectorOnMainThread:@selector(trackDidEnd) withObject:nil waitUntilDone:NO];
+}
+
 @interface SpotSession ()
 @property (nonatomic, readwrite) BOOL loggedIn;
+-(void)receivedXML:(NSString*)xmlString;
 
 @end
 
@@ -60,6 +84,11 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 		[self release];
 		return nil;
 	}
+  
+  session->user_data = self;
+  session->cb_track_start = cb_track_start;
+  session->cb_track_end = cb_track_end;
+  session->cb_got_xml = cb_got_xml;
   
   player = [[SpotPlayer alloc] initWithSession:self];
 	
@@ -96,12 +125,18 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 	return success;
 }
 
+-(void)receivedXML:(NSString*)xmlString;
+{
+ // NSLog(@"Got some XML:\n%@", xmlString);
+}
+
 -(NSArray*)playlists;
 {
 	NSMutableArray *playlists = [NSMutableArray array];
 	return playlists; // until they fix their playlist servers
 	
 	struct playlist *rootlist = despotify_get_stored_playlists(session);
+  NSLog(@"got lists");
 	for(struct playlist *pl = rootlist; pl; pl = pl->next) {
 		SpotPlaylist *playlist = [[[SpotPlaylist alloc] initWithPlaylist:pl] autorelease];
 		[playlists addObject:playlist];
@@ -183,25 +218,25 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
   return [[[SpotAlbum alloc] initWithAlbumBrowse:ab] autorelease];
 }
 
--(SpotAlbum*)artistByURI:(SpotURI*)uri;
+-(SpotArtist*)artistByURI:(SpotURI*)uri;
 {
   struct artist_browse* ab = despotify_link_get_artist(session, uri.link);
   return [[[SpotArtist alloc] initWithArtistBrowse:ab] autorelease];
 }
 
--(SpotAlbum*)trackByURI:(SpotURI*)uri;
+-(SpotTrack*)trackByURI:(SpotURI*)uri;
 {
   struct track* track = despotify_link_get_track(session, uri.link);
   return [[(SpotTrack*)[SpotTrack alloc] initWithTrack:track] autorelease];
 }
 
--(SpotAlbum*)playlistByURI:(SpotURI*)uri;
+-(SpotPlaylist*)playlistByURI:(SpotURI*)uri;
 {
   struct playlist* pl = despotify_link_get_playlist(session, uri.link);
   return [[[SpotPlaylist alloc] initWithPlaylist:pl] autorelease];
 }
 
--(SpotAlbum*)searchByURI:(SpotURI*)uri;
+-(SpotSearch*)searchByURI:(SpotURI*)uri;
 {
   struct search_result* sr = despotify_link_get_search(session, uri.link);
   return [[[SpotSearch alloc] initWithSearchResult:sr] autorelease];

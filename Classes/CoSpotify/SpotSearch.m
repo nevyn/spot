@@ -28,13 +28,11 @@
   return [SpotSearch searchFor:searchText session:[SpotSession defaultSession] maxResults:maxResults];
 }
 
--(id)initWithSearchText:(NSString *)searchText session:(SpotSession*)session_ maxResults:(int)maxResults;
+-(id)initWithSearchText:(NSString *)searchText session:(SpotSession*)session_ maxResults:(int)maxResults_;
 {
   if( ! [super init] ) return nil;
-  if(searchResult){
-    despotify_free_search(searchResult);
-  }
-  searchResult = despotify_search(session_.session, (char*)[searchText UTF8String], maxResults);
+
+  searchResult = despotify_search(session_.session, (char*)[searchText UTF8String], maxResults_);
   [self initWithSearchResult:searchResult];
   
   return self;
@@ -63,7 +61,7 @@
       [a_tracks addObject:[[(SpotTrack*)[SpotTrack alloc] initWithTrack:track] autorelease]];
     }
   }
-  [a_tracks sortUsingSelector:@selector(compare:)];
+  //[a_tracks sortUsingSelector:@selector(compare:)];
   tracks = a_tracks;
   
   NSMutableArray *a_artists = [[NSMutableArray alloc] init];
@@ -91,7 +89,7 @@
 
 -(void) dealloc;
 {
-  despotify_free_search(searchResult);
+  despotify_free_search(searchResult); //frees all playlists, albums, artists found... 
   [playlist release];
   [suggestion release];
   [query release];

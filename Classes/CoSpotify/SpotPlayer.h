@@ -19,17 +19,20 @@
   SpotPlaylist *currentPlaylist;
   
   BOOL isPlaying;
+  BOOL willPlay;
+  
+  NSMutableArray *queuedCommands;
 }
 
 -(id)initWithSession:(SpotSession*)session;
 
--(void)playTrack:(SpotTrack*)track rewind:(BOOL)rewind;
--(void)playPlaylist:(SpotPlaylist*)playlist firstTrack:(SpotTrack*)track;
--(void)pause;
--(void)play; //resume current track
--(void)stop;
--(void)playNextTrack;
--(void)playPreviousTrack;
+-(BOOL)playTrack:(SpotTrack*)track rewind:(BOOL)rewind;
+-(BOOL)playPlaylist:(SpotPlaylist*)playlist firstTrack:(SpotTrack*)track;
+-(BOOL)pause;
+-(BOOL)play; //resume current track
+-(BOOL)stop;
+-(BOOL)playNextTrack;
+-(BOOL)playPreviousTrack;
 
 @property (readonly, retain) SpotTrack *currentTrack;
 @property (readonly, retain) SpotPlaylist *currentPlaylist;

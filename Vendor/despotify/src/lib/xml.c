@@ -451,6 +451,7 @@ void xml_free_artist_browse(struct artist_browse* artist)
 
 bool xml_parse_browse_album(struct album_browse* a, unsigned char* xml, int len)
 {
+  printf("AlbumBrowse XML:\n%s\nENDofXML\n", xml);
     ezxml_t top = ezxml_parse_str(xml, len);
     parse_browse_album(top, a);
     ezxml_free(top);

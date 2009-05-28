@@ -17,11 +17,8 @@
 	if( ! [super initWithNibName:@"AlbumBrowseView" bundle:nil])
 		return nil;
   
-  //load full profile
-  if(!album_.browsing) album_ = [album_ moreInfo];
   album = [album_ retain];
   self.title = album.name;
-  
   
 	return self;
 	
@@ -92,9 +89,9 @@
 {
 	int idx = [indexPath indexAtPosition:1];
   
-  SpotTrack *track = [album.tracks objectAtIndex:idx];
+  SpotTrack *track = [album.playlist.playableTrackList.tracks objectAtIndex:idx];
   if(track.playable){
-    [[SpotSession defaultSession].player playPlaylist:track.playlist firstTrack:track];
+    [[SpotSession defaultSession].player playTrack:track rewind:NO];
     [self.navigationController pushViewController:[PlayViewController defaultController] animated:YES];
   }
 //  [[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];

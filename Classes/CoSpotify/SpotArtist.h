@@ -23,7 +23,7 @@
 -(id)initWithArtist:(struct artist*)artist;
 -(id)initWithArtistBrowse:(struct artist_browse*)artistBrowse;
 
--(SpotArtist *)moreInfo;
+-(void)loadMoreInfo;
 
 -(NSComparisonResult)compare:(SpotArtist*)other;
 

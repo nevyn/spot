@@ -38,7 +38,6 @@
   [self exchangeSubviewAtIndex:0 withSubviewAtIndex:1];
   [[[self subviews] objectAtIndex:1] setHidden:NO];
   [[[self subviews] objectAtIndex:0] setHidden:YES];
-  
   [UIView commitAnimations];
 }
 

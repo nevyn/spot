@@ -99,7 +99,7 @@ PlayViewController *GlobalPlayViewController;
 -(void)selectCurrentTrack;
 {
   if(self.defaultPlayer.currentPlaylist && self.defaultPlayer.currentTrack){
-    int idx = [self.defaultPlayer.currentPlaylist.tracks indexOfObject:self.defaultPlayer.currentTrack];
+    int idx = [self.defaultPlayer.currentPlaylist.playableTrackList.tracks indexOfObject:self.defaultPlayer.currentTrack];
     if(idx != NSNotFound)
       [trackList selectRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
   }
@@ -176,6 +176,12 @@ PlayViewController *GlobalPlayViewController;
     [trackList reloadData];
     [self selectCurrentTrack];
   }
+  if([[n name] isEqual:@"trackDidEnd"]){
+    [[SpotSession defaultSession].player playNextTrack];
+  }
+  if([[n name] isEqual:@"playlistDidEnd"]){
+    
+  }
 }
 
 -(SpotPlayer *)defaultPlayer;
@@ -187,7 +193,7 @@ PlayViewController *GlobalPlayViewController;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	int idx = [indexPath indexAtPosition:1];
-  SpotTrack *track = [playlistDataSource.playlist.tracks objectAtIndex:idx];
+  SpotTrack *track = [playlistDataSource.playlist.playableTrackList.tracks objectAtIndex:idx];
   if(track.playable){
     [[SpotSession defaultSession].player playTrack:track rewind:YES];
   }

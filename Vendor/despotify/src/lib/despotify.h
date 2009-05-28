@@ -125,6 +125,11 @@ struct link {
     enum link_type type;
 };
 
+
+struct despotify_session;
+typedef void(*despotify_simple_callback)(struct despotify_session*);
+typedef void(*despotify_xml_callback)(struct despotify_session*, char *xml);
+
 struct despotify_session
 {
     bool initialized;
@@ -155,6 +160,12 @@ struct despotify_session
 
     bool list_of_lists;
     bool play_as_list;
+  
+    //Callbacks
+    void* user_data;
+    despotify_simple_callback cb_track_start;
+    despotify_simple_callback cb_track_end;
+    despotify_xml_callback cb_got_xml;
 };
 
 /* Global init / deinit library. */

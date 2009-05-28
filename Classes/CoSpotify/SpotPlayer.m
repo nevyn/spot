@@ -11,6 +11,7 @@
 #import "SpotSession.h"
 #import "SpotTrack.h"
 #import "SpotPlaylist.h"
+#import "SpotAlbum.h"
 
 @interface SpotPlayer (Private)
 
@@ -19,7 +20,7 @@
 
 @end
 
-
+//TODO: While waiting for despotify to start or stop playback we need to queue other commands
 @implementation SpotPlayer
 
 -(id)initWithSession:(SpotSession*)session_;
@@ -31,105 +32,159 @@
   return self;
 }
 
--(void)playTrack:(SpotTrack*)track rewind:(BOOL)rewind;
-{
-  if(!track) return;
-  //dont do anything if track is playing and we dont want to rewind
-  if([self.currentTrack isEqual:track] && !rewind)
-    return;
+#pragma mark Playback control
 
-  [self stop];
-  
-  [self setCurrentTrack:track];
-  
-  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"track" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:track, @"track", nil]]];
-  
-  [self play];
-}
-
--(void)playPlaylist:(SpotPlaylist*)playlist firstTrack:(SpotTrack*)track;
+-(BOOL)startPlayback;
 {
-  /*
-   set current playlist and play first song
-   */
-  if(!playlist && !track) return;
-  if(!track) track = [playlist.tracks objectAtIndex:0];
-  if(!playlist) playlist = track.playlist;
-  if(!playlist){
-    //Get the playlist for the track's album
-    playlist = [[[SpotSession defaultSession] albumById:track.albumId] playlist];
-    track = [playlist trackWithId:track.id];
-//    playlist = [[[SpotPlaylist alloc] initWithTrack:track] autorelease];
-  }
-  
-  if(![playlist.tracks containsObject:track])
-    [NSException raise:NSInvalidArgumentException format:@"The 'track' argument must be in the playlist given"];
-  
-  [self setCurrentPlaylist:playlist];
-  
-  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"playlist" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:playlist, @"playlist", nil]]];
-  
-  [self playTrack:track rewind:YES];
-}
-
--(void)pause;
-{
-  //stop playback
-  if(self.isPlaying){
-    [UIApplication sharedApplication].idleTimerDisabled = NO; //can sleep while paused
-    isPlaying = !despotify_pause([SpotSession defaultSession].session) && isPlaying;
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"pause" object:self]];
-  }
-}
-
--(void)play;
-{
-  if(self.isPlaying) return;
+  if(self.isPlaying || willPlay) return NO;
   //start playback if we have something to play
   if(self.currentTrack){
     [UIApplication sharedApplication].idleTimerDisabled = YES; //dont sleep while playing music
     //if([self.savedTrack isEqual:self.currentTrack])
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"willplay" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:currentPlaylist, @"playlist", currentTrack, @"track", nil]]];
+    
     if([self.savedTrack isEqual:self.currentTrack])
-      isPlaying = despotify_resume([SpotSession defaultSession].session);
+      willPlay = despotify_resume([SpotSession defaultSession].session);
     else
-      isPlaying = despotify_play([SpotSession defaultSession].session, self.currentTrack.track, YES);
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"play" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:currentPlaylist, @"playlist", currentTrack, @"track", nil]]];
+      willPlay = despotify_play([SpotSession defaultSession].session, self.currentTrack.track, NO); 
+    if(!willPlay) {
+      return NO;
+    } else {
+      [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"willplay" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:currentPlaylist, @"playlist", currentTrack, @"track", nil]]];
+    }
+    return YES;
   }
+  return NO; 
 }
 
--(void)stop;
+-(BOOL)stopPlayback;
 {
-  if(self.isPlaying){
+  if(self.isPlaying && !willPlay){
     [UIApplication sharedApplication].idleTimerDisabled = NO; //can sleep while not playing
-    isPlaying = !despotify_pause([SpotSession defaultSession].session) && isPlaying;
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"stop" object:self]];
+    isPlaying = !despotify_stop([SpotSession defaultSession].session) && isPlaying;  
+    return YES;
   }
+  return NO;
 }
 
--(void)playNextTrack;
+#pragma mark Player "buttons"
+
+-(BOOL)playTrack:(SpotTrack*)track rewind:(BOOL)rewind;
 {
-  [self playTrack:[currentPlaylist trackAfter:self.currentTrack] rewind:NO];
+  if(willPlay) return NO;
+  if(!track) return NO;
+  //dont do anything if track is playing and we dont want to rewind
+  if([self.currentTrack isEqual:track] && !rewind)
+    return NO;
+
+  if(self.isPlaying)
+    [self stop];
+  
+  SpotAlbum *album = track.album;
+  if(!album)NSLog(@"track has no album info");
+  SpotPlaylist *playlist = track.album.playlist;
+  
+  return [self playPlaylist:playlist firstTrack:track];
 }
 
--(void)playPreviousTrack;
+-(BOOL)playPlaylist:(SpotPlaylist*)playlist firstTrack:(SpotTrack*)track;
 {
-  [self playTrack:[currentPlaylist trackBefore:self.currentTrack] rewind:NO];
+  /*
+   set current playlist and play first song
+   */
+  if(willPlay) return NO;
+  if(!playlist) return NO;
+  if(!track) track = [playlist.playableTrackList.tracks objectAtIndex:0];
+  
+  if(![playlist.playableTrackList.tracks containsObject:track])
+    [NSException raise:NSInvalidArgumentException format:@"The 'track' argument must be in the playlist given"];
+  
+  [self setCurrentPlaylist:playlist];
+  [self setCurrentTrack:track];
+  
+  return [self play];
+}
+
+-(BOOL)pause;
+{
+  //stop playback
+  if(self.isPlaying && !willPlay){
+    [UIApplication sharedApplication].idleTimerDisabled = NO; //can sleep while paused
+    isPlaying = !despotify_pause([SpotSession defaultSession].session) && isPlaying;
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"pause" object:self]];
+    return YES;
+  }
+  return NO;
+}
+
+-(BOOL)play;
+{
+  return [self startPlayback];
+}
+
+-(BOOL)stop;
+{
+  if([self stopPlayback]){
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"stop" object:self]];
+    return YES;
+  }
+  return NO;
+}
+
+-(BOOL)playNextTrack;
+{
+  SpotTrack *next = [currentPlaylist.playableTrackList trackAfter:self.currentTrack];
+  if(next){
+    [self playTrack:next rewind:NO];
+    return YES;
+  }
+  return NO;
+}
+
+-(BOOL)playPreviousTrack;
+{
+  SpotTrack *prev = [currentPlaylist.playableTrackList trackBefore:self.currentTrack];
+  if(prev) {
+    [self playTrack:prev rewind:NO];
+    return YES;
+  }
+  return NO;
 }
 
 #pragma mark Private
+
+-(void)trackDidStart;
+{
+  willPlay = NO;
+  isPlaying = YES;
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"play" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:currentPlaylist, @"playlist", currentTrack, @"track", nil]]];
+}
+
+-(void)trackDidEnd;
+{
+  [self stopPlayback];
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"trackDidEnd" object:self]];
+}
+
 -(void)setCurrentPlaylist:(SpotPlaylist*)pl;
 {
   [pl retain];
   [currentPlaylist release];
+  SpotPlaylist *old = currentPlaylist;
   currentPlaylist = pl;
+  if(old != pl)
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"playlist" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:currentPlaylist, @"playlist", nil]]];
 }
 
 -(void)setCurrentTrack:(SpotTrack*)track;
 {
   [track retain];
   [currentTrack release];
+  SpotTrack *old = currentTrack;
   currentTrack = track;
+  
+  if(old != track){
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"track" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:track, @"track", nil]]];
+  }
 }
 
 #pragma mark Property accessors

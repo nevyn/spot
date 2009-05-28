@@ -24,7 +24,7 @@
 -(id)initWithAlbum:(struct album*)album;
 -(id)initWithAlbumBrowse:(struct album_browse*)album;
 
--(SpotAlbum *)moreInfo;
+-(void)loadMoreInfo;
 
 -(NSComparisonResult)compare:(SpotAlbum*)other;
 
@@ -42,7 +42,6 @@
 
 //browse only
 @property (readonly) int year;
-@property (readonly) NSArray *tracks;
 @property (readonly) SpotPlaylist *playlist;
            
 @end

@@ -19,7 +19,9 @@
 	
 	SpotSearch *searchResults;
 }
--(void)doSearch;
+-(id)initWithSearch:(SpotSearch*)search;
+
+-(void)searchForString:(NSString*)string;
 
 @property (nonatomic, assign) SpotSearch *searchResults;
 

@@ -7,6 +7,7 @@
 //
 
 #import "PlaylistsViewController.h"
+#import "SpotNavigationController.h"
 #import "CoSpotify.h"
 
 @implementation PlaylistsViewController
@@ -115,16 +116,18 @@
 
 
 
-/*
+
 // Override to support row selection in the table view.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+  SpotPlaylist *playlist = [self.playlists objectAtIndex:[indexPath indexAtPosition:0]];
+  [[SpotSession defaultSession].player playPlaylist:playlist firstTrack:nil];
+  [self.navigationController showPlayer];
     // Navigation logic may go here -- for example, create and push another view controller.
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
 	// [self.navigationController pushViewController:anotherViewController animated:YES];
 	// [anotherViewController release];
 }
-*/
+
 
 
 /*

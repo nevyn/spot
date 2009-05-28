@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 93
-/svnroot/despotify/!svn/ver/308/java/src/main/java/se/despotify/client/protocol/command/media
+/svnroot/despotify/!svn/ver/319/java/src/main/java/se/despotify/client/protocol/command/media
 END
 LoadAlbum.java
 K 25
@@ -13,7 +13,7 @@ Search.java
 K 25
 svn:wc:ra_dav:version-url
 V 105
-/svnroot/despotify/!svn/ver/307/java/src/main/java/se/despotify/client/protocol/command/media/Search.java
+/svnroot/despotify/!svn/ver/319/java/src/main/java/se/despotify/client/protocol/command/media/Search.java
 END
 LoadArtist.java
 K 25

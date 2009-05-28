@@ -8,6 +8,10 @@
 
 #import "LoggingInController.h"
 #import "CoSpotify.h"
+#import "SpotAppDelegate.h"
+
+#import "CoSpotify.h"
+
 
 @implementation LoggingInController
 @synthesize username, password;
@@ -80,12 +84,16 @@
 		tryAgain.hidden = error.hidden = NO;
 		return;
 	}
+  
+  //post suggin successfull notification
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"loggedin" object:self]];
 	
 	UINavigationController *navController = self.navigationController;
 	[navController setNavigationBarHidden:YES animated:NO];
 	
 	[[self retain] autorelease]; // We will disappear after the pop
 	
+  
 	NSMutableArray *controllers = [[navController.viewControllers mutableCopy] autorelease];
 	[controllers removeLastObject];
 	navController.viewControllers = controllers;

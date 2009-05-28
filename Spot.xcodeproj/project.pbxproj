@@ -119,6 +119,7 @@
 		219540950FCC2127005254F6 /* SpotPlaylistTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 219540940FCC2127005254F6 /* SpotPlaylistTableViewDataSource.m */; };
 		219542480FCC429A005254F6 /* SpotURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 219542470FCC429A005254F6 /* SpotURI.m */; };
 		219542810FCC4A6B005254F6 /* SpotItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 219542800FCC4A6B005254F6 /* SpotItem.m */; };
+		219549B50FCD4BFD005254F6 /* SpotTrackList.m in Sources */ = {isa = PBXBuildFile; fileRef = 219549B40FCD4BFD005254F6 /* SpotTrackList.m */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 /* End PBXBuildFile section */
@@ -267,6 +268,8 @@
 		219542470FCC429A005254F6 /* SpotURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotURI.m; sourceTree = "<group>"; };
 		2195427F0FCC4A6B005254F6 /* SpotItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotItem.h; sourceTree = "<group>"; };
 		219542800FCC4A6B005254F6 /* SpotItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotItem.m; sourceTree = "<group>"; };
+		219549B30FCD4BFD005254F6 /* SpotTrackList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotTrackList.h; sourceTree = "<group>"; };
+		219549B40FCD4BFD005254F6 /* SpotTrackList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotTrackList.m; sourceTree = "<group>"; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* Spot_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
@@ -383,6 +386,8 @@
 				051890FE0FBEE34900A28F12 /* SpotSession.m */,
 				051890F90FBEE0DC00A28F12 /* SpotTrack.h */,
 				051890FA0FBEE0DC00A28F12 /* SpotTrack.m */,
+				219549B30FCD4BFD005254F6 /* SpotTrackList.h */,
+				219549B40FCD4BFD005254F6 /* SpotTrackList.m */,
 				0518945B0FC0B9B300A28F12 /* SpotPlaylist.h */,
 				0518945C0FC0B9B300A28F12 /* SpotPlaylist.m */,
 				051898260FC99AB600A28F12 /* SpotArtist.h */,
@@ -809,6 +814,7 @@
 				219540950FCC2127005254F6 /* SpotPlaylistTableViewDataSource.m in Sources */,
 				219542480FCC429A005254F6 /* SpotURI.m in Sources */,
 				219542810FCC4A6B005254F6 /* SpotItem.m in Sources */,
+				219549B50FCD4BFD005254F6 /* SpotTrackList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

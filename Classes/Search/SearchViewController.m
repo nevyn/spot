@@ -7,6 +7,7 @@
 //
 
 #import "SearchViewController.h"
+#import "SpotNavigationController.h"
 #import "SpotSession.h"
 #import "SpotArtist.h"
 #import "SpotTrack.h"
@@ -15,6 +16,7 @@
 #import "AlbumBrowseViewController.h"
 #import "ArtistBrowseViewController.h"
 #import "PlayViewController.h"
+
 
 @implementation SearchViewController
 
@@ -31,16 +33,33 @@
     return self;
 }
 
+
+-(id)initWithSearch:(SpotSearch*)search;
+{
+//  if( ! [super initWithNibName:@"SearchView" bundle:nil])
+  if( ! [self init] )
+		return nil;
+  
+  self.searchResults = search;
+  
+	return self;
+}
+
 - (void)dealloc {
     [super dealloc];
 }
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
+
 }
-*/
+
+-(void)viewDidAppear:(BOOL)animated{
+  [super viewDidAppear:animated];
+}
+    
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -59,6 +78,10 @@
 -(void)viewWillAppear:(BOOL)animated;
 {
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
+  if([searchBar.text length] == 0)
+    [searchBar becomeFirstResponder];
+  else
+    [self searchForString:searchBar.text];
 }
 
 -(void)viewWillDisappear:(BOOL)animated;
@@ -154,21 +177,21 @@ enum {
 	switch([indexPath indexAtPosition:0]) {
     case SuggestionSection:{
       [searchBar setText:searchResults.suggestion];
-      [self doSearch];
+      [self searchForString:searchResults.suggestion];
     } break;
 		case TracksSection: {
 			SpotTrack *track = [searchResults.tracks objectAtIndex:idx];
-			[[SpotSession defaultSession].player playPlaylist:nil firstTrack:track];
-			[self.navigationController pushViewController:[PlayViewController defaultController] animated:YES];
+			[[SpotSession defaultSession].player playTrack:track rewind:YES];
+      [self.navigationController showPlayer];
 		} break;
 		case ArtistsSection: {
 			SpotArtist *artist = [searchResults.artists objectAtIndex:idx];
 			
-			[[self navigationController] pushViewController:[[[ArtistBrowseViewController alloc] initBrowsingArtist:artist] autorelease] animated:YES];
+      [self.navigationController showArtist:artist];
 		} break;
 		case AlbumsSection: {
 			SpotAlbum *album = [searchResults.albums objectAtIndex:idx];
-			[[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
+			[self.navigationController showAlbum:album];
 			break;
 		}
 	}
@@ -185,18 +208,18 @@ enum {
 	// Do short search maybe
 }
 
--(void)doSearch;
+-(void)searchForString:(NSString*)string;
 {
   // Do extensive search
-	[searchBar resignFirstResponder];
 	self.searchResults = nil;
   //NSLog(@"searching");
-	self.searchResults = [SpotSearch searchFor:searchBar.text maxResults:50];
+	self.searchResults = [SpotSearch searchFor:string maxResults:50];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar_;  
 {
-  [self doSearch];
+  [searchBar resignFirstResponder];
+  [self searchForString:[searchBar_ text]];
 }
 
 

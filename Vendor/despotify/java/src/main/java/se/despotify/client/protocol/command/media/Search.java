@@ -3,7 +3,6 @@ package se.despotify.client.protocol.command.media;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.despotify.client.protocol.PacketType;
-import se.despotify.client.protocol.Protocol;
 import se.despotify.client.protocol.channel.Channel;
 import se.despotify.client.protocol.channel.ChannelCallback;
 import se.despotify.client.protocol.command.Command;
@@ -14,6 +13,7 @@ import se.despotify.util.GZIP;
 import se.despotify.util.Hex;
 import se.despotify.util.XML;
 import se.despotify.util.XMLElement;
+import se.despotify.Connection;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
@@ -44,13 +44,15 @@ public class Search extends Command<Result> {
     this.maxResults = maxResults;
   }
 
-  public Result send(Protocol protocol) throws DespotifyException {
+  public Result send(Connection connection) throws DespotifyException {
     /* Create channel callback */
     ChannelCallback callback = new ChannelCallback();
 
+    byte[] utf8Bytes = query.getBytes(Charset.forName("UTF8"));
+
     /* Create channel and buffer. */
     Channel channel = new Channel("Search-Channel", Channel.Type.TYPE_SEARCH, callback);
-    ByteBuffer buffer = ByteBuffer.allocate(2 + 4 + 4 + 2 + 1 + query.getBytes().length);
+    ByteBuffer buffer = ByteBuffer.allocate(2 + 4 + 4 + 2 + 1 + utf8Bytes.length);
 
     /* Check offset and limit. */
     if (offset < 0) {
@@ -64,15 +66,15 @@ public class Search extends Command<Result> {
     buffer.putInt(offset); /* Result offset. */
     buffer.putInt(maxResults); /* Reply limit. */
     buffer.putShort((short) 0x0000);
-    buffer.put((byte) query.length());
-    buffer.put(query.getBytes());
+    buffer.put((byte) utf8Bytes.length);
+    buffer.put(utf8Bytes);
     buffer.flip();
 
     /* Register channel. */
     Channel.register(channel);
 
     /* Send packet. */
-    protocol.sendPacket(PacketType.search, buffer, "search");
+    connection.getProtocol().sendPacket(PacketType.search, buffer, "search");
 
     /* Get data and inflate it. */
     byte[] data = GZIP.inflate(callback.getData("gzipped search response"));

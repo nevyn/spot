@@ -8,9 +8,35 @@
 
 #import <UIKit/UIKit.h>
 
+@class SpotArtist;
+@class SpotAlbum;
+@class SpotSearch;
+
 
 @interface SpotNavigationController : UINavigationController {
 
 }
+
+-(void)loggedinNotification:(NSNotification*)n;
+-(BOOL)checkOpenURL;
+-(BOOL)openURL:(NSURL*)url;
+
+-(void)showArtist:(SpotArtist*)artist;
+-(void)showAlbum:(SpotAlbum*)album;
+-(void)showSearch:(SpotSearch*)search;
+-(void)showPlaylists;
+-(void)showPlayer;
+
+@end
+
+@interface UINavigationController (SpotNav)
+
+-(void)showArtist:(SpotArtist*)artist;
+-(void)showAlbum:(SpotAlbum*)album;
+-(void)showSearch:(SpotSearch*)search;
+-(void)showPlaylists;
+-(void)showPlayer;
+-(BOOL)checkOpenURL;
+-(BOOL)openURL:(NSURL*)url;
 
 @end

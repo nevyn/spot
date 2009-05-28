@@ -13,10 +13,13 @@
 #import "ProfileViewController.h"
 #import "PlaylistsViewController.h"
 #import "SearchViewController.h"
-#import  "PlayViewController.h"
+#import "PlayViewController.h"
+
+#import "SpotNavigationController.h"
+
 @implementation SpotAppDelegate
 
-@synthesize window, loginNav, tabs;
+@synthesize window, loginNav, tabs, openURL;
 
 #import "SpotURI.h"
 
@@ -34,7 +37,7 @@
 	// Profile page
 	UINavigationController *profilePage;
 	{
-		profilePage = [[[UINavigationController alloc] init] autorelease];
+		profilePage = [[[SpotNavigationController alloc] init] autorelease];
 		profilePage.title = @"Profile";
 		
 		ProfileViewController *profile = [[[ProfileViewController alloc] init] autorelease];
@@ -44,7 +47,7 @@
 	// Playlists
 	UINavigationController *playlistPage;
 	{
-		playlistPage = [[[UINavigationController alloc] init] autorelease];
+		playlistPage = [[[SpotNavigationController alloc] init] autorelease];
 		
 		PlaylistsViewController *playlists = [[[PlaylistsViewController alloc] init] autorelease];
 		[playlistPage pushViewController:playlists animated:NO];
@@ -53,7 +56,7 @@
 	// Search
 	UINavigationController *searchPage;
 	{
-		searchPage = [[[UINavigationController alloc] init] autorelease];
+		searchPage = [[[SpotNavigationController alloc] init] autorelease];
 		
 		SearchViewController *search = [[[SearchViewController alloc] init] autorelease];
 		[searchPage pushViewController:search animated:NO];
@@ -79,7 +82,7 @@
 	[self.tabs presentModalViewController:self.loginNav animated:NO];
 	
 	/// Display it!
-    [window makeKeyAndVisible];
+  [window makeKeyAndVisible];
 }
 
 
@@ -88,11 +91,18 @@
 	//[[SpotSession defaultSession] cleanup];
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url;
+{
+  openURL = [url retain];
+  return YES; //probably dunno yet need to login first LOL
+}
+
 
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc {
+  [openURL release];
 	self.loginNav = nil;
 	self.tabs = nil;
 	self.window = nil;

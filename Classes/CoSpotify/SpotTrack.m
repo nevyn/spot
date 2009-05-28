@@ -8,11 +8,12 @@
 
 #import "SpotTrack.h"
 #import "xml.h"
-#import "SpotPlaylist.h"
 #import "SpotSession.h"
 #import "SpotURI.h"
 
 @implementation SpotTrack
+
+
 -(id)initWithTrack:(struct track*)track_;
 {
 	if( ! [super init] ) return nil;
@@ -24,9 +25,10 @@
 	
 	return self;
 }
+
 -(void)dealloc;
 {
-	free(track.key);
+	//free(track.key);
 	[artist release];
 	[super dealloc];
 }
@@ -34,21 +36,6 @@
 -(NSComparisonResult)compare:(SpotTrack*)other;
 {
   return [self.title compare:other.title];
-}
-
-@synthesize playlist;
-
--(NSString*)title;
-{
-	return [NSString stringWithUTF8String:track.title];
-}
--(NSString*)albumName;
-{
-	return [NSString stringWithUTF8String:track.album];
-}
--(SpotArtist*)artist;
-{
-	return artist;
 }
 
 -(int) length; {return track.length;}
@@ -59,10 +46,28 @@
 
 -(NSString*)description;
 {
-	return [NSString stringWithFormat:@"<SpotTrack %@>", self.title];
+	return [NSString stringWithFormat:@"<SpotTrack %d. %@>", self.number, self.title];
 }
 
 #pragma mark Properties
+@synthesize artist;
+
+-(SpotAlbum*)album;
+{
+  if(album) return album;
+  album = [[SpotSession defaultSession] albumById:self.albumId];
+  return album;
+}
+
+-(NSString*)title;
+{
+	return [NSString stringWithUTF8String:track.title];
+}
+-(NSString*)albumName;
+{
+	return [NSString stringWithUTF8String:track.album];
+}
+
 
 -(struct track*)track;
 {
@@ -88,17 +93,6 @@
   return nil;
 }
 
--(SpotTrack *)nextTrack;
-{
-  if(!playlist) return nil;
-  return [playlist trackAfter:self];
-}
-
--(SpotTrack *)prevTrack;
-{
-  if(!playlist) return nil;
-  return [playlist trackBefore:self];
-}
 
 -(BOOL)isEqual:(SpotTrack*)other;
 {
