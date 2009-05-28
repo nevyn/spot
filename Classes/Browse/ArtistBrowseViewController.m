@@ -10,6 +10,7 @@
 #import "SpotSession.h"
 #import "SpotAlbum.h"
 #import "AlbumBrowseViewController.h"
+#import "SpotNavigationController.h"
 
 @implementation ArtistBrowseViewController
 -(id)initBrowsingArtist:(SpotArtist*)artist_;
@@ -17,8 +18,6 @@
 	if( ! [super initWithNibName:@"ArtistBrowseView" bundle:nil])
 		return nil;
   
-  //Load full artist profile
-  if(!artist_.browsing) artist_ = [artist_ moreInfo]; 
 	artist = [artist_ retain];
   
   self.title = artist.name;
@@ -43,8 +42,18 @@
 
   [artistText loadHTMLString:html baseURL:[NSURL URLWithString:@"http://www.spotify.com"]];
   [popularity setValue:artist.popularity];
+  artistText.delegate = self;
 }
 
+//for spotify links
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType;
+{
+	NSURL *url = request.URL;
+	if([url.scheme isEqual:@"spotify"]){
+    [self.navigationController openURL:url];
+  }
+	return YES;
+}
 
 /*
 // Override to allow orientations other than the default portrait orientation.

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "despotify.h"
 #import "SpotItem.h"
+#import "SpotTrackList.h"
 
 @class SpotTrack;
 @class SpotId;
@@ -16,24 +17,31 @@
 
 @interface SpotPlaylist : SpotItem {
 	struct playlist playlist;
-	NSArray *tracks;
+  
+	SpotTrackList *trackList;
+  SpotTrackList *playableTrackList;
+  NSString *name;
+  NSString *author;
+  BOOL collaborative;
+  
+  SpotId *_id;
+  
+  BOOL needSorting;
 }
 -(id)initWithPlaylist:(struct playlist*)playlist_;
--(id)initWithTrack:(SpotTrack*)track;
+-(id)initWithName:(NSString *)name author:(NSString *)author tracks:(NSArray*)tracks;
 
--(SpotTrack*) trackBefore:(SpotTrack*)current;
--(SpotTrack*) trackAfter:(SpotTrack*)current;
+-(void)setNeedSorting;
 
--(SpotTrack*) trackWithId:(SpotId*)id;
-
-@property (readwrite, copy) NSString *name;
-@property (readonly) NSString *author;
-@property (readwrite) BOOL collaborative;
-@property (readonly) NSArray *tracks;
+@property (readonly, retain) NSString *name;
+@property (readonly, nonatomic) NSString *author;
+@property (readonly, nonatomic) BOOL collaborative;
+@property (readonly, nonatomic) SpotTrackList *trackList;
+@property (readonly, nonatomic) SpotTrackList *playableTrackList;
 
 @end
 
-@interface SpotMutablePlaylist : SpotPlaylist {
+@interface SpotMutablePlaylista : SpotPlaylist {
 
 }
 

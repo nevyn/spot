@@ -55,7 +55,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-  return playlist ? [playlist.tracks count] : 0;
+  return playlist ? [playlist.playableTrackList.tracks count] : 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
@@ -74,7 +74,7 @@
   }
   
 	int idx = [indexPath indexAtPosition:1]; idx = idx;
-  SpotTrack *track = [playlist.tracks objectAtIndex:idx];
+  SpotTrack *track = [playlist.playableTrackList.tracks objectAtIndex:idx];
   cell.accessoryType = track.playable ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
   cell.text = [NSString stringWithFormat:@"%@", track.title];
   

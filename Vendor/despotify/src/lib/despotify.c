@@ -24,6 +24,7 @@
 #define BUFFER_SIZE (160*1024 * 5 / 8) /* 160 kbit * 5 seconds */
 #define MAX_BROWSE_REQ 244 /* max entries to load in one browse request */
 
+
 bool despotify_init()
 {
     if (audio_init())
@@ -71,7 +72,11 @@ struct despotify_session* despotify_init_client()
     pthread_mutex_init(&ds->sync_mutex, NULL);
 
     ds->user_info = &ds->session->user_info;
-
+  
+    ds->user_data = 0;
+    ds->cb_track_end = 0;
+    ds->cb_track_start = 0;
+  
     return ds;
 }
 
@@ -204,6 +209,7 @@ static int despotify_aes_callback(CHANNEL* ch,
         DSFYDEBUG ("Got AES key\n");
 
         //snd_mark_dlding(ds->snd_session);
+        ds->cb_track_start(ds);
         snd_start(ds->snd_session);
     }
     return 0;
@@ -360,6 +366,10 @@ static int despotify_snd_end_callback(void* arg)
 
         /* request key for next track */
         error = cmd_aeskey(ds->session, fid, tid, despotify_aes_callback, ds);
+    }
+    
+    if(ds->cb_track_end){
+      ds->cb_track_end(ds);
     }
 
     return error;
@@ -633,6 +643,7 @@ struct search_result* despotify_search(struct despotify_session* ds,
         search->playlist = ds->playlist;
         search->tracks = ds->playlist->tracks;
 
+      if(ds->cb_got_xml)ds->cb_got_xml(ds, b->ptr);
         ds->playlist->num_tracks = xml_parse_search(search, ds->playlist->tracks, b->ptr, b->len);
 
         buf_free(b);
@@ -682,6 +693,7 @@ struct search_result* despotify_search_more(struct despotify_session *ds,
 
         t = t->next = calloc(1, sizeof(struct track));
 
+      if(ds->cb_got_xml)ds->cb_got_xml(ds, b->ptr);
         ds->playlist->num_tracks += xml_parse_tracklist(t, b->ptr, b->len,
                                                         false);
         buf_free(b);
@@ -745,6 +757,7 @@ static bool despotify_load_tracks(struct despotify_session *ds)
         /* add tracks to playlist */
         struct buf* b = despotify_inflate(ds->response->ptr, ds->response->len);
         if (b) {
+          if(ds->cb_got_xml)ds->cb_got_xml(ds, b->ptr);
             track_count += xml_parse_tracklist(firsttrack, b->ptr, b->len,
                                                true);
             buf_free(b);
@@ -824,6 +837,7 @@ struct playlist* despotify_get_playlist(struct despotify_session *ds,
     pthread_mutex_unlock(&ds->sync_mutex);
 
     buf_append_u8(ds->response, 0); /* null terminate xml string */
+  if(ds->cb_got_xml)ds->cb_got_xml(ds, ds->response->ptr);
     ds->playlist = xml_parse_playlist(ds->playlist,
                                       ds->response->ptr,
                                       ds->response->len,
@@ -914,7 +928,8 @@ bool despotify_rename_playlist(struct despotify_session *ds,
     pthread_mutex_unlock(&ds->sync_mutex);
 
     buf_append_u8(ds->response, 0); /* null terminate xml string */
-
+  
+    if(ds->cb_got_xml)ds->cb_got_xml(ds, ds->response->ptr);
     bool confirm = xml_parse_confirm(playlist, ds->response->ptr, ds->response->len);
     if (confirm) {
         /* success, update local name */
@@ -970,7 +985,7 @@ bool despotify_set_playlist_collaboration(struct despotify_session *ds,
     pthread_mutex_unlock(&ds->sync_mutex);
 
     buf_append_u8(ds->response, 0); /* null terminate xml string */
-
+if(ds->cb_got_xml)ds->cb_got_xml(ds, ds->response->ptr);
     bool confirm = xml_parse_confirm(playlist, ds->response->ptr, ds->response->len);
     if (confirm) {
         /* success, update local collaboration state */
@@ -1016,6 +1031,7 @@ struct artist_browse* despotify_get_artist(struct despotify_session* ds,
 
     struct buf* b = despotify_inflate(ds->response->ptr, ds->response->len);
     if (b) {
+      if(ds->cb_got_xml)ds->cb_got_xml(ds, b->ptr);
         xml_parse_browse_artist(ds->artist_browse, b->ptr, b->len);
         buf_free(b);
     }
@@ -1082,6 +1098,7 @@ struct album_browse* despotify_get_album(struct despotify_session* ds,
 
     struct buf* b = despotify_inflate(ds->response->ptr, ds->response->len);
     if (b) {
+      if(ds->cb_got_xml)ds->cb_got_xml(ds, b->ptr);
         xml_parse_browse_album(ds->album_browse, b->ptr, b->len);
         buf_free(b);
     }
@@ -1128,6 +1145,7 @@ struct track* despotify_get_tracks(struct despotify_session* ds, char* track_ids
 
     struct buf* b = despotify_inflate(ds->response->ptr, ds->response->len);
     if (b) {
+      if(ds->cb_got_xml)ds->cb_got_xml(ds, b->ptr);
         xml_parse_tracklist(first, b->ptr, b->len, false);
         buf_free(b);
     }

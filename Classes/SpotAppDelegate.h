@@ -7,14 +7,16 @@
 //
 
 @interface SpotAppDelegate : NSObject <UIApplicationDelegate> {
-    IBOutlet UITabBarController *tabs;
+  IBOutlet UITabBarController *tabs;
 	UINavigationController *loginNav;
-    UIWindow *window;
+  UIWindow *window;
+  NSURL *openURL;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) UITabBarController *tabs;
 @property (nonatomic, retain) IBOutlet UINavigationController *loginNav;
+@property (nonatomic, readonly) NSURL *openURL;
 
 @end
 

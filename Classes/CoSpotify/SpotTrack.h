@@ -20,11 +20,16 @@
 @interface SpotTrack : SpotItem {
 	struct track track;
 	SpotArtist *artist;
-	SpotPlaylist *playlist;
+  
+  //loaded on first prop acces
+  SpotAlbum *album;
 }
 -(id)initWithTrack:(struct track*)track_;
 
 -(NSComparisonResult)compare:(SpotTrack*)other;
+
+//easy access props (loaded on first call)
+@property (readonly) SpotAlbum *album;
 
 @property (readonly, nonatomic) NSString *title;
 @property (readonly, nonatomic) NSString *albumName;
@@ -35,16 +40,12 @@
 @property (readonly, nonatomic) BOOL playable;
 
 @property (readonly, nonatomic) struct track *track;
-@property (readwrite, assign, nonatomic) SpotPlaylist *playlist;
 
 @property (readonly) SpotId *fileId;
 @property (readonly) SpotId *albumId;
 @property (readonly) SpotId *coverId;
 
 @property (readonly) UIImage *coverImage;
-
-@property (readonly) SpotTrack *nextTrack; //next in playlist
-@property (readonly) SpotTrack *prevTrack; //next in playlist
 
 -(NSUInteger)hash;
 

@@ -35,10 +35,10 @@
 -(SpotTrack *)trackById:(SpotId *)id;
 
 -(SpotAlbum*)albumByURI:(SpotURI*)uri;
--(SpotAlbum*)artistByURI:(SpotURI*)uri;
--(SpotAlbum*)trackByURI:(SpotURI*)uri;
--(SpotAlbum*)playlistByURI:(SpotURI*)uri;
--(SpotAlbum*)searchByURI:(SpotURI*)uri;
+-(SpotArtist*)artistByURI:(SpotURI*)uri;
+-(SpotTrack*)trackByURI:(SpotURI*)uri;
+-(SpotPlaylist*)playlistByURI:(SpotURI*)uri;
+-(SpotSearch*)searchByURI:(SpotURI*)uri;
 
 @property (nonatomic, readonly) BOOL loggedIn;
 @property (readonly) NSString *username;

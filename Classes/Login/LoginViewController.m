@@ -70,7 +70,7 @@
 {
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
 	
-	// Todo: Log out here if we're logged in
+	// TODO: Log out here if we're logged in
 	
 	username.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
 	password.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
@@ -109,7 +109,7 @@
 	[self.navigationController pushViewController:[[[LoggingInController alloc] initLoggingInAs:username.text password:password.text] autorelease] animated:YES];
 	[[NSUserDefaults standardUserDefaults] setObject:username.text forKey:@"username"];
 	[[NSUserDefaults standardUserDefaults] setObject:password.text forKey:@"password"];
-	
+  
 }
 
 @end

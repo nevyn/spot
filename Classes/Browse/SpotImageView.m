@@ -16,15 +16,29 @@
 {
 	return artId;
 }
+
+-(void)loadImage;
+{
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+  UIImage *image = nil;
+  if(artId){
+    image = [[SpotSession defaultSession] imageById:artId];
+  }
+  if(image) [self setImage:image];
+  [pool drain];
+}
+
 -(void)setArtId:(SpotId*)id;
 {
   [id retain];
   [artId release];
   artId = id;
   
-  //TODO: async and with spinner while loading!
-  UIImage *image = [[SpotSession defaultSession] imageById:artId];
-  if(image) [self setImage:image];
+  [self setImage:[UIImage imageNamed:@"icon.png"]];
+  //TODO: show spinner while loading!
+  [self loadImage];
+  
+  //[self performSelectorInBackground:@selector(loadImage) withObject:nil]; //despotify isn't threadsafe OK!
 }
 
 @end

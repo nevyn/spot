@@ -40,10 +40,8 @@
 	return self;
 }
 
--(id)initWithArtistBrowse:(struct artist_browse*)artistBrowse_;
+-(void)loadBrowse:(struct artist_browse*)artistBrowse_;
 {
-	if( ! [super init] ) return nil;
-  
   browsing = YES;
 	
 	memcpy(&artistBrowse, artistBrowse_, sizeof(struct artist_browse));
@@ -54,7 +52,14 @@
       [a_albums addObject:[[[SpotAlbum alloc] initWithAlbumBrowse:album] autorelease]];
     }
   }
-  albums = a_albums;
+  albums = a_albums;  
+}
+
+-(id)initWithArtistBrowse:(struct artist_browse*)artistBrowse_;
+{
+	if( ! [super init] ) return nil;
+  
+  [self loadBrowse:artistBrowse_];
   
 	return self;
 }
@@ -64,9 +69,13 @@
 	[super dealloc];
 }
 
--(SpotArtist *)moreInfo;
+-(void)loadMoreInfo;
 {
-  return [[SpotSession defaultSession] artistById:self.id];
+  if(!browsing){
+    NSLog(@"Artist %@ loading more info", self);
+    struct artist_browse *ab = despotify_get_artist([SpotSession defaultSession].session, artist.id);
+    [self loadBrowse:ab];
+  }
 }
 
 -(NSComparisonResult)compare:(SpotArtist*)other;
@@ -117,22 +126,26 @@
 
 -(NSArray *)albums;
 {
+  if(!browsing) [self loadMoreInfo];
   return albums;
 }
 
 -(NSString *)yearsActive;
 {
+  if(!browsing) [self loadMoreInfo];
   return [NSString stringWithCString:artistBrowse.years_active];
 }
 
 -(NSString *)genres;
 {
+  if(!browsing) [self loadMoreInfo];
   return [NSString stringWithCString:artistBrowse.genres];
 }
 
 -(NSString *)text;
 {
-  if(!artistBrowse.text) return nil;
+  if(!browsing) [self loadMoreInfo];
+  if(!artistBrowse.text) return @"";
   return [NSString stringWithCString:artistBrowse.text];
 }
 

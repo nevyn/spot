@@ -12,125 +12,55 @@
 #import "SpotURI.h"
 
 @implementation SpotPlaylist
--(id)init;
-{
-  if( ! [super init] ) return nil;
-  
-  memset(&playlist, 0, sizeof(struct playlist));
-	tracks = [[NSMutableArray alloc] init];
-	playlist.num_tracks = 0;
-  self.name = @"Untitled";
-  return self;
-}
 
 -(id)initWithPlaylist:(struct playlist*)playlist_;
 {
 	if( ! [super init] ) return nil;
+  //Create "remote" playlist
+  
+  if(!playlist_) return nil;
 	
-	memcpy(&playlist, playlist_, sizeof(struct playlist));
+  //copy playlist
+  memcpy(&playlist, playlist_, sizeof(playlist_));
+  
+  name = [[NSString alloc] initWithUTF8String:playlist.name];
+  author = [[NSString alloc] initWithUTF8String:playlist.author];
+  collaborative = playlist.is_collaborative;
+  _id = [SpotId playlistId:(char*)playlist.playlist_id];
 	
-	tracks = [[NSMutableArray alloc] initWithCapacity:playlist.num_tracks];
+	trackList = [[SpotTrackList alloc] init];
   if(playlist.num_tracks > 0){
     for(struct track *track = playlist.tracks; track != NULL; track = track->next) {
       SpotTrack *strack = [[(SpotTrack*)[SpotTrack alloc] initWithTrack:track] autorelease];
-      [(NSMutableArray*)tracks addObject:strack];
-      strack.playlist = self;
+      [trackList addTrack:strack];
     }
-  }	
+  }
+  
 	return self;
 }
 
--(id)initWithTrack:(SpotTrack*)track;
+-(id)initWithName:(NSString *)name_ author:(NSString *)author_ tracks:(NSArray*)tracks_;
 {
-	if( ! [super init] ) return nil;
-	
-	memset(&playlist, 0, sizeof(struct playlist));
-	tracks = [[NSMutableArray alloc] initWithObjects:track, nil];
-	track.playlist = self;
-	track.track->next = NULL;
-	playlist.num_tracks = 1;
-	
-	return self;
+  if( ! [super init] ) return nil;
+  //Create local playlist
+  name = [name_ retain];
+  author = [author_ retain];
+  trackList = [[SpotTrackList alloc] initWithTracks:tracks_];
+  collaborative = NO;
+  _id = nil;
+  memset(&playlist, 0, sizeof(playlist));
+  
+  return self;
 }
 
 -(void)dealloc;
 {
-	[tracks release];
+  [_id release];
+  [playableTrackList release];
+  [author release];
+  [name release];
+	[trackList release];
 	[super dealloc];
-}
-
--(SpotTrack*) trackBefore:(SpotTrack*)current;
-{
-  int i = [tracks indexOfObject:current]-1;
-  if(i < 0) return nil;
-  return [tracks objectAtIndex:i];
-}
-
--(SpotTrack*) trackAfter:(SpotTrack*)current;
-{
-  int i = [tracks indexOfObject:current]+1;
-  if(i >= tracks.count) return nil;
-  return [tracks objectAtIndex:i];  
-}
-
--(SpotTrack*) trackWithId:(SpotId*)id;
-{
-  for(SpotTrack *track in tracks)
-    if([track.id isEqual:id]) return track;
-  return nil;
-}
-
-#pragma mark Properties
-
--(NSString*)name;
-{
-  if(strlen(playlist.name) == 0) return @"Untitled";
-	return [NSString stringWithUTF8String:playlist.name];
-}
-
--(void)setName:(NSString*)name_;
-{
-	despotify_rename_playlist([SpotSession defaultSession].session, &playlist, (char*)[name_ UTF8String]);
-	// todo: handle error
-}
-
--(NSString *)author; { return [NSString stringWithCString:playlist.author];}
--(BOOL) collaborative; {return playlist.is_collaborative; } 
--(void) setCollaborative:(BOOL)collab;
-{
-  despotify_set_playlist_collaboration([SpotSession defaultSession].session, &playlist, collab);
-  // todo: handle error
-}
-
-@synthesize tracks;
-
--(NSString*)description;
-{
-	return [NSString stringWithFormat:@"<SpotPlaylist %@ %@>", self.name, self.tracks];
-}
-
-+(SpotPlaylist *)byId:(SpotId *)id session:(SpotSession*)session;
-{
-  if(!session) session = [SpotSession defaultSession];
-  struct playlist* pl = despotify_get_playlist(session.session, id.id);
-  if(!pl) return nil;
-  return [[[SpotPlaylist alloc] initWithPlaylist:pl] autorelease];
-}
-
-@end
-
-
-@implementation SpotMutablePlaylist
-
--(void)addTrack:(SpotTrack*)track;
-{
-  SpotTrack *lastTrack = [tracks lastObject];
-  if(lastTrack)
-    lastTrack.track->next = track.track;
-  track.track->next = NULL;
-  track.playlist = self;
-  [(NSMutableArray*)tracks addObject: track];
-  playlist.num_tracks = [tracks count];
 }
 
 -(BOOL)isEqual:(SpotPlaylist*)other;
@@ -143,15 +73,61 @@
   return [[NSString stringWithFormat:@"%@%@", self.author, self.name] hash];
 }
 
--(SpotId*)id;
-{
-  return [SpotId playlistId:(char*)playlist.playlist_id];
-}
-
 -(SpotURI*)uri;
 {
+  if(!_id) return nil;
   char uri[50];
   return [SpotURI uriWithURI:despotify_playlist_to_uri(&playlist, uri)];  
+}
+
+-(SpotTrackList*)playableTrackList;
+{
+  if(playableTrackList) return playableTrackList;
+  
+  NSMutableArray *pl = [[NSMutableArray alloc] init];
+  for(SpotTrack *track in trackList.tracks){
+    if(track.playable)
+      [pl addObject:track];
+  }
+  playableTrackList = [[SpotTrackList alloc] initWithTracks:pl];
+  return playableTrackList;
+}
+
+-(void)setNeedSorting;
+{
+  needSorting = YES;
+}
+
+#pragma mark Properties
+
+@synthesize trackList, playableTrackList, name, author, collaborative;
+
+-(SpotTrackList*)trackList;
+{
+  if(needSorting){
+  }
+  needSorting = NO;
+  return trackList;
+}
+
+-(NSString*)description;
+{
+	return [NSString stringWithFormat:@"<SpotPlaylist %d %@>", self.name, self.trackList.tracks];
+}
+
+@end
+
+
+@implementation SpotMutablePlaylista
+
+-(void)addTrack:(SpotTrack*)track;
+{
+  SpotTrack *lastTrack = [trackList.tracks lastObject];
+  if(lastTrack)
+    lastTrack.track->next = track.track;
+  track.track->next = NULL;
+  [trackList addTrack:track];
+  playlist.num_tracks = [trackList.tracks count];
 }
 
 @end

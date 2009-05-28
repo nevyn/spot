@@ -32,14 +32,9 @@
 
 +(SpotURI*)uriWithURL:(NSURL *)url;
 {
-  NSArray *a = [[url path] componentsSeparatedByString:@"/"];
-  NSString *typestr = [a objectAtIndex:1];
-  NSString *arg = [a objectAtIndex:2];
-  const char *ctypestr = [typestr cStringUsingEncoding:NSASCIIStringEncoding];
-  const char *carg = [arg cStringUsingEncoding:NSASCIIStringEncoding];
-  char uri[256];
-  sprintf(uri, "spotify:%s:%s", ctypestr, carg);
-  return [[[SpotURI alloc] initWithURI:uri] autorelease];
+  NSString *uri = [[url path] stringByReplacingOccurrencesOfString:@"/" withString:@":"];
+  uri = [NSString stringWithFormat:@"spotify%@", uri];
+  return [[[SpotURI alloc] initWithURI:[uri cStringUsingEncoding:NSASCIIStringEncoding]] autorelease];
 }
 
 +(SpotURI*)uriWithString:(NSString *)string;

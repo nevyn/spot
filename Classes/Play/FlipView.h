@@ -10,7 +10,7 @@
 
 
 @interface FlipView : UIView {
-
+  
 }
 
 -(IBAction)flip;

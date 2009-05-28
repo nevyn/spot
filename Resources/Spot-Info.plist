@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
+	<key>UIRequiresPersistentWiFi</key>
+	<true/>
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
@@ -26,5 +28,16 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.spot</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>spotify</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
