@@ -37,7 +37,6 @@
   [self setImage:[UIImage imageNamed:@"icon.png"]];
   //TODO: show spinner while loading!
   [self loadImage];
-  SEL hej;
   
   //[self performSelectorInBackground:@selector(loadImage) withObject:nil]; //despotify isn't threadsafe OK!
 }
