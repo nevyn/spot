@@ -49,7 +49,7 @@
   
   name = [[NSString alloc] initWithUTF8String:playlist->name];
   author = [[NSString alloc] initWithUTF8String:playlist->author];
-  playlistId = [[NSString alloc] initWithUTF8String:(const char*)playlist->playlist_id];
+  playlistId = [[NSString alloc] initWithCString:(const char*)playlist->playlist_id encoding:NSASCIIStringEncoding];
   collaborative = playlist->is_collaborative;
   revision = playlist->revision;
   checksum = playlist->checksum;

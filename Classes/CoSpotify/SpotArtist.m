@@ -57,8 +57,8 @@
   browsing = NO;
 	
   name = [[NSString alloc] initWithUTF8String:artist->name];
-  artistId = [[NSString alloc] initWithUTF8String:artist->id];
-  portraitId = [[NSString alloc] initWithUTF8String:artist->portrait_id];
+  artistId = [[NSString alloc] initWithCString:artist->id encoding:NSASCIIStringEncoding];
+  portraitId = [[NSString alloc] initWithCString:artist->portrait_id encoding:NSASCIIStringEncoding];
   popularity = artist->popularity;
   
 	return self;

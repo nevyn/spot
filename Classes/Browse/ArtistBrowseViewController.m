@@ -36,7 +36,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   if(artist.portraitId){
-   // portrait.artId = artist.portraitId;
+    portrait.artId = [SpotId artistId:(char*)[artist.portraitId cStringUsingEncoding:NSASCIIStringEncoding]];
   }
   NSString *html = [NSString stringWithFormat:@"<html><body>%@</body></html>", artist.text];
 

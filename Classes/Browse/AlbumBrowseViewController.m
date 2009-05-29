@@ -46,7 +46,7 @@
     [super viewDidLoad];
   
   if(album.coverId){
-    albumArt.artId = [SpotId albumId:(char*)[album.coverId UTF8String]];
+    albumArt.artId = [SpotId albumId:(char*)[album.coverId cStringUsingEncoding:NSASCIIStringEncoding]];
   }
   [albumName setText:album.name];
   [popularity setValue:album.popularity];
