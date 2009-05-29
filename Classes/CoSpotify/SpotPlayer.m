@@ -88,9 +88,9 @@
    */
   if(willPlay) return NO;
   if(!playlist) return NO;
-  if(!track) track = [playlist.playableTrackList.tracks objectAtIndex:0];
+  if(!track) track = [playlist.tracks objectAtIndex:0];
   
-  if(![playlist.playableTrackList.tracks containsObject:track])
+  if(![playlist.tracks containsObject:track])
     [NSException raise:NSInvalidArgumentException format:@"The 'track' argument must be in the playlist given"];
   
   [self setCurrentPlaylist:playlist];
@@ -131,7 +131,7 @@
 
 -(BOOL)playNextTrack;
 {
-  SpotTrack *next = [currentPlaylist.playableTrackList trackAfter:self.currentTrack];
+  SpotTrack *next = [currentPlaylist trackAfter:self.currentTrack];
   if(next){
     [self playTrack:next rewind:NO];
     return YES;
@@ -141,7 +141,7 @@
 
 -(BOOL)playPreviousTrack;
 {
-  SpotTrack *prev = [currentPlaylist.playableTrackList trackBefore:self.currentTrack];
+  SpotTrack *prev = [currentPlaylist trackBefore:self.currentTrack];
   if(prev) {
     [self playTrack:prev rewind:NO];
     return YES;

@@ -14,10 +14,25 @@
 #import "SpotItem.h"
 
 @interface SpotAlbum : SpotItem {
-	struct album album;
-  struct album_browse albumBrowse;
   BOOL browsing;
-  NSArray *tracks;
+
+  NSString *albumId;
+  NSInteger version;
+  NSString *name;
+  NSString *artistName;
+  NSString *artistId;
+  NSString *type;
+  NSInteger year;
+  NSString *coverId;
+  NSString *review;
+  NSArray *copyright;
+  NSString *allowed;
+  NSString *catalogues; //from restrictions
+  NSArray *similarAlbumIds;
+  float popularity;
+  
+  NSArray *discs;
+  
   
   SpotPlaylist *playlist;
 }
@@ -31,17 +46,22 @@
 @property (readonly, nonatomic) BOOL browsing;
 
 
-//shared
+@property (readonly) NSInteger version;
 @property (readonly) NSString *name;
-@property (readonly) SpotId *coverId;
+@property (readonly) NSString *artistName;
+@property (readonly) NSString *artistId;
+@property (readonly) NSString *type;
+@property (readonly) NSInteger year;
+@property (readonly) NSString *coverId;
+@property (readonly) NSString *review;
+@property (readonly) NSArray *copyright;
+@property (readonly) NSString *allowed;
+@property (readonly) NSString *catalogues; 
+@property (readonly) NSArray *similarAlbumIds;
 @property (readonly) float popularity;
 
-//album only
-@property (readonly) NSString *artistName;
-@property (readonly) SpotId *artistId;
+@property (readonly) NSArray *discs;
 
-//browse only
-@property (readonly) int year;
 @property (readonly) SpotPlaylist *playlist;
            
 @end

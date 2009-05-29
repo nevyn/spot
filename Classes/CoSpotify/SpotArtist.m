@@ -12,43 +12,69 @@
 #import "SpotSession.h"
 #import "SpotURI.h"
 
+
+
+@implementation SpotArtistBio
+
+@synthesize text, portraits;
+
+-(id)initWithText:(NSString*)t;
+{
+  if( ! [super init] ) return nil;
+  
+  text = [t retain];
+  
+  return self;
+}
+
+-(void)dealloc;
+{
+  [text release];
+  [portraits release];
+  [super dealloc];
+}
+
+-(NSString *)description;
+{
+  return [NSString stringWithFormat:@"<SpotArtistBio text: %@ portraits: %@>", text, portraits];
+}
+
+@end
+
+
+
+
 @implementation SpotArtist
 
 @synthesize browsing;
+@synthesize name, portraitId, popularity, version, artistId, bios, similarArtists, genres, yearsActive, albums;
 
--(id)initWithArtist:(struct artist*)artist_;
+
+-(id)initWithArtist:(struct artist*)artist;
 {
 	if( ! [super init] ) return nil;
   
   browsing = NO;
 	
-	memcpy(&artist, artist_, sizeof(struct artist));
-  
-  strcpy(artistBrowse.name, artist.name);
-  strcpy(artistBrowse.id, artist.id);
-  strcpy(artistBrowse.portrait_id, artist.portrait_id);
-  artistBrowse.popularity = artist.popularity;
-  
-  artistBrowse.text = "";
-  memset(artistBrowse.genres, 0, sizeof(artistBrowse.genres));
-    memset(artistBrowse.years_active, 0, sizeof(artistBrowse.years_active));
-  artistBrowse.num_albums = 0;
-  artistBrowse.albums = NULL;
-  
-  albums = nil;
+  name = [[NSString alloc] initWithUTF8String:artist->name];
+  artistId = [[NSString alloc] initWithUTF8String:artist->id];
+  portraitId = [[NSString alloc] initWithUTF8String:artist->portrait_id];
+  popularity = artist->popularity;
   
 	return self;
 }
 
--(void)loadBrowse:(struct artist_browse*)artistBrowse_;
+-(void)loadBrowse:(struct artist_browse*)artist;
 {
   browsing = YES;
 	
-	memcpy(&artistBrowse, artistBrowse_, sizeof(struct artist_browse));
+  SpotArtistBio *bio = [[SpotArtistBio alloc] initWithText:[NSString stringWithUTF8String:artist->text]];
+  bios = [[NSArray alloc] initWithObjects:bio, nil];
+  [bio release];
   
-  NSMutableArray *a_albums = [[NSMutableArray alloc] initWithCapacity:artistBrowse.num_albums];
-  if(artistBrowse.num_albums > 0){
-    for(struct album_browse *album = artistBrowse.albums; album != NULL; album = album->next){
+  NSMutableArray *a_albums = [[NSMutableArray alloc] initWithCapacity:artist->num_albums];
+  if(artist->num_albums > 0){
+    for(struct album_browse *album = artist->albums; album != NULL; album = album->next){
       [a_albums addObject:[[[SpotAlbum alloc] initWithAlbumBrowse:album] autorelease]];
     }
   }
@@ -73,7 +99,7 @@
 {
   if(!browsing){
     NSLog(@"Artist %@ loading more info", self);
-    struct artist_browse *ab = despotify_get_artist([SpotSession defaultSession].session, artist.id);
+    struct artist_browse *ab = despotify_get_artist([SpotSession defaultSession].session, (char*)[artistId UTF8String]);
     [self loadBrowse:ab];
   }
 }
@@ -87,35 +113,16 @@
 
 -(SpotId *)id;
 {
-  return [SpotId artistId:artistBrowse.id];
+  return [SpotId artistId:(char*)[artistId UTF8String]];
 }
 
 -(SpotURI*)uri;
 {
-  char uri[50];
-  return [SpotURI uriWithURI:despotify_artist_to_uri(&artistBrowse, uri)];  
+  //char uri[50];
+  //return [SpotURI uriWithURI:despotify_artist_to_uri(&artistBrowse, uri)];  
+  return nil;
 }
 
-
--(NSString*)name;
-{
-  return [NSString stringWithUTF8String:artistBrowse.name];
-}
--(float)popularity;
-{
-	return artistBrowse.popularity;
-}
-
--(SpotId *)portraitId;
-{ 
-  return [SpotId portraitId:artistBrowse.portrait_id];
-}
-
--(UIImage*)portrait;
-{
-  if(!portrait) portrait = [[SpotSession defaultSession] imageById:self.portraitId];
-  return portrait;
-}
 
 -(NSString*)description;
 {
@@ -130,23 +137,12 @@
   return albums;
 }
 
--(NSString *)yearsActive;
-{
-  if(!browsing) [self loadMoreInfo];
-  return [NSString stringWithCString:artistBrowse.years_active];
-}
-
--(NSString *)genres;
-{
-  if(!browsing) [self loadMoreInfo];
-  return [NSString stringWithCString:artistBrowse.genres];
-}
 
 -(NSString *)text;
 {
   if(!browsing) [self loadMoreInfo];
-  if(!artistBrowse.text) return @"";
-  return [NSString stringWithCString:artistBrowse.text];
+  if(!bios || [bios count] == 0) return @"";
+  return ((SpotArtistBio*)[bios lastObject]).text;
 }
 
 -(BOOL)isEqual:(SpotArtist*)other;

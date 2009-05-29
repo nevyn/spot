@@ -64,7 +64,7 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUIContentMode">3</int>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="IBText">short songs</string>
+						<string key="IBText">Short Songs</string>
 						<string key="IBPrompt"/>
 						<string key="IBPlaceholder">Search</string>
 					</object>

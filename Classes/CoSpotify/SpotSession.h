@@ -11,6 +11,7 @@
 #import "SpotId.h"
 #import "SpotPlayer.h"
 #import "SpotURI.h"
+#import "SpotItem.h"
 
 @class SpotArtist;
 @class SpotAlbum;
@@ -21,6 +22,8 @@
 	BOOL loggedIn;
   
   SpotPlayer *player;
+  
+  NSMutableDictionary *cache;
 }
 +(SpotSession*)defaultSession;
 -(void)cleanup;
@@ -39,6 +42,8 @@
 -(SpotTrack*)trackByURI:(SpotURI*)uri;
 -(SpotPlaylist*)playlistByURI:(SpotURI*)uri;
 -(SpotSearch*)searchByURI:(SpotURI*)uri;
+
+-(SpotItem *)cachedItemId:(SpotId *)id ensureFullProfile:(BOOL)full;
 
 @property (nonatomic, readonly) BOOL loggedIn;
 @property (readonly) NSString *username;

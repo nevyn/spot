@@ -80,7 +80,8 @@
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
   if([searchBar.text length] == 0)
     [searchBar becomeFirstResponder];
-  else
+  else if(!searchResults)
+    
     [self searchForString:searchBar.text];
 }
 

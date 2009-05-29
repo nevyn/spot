@@ -46,7 +46,7 @@
     [super viewDidLoad];
   
   if(album.coverId){
-    albumArt.artId = album.coverId;
+    albumArt.artId = [SpotId albumId:(char*)[album.coverId UTF8String]];
   }
   [albumName setText:album.name];
   [popularity setValue:album.popularity];
@@ -89,7 +89,7 @@
 {
 	int idx = [indexPath indexAtPosition:1];
   
-  SpotTrack *track = [album.playlist.playableTrackList.tracks objectAtIndex:idx];
+  SpotTrack *track = [album.playlist.tracks objectAtIndex:idx];
   if(track.playable){
     [[SpotSession defaultSession].player playTrack:track rewind:NO];
     [self.navigationController pushViewController:[PlayViewController defaultController] animated:YES];

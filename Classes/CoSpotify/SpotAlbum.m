@@ -13,72 +13,80 @@
 
 @implementation SpotAlbum
 
-@synthesize browsing, playlist;
+@synthesize browsing;
+@synthesize version, name, artistName, artistId, type, year, coverId, review, copyright, allowed, catalogues, similarAlbumIds, discs, popularity;
 
--(id)initWithAlbum:(struct album*)album_;
+-(id)initWithAlbum:(struct album*)album;
 {
 	if( ! [super init] ) return nil;
 	
   browsing = NO;
-	memcpy(&album, album_, sizeof(struct album));
-  
-  //clear ab
-  memset(&albumBrowse, 0, sizeof(struct album_browse));
+
+  name = [[NSString alloc] initWithUTF8String:album->name];
+  albumId = [[NSString alloc] initWithUTF8String:album->id];
+  artistName = [[NSString alloc] initWithUTF8String:album->artist];
+  artistId = [[NSString alloc] initWithUTF8String:album->artist_id];
+  coverId  = [[NSString alloc] initWithUTF8String:album->cover_id];
+  popularity = album->popularity;
   
   return self;
 }
 
--(void)loadBrowse:(struct album_browse*)album_;
+-(void)loadBrowse:(struct album_browse*)album;
 {
   browsing = YES;
   
-  //copy data
-	memcpy(&albumBrowse, album_, sizeof(struct album_browse));
+  name = [[NSString alloc] initWithUTF8String:album->name];
+  albumId = [[NSString alloc] initWithUTF8String:album->id];
+  year = album->year;
+  coverId = [[NSString alloc] initWithUTF8String:album->cover_id];
+  popularity = album->popularity;
   
-  
-  NSString *artistName = nil;
-  
-  NSMutableArray *a_tracks = [[NSMutableArray alloc] initWithCapacity:albumBrowse.num_tracks];
-  if(albumBrowse.num_tracks > 0){
-    for(struct track *track = albumBrowse.tracks; track != NULL; track = track->next){
-      SpotTrack *strack = [[[SpotTrack alloc] initWithTrack:track] autorelease];
-      
-      //Figure out artist name
-      if(artistName && ![artistName isEqual:strack.artist.name]) 
-        artistName = @"Various artists";
-      else if(!artistName)
-        artistName = strack.artist.name;
-      
-      [a_tracks addObject:strack];
-    }
+  //TODO: multiple discs when despotify has support for it
+  NSMutableArray *tracks = [NSMutableArray array];
+  for(struct track *track = album->tracks; track != NULL; track = track->next){
+    SpotTrack *a_track = [[SpotTrack alloc] initWithTrack:track];
+    [tracks addObject:a_track];
+    [a_track release];
   }
-  
-  playlist = [[SpotPlaylist alloc] initWithName:self.name author:artistName tracks:a_tracks];
+  SpotPlaylist *disc = [[SpotPlaylist alloc] initWithName:name author:nil tracks:tracks];
+  discs = [[NSArray alloc] initWithObjects:disc, nil];
+  [disc release];
 }
 
--(id)initWithAlbumBrowse:(struct album_browse*)album_;
+
+-(id)initWithAlbumBrowse:(struct album_browse*)album;
 {
   if( ! [super init] ) return nil;
   
-  [self loadBrowse:album_];
-  
-  //clear album and copy what we can
-  memset(&album, 0, sizeof(struct album));
-  strcpy(album.name, albumBrowse.name);
-  strcpy(album.id, albumBrowse.id);
-  strcpy(album.cover_id, albumBrowse.cover_id);
-  album.popularity = albumBrowse.popularity;
-  
-
+  [self loadBrowse:album];
   
   return self;
+}
+
+-(void)dealloc;
+{
+  [albumId release];
+  [name release];
+  [artistName release];
+  [artistId release];
+  [type release];
+  [coverId release];
+  [review release];
+  [copyright release];
+  [allowed release];
+  [catalogues release];
+  [similarAlbumIds release];
+  [discs release];
+  [playlist dealloc];
+  [super dealloc];
 }
 
 -(void)loadMoreInfo;
 {
   if(!browsing){
     NSLog(@"Album %@ loading more info", self);
-    struct album_browse *ab = despotify_get_album([SpotSession defaultSession].session, album.id);
+    struct album_browse *ab = despotify_get_album([SpotSession defaultSession].session, (char*)[albumId UTF8String]);
     [self loadBrowse:ab];
   }
 }
@@ -89,32 +97,19 @@
 }
 
 #pragma mark shared
--(SpotId *)id; { return [SpotId albumId:album.id]; }
+-(SpotId *)id; { return [SpotId albumId:(char*)[albumId UTF8String]]; }
 -(SpotURI*)uri;
 {
-  char uri[50];
-  return [SpotURI uriWithURI:despotify_album_to_uri(&albumBrowse, uri)];  
+//  char uri[50];
+//  return [SpotURI uriWithURI:despotify_album_to_uri(&albumBrowse, uri)];  
+  return nil;
 }
 
--(NSString *)name; { return [NSString stringWithUTF8String:album.name]; }
--(SpotId *)coverId; { return [SpotId coverId:album.cover_id]; }
--(float) popularity; { return album.popularity; }
-
-#pragma mark artist only  
--(NSString *)artistName; { return browsing ? nil : [NSString stringWithUTF8String:album.artist]; }
--(SpotId *)artistId; { return browsing ? nil : [SpotId artistId:album.artist_id]; }
-  
-#pragma mark browsing only
--(int) year; 
-{
-  if(!browsing) [self loadMoreInfo];
-  return albumBrowse.year; 
-}
 
 -(SpotPlaylist*)playlist;
 {
   if(!browsing) [self loadMoreInfo];
-  return playlist;
+  return [discs lastObject];
 }
 
 -(BOOL)isEqual:(SpotAlbum*)other;
@@ -124,7 +119,7 @@
 
 -(NSInteger)hash;
 {
-  return [self.id hash];
+  return [self.artistId hash];
 }
 
 @end

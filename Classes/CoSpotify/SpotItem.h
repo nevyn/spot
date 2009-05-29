@@ -14,6 +14,9 @@
 
 }
 
+//Ensure that as much data as possible is loaded
+-(void)ensureFullProfile;
+
 @property (readonly, nonatomic) SpotId *id;
 @property (readonly, nonatomic) SpotURI *uri;
 

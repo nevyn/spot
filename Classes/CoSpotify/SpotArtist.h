@@ -11,14 +11,36 @@
 #import "despotify.h"
 #import "SpotItem.h"
 
+@interface SpotArtistBio : NSObject
+{
+  NSString *text;
+  NSArray *portraits;
+}
+
+@property (readonly) NSString *text;
+@property (readonly) NSArray *portraits;
+
+@end
+
+
+
 @interface SpotArtist : SpotItem {
-	struct artist artist;
-  struct artist_browse artistBrowse;
-  
   BOOL browsing;
   
+  NSString *name;
+  NSString *portraitId;
+  float popularity;
+  NSInteger version;
+  NSString *artistId;
+  
+  NSArray *bios;
+  
+  NSArray *similarArtists;
+  NSString *genres;
+  NSString *yearsActive;
+  
   NSArray *albums;
-  UIImage *portrait;
+  
 }
 -(id)initWithArtist:(struct artist*)artist;
 -(id)initWithArtistBrowse:(struct artist_browse*)artistBrowse;
@@ -27,16 +49,18 @@
 
 -(NSComparisonResult)compare:(SpotArtist*)other;
 
-@property (readonly) NSString *name;
-@property (readonly) float popularity;
-@property (readonly) SpotId *portraitId;
-@property (readonly) UIImage *portrait;
+@property (readonly, nonatomic) NSString *text;
 
-//Need to be inited from _browse for these props
-@property (readonly) NSArray *albums;
-@property (readonly) NSString *yearsActive;
-@property (readonly) NSString *genres;
-@property (readonly) NSString *text;
+@property (readonly, nonatomic) NSString *name;
+@property (readonly, nonatomic) NSString *portraitId;
+@property (readonly, nonatomic) float popularity;
+@property (readonly, nonatomic) NSInteger version;
+@property (readonly, nonatomic) NSString *artistId;
+@property (readonly, nonatomic) NSArray *bios;
+@property (readonly, nonatomic) NSArray *similarArtists;
+@property (readonly, nonatomic) NSString *genres;
+@property (readonly, nonatomic) NSString *yearsActive;
+@property (readonly, nonatomic) NSArray *albums;
 
 @property (readonly, nonatomic) BOOL browsing;
 

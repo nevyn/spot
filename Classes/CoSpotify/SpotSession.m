@@ -23,6 +23,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 SpotSession *SpotSessionSingleton;
 
 NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
@@ -127,7 +128,8 @@ void cb_track_end(struct despotify_session *ds){
 
 -(void)receivedXML:(NSString*)xmlString;
 {
- // NSLog(@"Got some XML:\n%@", xmlString);
+  NSLog(@"Got some XML:\n%@", xmlString);
+ 
 }
 
 -(NSArray*)playlists;
@@ -242,5 +244,17 @@ void cb_track_end(struct despotify_session *ds){
   return [[[SpotSearch alloc] initWithSearchResult:sr] autorelease];
 }
 
+
+-(SpotItem *)cachedItemId:(SpotId *)id_ ensureFullProfile:(BOOL)full;
+{
+  SpotItem *item;// = [cache valueForKey:id_];
+  if(!item){
+    //TODO: Load it (how do we know type? send as arg, one func per type or store in SpotId?
+    //Discussion: 
+    // * SpotId is quite obsolete. really think we can/shud use NSString instead.
+    // * Dont do loading here, let caller handle it if no item found.
+  }
+  return item;
+}
 
 @end

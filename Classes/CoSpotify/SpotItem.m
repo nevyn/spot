@@ -11,8 +11,14 @@
 
 @implementation SpotItem
 
+-(void)ensureFullProfile;
+{
+  //nothing
+}
+
 -(SpotId *)id;
 {
+  [NSException raise:@"NotImplemented" format:@"SpotItem id not overridden"];
   return nil;
 }
 

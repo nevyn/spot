@@ -11,31 +11,58 @@
 #import "SpotSession.h"
 #import "SpotURI.h"
 
+@implementation SpotTrackSlot
+
+@synthesize track, playlist, position;
+
+-(id)initWithPlaylist:(SpotPlaylist *)p track:(SpotTrack*)t position:(NSInteger)pos;
+{
+  if( ! [super init] ) return nil;
+  
+  playlist = [p retain];
+  track = [t retain];
+  position = pos;
+  
+  return self;
+}
+
+-(void)dealloc;
+{
+  [playlist release];
+  [track release];
+  [super dealloc];
+}
+
+-(NSString *)description;
+{
+  return [NSString stringWithFormat:@"<SpotTrackSlot pos: %d. track: %@>", position, track];
+}
+@end
+
+
 @implementation SpotPlaylist
 
--(id)initWithPlaylist:(struct playlist*)playlist_;
+-(id)initWithPlaylist:(struct playlist*)playlist;
 {
 	if( ! [super init] ) return nil;
   //Create "remote" playlist
   
-  if(!playlist_) return nil;
-	
-  //copy playlist
-  memcpy(&playlist, playlist_, sizeof(playlist_));
+  name = [[NSString alloc] initWithUTF8String:playlist->name];
+  author = [[NSString alloc] initWithUTF8String:playlist->author];
+  playlistId = [[NSString alloc] initWithUTF8String:(const char*)playlist->playlist_id];
+  collaborative = playlist->is_collaborative;
+  revision = playlist->revision;
+  checksum = playlist->checksum;
   
-  name = [[NSString alloc] initWithUTF8String:playlist.name];
-  author = [[NSString alloc] initWithUTF8String:playlist.author];
-  collaborative = playlist.is_collaborative;
-  _id = [SpotId playlistId:(char*)playlist.playlist_id];
-	
-	trackList = [[SpotTrackList alloc] init];
-  if(playlist.num_tracks > 0){
-    for(struct track *track = playlist.tracks; track != NULL; track = track->next) {
-      SpotTrack *strack = [[(SpotTrack*)[SpotTrack alloc] initWithTrack:track] autorelease];
-      [trackList addTrack:strack];
-    }
+  slots = [[NSMutableArray alloc] init];
+  for(struct track *track = playlist->tracks; track != NULL; track = track->next){
+    SpotTrack *a_track = [[SpotTrack alloc] initWithTrack:track];
+    SpotTrackSlot *slot = [[SpotTrackSlot alloc] initWithPlaylist:self track:a_track position:[slots count]];
+    [slots addObject:slot];
+    [slot release];
+    [a_track release];
   }
-  
+    
 	return self;
 }
 
@@ -45,23 +72,60 @@
   //Create local playlist
   name = [name_ retain];
   author = [author_ retain];
-  trackList = [[SpotTrackList alloc] initWithTracks:tracks_];
-  collaborative = NO;
-  _id = nil;
-  memset(&playlist, 0, sizeof(playlist));
+  
+  slots = [[NSMutableArray alloc] init];
+  for(SpotTrack *track in tracks_){
+    SpotTrackSlot *slot = [[SpotTrackSlot alloc] initWithPlaylist:self track:track position:[slots count]];
+    [slots addObject:slot];
+    [slot release];
+  }
   
   return self;
 }
 
 -(void)dealloc;
 {
-  [_id release];
-  [playableTrackList release];
+  [playlistId release];
   [author release];
   [name release];
-	[trackList release];
+	[slots release];
 	[super dealloc];
 }
+
+-(SpotTrack*) trackBefore:(SpotTrack*)track;
+{
+  NSInteger idx = [self positionOfTrack:track];
+  if(idx == NSNotFound) return nil;
+  idx -= 1;
+  if(idx < 0) return nil;
+  return [self trackAtPosition:idx];
+}
+
+-(SpotTrack*) trackAfter:(SpotTrack*)track;
+{
+  NSInteger idx = [self positionOfTrack:track];
+  if(idx == NSNotFound) return nil;
+  idx += 1;
+  if(idx >= [self tracks].count) return nil;
+  return [self trackAtPosition:idx];  
+}
+
+-(NSInteger) positionOfTrack:(SpotTrack*)track;
+{
+  //TODO: this is ugly version. make slots hash/compare (whatever nsarray use to find object) equal to tracks
+  for(NSInteger i = 0; i < slots.count; i++){
+    SpotTrackSlot *slot = [slots objectAtIndex:i];
+    if([slot.track isEqual:track]) return i;
+  }
+  return NSNotFound;
+}
+
+-(SpotTrack *) trackAtPosition:(NSInteger)position;
+{
+  SpotTrackSlot *slot = [slots objectAtIndex:position];
+  return slot.track;
+}
+
 
 -(BOOL)isEqual:(SpotPlaylist*)other;
 {
@@ -75,44 +139,30 @@
 
 -(SpotURI*)uri;
 {
-  if(!_id) return nil;
+/*  if(!_id) return nil;
   char uri[50];
   return [SpotURI uriWithURI:despotify_playlist_to_uri(&playlist, uri)];  
-}
-
--(SpotTrackList*)playableTrackList;
-{
-  if(playableTrackList) return playableTrackList;
-  
-  NSMutableArray *pl = [[NSMutableArray alloc] init];
-  for(SpotTrack *track in trackList.tracks){
-    if(track.playable)
-      [pl addObject:track];
-  }
-  playableTrackList = [[SpotTrackList alloc] initWithTracks:pl];
-  return playableTrackList;
-}
-
--(void)setNeedSorting;
-{
-  needSorting = YES;
+ */
+  return nil;
 }
 
 #pragma mark Properties
 
-@synthesize trackList, playableTrackList, name, author, collaborative;
+@synthesize tracks, name, author, collaborative;
 
--(SpotTrackList*)trackList;
+-(NSArray*)tracks;
 {
-  if(needSorting){
+  //TODO: cache tracklist
+  NSMutableArray *t = [NSMutableArray array];
+  for(SpotTrackSlot *slot in slots){
+    [t addObject:slot.track];
   }
-  needSorting = NO;
-  return trackList;
+  return t;
 }
 
 -(NSString*)description;
 {
-	return [NSString stringWithFormat:@"<SpotPlaylist %d %@>", self.name, self.trackList.tracks];
+	return [NSString stringWithFormat:@"<SpotPlaylist %d tracks: %@>", self.name, self.tracks];
 }
 
 @end
@@ -122,12 +172,9 @@
 
 -(void)addTrack:(SpotTrack*)track;
 {
-  SpotTrack *lastTrack = [trackList.tracks lastObject];
-  if(lastTrack)
-    lastTrack.track->next = track.track;
-  track.track->next = NULL;
-  [trackList addTrack:track];
-  playlist.num_tracks = [trackList.tracks count];
+  SpotTrackSlot *slot = [[SpotTrackSlot alloc] initWithPlaylist:self track:track position:[slots count]];
+  [slots addObject:slot];
+  [slot release];
 }
 
 @end
