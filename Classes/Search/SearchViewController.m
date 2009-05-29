@@ -17,6 +17,8 @@
 #import "ArtistBrowseViewController.h"
 #import "PlayViewController.h"
 
+#import "SpotCell.h"
+
 
 @implementation SearchViewController
 
@@ -136,39 +138,57 @@ enum {
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView_ cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-    }
-
+  static NSString *CellIdentifier = @"Cell";
+  static NSString *SpotCellIdentifier = @"AlbumCell";
+  UITableViewCell *the_cell = nil;
 
 	int idx = [indexPath indexAtPosition:1]; idx = idx;
 	switch([indexPath indexAtPosition:0]) {
-    case SuggestionSection:{			
+    case SuggestionSection:{	
+      UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
+      if (cell == nil) 
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];      
 			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 			cell.text = searchResults.suggestion;
+      the_cell = cell;
     } break;
 		case ArtistsSection: {
+      UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
+      if (cell == nil) 
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+            
 			SpotArtist *artist = [searchResults.artists objectAtIndex:idx];
-			
 			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 			cell.text = artist.name;
+      the_cell = cell;
 		} break;
 		case TracksSection: {
+      UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
+      if (cell == nil) 
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+            
 			SpotTrack *track = [searchResults.tracks objectAtIndex:idx];
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			cell.text = [NSString stringWithFormat:@"%@", track.title];
+      the_cell = cell;
 		} break;
 		case AlbumsSection: {
+      SpotCell *cell = (SpotCell *)[tableView dequeueReusableCellWithIdentifier:SpotCellIdentifier];
+      if(!cell)
+        cell = [[[SpotCell alloc] initWithFrame:CGRectZero reuseIdentifier:SpotCellIdentifier] autorelease];
+      
 			SpotAlbum *album = [searchResults.albums objectAtIndex:idx];
 			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-      cell.text = [NSString stringWithFormat:@"%@ by %@", album.name, album.artistName];
+      cell.title.text = album.name;
+      cell.subText.text = album.artistName;
+      cell.artId = [SpotId coverId:(char*)[album.coverId cStringUsingEncoding:NSASCIIStringEncoding]];
+
+      
+      the_cell = cell;
 		} break;
 	}
 	
-  return cell;
+  return the_cell;
 }
 
 

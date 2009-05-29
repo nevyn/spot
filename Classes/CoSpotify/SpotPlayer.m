@@ -45,7 +45,7 @@
     if([self.savedTrack isEqual:self.currentTrack])
       willPlay = despotify_resume([SpotSession defaultSession].session);
     else
-      willPlay = despotify_play([SpotSession defaultSession].session, self.currentTrack.track, NO); 
+      willPlay = despotify_play([SpotSession defaultSession].session, self.currentTrack.de_track, NO); 
     return willPlay;
   }
   return NO; 

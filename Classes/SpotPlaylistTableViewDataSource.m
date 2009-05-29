@@ -75,7 +75,7 @@
   
 	int idx = [indexPath indexAtPosition:1]; idx = idx;
   SpotTrack *track = [playlist.tracks objectAtIndex:idx];
-  cell.accessoryType = track.playable ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
+  cell.accessoryType = track.isPlayable ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
   cell.text = [NSString stringWithFormat:@"%@", track.title];
   
   return cell;

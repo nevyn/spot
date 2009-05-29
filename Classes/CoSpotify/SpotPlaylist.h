@@ -38,12 +38,11 @@
   
   NSString *name;
   NSString *author;
-  NSString *playlistId;
+  SpotId *playlistId;
   BOOL collaborative;
   NSInteger revision;
   NSInteger checksum;
   
-  NSString *id;
 }
 -(id)initWithPlaylist:(struct playlist*)playlist_;
 -(id)initWithName:(NSString *)name author:(NSString *)author tracks:(NSArray*)tracks;

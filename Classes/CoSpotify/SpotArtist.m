@@ -57,8 +57,8 @@
   browsing = NO;
 	
   name = [[NSString alloc] initWithUTF8String:artist->name];
-  artistId = [[NSString alloc] initWithCString:artist->id encoding:NSASCIIStringEncoding];
-  portraitId = [[NSString alloc] initWithCString:artist->portrait_id encoding:NSASCIIStringEncoding];
+  artistId = [[NSString alloc] initWithUTF8String:artist->id];
+  portraitId = [[NSString alloc] initWithUTF8String:artist->portrait_id];
   popularity = artist->popularity;
   
 	return self;
@@ -68,6 +68,13 @@
 {
   browsing = YES;
 	
+  name = [[NSString alloc] initWithUTF8String:artist->name];
+  artistId = [[NSString alloc] initWithUTF8String:artist->id];
+  portraitId = [[NSString alloc] initWithUTF8String:artist->portrait_id];
+  genres = [[NSString alloc] initWithUTF8String:artist->genres];
+  yearsActive = [[NSString alloc] initWithUTF8String:artist->years_active];
+  popularity = artist->popularity;
+  
   SpotArtistBio *bio = [[SpotArtistBio alloc] initWithText:[NSString stringWithUTF8String:artist->text]];
   bios = [[NSArray alloc] initWithObjects:bio, nil];
   [bio release];

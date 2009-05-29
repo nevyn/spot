@@ -122,6 +122,9 @@
 		219542480FCC429A005254F6 /* SpotURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 219542470FCC429A005254F6 /* SpotURI.m */; };
 		219542810FCC4A6B005254F6 /* SpotItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 219542800FCC4A6B005254F6 /* SpotItem.m */; };
 		219549B50FCD4BFD005254F6 /* SpotTrackList.m in Sources */ = {isa = PBXBuildFile; fileRef = 219549B40FCD4BFD005254F6 /* SpotTrackList.m */; };
+		21F64C1A0FD05F94000403F8 /* SpotArtistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F64C190FD05F94000403F8 /* SpotArtistCell.m */; };
+		21F64CFF0FD06E05000403F8 /* SpotImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F64CFE0FD06E05000403F8 /* SpotImageCell.m */; };
+		21F64D020FD06ED0000403F8 /* SpotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F64D010FD06ED0000403F8 /* SpotCell.m */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 /* End PBXBuildFile section */
@@ -275,6 +278,12 @@
 		219542800FCC4A6B005254F6 /* SpotItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotItem.m; sourceTree = "<group>"; };
 		219549B30FCD4BFD005254F6 /* SpotTrackList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotTrackList.h; sourceTree = "<group>"; };
 		219549B40FCD4BFD005254F6 /* SpotTrackList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotTrackList.m; sourceTree = "<group>"; };
+		21F64C180FD05F94000403F8 /* SpotArtistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotArtistCell.h; sourceTree = "<group>"; };
+		21F64C190FD05F94000403F8 /* SpotArtistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotArtistCell.m; sourceTree = "<group>"; };
+		21F64CFD0FD06E05000403F8 /* SpotImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotImageCell.h; sourceTree = "<group>"; };
+		21F64CFE0FD06E05000403F8 /* SpotImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotImageCell.m; sourceTree = "<group>"; };
+		21F64D000FD06ED0000403F8 /* SpotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotCell.h; sourceTree = "<group>"; };
+		21F64D010FD06ED0000403F8 /* SpotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotCell.m; sourceTree = "<group>"; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* Spot_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spot_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
@@ -535,6 +544,7 @@
 		21953FF90FCC1675005254F6 /* SpotViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				21F64C170FD05F84000403F8 /* Cells */,
 				21953FDE0FCC15F4005254F6 /* SpotImageView.h */,
 				21953FDF0FCC15F4005254F6 /* SpotImageView.m */,
 				219540930FCC2127005254F6 /* SpotPlaylistTableViewDataSource.h */,
@@ -542,6 +552,19 @@
 			);
 			name = SpotViewControllers;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		21F64C170FD05F84000403F8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				21F64C180FD05F94000403F8 /* SpotArtistCell.h */,
+				21F64C190FD05F94000403F8 /* SpotArtistCell.m */,
+				21F64CFD0FD06E05000403F8 /* SpotImageCell.h */,
+				21F64CFE0FD06E05000403F8 /* SpotImageCell.m */,
+				21F64D000FD06ED0000403F8 /* SpotCell.h */,
+				21F64D010FD06ED0000403F8 /* SpotCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
@@ -825,6 +848,9 @@
 				219542810FCC4A6B005254F6 /* SpotItem.m in Sources */,
 				219549B50FCD4BFD005254F6 /* SpotTrackList.m in Sources */,
 				052A5E220FCD464E005190EA /* ArtistDetailViewController.m in Sources */,
+				21F64C1A0FD05F94000403F8 /* SpotArtistCell.m in Sources */,
+				21F64CFF0FD06E05000403F8 /* SpotImageCell.m in Sources */,
+				21F64D020FD06ED0000403F8 /* SpotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

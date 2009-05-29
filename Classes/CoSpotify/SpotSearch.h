@@ -23,7 +23,7 @@
   int totalTracks;
   int totalArtists;
   int totalAlbums;
-  
+
   //for -moreResults
   SpotSession *session;
   int maxResults;

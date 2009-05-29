@@ -19,8 +19,7 @@
 		return nil;
   
 	artist = [artist_ retain];
-  
-  self.title = artist.name;
+  [artist loadMoreInfo];
   
 	return self;
 }
@@ -35,8 +34,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.title = artist.name;
   if(artist.portraitId){
-    portrait.artId = [SpotId artistId:(char*)[artist.portraitId cStringUsingEncoding:NSASCIIStringEncoding]];
+    portrait.artId = [SpotId portraitId:(char*)[artist.portraitId cStringUsingEncoding:NSASCIIStringEncoding]];
   }
   NSString *html = [NSString stringWithFormat:@"<html><body>%@</body></html>", artist.text];
 

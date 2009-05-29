@@ -23,10 +23,10 @@
   browsing = NO;
 
   name = [[NSString alloc] initWithUTF8String:album->name];
-  albumId = [[NSString alloc] initWithCString:album->id encoding:NSASCIIStringEncoding];
+  albumId = [[NSString alloc] initWithUTF8String:album->id];
   artistName = [[NSString alloc] initWithUTF8String:album->artist];
   artistId = [[NSString alloc] initWithCString:album->artist_id encoding:NSASCIIStringEncoding];
-  coverId  = [[NSString alloc] initWithCString:album->cover_id encoding:NSASCIIStringEncoding];
+  coverId  = [[NSString alloc] initWithUTF8String:album->cover_id];
   popularity = album->popularity;
   
   return self;
@@ -37,9 +37,9 @@
   browsing = YES;
   
   name = [[NSString alloc] initWithUTF8String:album->name];
-  albumId = [[NSString alloc] initWithCString:album->id];
+  albumId = [[NSString alloc] initWithUTF8String:album->id];
   year = album->year;
-  coverId = [[NSString alloc] initWithCString:album->cover_id];
+  coverId = [[NSString alloc] initWithUTF8String:album->cover_id];
   popularity = album->popularity;
   
   //TODO: multiple discs when despotify has support for it

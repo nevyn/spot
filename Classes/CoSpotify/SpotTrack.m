@@ -13,15 +13,31 @@
 
 @implementation SpotTrack
 
+@synthesize trackId, title, artistId, artistName, albumName, albumId, coverId, trackNumber, length, files, popularity, similarTrackIds, restrictions, year, isPlayable;
 
--(id)initWithTrack:(struct track*)track_;
+@synthesize album, artist;
+
+
+-(id)initWithTrack:(struct track*)track;
 {
 	if( ! [super init] ) return nil;
+  
+  memcpy(&de_track, track, sizeof(struct track));
 	
-	memcpy(&track, track_, sizeof(struct track));
-	track.key = NULL; // I don't own the memory it points to and I don't need it right now
+  hasMetadata = track->has_meta_data;
+  isPlayable = track->playable;
+  trackId = [[NSString alloc] initWithUTF8String:(char*)track->track_id];
+  files = nil;
+  albumId = [[NSString alloc] initWithUTF8String:(char*)track->album_id];
+  coverId = [[NSString alloc] initWithUTF8String:(char*)track->cover_id];
+  title = [[NSString alloc] initWithUTF8String:track->title];
+  albumName = [[NSString alloc] initWithUTF8String:track->album];
+  length = track->length/1000.0;
+  trackNumber = track->tracknumber;
+  year = track->year;
+  popularity = track->popularity;
 	
-	artist = [[SpotArtist alloc] initWithArtist:track.artist];
+	artist = [[SpotArtist alloc] initWithArtist:track->artist];
 	
 	return self;
 }
@@ -29,7 +45,7 @@
 -(void)dealloc;
 {
 	//free(track.key);
-	[artist release];
+	//[artist release];
 	[super dealloc];
 }
 
@@ -38,58 +54,34 @@
   return [self.title compare:other.title];
 }
 
--(int) length; {return track.length;}
--(int) number;{return track.tracknumber;}
--(float) popularity;{return track.popularity;}
--(BOOL) playable;{return track.playable;}
 
 
 -(NSString*)description;
 {
-	return [NSString stringWithFormat:@"<SpotTrack %d. %@>", self.number, self.title];
+	return [NSString stringWithFormat:@"<SpotTrack %d. %@>", self.trackNumber, self.title];
 }
 
 #pragma mark Properties
-@synthesize artist;
 
--(SpotAlbum*)album;
-{
-  if(album) return album;
-  album = [[SpotSession defaultSession] albumById:self.albumId];
-  return album;
-}
-
--(NSString*)title;
-{
-	return [NSString stringWithUTF8String:track.title];
-}
--(NSString*)albumName;
-{
-	return [NSString stringWithUTF8String:track.album];
-}
 
 
 -(struct track*)track;
 {
-	return &track;
+	return &de_track;
 }
 
--(SpotId *)id; { return [SpotId trackId:(char*)track.track_id]; }
+-(SpotId *)id; { return [SpotId trackId:(char*)[trackId cStringUsingEncoding:NSASCIIStringEncoding]]; }
 
 -(SpotURI*)uri;
 {
   char uri[50];
-  return [SpotURI uriWithURI:despotify_track_to_uri(&track, uri)];  
+  return [SpotURI uriWithURI:despotify_track_to_uri(&de_track, uri)];  
 }
 
--(SpotId *)fileId; { return [SpotId fileId:(char*)track.file_id]; }
-
--(SpotId *)albumId; { return [SpotId albumId:(char*)track.album_id]; }
--(SpotId *)coverId; { return [SpotId coverId:(char*)track.cover_id]; }
 -(UIImage*)coverImage;
 {
   if(self.coverId)
-    return [[SpotSession defaultSession] imageById:self.coverId];
+    return [[SpotSession defaultSession] imageById:[SpotId coverId:(char*)[coverId cStringUsingEncoding:NSASCIIStringEncoding]]];
   return nil;
 }
 
@@ -102,6 +94,20 @@
 -(NSUInteger)hash;
 {
   return [self.id hash];
+}
+
+
+-(SpotAlbum*)album;
+{
+  if(album) return album;
+  album = [[SpotSession defaultSession] albumById:[SpotId albumId:(char*)[self.albumId cStringUsingEncoding:NSASCIIStringEncoding]]];
+  return album;
+}
+
+
+-(struct track*)de_track;
+{
+  return &de_track;
 }
 
 @end

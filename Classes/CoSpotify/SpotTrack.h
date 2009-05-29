@@ -18,34 +18,60 @@
 @class SpotURI;
 
 @interface SpotTrack : SpotItem {
-	struct track track;
-	SpotArtist *artist;
+  struct track de_track; //we need a struct to send to despotify
   
-  //loaded on first prop acces
+  NSString *trackId;
+  NSString *title;
+  NSString *artistId;
+  NSString *artistName;
+  NSString *albumName;
+  NSString *albumId;
+  NSString *coverId;
+  NSArray *similarTrackIds;
+  NSArray *files;
+  NSDictionary *restrictions;
+  
+  NSInteger trackNumber;
+  NSInteger year;
+  float length;
+  float popularity;
+  
+  //despot only
+  BOOL isPlayable;
+  BOOL hasMetadata;
+  
+  SpotArtist *artist;
+  
   SpotAlbum *album;
 }
 -(id)initWithTrack:(struct track*)track_;
 
 -(NSComparisonResult)compare:(SpotTrack*)other;
 
-//easy access props (loaded on first call)
-@property (readonly) SpotAlbum *album;
-
+@property (readonly, nonatomic) NSString *trackId;
 @property (readonly, nonatomic) NSString *title;
+@property (readonly, nonatomic) NSString *artistId;
+@property (readonly, nonatomic) NSString *artistName;
 @property (readonly, nonatomic) NSString *albumName;
-@property (readonly, nonatomic) SpotArtist *artist;
-@property (readonly, nonatomic) int length;
-@property (readonly, nonatomic) int number;
+@property (readonly, nonatomic) NSString *albumId;
+@property (readonly, nonatomic) NSString *coverId;
+@property (readonly, nonatomic) NSInteger trackNumber;
+@property (readonly, nonatomic) float length;
+@property (readonly, nonatomic) NSArray *files;
 @property (readonly, nonatomic) float popularity;
-@property (readonly, nonatomic) BOOL playable;
+@property (readonly, nonatomic) NSArray *similarTrackIds;
+@property (readonly, nonatomic) NSDictionary *restrictions;
+@property (readonly, nonatomic) NSInteger year;
 
-@property (readonly, nonatomic) struct track *track;
+//despot only
+@property (readonly, nonatomic) BOOL isPlayable;
+@property (readonly, nonatomic) SpotArtist *artist;
 
-@property (readonly) SpotId *fileId;
-@property (readonly) SpotId *albumId;
-@property (readonly) SpotId *coverId;
+//helper
+@property (readonly, nonatomic) SpotAlbum *album;
 
-@property (readonly) UIImage *coverImage;
+//dont want to need this
+@property (readonly, nonatomic) struct track* de_track;
 
 -(NSUInteger)hash;
 

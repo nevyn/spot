@@ -148,7 +148,7 @@ PlayViewController *GlobalPlayViewController;
   artistLabel.text = track.artist.name;
 	trackLabel.text = track.title;
 	albumLabel.text = track.albumName;
-  albumArt.artId = track.coverId;
+  albumArt.artId = [SpotId coverId:(char*)[track.coverId cStringUsingEncoding:NSASCIIStringEncoding]];
 }
 
 -(void)playerNotification:(NSNotification*)n;
@@ -202,7 +202,7 @@ PlayViewController *GlobalPlayViewController;
 {
 	int idx = [indexPath indexAtPosition:1];
   SpotTrack *track = [playlistDataSource.playlist.tracks objectAtIndex:idx];
-  if(track.playable){
+  if(track.isPlayable){
     [[SpotSession defaultSession].player playTrack:track rewind:YES];
   }
 }

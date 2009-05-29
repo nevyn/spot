@@ -61,6 +61,7 @@
 		SearchViewController *search = [[[SearchViewController alloc] init] autorelease];
 		[searchPage pushViewController:search animated:NO];
 	}
+    
 	
 	NSArray *pages = [NSArray arrayWithObjects:
 					  profilePage,
