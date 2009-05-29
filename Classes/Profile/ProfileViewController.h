@@ -16,6 +16,8 @@
 	IBOutlet UILabel *expiry;
 	IBOutlet UILabel *server;
 	IBOutlet UILabel *lastServerContact;
+  IBOutlet UISwitch *autoLoginSwitch;
 }
 -(id)init;
+-(IBAction)toggleAutoLogin:(UISwitch*)sender;
 @end

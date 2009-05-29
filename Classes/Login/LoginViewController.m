@@ -79,6 +79,14 @@
 	
 	if([username.text isEqual:@""])
 		[username becomeFirstResponder];
+  
+
+}
+-(void)viewDidAppear:(BOOL)animated;
+{
+  if([[NSUserDefaults standardUserDefaults] boolForKey:@"useAutoLogin"]){
+    [self login];
+  }
 }
 -(void)viewWillDisappear:(BOOL)animated;
 {

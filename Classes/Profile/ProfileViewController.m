@@ -67,6 +67,7 @@
 		server.text = @"(Not connected)";
 		lastServerContact.text = @"";
 	}
+  autoLoginSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"useAutoLogin"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,5 +87,10 @@
     [super dealloc];
 }
 
+
+-(IBAction)toggleAutoLogin:(UISwitch*)sender;
+{
+  [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"useAutoLogin"];
+}
 
 @end
