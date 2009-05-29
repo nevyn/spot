@@ -75,6 +75,9 @@ struct album_browse
     char cover_id[41];
     float popularity;
     struct album_browse* next; /* in case of multiple albums in an artist struct */
+    char artist[STRING_LENGTH];
+    char artist_id[33];
+    char *review;
 };
 
 struct artist

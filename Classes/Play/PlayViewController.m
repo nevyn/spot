@@ -11,6 +11,8 @@
 #import "SpotTrack.h"
 #import "SpotArtist.h"
 
+#import "SpotNavigationController.h"
+
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
@@ -208,5 +210,14 @@ PlayViewController *GlobalPlayViewController;
 }
 
 
+-(void)didTouchLabel:(id)sender;
+{
+  SpotPlayer *player = [SpotSession defaultSession].player;
+  if(sender == artistLabel){
+    [self.navigationController showArtist:player.currentTrack.artist];
+  } else if(sender == albumLabel){
+    [self.navigationController showAlbum:player.currentTrack.album];
+  }
+}
 
 @end

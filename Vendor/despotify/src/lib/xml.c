@@ -306,6 +306,15 @@ static void parse_browse_album(ezxml_t top, struct album_browse* a)
     xmlstrncpy(a->cover_id, sizeof a->cover_id, top, "cover", -1);
     xmlatoi(&a->year, top, "year", -1);
     xmlatof(&a->popularity, top, "popularity", -1);
+    xmlstrncpy(a->artist, sizeof a->artist, top, "artist", -1);
+    xmlstrncpy(a->artist_id, sizeof a->artist_id, top, "artist-id", -1);
+    
+    ezxml_t x = ezxml_get(top, "review",-1);
+    if (x) {
+      int len = strlen(x->txt);
+      a->review = malloc(len + 1);
+      memcpy(a->review, x->txt, len+1);
+    }
 
     /* TODO: support multiple discs per album  */
     a->tracks = calloc(1, sizeof(struct track));

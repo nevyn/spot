@@ -10,6 +10,7 @@
 #import "SpotPlaylist.h"
 #import "SpotImageView.h"
 #import "SpotPlaylistTableViewDataSource.h"
+#import "SpotTouchableLabel.h"
 
 @interface PlayViewController : UIViewController {
 
@@ -17,9 +18,9 @@
 	
 	IBOutlet UIButton *playPauseButton;
   IBOutlet UIActivityIndicatorView *waitForPlaySpinner;
-	IBOutlet UILabel *artistLabel;
+	IBOutlet SpotTouchableLabel *artistLabel;
 	IBOutlet UILabel *trackLabel;
-	IBOutlet UILabel *albumLabel;
+	IBOutlet SpotTouchableLabel *albumLabel;
   
   IBOutlet SpotPlaylistTableViewDataSource *playlistDataSource;
 	
@@ -39,5 +40,7 @@
 //-(IBAction)takeShuffling:(id)sender;
 
 -(void)playerNotification:(NSNotification*)n;
+
+-(void)didTouchLabel:(id)sender;
 
 @end

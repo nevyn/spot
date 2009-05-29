@@ -45,7 +45,8 @@
 -(void)dealloc;
 {
 	//free(track.key);
-	//[artist release];
+	[artist release];
+  [album release];
 	[super dealloc];
 }
 
@@ -100,7 +101,7 @@
 -(SpotAlbum*)album;
 {
   if(album) return album;
-  album = [[SpotSession defaultSession] albumById:[SpotId albumId:(char*)[self.albumId cStringUsingEncoding:NSASCIIStringEncoding]]];
+  album = [[[SpotSession defaultSession] albumById:[SpotId albumId:(char*)[self.albumId cStringUsingEncoding:NSASCIIStringEncoding]]] retain];
   return album;
 }
 

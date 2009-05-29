@@ -62,7 +62,6 @@
 
 -(void)didTouchLabel:(id)sender;
 {
-  [album.artist loadMoreInfo];
   [self.navigationController showArtist:album.artist];
 }
 

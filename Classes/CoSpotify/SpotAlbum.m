@@ -41,6 +41,11 @@
   year = album->year;
   coverId = [[NSString alloc] initWithUTF8String:album->cover_id];
   popularity = album->popularity;
+  artistName = [[NSString alloc] initWithUTF8String:album->artist];
+  artistId = [[NSString alloc] initWithUTF8String:album->artist_id];
+  if(album->review)
+    review = [[NSString alloc] initWithUTF8String:album->review];
+  
   
   //TODO: multiple discs when despotify has support for it
   NSMutableArray *tracks = [NSMutableArray array];
