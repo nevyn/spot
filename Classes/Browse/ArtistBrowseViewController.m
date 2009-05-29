@@ -11,6 +11,7 @@
 #import "SpotAlbum.h"
 #import "AlbumBrowseViewController.h"
 #import "SpotNavigationController.h"
+#import "ArtistDetailViewController.h"
 
 @implementation ArtistBrowseViewController
 -(id)initBrowsingArtist:(SpotArtist*)artist_;
@@ -38,21 +39,11 @@
   if(artist.portraitId){
     portrait.artId = [SpotId portraitId:(char*)[artist.portraitId cStringUsingEncoding:NSASCIIStringEncoding]];
   }
-  NSString *html = [NSString stringWithFormat:@"<html><body>%@</body></html>", artist.text];
 
-  [artistText loadHTMLString:html baseURL:[NSURL URLWithString:@"http://www.spotify.com"]];
-  [popularity setValue:artist.popularity];
-  artistText.delegate = self;
-}
 
-//for spotify links
-- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType;
-{
-	NSURL *url = request.URL;
-	if([url.scheme isEqual:@"spotify"]){
-    [self.navigationController openURL:url];
-  }
-	return YES;
+  artistName.text = artist.name;
+  yearsActive.text = artist.yearsActive;
+  popularity.progress = artist.popularity;
 }
 
 /*
@@ -123,6 +114,13 @@
 
   SpotAlbum *album = [artist.albums objectAtIndex:idx];
   [[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
+}
+
+-(IBAction)showDetail:(id)sender;
+{
+  ArtistDetailViewController *detailView = [[ArtistDetailViewController alloc] initWithArtist:artist];
+  [self.navigationController pushViewController:detailView animated:YES];
+  [detailView release];
 }
 
 @end

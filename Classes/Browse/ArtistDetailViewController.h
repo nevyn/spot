@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "SpotArtist.h"
 
-@interface ArtistDetailViewController : UIViewController {
-
+@interface ArtistDetailViewController : UIViewController <UIWebViewDelegate> {
+  IBOutlet UIWebView *webView;
+  
+  SpotArtist *artist;
 }
+
 - (id)initWithArtist:(SpotArtist*)artist;
+
 @end

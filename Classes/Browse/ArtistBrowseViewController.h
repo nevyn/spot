@@ -16,7 +16,14 @@
   IBOutlet SpotImageView *portrait;
   IBOutlet UIWebView *artistText;
   IBOutlet UITableView *albums;
-  IBOutlet UISlider *popularity;
+  
+  IBOutlet UILabel *artistName;
+  IBOutlet UILabel *yearsActive;
+  IBOutlet UIProgressView *popularity;
 }
+
 -(id)initBrowsingArtist:(SpotArtist*)artist;
+
+-(IBAction)showDetail:(id)sender;
+
 @end
