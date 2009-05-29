@@ -9,16 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "SpotAlbum.h"
 #import "SpotImageView.h"
+#import "SpotTouchableLabel.h"
 #import "SpotPlaylistTableViewDataSource.h"
 
 @interface AlbumBrowseViewController : UIViewController <UITableViewDelegate> {
   SpotAlbum *album;
   IBOutlet SpotPlaylistTableViewDataSource *playlistDataSource;
 	IBOutlet SpotImageView *albumArt;
-  IBOutlet UILabel *albumName;
   IBOutlet UITableView *tracks;
-  IBOutlet UISlider *popularity;
+  IBOutlet UIProgressView *popularity;
+  IBOutlet UILabel *albumName;
+  IBOutlet SpotTouchableLabel *artistName;
 }
 -(id)initBrowsingAlbum:(SpotAlbum*)album;
+
+-(IBAction)showArtist:(id)sender;
 
 @end

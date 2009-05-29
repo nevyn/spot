@@ -75,7 +75,9 @@
   yearsActive = [[NSString alloc] initWithUTF8String:artist->years_active];
   popularity = artist->popularity;
   
-  SpotArtistBio *bio = [[SpotArtistBio alloc] initWithText:[NSString stringWithUTF8String:artist->text]];
+  SpotArtistBio *bio;
+  if(artist->text) bio = [[SpotArtistBio alloc] initWithText:[NSString stringWithUTF8String:artist->text]];
+  else bio = [[SpotArtistBio alloc] initWithText:@""];
   bios = [[NSArray alloc] initWithObjects:bio, nil];
   [bio release];
   

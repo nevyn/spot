@@ -33,6 +33,8 @@
   
   NSArray *discs;
   
+  SpotArtist *artist;
+  
   
   SpotPlaylist *playlist;
 }
@@ -46,22 +48,25 @@
 @property (readonly, nonatomic) BOOL browsing;
 
 
-@property (readonly) NSInteger version;
-@property (readonly) NSString *name;
-@property (readonly) NSString *artistName;
-@property (readonly) NSString *artistId;
-@property (readonly) NSString *type;
-@property (readonly) NSInteger year;
-@property (readonly) NSString *coverId;
-@property (readonly) NSString *review;
-@property (readonly) NSArray *copyright;
-@property (readonly) NSString *allowed;
-@property (readonly) NSString *catalogues; 
-@property (readonly) NSArray *similarAlbumIds;
-@property (readonly) float popularity;
+@property (readonly, nonatomic) NSInteger version;
+@property (readonly, nonatomic) NSString *name;
+@property (readonly, nonatomic) NSString *artistName;
+@property (readonly, nonatomic) NSString *artistId;
+@property (readonly, nonatomic) NSString *type;
+@property (readonly, nonatomic) NSInteger year;
+@property (readonly, nonatomic) NSString *coverId;
+@property (readonly, nonatomic) NSString *review;
+@property (readonly, nonatomic) NSArray *copyright;
+@property (readonly, nonatomic) NSString *allowed;
+@property (readonly, nonatomic) NSString *catalogues; 
+@property (readonly, nonatomic) NSArray *similarAlbumIds;
+@property (readonly, nonatomic) float popularity;
 
-@property (readonly) NSArray *discs;
+@property (readonly, nonatomic) NSArray *discs;
 
-@property (readonly) SpotPlaylist *playlist;
+@property (readonly, nonatomic) SpotPlaylist *playlist;
+
+//Helpers
+@property (readonly, nonatomic) SpotArtist *artist;
            
 @end

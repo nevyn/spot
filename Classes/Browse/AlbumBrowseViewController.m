@@ -10,6 +10,7 @@
 #import "SpotSession.h"
 #import "SpotTrack.h"
 #import "PlayViewController.h"
+#import "SpotNavigationController.h"
 
 @implementation AlbumBrowseViewController
 -(id)initBrowsingAlbum:(SpotAlbum*)album_;
@@ -50,10 +51,19 @@
     albumArt.artId = [SpotId coverId:(char*)[album.coverId cStringUsingEncoding:NSASCIIStringEncoding]];
   }
   [albumName setText:album.name];
-  [popularity setValue:album.popularity];
+  artistName.text = [NSString stringWithFormat:@"%@ - %d", album.artistName, album.year];
+  artistName.delegate = self;
+
+  popularity.progress = album.popularity;
   
   playlistDataSource.playlist = album.playlist;
   [tracks reloadData];
+}
+
+-(void)didTouchLabel:(id)sender;
+{
+  [album.artist loadMoreInfo];
+  [self.navigationController showArtist:album.artist];
 }
 
 
@@ -84,6 +94,12 @@
 }
 
 
+-(IBAction)showArtist:(id)sender;
+{
+  //when user clicks artist name
+  [self.navigationController showArtist:album.artist];
+}
+
 #pragma mark Table view callbacks
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -97,7 +113,6 @@
   }
 //  [[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
 }
-
 
 
 @end

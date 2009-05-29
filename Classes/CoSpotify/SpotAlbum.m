@@ -25,7 +25,7 @@
   name = [[NSString alloc] initWithUTF8String:album->name];
   albumId = [[NSString alloc] initWithUTF8String:album->id];
   artistName = [[NSString alloc] initWithUTF8String:album->artist];
-  artistId = [[NSString alloc] initWithCString:album->artist_id encoding:NSASCIIStringEncoding];
+  artistId = [[NSString alloc] initWithUTF8String:album->artist_id];
   coverId  = [[NSString alloc] initWithUTF8String:album->cover_id];
   popularity = album->popularity;
   
@@ -110,6 +110,13 @@
 {
   if(!browsing) [self loadMoreInfo];
   return [discs lastObject];
+}
+
+-(SpotArtist *)artist;
+{
+  if(!artist)
+    artist = [[[SpotSession defaultSession] artistById:[SpotId artistId:(char*)[artistId cStringUsingEncoding:NSASCIIStringEncoding]]] retain];
+  return artist;
 }
 
 -(BOOL)isEqual:(SpotAlbum*)other;
