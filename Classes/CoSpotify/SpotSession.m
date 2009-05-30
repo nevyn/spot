@@ -245,7 +245,6 @@ void cb_track_end(struct despotify_session *ds){
 
 -(void)doAsyncImageById:(SpotSessionFetchJob*)job;
 {
-  NSLog(@"I got run from %@", [NSThread currentThread]);
   int len = 0;
   [networkLock lock];
   void *jpegdata = despotify_get_image(session, (char*)[job.fetchId cStringUsingEncoding:NSASCIIStringEncoding], &len);
@@ -254,7 +253,6 @@ void cb_track_end(struct despotify_session *ds){
     SpotImage *image = [[SpotImage alloc] initWithImageData:[NSData dataWithBytes:jpegdata length:len] id:job.fetchId];
     free(jpegdata);
     [cache addItem:image];
-    NSLog(@"Fetched image from thread: %@", image);
     [job.target performSelectorOnMainThread:job.selector withObject:image waitUntilDone:NO];
   }
 }
@@ -266,7 +264,7 @@ void cb_track_end(struct despotify_session *ds){
     //no need to fetch, call target asap
     [target performSelector:selector withObject:item];
   else
-    [self performSelector:@selector(doAsyncImageById:) onThread:thread withObject:[[SpotSessionFetchJob alloc] initWithId:id_ target:target selector:selector] waitUntilDone:NO];
+    [self performSelector:@selector(doAsyncImageById:) onThread:thread withObject:[[[SpotSessionFetchJob alloc] autorelease] initWithId:id_ target:target selector:selector] waitUntilDone:NO];
 }
 
 -(SpotImage *)imageById:(NSString*)id_;
@@ -359,6 +357,11 @@ void cb_track_end(struct despotify_session *ds){
   struct search_result* sr = despotify_link_get_search(session, uri.link);
   [networkLock unlock];
   return [[[SpotSearch alloc] initWithSearchResult:sr] autorelease];
+}
+
+-(SpotItem *)cachedItemById:(NSString*)id_;
+{
+  return [cache itemById:id_];
 }
 
 #pragma mark Threading

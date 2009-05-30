@@ -63,8 +63,15 @@
   spotImage = nil;
   
   if(artId){
-    [activityView startAnimating];
-    [[SpotSession defaultSession] asyncImageById:artId respondTo:self selector:@selector(setSpotImage:)];
+    //check the cache to see if we might have the image loaded allready (so we dont need to bother the session thread for nothing)
+    SpotImage *cachedImage = (SpotImage*)[[SpotSession defaultSession] cachedItemById:artId];
+    if(cachedImage){
+      [self setSpotImage:cachedImage];
+    } else {
+      //Load image
+      [activityView startAnimating];
+      [[SpotSession defaultSession] asyncImageById:artId respondTo:self selector:@selector(setSpotImage:)];
+    }
   }
 
   [pool drain];
@@ -72,14 +79,17 @@
 
 -(void)setArtId:(NSString*)id;
 {
-  [id retain];
-  [artId release];
-  artId = id;
-  //default image while loading
-  [self setImage:[UIImage imageNamed:@"icon.png"]];
-  //TODO: show spinner while loading!
-  [self loadImage];
-  //[self performSelectorInBackground:@selector(loadImage) withObject:nil]; //despotify isn't threadsafe OK!
+  if(![artId isEqual:id]){
+    [id retain];
+    [artId release];
+    artId = id;
+    //default image while loading
+    [self setImage:[UIImage imageNamed:@"icon.png"]];
+    if(artId){
+      //Begin load image
+      [self loadImage];
+    }
+  } 
 }
 
 @end
