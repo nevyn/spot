@@ -12,6 +12,7 @@
 @interface SpotImageView : UIImageView {
   NSString *artId;
   SpotImage *spotImage;
+  UIActivityIndicatorView *activityView;
 }
 
 @property (readwrite, retain) NSString *artId;

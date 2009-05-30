@@ -20,6 +20,9 @@
 @class SpotTrack;
 
 @interface SpotSession : NSObject {
+  NSThread *thread;
+  NSLock *networkLock;
+  
 	struct despotify_session *session;
 	BOOL loggedIn;
   
@@ -33,6 +36,9 @@
 -(BOOL)authenticate:(NSString *)user password:(NSString*)password error:(NSError**)error;
 
 -(NSArray*)playlists;
+
+
+-(void)asyncImageById:(NSString *)id_ respondTo:(id)object selector:(SEL)selector;
 
 -(SpotArtist *)artistById:(NSString *)id_;
 -(SpotImage *)imageById:(NSString*)id;

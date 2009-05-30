@@ -51,7 +51,6 @@
 {
   NSLog(@"Purging cache");
   for(SpotItem *item in [cache allValues]){
-    NSLog(@"%@ %d", [item className], [item retainCount]);
     if([item retainCount] == 2){
       //item is in cache and allValues only so we want them gone
       NSLog(@"Removing %@", item);
