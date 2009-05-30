@@ -9,10 +9,10 @@
 #import "SpotImageView.h"
 
 #import "SpotSession.h"
-#import "SpotId.h"
+
 
 @implementation SpotImageView
--(SpotId*)artId;
+-(NSString*)artId;
 {
 	return artId;
 }
@@ -28,7 +28,7 @@
   [pool drain];
 }
 
--(void)setArtId:(SpotId*)id;
+-(void)setArtId:(NSString*)id;
 {
   [id retain];
   [artId release];

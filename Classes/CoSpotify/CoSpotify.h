@@ -13,6 +13,5 @@
 #import "SpotArtist.h"
 #import "SpotAlbum.h"
 #import "SpotURI.h"
-#import "SpotId.h"
 #import "SpotPlayer.h"
 #import "SpotSearch.h"

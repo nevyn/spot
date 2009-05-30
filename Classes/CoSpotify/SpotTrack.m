@@ -71,7 +71,7 @@
 	return &de_track;
 }
 
--(SpotId *)id; { return [SpotId trackId:(char*)[trackId cStringUsingEncoding:NSASCIIStringEncoding]]; }
+-(NSString *)id; { return trackId; }
 
 -(SpotURI*)uri;
 {
@@ -82,7 +82,7 @@
 -(UIImage*)coverImage;
 {
   if(self.coverId)
-    return [[SpotSession defaultSession] imageById:[SpotId coverId:(char*)[coverId cStringUsingEncoding:NSASCIIStringEncoding]]];
+    return [[SpotSession defaultSession] imageById:coverId];
   return nil;
 }
 
@@ -101,7 +101,7 @@
 -(SpotAlbum*)album;
 {
   if(album) return album;
-  album = [[[SpotSession defaultSession] albumById:[SpotId albumId:(char*)[self.albumId cStringUsingEncoding:NSASCIIStringEncoding]]] retain];
+  album = [[[SpotSession defaultSession] albumById:albumId] retain];
   return album;
 }
 

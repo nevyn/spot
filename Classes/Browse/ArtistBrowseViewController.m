@@ -37,7 +37,7 @@
   [super viewDidLoad];
   self.title = artist.name;
   if(artist.portraitId){
-    portrait.artId = [SpotId portraitId:(char*)[artist.portraitId cStringUsingEncoding:NSASCIIStringEncoding]];
+    portrait.artId = artist.portraitId;
   }
 
 

@@ -81,7 +81,7 @@
   [tracks sortUsingSelector:@selector(comparePlaylistOrder:)];
 }
 
--(SpotTrack*) findTrackWithId:(SpotId*)trackid;
+-(SpotTrack*) findTrackWithId:(NSString*)trackid;
 {
   for(SpotTrack *track in tracks)
     if([track.id isEqual:trackid]) return track;

@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "despotify.h"
-#import "SpotId.h"
 #import "SpotPlayer.h"
 #import "SpotURI.h"
 #import "SpotItem.h"
@@ -32,10 +31,10 @@
 
 -(NSArray*)playlists;
 
--(SpotArtist *)artistById:(SpotId *)id_;
--(void *)imageById:(SpotId*)id;
--(SpotAlbum *)albumById:(SpotId *)id;
--(SpotTrack *)trackById:(SpotId *)id;
+-(SpotArtist *)artistById:(NSString *)id_;
+-(void *)imageById:(NSString*)id;
+-(SpotAlbum *)albumById:(NSString *)id;
+-(SpotTrack *)trackById:(NSString *)id;
 
 -(SpotAlbum*)albumByURI:(SpotURI*)uri;
 -(SpotArtist*)artistByURI:(SpotURI*)uri;
@@ -43,7 +42,7 @@
 -(SpotPlaylist*)playlistByURI:(SpotURI*)uri;
 -(SpotSearch*)searchByURI:(SpotURI*)uri;
 
--(SpotItem *)cachedItemId:(SpotId *)id ensureFullProfile:(BOOL)full;
+-(SpotItem *)cachedItemId:(NSString *)id ensureFullProfile:(BOOL)full;
 
 @property (nonatomic, readonly) BOOL loggedIn;
 @property (readonly) NSString *username;

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SpotId.h"
 #import "despotify.h"
 #import "SpotArtist.h"
 

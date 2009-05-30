@@ -31,12 +31,12 @@
     [super dealloc];
 }
 
--(SpotId*)artId; 
+-(NSString*)artId; 
 {
   return spotArt.artId;
 }
 
--(void)setArtId:(SpotId*)artId;
+-(void)setArtId:(NSString*)artId;
 {
   spotArt.artId = artId;
 }

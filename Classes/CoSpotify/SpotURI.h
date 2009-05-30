@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "despotify.h"
 
-@class SpotId;
+@class NSString;
 @class SpotArtist;
 @class SpotAlbum;
 @class SpotTrack;
@@ -30,7 +30,7 @@ typedef enum {
   char uriBuffer[256];
 }
 
-+(SpotURI*)uriWithId:(SpotId*)id;
++(SpotURI*)uriWithId:(NSString*)id;
 +(SpotURI*)uriWithURI:(const char *)uri;
 +(SpotURI*)uriWithString:(NSString *)string;
 

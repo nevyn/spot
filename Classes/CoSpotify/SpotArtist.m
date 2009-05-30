@@ -8,7 +8,6 @@
 
 #import "SpotArtist.h"
 #import "SpotAlbum.h"
-#import "SpotId.h"
 #import "SpotSession.h"
 #import "SpotURI.h"
 
@@ -120,9 +119,9 @@
 
 #pragma mark Properties
 
--(SpotId *)id;
+-(NSString *)id;
 {
-  return [SpotId artistId:(char*)[artistId UTF8String]];
+  return artistId;
 }
 
 -(SpotURI*)uri;

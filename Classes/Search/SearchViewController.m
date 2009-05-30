@@ -182,7 +182,7 @@ enum {
 			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
       cell.title.text = album.name;
       cell.subText.text = album.artistName;
-      cell.artId = [SpotId coverId:(char*)[album.coverId cStringUsingEncoding:NSASCIIStringEncoding]];
+      cell.artId = album.coverId;
 
       
       the_cell = cell;

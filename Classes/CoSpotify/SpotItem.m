@@ -16,7 +16,7 @@
   //nothing
 }
 
--(SpotId *)id;
+-(NSString *)id;
 {
   [NSException raise:@"NotImplemented" format:@"SpotItem id not overridden"];
   return nil;

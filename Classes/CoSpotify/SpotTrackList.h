@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @class SpotTrack;
-@class SpotId;
 
 @interface SpotTrackList : NSObject {
   id delegate;
@@ -24,7 +23,7 @@
 
 -(void)sortByTrackOrder;
 
--(SpotTrack*) findTrackWithId:(SpotId*)trackid;
+-(SpotTrack*) findTrackWithId:(NSString*)trackid;
 
 -(SpotTrack*) trackBefore:(SpotTrack*)track;
 -(SpotTrack*) trackAfter:(SpotTrack*)track;

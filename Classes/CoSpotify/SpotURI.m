@@ -18,10 +18,10 @@
 
 @synthesize link;
 
-+(SpotURI*)uriWithId:(SpotId*)id;
++(SpotURI*)uriWithId:(NSString*)id_;
 {
   char uri[50];
-  despotify_id2uri(id.id, uri);
+  despotify_id2uri((char*)[id_ cStringUsingEncoding:NSASCIIStringEncoding], uri);
   return [SpotURI uriWithURI:uri];
 }
 

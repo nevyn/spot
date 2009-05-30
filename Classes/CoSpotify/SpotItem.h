@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SpotId.h"
 #import "SpotURI.h"
 
 @interface SpotItem : NSObject {
@@ -17,7 +16,7 @@
 //Ensure that as much data as possible is loaded
 -(void)ensureFullProfile;
 
-@property (readonly, nonatomic) SpotId *id;
+@property (readonly, nonatomic) NSString *id;
 @property (readonly, nonatomic) SpotURI *uri;
 
 @end

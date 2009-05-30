@@ -180,17 +180,17 @@ void cb_track_end(struct despotify_session *ds){
 
 #pragma mark Get by id functions
 
--(SpotArtist *)artistById:(SpotId *)id;
+-(SpotArtist *)artistById:(NSString *)id_;
 {
-  struct artist_browse *artist = despotify_get_artist(session, id.id);
+  struct artist_browse *artist = despotify_get_artist(session, (char*)[id_ cStringUsingEncoding:NSASCIIStringEncoding]);
   if(artist) return [[[SpotArtist alloc] initWithArtistBrowse:artist] autorelease];
   return nil;
 }
 
--(void *)imageById:(SpotId*)id;
+-(void *)imageById:(NSString*)id_;
 {
   int len = 0;
-  void *jpegdata = despotify_get_image(session, id.id, &len);
+  void *jpegdata = despotify_get_image(session, (char*)[id_ cStringUsingEncoding:NSASCIIStringEncoding], &len);
   if(len > 0){
     UIImage *image = [UIImage imageWithData:[NSData dataWithBytes:jpegdata length:len]];
     free(jpegdata);
@@ -199,16 +199,16 @@ void cb_track_end(struct despotify_session *ds){
   return nil;
 }
 
--(SpotAlbum *)albumById:(SpotId *)id;
+-(SpotAlbum *)albumById:(NSString *)id_;
 {
-  struct album_browse *ab = despotify_get_album(session, id.id);
+  struct album_browse *ab = despotify_get_album(session, (char*)[id_ cStringUsingEncoding:NSASCIIStringEncoding]);
   if(ab) return [[[SpotAlbum alloc] initWithAlbumBrowse:ab] autorelease];
   return nil;
 }
 
--(SpotTrack *)trackById:(SpotId *)id;
+-(SpotTrack *)trackById:(NSString *)id_;
 {
-  struct track *track = despotify_get_track(session, id.id);
+  struct track *track = despotify_get_track(session, (char*)[id_ cStringUsingEncoding:NSASCIIStringEncoding]);
   if(track) return [[(SpotTrack*)[SpotTrack alloc] initWithTrack:track] autorelease];
   return nil;
 }
@@ -245,15 +245,9 @@ void cb_track_end(struct despotify_session *ds){
 }
 
 
--(SpotItem *)cachedItemId:(SpotId *)id_ ensureFullProfile:(BOOL)full;
+-(SpotItem *)cachedItemId:(NSString *)id_ ensureFullProfile:(BOOL)full;
 {
   SpotItem *item;// = [cache valueForKey:id_];
-  if(!item){
-    //TODO: Load it (how do we know type? send as arg, one func per type or store in SpotId?
-    //Discussion: 
-    // * SpotId is quite obsolete. really think we can/shud use NSString instead.
-    // * Dont do loading here, let caller handle it if no item found.
-  }
   return item;
 }
 

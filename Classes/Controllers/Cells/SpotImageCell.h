@@ -13,6 +13,6 @@
   SpotImageView *spotArt;
 }
 
-@property (nonatomic, assign) SpotId *artId;
+@property (nonatomic, assign) NSString *artId;
 
 @end

@@ -150,7 +150,7 @@ PlayViewController *GlobalPlayViewController;
   artistLabel.text = track.artist.name;
 	trackLabel.text = track.title;
 	albumLabel.text = track.albumName;
-  albumArt.artId = [SpotId coverId:(char*)[track.coverId cStringUsingEncoding:NSASCIIStringEncoding]];
+  albumArt.artId = track.coverId;
 }
 
 -(void)playerNotification:(NSNotification*)n;

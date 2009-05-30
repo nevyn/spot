@@ -48,7 +48,7 @@
     [super viewDidLoad];
   
   if(album.coverId){
-    albumArt.artId = [SpotId coverId:(char*)[album.coverId cStringUsingEncoding:NSASCIIStringEncoding]];
+    albumArt.artId = album.coverId;
   }
   [albumName setText:album.name];
   artistName.text = [NSString stringWithFormat:@"%@ - %d", album.artistName, album.year];

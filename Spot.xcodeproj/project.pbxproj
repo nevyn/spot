@@ -18,7 +18,6 @@
 		05447F100FCF1167004CC539 /* CoSpotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 05447ED40FCF1167004CC539 /* CoSpotify.m */; };
 		05447F110FCF1167004CC539 /* SpotAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 05447ED60FCF1167004CC539 /* SpotAlbum.m */; };
 		05447F120FCF1167004CC539 /* SpotArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 05447ED80FCF1167004CC539 /* SpotArtist.m */; };
-		05447F130FCF1167004CC539 /* SpotId.m in Sources */ = {isa = PBXBuildFile; fileRef = 05447EDA0FCF1167004CC539 /* SpotId.m */; };
 		05447F140FCF1167004CC539 /* SpotItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 05447EDC0FCF1167004CC539 /* SpotItem.m */; };
 		05447F150FCF1167004CC539 /* SpotPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05447EDE0FCF1167004CC539 /* SpotPlayer.m */; };
 		05447F160FCF1167004CC539 /* SpotPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 05447EE00FCF1167004CC539 /* SpotPlaylist.m */; };
@@ -90,6 +89,7 @@
 		21F654220FD12BC6000403F8 /* SpotImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6541B0FD12BC6000403F8 /* SpotImageCell.m */; };
 		21F654230FD12BC6000403F8 /* SpotNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6541D0FD12BC6000403F8 /* SpotNavigationController.m */; };
 		21F654240FD12BC6000403F8 /* SpotTouchableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6541F0FD12BC6000403F8 /* SpotTouchableLabel.m */; };
+		21F6543F0FD136FB000403F8 /* SpotCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6543E0FD136FB000403F8 /* SpotCache.m */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
@@ -113,8 +113,6 @@
 		05447ED60FCF1167004CC539 /* SpotAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotAlbum.m; sourceTree = "<group>"; };
 		05447ED70FCF1167004CC539 /* SpotArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotArtist.h; sourceTree = "<group>"; };
 		05447ED80FCF1167004CC539 /* SpotArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotArtist.m; sourceTree = "<group>"; };
-		05447ED90FCF1167004CC539 /* SpotId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotId.h; sourceTree = "<group>"; };
-		05447EDA0FCF1167004CC539 /* SpotId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotId.m; sourceTree = "<group>"; };
 		05447EDB0FCF1167004CC539 /* SpotItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotItem.h; sourceTree = "<group>"; };
 		05447EDC0FCF1167004CC539 /* SpotItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotItem.m; sourceTree = "<group>"; };
 		05447EDD0FCF1167004CC539 /* SpotPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotPlayer.h; sourceTree = "<group>"; };
@@ -241,6 +239,8 @@
 		21F6541D0FD12BC6000403F8 /* SpotNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotNavigationController.m; sourceTree = "<group>"; };
 		21F6541E0FD12BC6000403F8 /* SpotTouchableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotTouchableLabel.h; sourceTree = "<group>"; };
 		21F6541F0FD12BC6000403F8 /* SpotTouchableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotTouchableLabel.m; sourceTree = "<group>"; };
+		21F6543D0FD136FB000403F8 /* SpotCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotCache.h; sourceTree = "<group>"; };
+		21F6543E0FD136FB000403F8 /* SpotCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotCache.m; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -320,8 +320,6 @@
 				05447ED60FCF1167004CC539 /* SpotAlbum.m */,
 				05447ED70FCF1167004CC539 /* SpotArtist.h */,
 				05447ED80FCF1167004CC539 /* SpotArtist.m */,
-				05447ED90FCF1167004CC539 /* SpotId.h */,
-				05447EDA0FCF1167004CC539 /* SpotId.m */,
 				05A6654E0FCF2F4400C8DC40 /* SpotTrackList.m */,
 				05A6654F0FCF2F4400C8DC40 /* SpotTrackList.h */,
 				05447EDB0FCF1167004CC539 /* SpotItem.h */,
@@ -338,6 +336,8 @@
 				05447EE60FCF1167004CC539 /* SpotTrack.m */,
 				05447EE70FCF1167004CC539 /* SpotURI.h */,
 				05447EE80FCF1167004CC539 /* SpotURI.m */,
+				21F6543D0FD136FB000403F8 /* SpotCache.h */,
+				21F6543E0FD136FB000403F8 /* SpotCache.m */,
 			);
 			path = CoSpotify;
 			sourceTree = "<group>";
@@ -654,7 +654,6 @@
 				05447F100FCF1167004CC539 /* CoSpotify.m in Sources */,
 				05447F110FCF1167004CC539 /* SpotAlbum.m in Sources */,
 				05447F120FCF1167004CC539 /* SpotArtist.m in Sources */,
-				05447F130FCF1167004CC539 /* SpotId.m in Sources */,
 				05447F140FCF1167004CC539 /* SpotItem.m in Sources */,
 				05447F150FCF1167004CC539 /* SpotPlayer.m in Sources */,
 				05447F160FCF1167004CC539 /* SpotPlaylist.m in Sources */,
@@ -699,6 +698,7 @@
 				21F654220FD12BC6000403F8 /* SpotImageCell.m in Sources */,
 				21F654230FD12BC6000403F8 /* SpotNavigationController.m in Sources */,
 				21F654240FD12BC6000403F8 /* SpotTouchableLabel.m in Sources */,
+				21F6543F0FD136FB000403F8 /* SpotCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
