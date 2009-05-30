@@ -582,10 +582,10 @@ int rest_fsm (RESTSESSION * r)
 			temp[40] = temp2[32] = 0;
 
 			if (strlen (temp) != 40 || (offset % 1024) != 0
-					|| len == 0 || strlen (temp2) != 32) {
+					|| strlen (temp2) != 32) {
 				r->state = REST_STATE_LOAD_COMMAND;
 				sprintf (msg,
-					 "501 0 WARN File IDs must be provided in hex as 40 characters, offset must be in 1024 byte chunks, length mustn't be zero and key must be provided in hex as 32 characters.\n");
+					 "501 0 WARN File IDs must be provided in hex as 40 characters, offset must be in 1024 byte chunks and key must be provided in hex as 32 characters.\n");
 				block_write (r->socket, msg, strlen (msg));
 			}
 			else {

@@ -20,6 +20,8 @@
 #import "SpotSearch.h"
 
 @implementation SpotNavigationController
+-(void)showPlayer:(id)sender;{[self showPlayer];}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 {
 	if( ! [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil] ) return nil;
@@ -34,19 +36,58 @@
   [super dealloc];
 }
 
+-(void)viewDidLoad;
+{
+  
+}
+
+
+-(void)setArrowBackButton;
+{
+  UIBarButtonItem *backButton = [[UIBarButtonItem alloc] 
+                                 initWithImage:[UIImage imageNamed:@"arrow-left.png"]
+                                 style:UIBarButtonItemStyleBordered 
+                                 target:nil 
+                                 action:nil];
+  
+  UIViewController *current = self.topViewController;
+	current.navigationItem.backBarButtonItem = backButton;
+  [backButton release];
+}
+
+-(void)setDefaultBackButton;
+{
+  UIBarButtonItem *backButton = [[UIBarButtonItem alloc] 
+                                 initWithTitle:[self.topViewController.navigationItem.backBarButtonItem.possibleTitles anyObject]
+                                 style:UIBarButtonItemStyleBordered 
+                                 target:nil 
+                                 action:nil];
+  
+  UIViewController *current = self.topViewController;
+	current.navigationItem.backBarButtonItem = backButton;
+  [backButton release];  
+}
+
+- (void)pushNavigationItem:(UIViewController *)item animated:(BOOL)animated;
+{
+  [super pushViewController:item animated:animated];
+}
 
 -(void)showArtist:(SpotArtist*)artist;
 {
+  [self setDefaultBackButton];
   [self pushViewController:[[[ArtistBrowseViewController alloc] initBrowsingArtist:artist] autorelease] animated:YES]; 
 }
 
 -(void)showAlbum:(SpotAlbum*)album;
 {
+  [self setDefaultBackButton];
   [self pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES]; 
 }
 
 -(void)showSearch:(SpotSearch*)search;
 {
+  [self setDefaultBackButton];
   [self pushViewController:[[[SearchViewController alloc] initWithSearch:search] autorelease] animated:YES]; 
 }
 
@@ -55,8 +96,11 @@
   
 }
 
+
 -(void)showPlayer;
 {
+  
+  [self setArrowBackButton];
   [self pushViewController:[PlayViewController defaultController] animated:YES];
 }
 

@@ -18,6 +18,13 @@
 
 @synthesize delegate;
 
+-(void)initWithFrame:(CGRect)frame;
+{
+  if(![super initWithFrame:frame])return nil;
+  [self setUserInteractionEnabled:YES];
+  return self;
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	NSLog(@"Touches Began!");

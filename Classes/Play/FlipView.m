@@ -41,6 +41,33 @@
   [UIView commitAnimations];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+  swipeStart = [[touches anyObject] locationInView:self];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+  
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+  CGPoint swipeEnd = [[touches anyObject] locationInView:self];
+  float x = abs(swipeEnd.x - swipeStart.x);
+  float y = abs(swipeEnd.y - swipeStart.y);
+  float l = sqrt(x*x + y*y);
+  x /= l;
+  y /= l;
+  if(x > 0.95 && l > 130)
+    [self flip];
+  NSLog(@"sweep: %f, %f  %f", x, y, l);
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+  
+}
 
 
 @end

@@ -71,12 +71,12 @@ int do_auth (SESSION * session)
 				 sizeof (session->auth_hmac));
 
 	if (send_client_auth (session)) {
-		printf ("do_auth(): send_client_auth() failed\n");
+		DSFYDEBUG("do_auth(): send_client_auth() failed\n");
 		return -1;
 	}
 
 	if (read_server_auth_response (session)) {
-		printf ("do_auth(): read_server_auth_response() failed\n");
+		DSFYDEBUG("do_auth(): read_server_auth_response() failed\n");
 		return -1;
 	}
 
@@ -143,12 +143,12 @@ int send_client_auth (SESSION * session)
 
         ret = sock_send(session->ap_sock, buf->ptr, buf->len);
 	if (ret <= 0) {
-		printf ("send_client_auth(): connection lost\n");
+		DSFYDEBUG("send_client_auth(): connection lost\n");
 		buf_free(buf);
 		return -1;
 	}
 	else if (ret != buf->len) {
-		printf ("send_client_auth(): only wrote %d of %d bytes\n",
+		DSFYDEBUG("send_client_auth(): only wrote %d of %d bytes\n",
 			ret, buf->len);
 		buf_free(buf);
 		return -1;

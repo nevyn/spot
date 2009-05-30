@@ -126,7 +126,6 @@ typedef struct session
         /* login synchronization */
         pthread_mutex_t login_mutex;
         pthread_cond_t  login_cond;
-
 } SESSION;
 
 SESSION *session_init_client (void);

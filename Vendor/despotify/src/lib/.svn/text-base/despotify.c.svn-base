@@ -55,9 +55,11 @@ static void* despotify_thread(void* arg)
             DSFYfree(payload); /* Allocated in packet_read() */
         }
     }
+
+    return NULL;
 }
 
-struct despotify_session* despotify_init_client()
+struct despotify_session* despotify_init_client(void(*callback)(int, void*))
 {
     struct despotify_session* ds = calloc(1,sizeof(struct despotify_session));
     if (!ds)
@@ -71,6 +73,7 @@ struct despotify_session* despotify_init_client()
     pthread_mutex_init(&ds->sync_mutex, NULL);
 
     ds->user_info = &ds->session->user_info;
+    ds->client_callback = callback;
 
     return ds;
 }
@@ -360,6 +363,10 @@ static int despotify_snd_end_callback(void* arg)
 
         /* request key for next track */
         error = cmd_aeskey(ds->session, fid, tid, despotify_aes_callback, ds);
+
+        /* notify client */
+        if (ds->client_callback)
+            ds->client_callback(DESPOTIFY_TRACK_CHANGE, NULL);
     }
 
     return error;

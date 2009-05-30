@@ -1,15 +1,15 @@
 9
 
 dir
-321
+326
 https://despotify.svn.sourceforge.net/svnroot/despotify/src/clients/simple
 https://despotify.svn.sourceforge.net/svnroot/despotify
 
 
 
-2009-04-12T17:58:34.130103Z
-302
-dstien
+2009-05-28T15:10:52.996253Z
+323
+zagor
 has-props
 
 svn:special svn:externals svn:needs-lock
@@ -66,11 +66,11 @@ file
 
 
 
-2009-05-26T22:56:10.000000Z
-edf53238bd18e0cb7b40c19e6674922d
-2009-04-12T17:58:34.130103Z
-302
-dstien
+2009-05-30T16:56:09.000000Z
+71c24834e232fc74452291f480c2474d
+2009-05-28T15:10:52.996253Z
+323
+zagor
 has-props
 
 
@@ -92,5 +92,5 @@ has-props
 
 
 
-17186
+17813
 

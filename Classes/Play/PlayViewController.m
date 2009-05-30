@@ -20,6 +20,7 @@ PlayViewController *GlobalPlayViewController;
 
 @interface PlayViewController ()
 @property (readonly) SpotPlayer * defaultPlayer;
+-(void)backAction:(id)sender;
 @end
 
 
@@ -62,6 +63,11 @@ PlayViewController *GlobalPlayViewController;
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  [self.navigationItem setTitleView:titleView];
+  
+
+  
+  
   //register self as observer for the default player
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerNotification:) name:nil object:[self defaultPlayer]];
 }
@@ -90,53 +96,31 @@ PlayViewController *GlobalPlayViewController;
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [titleView dealloc];
   [super dealloc];
 }
 
 #pragma mark
 #pragma mark Transitions
--(void)moveLabel:(UIView*)l;
-{
-  CGRect r = l.bounds;
-  CGRect s = [[self.navigationController view] bounds];
-  r.origin.y -= s.size.height;
-  [l setBounds:r];
-}
 
 -(void)viewWillAppear:(BOOL)animated;
 {
-  //show labels
-  artistLabel.hidden = NO;
-  albumLabel.hidden = NO;
-  trackLabel.hidden = NO;
-  
-  //move labels to navbar
-  [[self.navigationController view] addSubview:artistLabel];
-  [[self.navigationController view] addSubview:albumLabel];
-  [[self.navigationController view] addSubview:trackLabel];
-
-  [self moveLabel:artistLabel];
-  [self moveLabel:albumLabel];
-  [self moveLabel:trackLabel];
-  
+  self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
 }
 
 -(void)viewDidDisappear:(BOOL)animated;
 {
-  //hide labels
-  artistLabel.hidden = YES;
-  albumLabel.hidden = YES;
-  trackLabel.hidden = YES;
+  self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
 -(void)viewDidAppear:(BOOL)animated;
 {
-	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
 }
 -(void)viewWillDisappear:(BOOL)animated;
 {
-	self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+  self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
@@ -152,6 +136,12 @@ PlayViewController *GlobalPlayViewController;
 
 #pragma mark 
 #pragma mark Actions
+-(void)backAction:(id)sender;
+{
+  //navbarLeftButton??
+  [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(IBAction)togglePlaying:(id)sender;
 {
 	if(!self.defaultPlayer.isPlaying)
@@ -181,9 +171,9 @@ PlayViewController *GlobalPlayViewController;
 
 -(void)showInfoForTrack:(SpotTrack*)track;
 {
-  artistLabel.text = track.artist.name;
-	trackLabel.text = track.title;
-	albumLabel.text = track.albumName;
+  titleView.artistLabel.text = track.artist.name;
+	titleView.trackLabel.text = track.title;
+	titleView.albumLabel.text = track.albumName;
   albumArt.artId = track.coverId;
 }
 
@@ -243,15 +233,5 @@ PlayViewController *GlobalPlayViewController;
   }
 }
 
-
--(void)didTouchLabel:(id)sender;
-{
-  SpotPlayer *player = [SpotSession defaultSession].player;
-  if(sender == artistLabel){
-    [self.navigationController showArtist:player.currentTrack.artist];
-  } else if(sender == albumLabel){
-    [self.navigationController showAlbum:player.currentTrack.album];
-  }
-}
 
 @end

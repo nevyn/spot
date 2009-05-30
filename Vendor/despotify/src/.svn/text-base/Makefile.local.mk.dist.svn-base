@@ -7,6 +7,10 @@
 ## Disable GUI stuff
 # NOGUI = 1
 
+## Enable Nokia Maemo4 specific code in maemify client. 
+## At least LINUX_BACKEND = gstreamer seems to work with this.
+# MAEMO4 = 1
+
 ## Install prefix
 # INSTALL_PREFIX = /usr
 

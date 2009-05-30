@@ -1,5 +1,5 @@
 /*
- * $Id: util.h 263 2009-03-26 22:51:15Z zagor $
+ * $Id: util.h 326 2009-05-29 23:32:36Z dstien $
  *
  */
 
@@ -22,7 +22,7 @@
 #define DSFYDEBUG_SNDQUEUE(...)
 #endif
 
-#define DSFYfree(p) free(p); (p) = NULL
+#define DSFYfree(p) do { free(p); (p) = NULL; } while (0)
 #define DSFYstrncat(target, data, size) do { strncat(target, data, size-1); ((unsigned char*)target)[size-1] = 0; } while (0)
 #define DSFYstrncpy(target, data, size) do { strncpy(target, data, size-1); ((unsigned char*)target)[size-1] = 0; } while (0)
 

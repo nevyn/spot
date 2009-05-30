@@ -1,5 +1,5 @@
 #
-# $Id: Makefile 317 2009-05-17 11:23:45Z jorgenpt $
+# $Id: Makefile 325 2009-05-28 23:14:10Z dstien $
 # 
 #
 
@@ -45,7 +45,10 @@ ifeq ($(firstword $(subst ., ,$(shell $(CC) -dumpversion))), 4)
     CFLAGS += -Wno-pointer-sign
 endif
 
-CLIENTS = clients/simple clients/gateway
+CLIENTS = clients/simple clients/gateway clients/despotify
+ifneq ($(NOGUI), 1)
+    CLIENTS += clients/maemify
+endif
 SUBDIRS = lib $(CLIENTS)
 
 .PHONY: all clean $(SUBDIRS) install uninstall

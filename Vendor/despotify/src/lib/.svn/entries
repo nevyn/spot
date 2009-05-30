@@ -1,15 +1,15 @@
 9
 
 dir
-321
+326
 https://despotify.svn.sourceforge.net/svnroot/despotify/src/lib
 https://despotify.svn.sourceforge.net/svnroot/despotify
 
 
 
-2009-04-14T10:26:43.058865Z
-303
-zagor
+2009-05-29T23:32:36.956995Z
+326
+dstien
 has-props
 
 svn:special svn:externals svn:needs-lock
@@ -304,33 +304,12 @@ file
 
 
 
-2009-05-26T22:56:10.000000Z
-c7eb50c9b8cbb5d1bc6d09dfab353172
-2009-04-14T10:26:43.058865Z
-303
+
+ef4a3e6240489e02d0a744483031f235
+2009-05-28T15:10:52.996253Z
+323
 zagor
 has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-38082
 
 packet.c
 file
@@ -474,33 +453,12 @@ file
 
 
 
-2009-05-26T22:56:10.000000Z
-a2578ff953e1663fd9c0bb5ced77ad28
-2009-04-11T00:05:09.102515Z
-300
-chripppa
+
+a9764c3d706c73cceaa5634bc03cc60b
+2009-05-28T15:10:52.996253Z
+323
+zagor
 has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-7468
 
 packet.h
 file
@@ -536,14 +494,14 @@ has-props
 
 473
 
-hmac.h
+util.c
 file
 
 
 
 
 2009-05-26T22:56:10.000000Z
-8c37872154fc5f57562d27485949691e
+0979451609b92edee050f2611ede7465
 2009-03-12T08:21:53.346063Z
 182
 zagor
@@ -568,7 +526,7 @@ has-props
 
 
 
-268
+2571
 
 channel.h
 file
@@ -604,14 +562,14 @@ has-props
 
 1030
 
-util.c
+hmac.h
 file
 
 
 
 
 2009-05-26T22:56:10.000000Z
-0979451609b92edee050f2611ede7465
+8c37872154fc5f57562d27485949691e
 2009-03-12T08:21:53.346063Z
 182
 zagor
@@ -636,7 +594,41 @@ has-props
 
 
 
-2571
+268
+
+local.mk
+file
+
+
+
+
+2009-05-30T16:58:27.000000Z
+0b818cd89c8e383e95c130443f3893bd
+2009-05-28T21:37:57.938526Z
+324
+hockster
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3105
 
 coreaudio.h
 file
@@ -672,51 +664,17 @@ has-props
 
 336
 
-local.mk
-file
-
-
-
-
-2009-05-26T22:56:10.000000Z
-e01628ed1f3455b1494c93687c7faedd
-2009-03-26T23:59:40.581348Z
-265
-jorgenpt
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3033
-
 util.h
 file
 
 
 
 
-2009-05-26T22:56:10.000000Z
-d398b6f3507b6cccb19b2d504703f48c
-2009-03-26T22:51:15.216943Z
-263
-zagor
+2009-05-30T16:58:27.000000Z
+af97ed917df3dd08bb8505538f6adb9d
+2009-05-29T23:32:36.956995Z
+326
+dstien
 has-props
 
 
@@ -738,7 +696,7 @@ has-props
 
 
 
-1148
+1167
 
 dns.c
 file
@@ -774,40 +732,6 @@ has-props
 
 3017
 
-libao.c
-file
-
-
-
-
-2009-05-26T22:56:10.000000Z
-7c5eec46602fa18d08ca824747b5fcbc
-2009-03-12T12:39:53.648248Z
-190
-zagor
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3741
-
 despotify.pc
 file
 
@@ -841,6 +765,40 @@ chripppa
 
 
 230
+
+libao.c
+file
+
+
+
+
+2009-05-26T22:56:10.000000Z
+7c5eec46602fa18d08ca824747b5fcbc
+2009-03-12T12:39:53.648248Z
+190
+zagor
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3741
 
 shn.c
 file
@@ -876,14 +834,14 @@ has-props
 
 10663
 
-dns.h
+sndqueue.c
 file
 
 
 
 
 2009-05-26T22:56:10.000000Z
-6218288cbfc1c1791ed902e20941b6be
+29e572ebb6530ffa5a66eb3ad9418585
 2009-03-12T08:21:53.346063Z
 182
 zagor
@@ -908,7 +866,7 @@ has-props
 
 
 
-181
+14268
 
 network.c
 file
@@ -944,14 +902,14 @@ has-props
 
 938
 
-sndqueue.c
+dns.h
 file
 
 
 
 
 2009-05-26T22:56:10.000000Z
-29e572ebb6530ffa5a66eb3ad9418585
+6218288cbfc1c1791ed902e20941b6be
 2009-03-12T08:21:53.346063Z
 182
 zagor
@@ -976,7 +934,7 @@ has-props
 
 
 
-14268
+181
 
 libao.h
 file
@@ -1120,11 +1078,11 @@ file
 
 
 
-2009-05-26T22:56:10.000000Z
-36e5a6358f27f15547981d95d5051360
-2009-03-24T09:49:24.975979Z
-230
-zagor
+2009-05-30T16:58:27.000000Z
+07151b11fbc28b84f0eba729b2d85b2c
+2009-05-27T19:18:28.800067Z
+322
+dstien
 
 
 
@@ -1146,7 +1104,7 @@ zagor
 
 
 
-39986
+39991
 
 handlers.c
 file
@@ -1222,11 +1180,11 @@ file
 
 
 
-2009-05-26T22:56:11.000000Z
-7fb8937b208174879b393b865427cba6
-2009-04-08T14:22:33.956084Z
-291
-zagor
+2009-05-30T16:58:27.000000Z
+935803188232942190cb828d9173eaa9
+2009-05-28T23:14:10.363883Z
+325
+dstien
 has-props
 
 
@@ -1248,7 +1206,7 @@ has-props
 
 
 
-4950
+4959
 
 despotify-simple.h
 file
@@ -1667,10 +1625,10 @@ file
 
 
 
-2009-05-26T22:56:11.000000Z
-bac4c8c473683f9e0ccf4f60fdcc7d19
-2009-04-08T14:22:33.956084Z
-291
+2009-05-30T16:58:27.000000Z
+52da33199e88072238bbfc3e5aa0ef32
+2009-05-28T15:10:52.996253Z
+323
 zagor
 has-props
 
@@ -1693,7 +1651,7 @@ has-props
 
 
 
-2677
+2676
 
 gstreamer.c
 file

@@ -52,12 +52,9 @@
 		05447F430FCF1173004CC539 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 05447F380FCF1173004CC539 /* profile.png */; };
 		05447F4D0FCF119A004CC539 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05447F480FCF119A004CC539 /* libvorbisfile.a */; };
 		05447F4E0FCF119A004CC539 /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05447F490FCF119A004CC539 /* libvorbis.a */; };
-		05447F4F0FCF119A004CC539 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05447F4A0FCF119A004CC539 /* libcrypto.a */; };
-		05447F500FCF119A004CC539 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05447F4B0FCF119A004CC539 /* libssl.a */; };
 		05447F510FCF119A004CC539 /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05447F4C0FCF119A004CC539 /* libogg.a */; };
 		05A664830FCF1B1B00C8DC40 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A6643D0FCF1B1B00C8DC40 /* aes.c */; };
 		05A664840FCF1B1B00C8DC40 /* audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A6643F0FCF1B1B00C8DC40 /* audio.c */; };
-		05A664850FCF1B1B00C8DC40 /* audioqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A664410FCF1B1B00C8DC40 /* audioqueue.c */; };
 		05A664860FCF1B1B00C8DC40 /* auth.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A664430FCF1B1B00C8DC40 /* auth.c */; };
 		05A664870FCF1B1B00C8DC40 /* buf.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A664450FCF1B1B00C8DC40 /* buf.c */; };
 		05A664880FCF1B1B00C8DC40 /* channel.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A664470FCF1B1B00C8DC40 /* channel.c */; };
@@ -90,6 +87,11 @@
 		21F654240FD12BC6000403F8 /* SpotTouchableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6541F0FD12BC6000403F8 /* SpotTouchableLabel.m */; };
 		21F6543F0FD136FB000403F8 /* SpotCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6543E0FD136FB000403F8 /* SpotCache.m */; };
 		21F654A90FD13FAE000403F8 /* SpotImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F654A80FD13FAE000403F8 /* SpotImage.m */; };
+		21F65A8A0FD1A168000403F8 /* audioqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A664410FCF1B1B00C8DC40 /* audioqueue.c */; };
+		21F65AC80FD1A327000403F8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F65AC70FD1A327000403F8 /* Default.png */; };
+		21F65B330FD1B059000403F8 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F65B320FD1B059000403F8 /* libcrypto.a */; };
+		21F65B570FD1B564000403F8 /* PlayTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F65B560FD1B564000403F8 /* PlayTitleView.m */; };
+		21F65C9D0FD1CAB8000403F8 /* arrow-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 21F65C9C0FD1CAB8000403F8 /* arrow-left.png */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
@@ -164,8 +166,6 @@
 		05447F380FCF1173004CC539 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		05447F480FCF119A004CC539 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = Vendor/libvorbisfile.a; sourceTree = "<group>"; };
 		05447F490FCF119A004CC539 /* libvorbis.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbis.a; path = Vendor/libvorbis.a; sourceTree = "<group>"; };
-		05447F4A0FCF119A004CC539 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Vendor/libcrypto.a; sourceTree = "<group>"; };
-		05447F4B0FCF119A004CC539 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Vendor/libssl.a; sourceTree = "<group>"; };
 		05447F4C0FCF119A004CC539 /* libogg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libogg.a; path = Vendor/libogg.a; sourceTree = "<group>"; };
 		05A6643D0FCF1B1B00C8DC40 /* aes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aes.c; sourceTree = "<group>"; };
 		05A6643E0FCF1B1B00C8DC40 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
@@ -241,6 +241,11 @@
 		21F6543E0FD136FB000403F8 /* SpotCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotCache.m; sourceTree = "<group>"; };
 		21F654A70FD13FAE000403F8 /* SpotImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotImage.h; sourceTree = "<group>"; };
 		21F654A80FD13FAE000403F8 /* SpotImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotImage.m; sourceTree = "<group>"; };
+		21F65AC70FD1A327000403F8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		21F65B320FD1B059000403F8 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Vendor/libcrypto.a; sourceTree = "<group>"; };
+		21F65B550FD1B564000403F8 /* PlayTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayTitleView.h; sourceTree = "<group>"; };
+		21F65B560FD1B564000403F8 /* PlayTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayTitleView.m; sourceTree = "<group>"; };
+		21F65C9C0FD1CAB8000403F8 /* arrow-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-left.png"; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -254,12 +259,11 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				05447F4D0FCF119A004CC539 /* libvorbisfile.a in Frameworks */,
 				05447F4E0FCF119A004CC539 /* libvorbis.a in Frameworks */,
-				05447F4F0FCF119A004CC539 /* libcrypto.a in Frameworks */,
-				05447F500FCF119A004CC539 /* libssl.a in Frameworks */,
 				05447F510FCF119A004CC539 /* libogg.a in Frameworks */,
 				05A664FC0FCF215300C8DC40 /* AudioToolbox.framework in Frameworks */,
 				05A664FF0FCF217D00C8DC40 /* libz.1.dylib in Frameworks */,
 				05A665080FCF21D500C8DC40 /* libresolv.dylib in Frameworks */,
+				21F65B330FD1B059000403F8 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,11 +362,13 @@
 		05447EF00FCF1167004CC539 /* Play */ = {
 			isa = PBXGroup;
 			children = (
+				05447EF30FCF1167004CC539 /* PlayView.xib */,
 				05447EF10FCF1167004CC539 /* FlipView.h */,
 				05447EF20FCF1167004CC539 /* FlipView.m */,
-				05447EF30FCF1167004CC539 /* PlayView.xib */,
 				05447EF40FCF1167004CC539 /* PlayViewController.h */,
 				05447EF50FCF1167004CC539 /* PlayViewController.m */,
+				21F65B550FD1B564000403F8 /* PlayTitleView.h */,
+				21F65B560FD1B564000403F8 /* PlayTitleView.m */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -407,6 +413,8 @@
 				05447F340FCF1173004CC539 /* playergloss.png */,
 				05447F350FCF1173004CC539 /* Spot-Info.plist */,
 				05447F360FCF1173004CC539 /* toolbar */,
+				21F65AC70FD1A327000403F8 /* Default.png */,
+				21F65C9C0FD1CAB8000403F8 /* arrow-left.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -564,10 +572,9 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				05447F480FCF119A004CC539 /* libvorbisfile.a */,
 				05447F490FCF119A004CC539 /* libvorbis.a */,
-				05447F4A0FCF119A004CC539 /* libcrypto.a */,
-				05447F4B0FCF119A004CC539 /* libssl.a */,
 				05447F4C0FCF119A004CC539 /* libogg.a */,
 				05A664FE0FCF217D00C8DC40 /* libz.1.dylib */,
+				21F65B320FD1B059000403F8 /* libcrypto.a */,
 				05A665070FCF21D500C8DC40 /* libresolv.dylib */,
 				05A664350FCF1B1B00C8DC40 /* despotify */,
 			);
@@ -636,6 +643,8 @@
 				05447F420FCF1173004CC539 /* playlists.png in Resources */,
 				05447F430FCF1173004CC539 /* profile.png in Resources */,
 				05A6649A0FCF1B1B00C8DC40 /* local.mk in Resources */,
+				21F65AC80FD1A327000403F8 /* Default.png in Resources */,
+				21F65C9D0FD1CAB8000403F8 /* arrow-left.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,7 +681,6 @@
 				05447F2A0FCF1167004CC539 /* SpotPlaylistTableViewDataSource.m in Sources */,
 				05A664830FCF1B1B00C8DC40 /* aes.c in Sources */,
 				05A664840FCF1B1B00C8DC40 /* audio.c in Sources */,
-				05A664850FCF1B1B00C8DC40 /* audioqueue.c in Sources */,
 				05A664860FCF1B1B00C8DC40 /* auth.c in Sources */,
 				05A664870FCF1B1B00C8DC40 /* buf.c in Sources */,
 				05A664880FCF1B1B00C8DC40 /* channel.c in Sources */,
@@ -699,6 +707,8 @@
 				21F654240FD12BC6000403F8 /* SpotTouchableLabel.m in Sources */,
 				21F6543F0FD136FB000403F8 /* SpotCache.m in Sources */,
 				21F654A90FD13FAE000403F8 /* SpotImage.m in Sources */,
+				21F65A8A0FD1A168000403F8 /* audioqueue.c in Sources */,
+				21F65B570FD1B564000403F8 /* PlayTitleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

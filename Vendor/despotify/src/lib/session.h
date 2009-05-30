@@ -1,5 +1,5 @@
 /*
- * $Id: session.h 291 2009-04-08 14:22:33Z zagor $
+ * $Id: session.h 323 2009-05-28 15:10:52Z zagor $
  *
  */
 
@@ -126,7 +126,6 @@ typedef struct session
         /* login synchronization */
         pthread_mutex_t login_mutex;
         pthread_cond_t  login_cond;
-
 } SESSION;
 
 SESSION *session_init_client (void);

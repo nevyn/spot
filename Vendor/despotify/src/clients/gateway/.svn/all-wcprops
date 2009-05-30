@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 51
-/svnroot/despotify/!svn/ver/289/src/clients/gateway
+/svnroot/despotify/!svn/ver/322/src/clients/gateway
 END
 gw-http.h
 K 25
@@ -19,7 +19,7 @@ gw-core.c
 K 25
 svn:wc:ra_dav:version-url
 V 61
-/svnroot/despotify/!svn/ver/286/src/clients/gateway/gw-core.c
+/svnroot/despotify/!svn/ver/322/src/clients/gateway/gw-core.c
 END
 gw-stream.c
 K 25
@@ -27,23 +27,17 @@ svn:wc:ra_dav:version-url
 V 63
 /svnroot/despotify/!svn/ver/182/src/clients/gateway/gw-stream.c
 END
-gw-handlers.c
-K 25
-svn:wc:ra_dav:version-url
-V 65
-/svnroot/despotify/!svn/ver/182/src/clients/gateway/gw-handlers.c
-END
 gw-stream.h
 K 25
 svn:wc:ra_dav:version-url
 V 63
 /svnroot/despotify/!svn/ver/182/src/clients/gateway/gw-stream.h
 END
-gw-playlist.c
+gw-handlers.c
 K 25
 svn:wc:ra_dav:version-url
 V 65
-/svnroot/despotify/!svn/ver/289/src/clients/gateway/gw-playlist.c
+/svnroot/despotify/!svn/ver/182/src/clients/gateway/gw-handlers.c
 END
 gw-browse.c
 K 25
@@ -51,17 +45,17 @@ svn:wc:ra_dav:version-url
 V 63
 /svnroot/despotify/!svn/ver/225/src/clients/gateway/gw-browse.c
 END
+gw-playlist.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/despotify/!svn/ver/289/src/clients/gateway/gw-playlist.c
+END
 local.mk
 K 25
 svn:wc:ra_dav:version-url
 V 60
 /svnroot/despotify/!svn/ver/209/src/clients/gateway/local.mk
-END
-gw-search.c
-K 25
-svn:wc:ra_dav:version-url
-V 63
-/svnroot/despotify/!svn/ver/254/src/clients/gateway/gw-search.c
 END
 gw-handlers.h
 K 25
@@ -69,17 +63,23 @@ svn:wc:ra_dav:version-url
 V 65
 /svnroot/despotify/!svn/ver/182/src/clients/gateway/gw-handlers.h
 END
-gw-playlist.h
+gw-search.c
 K 25
 svn:wc:ra_dav:version-url
-V 65
-/svnroot/despotify/!svn/ver/182/src/clients/gateway/gw-playlist.h
+V 63
+/svnroot/despotify/!svn/ver/254/src/clients/gateway/gw-search.c
 END
 gw-browse.h
 K 25
 svn:wc:ra_dav:version-url
 V 63
 /svnroot/despotify/!svn/ver/182/src/clients/gateway/gw-browse.h
+END
+gw-playlist.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/despotify/!svn/ver/182/src/clients/gateway/gw-playlist.h
 END
 gw.h
 K 25

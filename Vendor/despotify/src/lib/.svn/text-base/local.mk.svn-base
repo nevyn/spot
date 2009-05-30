@@ -43,6 +43,9 @@ gstapp/gstapp-marshal.c: gstapp/gstapp-marshal.list gstapp/gstapp-marshal.h
 	glib-genmarshal --body --prefix=gst_app_marshal gstapp/gstapp-marshal.list >> gstapp/gstapp-marshal.c.tmp
 	mv gstapp/gstapp-marshal.c.tmp gstapp/gstapp-marshal.c
 
+        ifeq ($(MAEMO4),1)
+            CFLAGS += -DMAEMO4
+        endif
     endif
 
     ifeq ($(LINUX_BACKEND),libao)

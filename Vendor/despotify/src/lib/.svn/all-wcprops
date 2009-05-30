@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 39
-/svnroot/despotify/!svn/ver/303/src/lib
+/svnroot/despotify/!svn/ver/326/src/lib
 END
 gstreamer.h
 K 25
@@ -55,7 +55,7 @@ despotify.c
 K 25
 svn:wc:ra_dav:version-url
 V 51
-/svnroot/despotify/!svn/ver/303/src/lib/despotify.c
+/svnroot/despotify/!svn/ver/323/src/lib/despotify.c
 END
 packet.c
 K 25
@@ -85,7 +85,7 @@ despotify.h
 K 25
 svn:wc:ra_dav:version-url
 V 51
-/svnroot/despotify/!svn/ver/300/src/lib/despotify.h
+/svnroot/despotify/!svn/ver/323/src/lib/despotify.h
 END
 packet.h
 K 25
@@ -93,11 +93,11 @@ svn:wc:ra_dav:version-url
 V 48
 /svnroot/despotify/!svn/ver/182/src/lib/packet.h
 END
-hmac.h
+util.c
 K 25
 svn:wc:ra_dav:version-url
 V 46
-/svnroot/despotify/!svn/ver/182/src/lib/hmac.h
+/svnroot/despotify/!svn/ver/182/src/lib/util.c
 END
 channel.h
 K 25
@@ -105,11 +105,17 @@ svn:wc:ra_dav:version-url
 V 49
 /svnroot/despotify/!svn/ver/100/src/lib/channel.h
 END
-util.c
+hmac.h
 K 25
 svn:wc:ra_dav:version-url
 V 46
-/svnroot/despotify/!svn/ver/182/src/lib/util.c
+/svnroot/despotify/!svn/ver/182/src/lib/hmac.h
+END
+local.mk
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svnroot/despotify/!svn/ver/324/src/lib/local.mk
 END
 coreaudio.h
 K 25
@@ -117,17 +123,11 @@ svn:wc:ra_dav:version-url
 V 51
 /svnroot/despotify/!svn/ver/100/src/lib/coreaudio.h
 END
-local.mk
-K 25
-svn:wc:ra_dav:version-url
-V 48
-/svnroot/despotify/!svn/ver/265/src/lib/local.mk
-END
 util.h
 K 25
 svn:wc:ra_dav:version-url
 V 46
-/svnroot/despotify/!svn/ver/263/src/lib/util.h
+/svnroot/despotify/!svn/ver/326/src/lib/util.h
 END
 dns.c
 K 25
@@ -135,17 +135,17 @@ svn:wc:ra_dav:version-url
 V 45
 /svnroot/despotify/!svn/ver/182/src/lib/dns.c
 END
-libao.c
-K 25
-svn:wc:ra_dav:version-url
-V 47
-/svnroot/despotify/!svn/ver/190/src/lib/libao.c
-END
 despotify.pc
 K 25
 svn:wc:ra_dav:version-url
 V 52
 /svnroot/despotify/!svn/ver/244/src/lib/despotify.pc
+END
+libao.c
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/despotify/!svn/ver/190/src/lib/libao.c
 END
 shn.c
 K 25
@@ -153,11 +153,11 @@ svn:wc:ra_dav:version-url
 V 45
 /svnroot/despotify/!svn/ver/182/src/lib/shn.c
 END
-dns.h
+sndqueue.c
 K 25
 svn:wc:ra_dav:version-url
-V 45
-/svnroot/despotify/!svn/ver/182/src/lib/dns.h
+V 50
+/svnroot/despotify/!svn/ver/182/src/lib/sndqueue.c
 END
 network.c
 K 25
@@ -165,11 +165,11 @@ svn:wc:ra_dav:version-url
 V 49
 /svnroot/despotify/!svn/ver/182/src/lib/network.c
 END
-sndqueue.c
+dns.h
 K 25
 svn:wc:ra_dav:version-url
-V 50
-/svnroot/despotify/!svn/ver/182/src/lib/sndqueue.c
+V 45
+/svnroot/despotify/!svn/ver/182/src/lib/dns.h
 END
 libao.h
 K 25
@@ -199,7 +199,7 @@ ezxml.c
 K 25
 svn:wc:ra_dav:version-url
 V 47
-/svnroot/despotify/!svn/ver/230/src/lib/ezxml.c
+/svnroot/despotify/!svn/ver/322/src/lib/ezxml.c
 END
 handlers.c
 K 25
@@ -217,7 +217,7 @@ auth.c
 K 25
 svn:wc:ra_dav:version-url
 V 46
-/svnroot/despotify/!svn/ver/291/src/lib/auth.c
+/svnroot/despotify/!svn/ver/325/src/lib/auth.c
 END
 despotify-simple.h
 K 25
@@ -295,7 +295,7 @@ session.h
 K 25
 svn:wc:ra_dav:version-url
 V 49
-/svnroot/despotify/!svn/ver/291/src/lib/session.h
+/svnroot/despotify/!svn/ver/323/src/lib/session.h
 END
 gstreamer.c
 K 25

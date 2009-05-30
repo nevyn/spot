@@ -22,7 +22,7 @@
 #define DSFYDEBUG_SNDQUEUE(...)
 #endif
 
-#define DSFYfree(p) free(p); (p) = NULL
+#define DSFYfree(p) do { free(p); (p) = NULL; } while (0)
 #define DSFYstrncat(target, data, size) do { strncat(target, data, size-1); ((unsigned char*)target)[size-1] = 0; } while (0)
 #define DSFYstrncpy(target, data, size) do { strncpy(target, data, size-1); ((unsigned char*)target)[size-1] = 0; } while (0)
 

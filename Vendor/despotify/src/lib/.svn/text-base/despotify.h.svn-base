@@ -155,14 +155,20 @@ struct despotify_session
 
     bool list_of_lists;
     bool play_as_list;
+
+    /* client callback */
+    void(*client_callback)(int,void*);
 };
+
+/* callback signals */
+#define DESPOTIFY_TRACK_CHANGE 1 /* no data */
 
 /* Global init / deinit library. */
 bool despotify_init(void);
 bool despotify_cleanup(void);
 
 /* Session stuff. */
-struct despotify_session *despotify_init_client(void);
+struct despotify_session *despotify_init_client(void(*callback)(int, void*));
 
 void despotify_exit(struct despotify_session *ds);
 

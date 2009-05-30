@@ -108,7 +108,7 @@
   SpotTrack *track = [album.playlist.tracks objectAtIndex:idx];
   if(track.isPlayable){
     [[SpotSession defaultSession].player playTrack:track rewind:NO];
-    [self.navigationController pushViewController:[PlayViewController defaultController] animated:YES];
+    [self.navigationController showPlayer];
   }
 //  [[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
 }

@@ -1,5 +1,5 @@
 #
-# $Id: local.mk 265 2009-03-26 23:59:40Z jorgenpt $
+# $Id: local.mk 324 2009-05-28 21:37:57Z hockster $
 # 
 
 LIB_OBJS = aes.lo audio.lo auth.lo buf.lo channel.lo commands.lo dns.lo ezxml.lo handlers.lo keyexchange.lo packet.lo puzzle.lo session.lo shn.lo sndqueue.lo util.lo network.lo despotify.lo sha1.lo hmac.lo xml.lo 
@@ -43,6 +43,9 @@ gstapp/gstapp-marshal.c: gstapp/gstapp-marshal.list gstapp/gstapp-marshal.h
 	glib-genmarshal --body --prefix=gst_app_marshal gstapp/gstapp-marshal.list >> gstapp/gstapp-marshal.c.tmp
 	mv gstapp/gstapp-marshal.c.tmp gstapp/gstapp-marshal.c
 
+        ifeq ($(MAEMO4),1)
+            CFLAGS += -DMAEMO4
+        endif
     endif
 
     ifeq ($(LINUX_BACKEND),libao)

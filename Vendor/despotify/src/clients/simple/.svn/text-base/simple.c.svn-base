@@ -14,6 +14,10 @@
 #include <wchar.h>
 #include "despotify.h"
 
+/* these are global to allow the callback to access them */
+static struct playlist* lastlist = NULL;
+static int listoffset = 0;
+
 struct playlist* get_playlist(struct playlist* rootlist, int num)
 {
     struct playlist* p = rootlist;
@@ -180,7 +184,6 @@ void command_loop(struct despotify_session* ds)
     char buf[80];
     struct playlist* rootlist = NULL;
     struct playlist* searchlist = NULL;
-    struct playlist* lastlist = NULL;
     struct search_result *search = NULL;
     struct album_browse* playalbum = NULL;
 
@@ -476,14 +479,14 @@ void command_loop(struct despotify_session* ds)
             }
 
             /* skip to track <num> */
-            int num = atoi(buf + 5);
+            listoffset = atoi(buf + 5);
             struct track* t = lastlist->tracks;
-            for (int i=1; i<num && t; i++)
+            for (int i=1; i<listoffset && t; i++)
                 t = t->next;
             if (t)
                 despotify_play(ds, t, true);
             else
-                wprintf(L"Invalid track number %d\n", num);
+                wprintf(L"Invalid track number %d\n", listoffset);
         }
 
         /* stop */
@@ -527,6 +530,24 @@ void command_loop(struct despotify_session* ds)
         despotify_free_album_browse(playalbum);
 }
 
+void callback(int signal, void* data)
+{
+    (void)data;
+
+    switch (signal) {
+        case DESPOTIFY_TRACK_CHANGE:
+            listoffset++;
+            struct track* t = lastlist->tracks;
+            for (int i=1; i<listoffset && t; i++)
+                t = t->next;
+            if (t)
+                wprintf(L"New track: %d: %s / %s (%d:%02d)\n",
+                        listoffset, t->title, t->artist->name,
+                        t->length / 60000, t->length % 60000 / 1000);
+            break;
+    }
+}
+
 int main(int argc, char** argv)
 {
     setlocale(LC_ALL, "");
@@ -542,7 +563,7 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    struct despotify_session* ds = despotify_init_client();
+    struct despotify_session* ds = despotify_init_client(callback);
     if (!ds) {
         wprintf(L"despotify_init_client() failed\n");
         return 1;

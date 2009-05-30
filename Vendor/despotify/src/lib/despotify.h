@@ -129,10 +129,6 @@ struct link {
 };
 
 
-struct despotify_session;
-typedef void(*despotify_simple_callback)(struct despotify_session*);
-typedef void(*despotify_xml_callback)(struct despotify_session*, char *xml);
-
 struct despotify_session
 {
     bool initialized;
@@ -163,20 +159,22 @@ struct despotify_session
 
     bool list_of_lists;
     bool play_as_list;
-  
-    //Callbacks
-    void* user_data;
-    despotify_simple_callback cb_track_start;
-    despotify_simple_callback cb_track_end;
-    despotify_xml_callback cb_got_xml;
+
+    /* client callback */
+    void(*client_callback)(int,void*);
 };
+
+/* callback signals */
+#define DESPOTIFY_TRACK_CHANGE 1 /* no data */
+#define DESPOTIFY_TRACK_START  2 /* no data */
+#define DESPOTIFY_TRACK_END    3 /* no data */
 
 /* Global init / deinit library. */
 bool despotify_init(void);
 bool despotify_cleanup(void);
 
 /* Session stuff. */
-struct despotify_session *despotify_init_client(void);
+struct despotify_session *despotify_init_client(void(*callback)(int, void*));
 
 void despotify_exit(struct despotify_session *ds);
 

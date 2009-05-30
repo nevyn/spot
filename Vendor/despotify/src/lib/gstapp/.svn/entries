@@ -1,15 +1,15 @@
 9
 
 dir
-321
+326
 https://despotify.svn.sourceforge.net/svnroot/despotify/src/lib/gstapp
 https://despotify.svn.sourceforge.net/svnroot/despotify
 
 
 
-2009-03-12T08:21:53.346063Z
-182
-zagor
+2009-05-28T21:37:57.938526Z
+324
+hockster
 has-props
 
 svn:special svn:externals svn:needs-lock
@@ -32,11 +32,11 @@ file
 
 
 
-2009-05-26T22:56:10.000000Z
-6679125675b185ca1199db8453ffc49c
-2009-03-12T08:21:53.346063Z
-182
-zagor
+2009-05-30T16:58:27.000000Z
+ee124b30247aa4a9e0f6c9cb25107392
+2009-05-28T21:37:57.938526Z
+324
+hockster
 has-props
 
 
@@ -58,7 +58,7 @@ has-props
 
 
 
-40751
+41118
 
 COPYING
 file

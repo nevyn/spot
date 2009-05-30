@@ -10,7 +10,7 @@
 
 
 @interface FlipView : UIView {
-  
+  CGPoint swipeStart;
 }
 
 -(IBAction)flip;
