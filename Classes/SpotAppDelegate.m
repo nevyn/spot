@@ -19,7 +19,7 @@
 
 @implementation SpotAppDelegate
 
-@synthesize window, loginNav, tabs, openURL;
+@synthesize window, loginNav, tabs;
 
 #import "SpotURI.h"
 
@@ -54,12 +54,13 @@
 	}
 	
 	// Search
-	UINavigationController *searchPage;
+	SpotNavigationController *searchPage;
 	{
 		searchPage = [[[SpotNavigationController alloc] init] autorelease];
 		
 		SearchViewController *search = [[[SearchViewController alloc] init] autorelease];
 		[searchPage pushViewController:search animated:NO];
+    searchNav = searchPage;
 	}
     
 	
@@ -84,6 +85,8 @@
 	
 	/// Display it!
   [window makeKeyAndVisible];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loggedinNotification:) name:@"loggedin" object:nil];
 }
 
 
@@ -99,10 +102,31 @@
 }
 
 
+-(void)loggedinNotification:(NSNotification*)n;
+{
+  //check if we got called by URL
+  NSURL *url = openURL;
+  //  url = [NSURL URLWithString:@"http://open.spotify.com/album/74ikOPgco70HHuxrLydWjo"]; //other album
+  //  url = [NSURL URLWithString:@"http://open.spotify.com/album/6sh0IoRG4pkpDOSCByH5cV"]; //album
+  //  url = [NSURL URLWithString:@"http://open.spotify.com/track/2QX7lSCOT4OESPUYzvR2wB"]; //track
+  //  url = [NSURL URLWithString:@"http://open.spotify.com/artist/5K0IAf5mrtln8thyowRn2X"]; //artist
+  //  url = [NSURL URLWithString:@"http://open.spotify.com/search/mumin"]; //search
+  //  url = [NSURL URLWithString:@"http://open.spotify.com/user/gujjdo/playlist/1qILpejEO16tlJDGEdX5Yq"]; //playlist
+  //  url = [NSURL URLWithString:@"spotify:user:gujjdo:playlist:1qILpejEO16tlJDGEdX5Yq"]; //playlist 
+  if(url){
+    [searchNav openURL:url];
+  }
+  tabs.selectedIndex = 1;
+}
+
+
+
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+
   [openURL release];
 	self.loginNav = nil;
 	self.tabs = nil;

@@ -6,17 +6,21 @@
 //  Copyright Third Cog Software 2009. All rights reserved.
 //
 
+#import "SpotNavigationController.h"
+
 @interface SpotAppDelegate : NSObject <UIApplicationDelegate> {
   IBOutlet UITabBarController *tabs;
 	UINavigationController *loginNav;
   UIWindow *window;
   NSURL *openURL;
+  SpotNavigationController *searchNav;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) UITabBarController *tabs;
 @property (nonatomic, retain) IBOutlet UINavigationController *loginNav;
-@property (nonatomic, readonly) NSURL *openURL;
+
+-(void)loggedinNotification:(NSNotification*)n;
 
 @end
 

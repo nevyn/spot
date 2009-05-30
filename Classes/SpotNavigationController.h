@@ -17,8 +17,6 @@
 
 }
 
--(void)loggedinNotification:(NSNotification*)n;
--(BOOL)checkOpenURL;
 -(BOOL)openURL:(NSURL*)url;
 
 -(void)showArtist:(SpotArtist*)artist;

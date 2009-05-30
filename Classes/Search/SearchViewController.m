@@ -55,7 +55,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  searchBar.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearch"];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -80,6 +80,7 @@
 -(void)viewWillAppear:(BOOL)animated;
 {
 	[self.navigationController setNavigationBarHidden:YES animated:NO];
+  
   if([searchBar.text length] == 0)
     [searchBar becomeFirstResponder];
   else if(!searchResults)
@@ -235,6 +236,10 @@ enum {
 	self.searchResults = nil;
   //NSLog(@"searching");
 	self.searchResults = [SpotSearch searchFor:string maxResults:50];
+  //save last search if it generated any results
+  if(searchResults && searchResults.totalAlbums || searchResults.totalTracks || searchResults.totalArtists){
+    [[NSUserDefaults standardUserDefaults] setObject:string forKey:@"lastSearch"];
+  }
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar_;  

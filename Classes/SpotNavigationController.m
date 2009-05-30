@@ -25,23 +25,15 @@
 	if( ! [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil] ) return nil;
 	
 	NSLog(@"Here's a spot navigation controller");
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loggedinNotification:) name:@"loggedin" object:nil];
   
 	return self;
 }
 
 -(void)dealloc;
 {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
   [super dealloc];
 }
 
--(void)loggedinNotification:(NSNotification*)n;
-{
-  if([self checkOpenURL]){
-    NSLog(@"how to select searchview?");
-  }
-}
 
 -(void)showArtist:(SpotArtist*)artist;
 {
@@ -103,23 +95,6 @@
       }break;
     }
     return YES;
-  }
-  return NO;
-}
-
--(BOOL)checkOpenURL;
-{
-  //check if we got called by URL
-  NSURL *url = ((SpotAppDelegate*)[[UIApplication sharedApplication] delegate]).openURL;
-//  url = [NSURL URLWithString:@"http://open.spotify.com/album/74ikOPgco70HHuxrLydWjo"]; //other album
-//  url = [NSURL URLWithString:@"http://open.spotify.com/album/6sh0IoRG4pkpDOSCByH5cV"]; //album
-//  url = [NSURL URLWithString:@"http://open.spotify.com/track/2QX7lSCOT4OESPUYzvR2wB"]; //track
-//  url = [NSURL URLWithString:@"http://open.spotify.com/artist/5K0IAf5mrtln8thyowRn2X"]; //artist
-//  url = [NSURL URLWithString:@"http://open.spotify.com/search/mumin"]; //search
-//  url = [NSURL URLWithString:@"http://open.spotify.com/user/gujjdo/playlist/1qILpejEO16tlJDGEdX5Yq"]; //playlist
-//  url = [NSURL URLWithString:@"spotify:user:gujjdo:playlist:1qILpejEO16tlJDGEdX5Yq"]; //playlist 
-  if(url){
-    return [self openURL:url];
   }
   return NO;
 }
