@@ -16,10 +16,13 @@
 #include <unistd.h>
 #include <wchar.h>
 
+#import "SpotCache.h"
+#import "SpotItem.h"
 #import "SpotArtist.h"
 #import "SpotAlbum.h"
 #import "SpotTrack.h"
 #import "SpotSearch.h"
+#import "SpotImage.h"
 
 #import <UIKit/UIKit.h>
 
@@ -94,6 +97,8 @@ void cb_track_end(struct despotify_session *ds){
   player = [[SpotPlayer alloc] initWithSession:self];
 	
 	self.loggedIn = NO;
+  
+  cache = [[SpotCache alloc] init];
 	
 	return self;
 }
@@ -102,6 +107,7 @@ void cb_track_end(struct despotify_session *ds){
 {
 	NSLog(@"Logged out");
   [player release];
+  [cache release];
 	despotify_exit(session);
 	despotify_cleanup();
 	[super dealloc];
@@ -182,38 +188,64 @@ void cb_track_end(struct despotify_session *ds){
 
 -(SpotArtist *)artistById:(NSString *)id_;
 {
-  struct artist_browse *artist = despotify_get_artist(session, (char*)[id_ cStringUsingEncoding:NSASCIIStringEncoding]);
-  if(artist) return [[[SpotArtist alloc] initWithArtistBrowse:artist] autorelease];
-  return nil;
+  SpotItem *item = [cache itemById:id_];
+  if(item) return (SpotArtist*)item;
+    
+  struct artist_browse *ab = despotify_get_artist(session, (char*)[id_ cStringUsingEncoding:NSASCIIStringEncoding]);
+  if(!ab) return nil;
+  
+  SpotArtist *artist = [[[SpotArtist alloc] initWithArtistBrowse:ab] autorelease];
+  [cache addItem:artist];
+
+  return artist;
 }
 
--(void *)imageById:(NSString*)id_;
+-(SpotImage *)imageById:(NSString*)id_;
 {
+  SpotItem *item = [cache itemById:id_];
+  if(item) return (SpotImage*)item;
+  
   int len = 0;
   void *jpegdata = despotify_get_image(session, (char*)[id_ cStringUsingEncoding:NSASCIIStringEncoding], &len);
   if(len > 0){
-    UIImage *image = [UIImage imageWithData:[NSData dataWithBytes:jpegdata length:len]];
+    SpotImage *image = [[SpotImage alloc] initWithImageData:[NSData dataWithBytes:jpegdata length:len] id:id_];
     free(jpegdata);
-    return image;
+    [cache addItem:image];
+    return [image autorelease];
   } 
   return nil;
 }
 
 -(SpotAlbum *)albumById:(NSString *)id_;
 {
+  SpotItem *item = [cache itemById:id_];
+  if(item) return (SpotAlbum*)item;
+  
   struct album_browse *ab = despotify_get_album(session, (char*)[id_ cStringUsingEncoding:NSASCIIStringEncoding]);
-  if(ab) return [[[SpotAlbum alloc] initWithAlbumBrowse:ab] autorelease];
-  return nil;
+  if(!ab) return nil;
+  
+  SpotAlbum *album = [[[SpotAlbum alloc] initWithAlbumBrowse:ab] autorelease];
+  [cache addItem:album];
+  
+  return album;
 }
 
 -(SpotTrack *)trackById:(NSString *)id_;
 {
+  SpotItem *item = [cache itemById:id_];
+  if(item) return (SpotTrack*)item;
+  
   struct track *track = despotify_get_track(session, (char*)[id_ cStringUsingEncoding:NSASCIIStringEncoding]);
-  if(track) return [[(SpotTrack*)[SpotTrack alloc] initWithTrack:track] autorelease];
-  return nil;
+  if(!track) return nil;
+  
+  SpotTrack *the_track = [[(SpotTrack*)[SpotTrack alloc] initWithTrack:track] autorelease];
+  [cache addItem:the_track];
+  
+  return the_track;
 }
 
 #pragma mark Get by uri
+//TODO: support cacheing for uris
 -(SpotAlbum*)albumByURI:(SpotURI*)uri;
 {
   struct album_browse* ab = despotify_link_get_album(session, uri.link);
@@ -242,13 +274,6 @@ void cb_track_end(struct despotify_session *ds){
 {
   struct search_result* sr = despotify_link_get_search(session, uri.link);
   return [[[SpotSearch alloc] initWithSearchResult:sr] autorelease];
-}
-
-
--(SpotItem *)cachedItemId:(NSString *)id_ ensureFullProfile:(BOOL)full;
-{
-  SpotItem *item;// = [cache valueForKey:id_];
-  return item;
 }
 
 @end

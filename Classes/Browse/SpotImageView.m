@@ -20,11 +20,11 @@
 -(void)loadImage;
 {
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  UIImage *image = nil;
+  SpotImage *image = nil;
   if(artId){
     image = [[SpotSession defaultSession] imageById:artId];
   }
-  if(image) [self setImage:image];
+  if(image) [self setImage:image.image];
   [pool drain];
 }
 

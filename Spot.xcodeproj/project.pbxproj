@@ -90,6 +90,7 @@
 		21F654230FD12BC6000403F8 /* SpotNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6541D0FD12BC6000403F8 /* SpotNavigationController.m */; };
 		21F654240FD12BC6000403F8 /* SpotTouchableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6541F0FD12BC6000403F8 /* SpotTouchableLabel.m */; };
 		21F6543F0FD136FB000403F8 /* SpotCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6543E0FD136FB000403F8 /* SpotCache.m */; };
+		21F654A90FD13FAE000403F8 /* SpotImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F654A80FD13FAE000403F8 /* SpotImage.m */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
@@ -241,6 +242,8 @@
 		21F6541F0FD12BC6000403F8 /* SpotTouchableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotTouchableLabel.m; sourceTree = "<group>"; };
 		21F6543D0FD136FB000403F8 /* SpotCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotCache.h; sourceTree = "<group>"; };
 		21F6543E0FD136FB000403F8 /* SpotCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotCache.m; sourceTree = "<group>"; };
+		21F654A70FD13FAE000403F8 /* SpotImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotImage.h; sourceTree = "<group>"; };
+		21F654A80FD13FAE000403F8 /* SpotImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotImage.m; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -316,6 +319,8 @@
 				21F654070FD12B44000403F8 /* SpotControllers */,
 				05447ED30FCF1167004CC539 /* CoSpotify.h */,
 				05447ED40FCF1167004CC539 /* CoSpotify.m */,
+				21F654A70FD13FAE000403F8 /* SpotImage.h */,
+				21F654A80FD13FAE000403F8 /* SpotImage.m */,
 				05447ED50FCF1167004CC539 /* SpotAlbum.h */,
 				05447ED60FCF1167004CC539 /* SpotAlbum.m */,
 				05447ED70FCF1167004CC539 /* SpotArtist.h */,
@@ -699,6 +704,7 @@
 				21F654230FD12BC6000403F8 /* SpotNavigationController.m in Sources */,
 				21F654240FD12BC6000403F8 /* SpotTouchableLabel.m in Sources */,
 				21F6543F0FD136FB000403F8 /* SpotCache.m in Sources */,
+				21F654A90FD13FAE000403F8 /* SpotImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

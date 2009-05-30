@@ -79,13 +79,6 @@
   return [SpotURI uriWithURI:despotify_track_to_uri(&de_track, uri)];  
 }
 
--(UIImage*)coverImage;
-{
-  if(self.coverId)
-    return [[SpotSession defaultSession] imageById:coverId];
-  return nil;
-}
-
 
 -(BOOL)isEqual:(SpotTrack*)other;
 {
