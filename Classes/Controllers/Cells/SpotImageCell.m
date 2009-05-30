@@ -28,7 +28,8 @@
 
 
 - (void)dealloc {
-    [super dealloc];
+  [spotArt release];
+  [super dealloc];
 }
 
 -(NSString*)artId; 

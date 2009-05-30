@@ -52,10 +52,11 @@
   NSLog(@"Purging cache");
   for(SpotItem *item in [cache allValues]){
     NSLog(@"%@ %d", [item className], [item retainCount]);
-    if([item retainCount] == 1){
+    if([item retainCount] == 2){
+      //item is in cache and allValues only so we want them gone
       NSLog(@"Removing %@", item);
       [cache removeObjectForKey:item.id]; //Hm. Hope id doesn't change!
-    } else if([item retainCount] < 1){
+    } else if([item retainCount] < 2){
       NSLog(@"ROFL! cache got object with RetainCount Below ONE");
     }
   }
