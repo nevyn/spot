@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "despotify.h"
 #import "SpotItem.h"
-#import "SpotTrackList.h"
 
 @class SpotTrack;
 @class SpotURI;

@@ -44,9 +44,19 @@
 
 -(void)dealloc;
 {
-	//free(track.key);
-	[artist release];
+	[trackId release];
+  [title release];
+  [artistId release];
+  [artistName release];
+  [albumName release];
+  [albumId release];
+  [coverId release];
+  [similarTrackIds release];
+  [files release];
+  [restrictions release];
+  [artist release];
   [album release];
+  
 	[super dealloc];
 }
 

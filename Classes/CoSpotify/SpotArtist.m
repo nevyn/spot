@@ -100,6 +100,15 @@
 
 -(void)dealloc;
 {
+  [name release];
+  [portraitId release];
+  [artistId release];
+  [bios release];
+  [similarArtists release];
+  [genres release];
+  [yearsActive release];
+  [albums release];
+  
 	[super dealloc];
 }
 

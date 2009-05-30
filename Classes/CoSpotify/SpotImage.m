@@ -37,4 +37,9 @@
 -(NSString*)id;
 { return imageId; }
 
+-(NSString *)description;
+{
+  return [NSString stringWithFormat:@"<SpotImage %@>", imageId];
+}
+
 @end

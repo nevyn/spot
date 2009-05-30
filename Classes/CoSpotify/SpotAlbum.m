@@ -84,6 +84,7 @@
   [similarAlbumIds release];
   [discs release];
   [playlist dealloc];
+  [artist release];
   [super dealloc];
 }
 

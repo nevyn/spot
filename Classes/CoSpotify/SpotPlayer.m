@@ -27,9 +27,16 @@
 {
   if( ! [super init] ) return nil;
   
-  session = session_;
+  session = session_; //probably singleton, dont retain
   
   return self;
+}
+
+-(void)dealloc;
+{
+  [currentTrack dealloc];
+  [currentPlaylist dealloc];
+  [super dealloc];
 }
 
 #pragma mark Playback control

@@ -27,7 +27,7 @@
   return [SpotURI uriWithId:self.id];
 }
 
-#if 0
+#if 1
 -(void)release;
 {
   if([self retainCount] == 1){
@@ -36,11 +36,6 @@
   [super release];
 }
 
--(void)dealloc;
-{
-  NSLog(@"Deallocing %@", self);
-  [super dealloc];
-}
 #endif
 
 @end

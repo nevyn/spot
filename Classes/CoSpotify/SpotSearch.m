@@ -90,6 +90,7 @@
 
 -(void) dealloc;
 {
+  NSLog(@"Freeing search for %@", query);
   despotify_free_search(searchResult); //frees all playlists, albums, artists found... 
   [suggestion release];
   [query release];

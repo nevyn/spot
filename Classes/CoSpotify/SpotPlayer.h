@@ -20,8 +20,6 @@
   
   BOOL isPlaying;
   BOOL willPlay;
-  
-  NSMutableArray *queuedCommands;
 }
 
 -(id)initWithSession:(SpotSession*)session;

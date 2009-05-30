@@ -134,7 +134,7 @@ void cb_track_end(struct despotify_session *ds){
 
 -(void)receivedXML:(NSString*)xmlString;
 {
-  NSLog(@"Got some XML:\n%@", xmlString);
+//  NSLog(@"Got some XML:\n%@", xmlString);
  
 }
 

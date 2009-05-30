@@ -42,13 +42,16 @@
 
 -(SpotItem *)itemById:(NSString*)id_;
 {
-  return [cache objectForKey:id_];
+  SpotItem *item = [cache objectForKey:id_];
+  NSLog(@"Cache %s %@", item ? "hit" : "miss", item);
+  return item;
 }
 
 -(void)purge;
 {
   NSLog(@"Purging cache");
   for(SpotItem *item in [cache allValues]){
+    NSLog(@"%@ %d", [item className], [item retainCount]);
     if([item retainCount] == 1){
       NSLog(@"Removing %@", item);
       [cache removeObjectForKey:item.id]; //Hm. Hope id doesn't change!
