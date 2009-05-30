@@ -30,13 +30,8 @@ SpotSession *SpotSessionSingleton;
 
 NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 
-#pragma mark Callbacks
 
-@interface SpotPlayer (ForSessionOnly)
--(void)trackDidStart;
--(void)trackDidEnd;
-@end
-
+///Holds some stuff we need to know where to call back on async fetches
 @interface SpotSessionFetchJob : NSObject
 {
   NSString *fetchId;
@@ -67,8 +62,7 @@ NSString *SpotSessionErrorDomain = @"SpotSessionErrorDomain";
 
 @end
 
-
-
+#pragma mark callback receivers
 
 void cb_got_xml(struct despotify_session *ds, char* xml){
   SpotSession *ss = (SpotSession*)ds->user_data;
@@ -83,7 +77,14 @@ void cb_track_start(struct despotify_session *ds){
 void cb_track_end(struct despotify_session *ds){
   SpotSession *ss = (SpotSession*)ds->user_data;
   [ss.player performSelectorOnMainThread:@selector(trackDidEnd) withObject:nil waitUntilDone:NO];
+//  snd_stop(ds);
 }
+
+@interface SpotPlayer (ForSessionOnly)
+-(void)trackDidStart;
+-(void)trackDidEnd;
+@end
+
 
 @interface SpotSession ()
 @property (nonatomic, readwrite) BOOL loggedIn;
@@ -124,8 +125,8 @@ void cb_track_end(struct despotify_session *ds){
   
   session->user_data = self;
   session->cb_track_start = cb_track_start;
-  session->cb_track_end = cb_track_end;
-  session->cb_got_xml = cb_got_xml;
+  //session->cb_track_end = cb_track_end;
+  //session->cb_got_xml = cb_got_xml;
   
   player = [[SpotPlayer alloc] initWithSession:self];
 	
