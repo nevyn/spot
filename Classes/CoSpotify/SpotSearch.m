@@ -15,7 +15,7 @@
 
 @implementation SpotSearch
 
-@synthesize tracks, artists, albums, playlist, suggestion, query;
+@synthesize tracks, artists, albums, suggestion, query;
 @synthesize totalTracks, totalArtists, totalAlbums;
 
 +(SpotSearch *)searchFor:(NSString *)searchText session:(SpotSession*)session maxResults:(int)maxResults;
@@ -33,6 +33,7 @@
   if( ! [super init] ) return nil;
 
   searchResult = despotify_search(session_.session, (char*)[searchText UTF8String], maxResults_);
+  if(!searchResult)NSLog(@"Search Error: %s", session_.session->last_error);
   [self initWithSearchResult:searchResult];
   
   return self;
@@ -44,7 +45,7 @@
   
   if( ! sr ) return nil;
   
-  playlist = [[SpotPlaylist alloc] initWithPlaylist:sr->playlist];
+  //playlist = [[SpotPlaylist alloc] initWithPlaylist:sr->playlist];
   
   query = [[NSString alloc] initWithCString:(char*)sr->query];
   if(sr->suggestion[0] != '\0')
@@ -90,7 +91,6 @@
 -(void) dealloc;
 {
   despotify_free_search(searchResult); //frees all playlists, albums, artists found... 
-  [playlist release];
   [suggestion release];
   [query release];
   [tracks release];

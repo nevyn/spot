@@ -27,7 +27,7 @@
 
 - (id)init;
 {
-    if ( ! [super initWithNibName:nil bundle:nil]) return nil;
+    if ( ! [super initWithNibName:@"SearchView" bundle:nil]) return nil;
 	
 	self.title = @"Search";
 	self.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0] autorelease];

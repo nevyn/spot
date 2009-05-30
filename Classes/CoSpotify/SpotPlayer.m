@@ -36,6 +36,11 @@
 
 -(BOOL)startPlayback;
 {
+  if(!self.currentTrack.isPlayable){
+    willPlay = NO;
+    isPlaying = NO;
+    return NO;
+  }
   if(self.isPlaying || willPlay) return NO;
   //start playback if we have something to play
   if(self.currentTrack){

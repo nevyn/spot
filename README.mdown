@@ -5,6 +5,15 @@ Spot is a Spotify client for iPhone based on [despotify](http://despotify.se/ "d
 
 All dependencies are bundled.
 
+
+Contribution notes
+------------------------
+Please follow these recommendations, or I might not be able to pull changes from your fork:2
+
+- Follow Cocoa naming conventions
+- Make atomic commits. One feature per commit.
+- If you change a .xib or .xcodeproj, describe the change thorougly so I can reproduce it, as it'll probably not merge cleanly and I'll have to remake it manually
+
 Known bugs
 ------------------------
 - Playlists don't work (despotify need fixing)

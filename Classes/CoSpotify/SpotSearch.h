@@ -17,7 +17,6 @@
   NSArray *artists;
   NSArray *tracks;
   NSArray *albums;
-  SpotPlaylist *playlist;
   NSString *query;
   NSString *suggestion;
   int totalTracks;
@@ -39,14 +38,13 @@
 //Get next batch of results
 -(SpotSearch *)moreResults;
 
-@property (readonly) NSArray *tracks;
-@property (readonly) NSArray *artists;
-@property (readonly) NSArray *albums;
-@property (readonly) SpotPlaylist *playlist;
-@property (readonly) int totalTracks;
-@property (readonly) int totalArtists;
-@property (readonly) int totalAlbums;
-@property (readonly) NSString *suggestion;
-@property (readonly) NSString *query;
+@property (readonly, nonatomic) NSArray *tracks;
+@property (readonly, nonatomic) NSArray *artists;
+@property (readonly, nonatomic) NSArray *albums;
+@property (readonly, nonatomic) int totalTracks;
+@property (readonly, nonatomic) int totalArtists;
+@property (readonly, nonatomic) int totalAlbums;
+@property (readonly, nonatomic) NSString *suggestion;
+@property (readonly, nonatomic) NSString *query;
 
 @end
