@@ -95,6 +95,40 @@ PlayViewController *GlobalPlayViewController;
 
 #pragma mark
 #pragma mark Transitions
+-(void)moveLabel:(UIView*)l;
+{
+  CGRect r = l.bounds;
+  CGRect s = [[self.navigationController view] bounds];
+  r.origin.y -= s.size.height;
+  [l setBounds:r];
+}
+
+-(void)viewWillAppear:(BOOL)animated;
+{
+  //show labels
+  artistLabel.hidden = NO;
+  albumLabel.hidden = NO;
+  trackLabel.hidden = NO;
+  
+  //move labels to navbar
+  [[self.navigationController view] addSubview:artistLabel];
+  [[self.navigationController view] addSubview:albumLabel];
+  [[self.navigationController view] addSubview:trackLabel];
+
+  [self moveLabel:artistLabel];
+  [self moveLabel:albumLabel];
+  [self moveLabel:trackLabel];
+  
+}
+
+-(void)viewDidDisappear:(BOOL)animated;
+{
+  //hide labels
+  artistLabel.hidden = YES;
+  albumLabel.hidden = YES;
+  trackLabel.hidden = YES;
+}
+
 -(void)viewDidAppear:(BOOL)animated;
 {
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
@@ -155,26 +189,26 @@ PlayViewController *GlobalPlayViewController;
 
 -(void)playerNotification:(NSNotification*)n;
 {
-  NSLog(@"PlayerView got notification %@", n);
+  //NSLog(@"PlayerView got notification %@", n);
   if([[n name] isEqual:@"willplay"]){
-    [waitForPlaySpinner setHidden:NO];
+    [waitForPlaySpinner startAnimating];
     [playPauseButton setHidden:YES];
   }
   if([[n name] isEqual:@"play"]){
     [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
     [playPauseButton setHidden:NO];
-    [waitForPlaySpinner setHidden:YES];
+    [waitForPlaySpinner stopAnimating];
     [self selectCurrentTrack];
   }
   if([[n name] isEqual:@"pause"]){
     [playPauseButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
     [playPauseButton setHidden:NO];
-    [waitForPlaySpinner setHidden:YES];
+    [waitForPlaySpinner stopAnimating];
   }
   if([[n name] isEqual:@"stop"]){
     [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
     [playPauseButton setHidden:NO];
-    [waitForPlaySpinner setHidden:YES];
+    [waitForPlaySpinner stopAnimating];
   }
   if([[n name] isEqual:@"playlist"]){
     playlistDataSource.playlist = [[n userInfo] valueForKey:@"playlist"];
@@ -183,10 +217,10 @@ PlayViewController *GlobalPlayViewController;
   }
   if([[n name] isEqual:@"track"]){
     [self showInfoForTrack:[[n userInfo] valueForKey:@"track"]];
-    [trackList reloadData];
     [self selectCurrentTrack];
   }
   if([[n name] isEqual:@"trackDidEnd"]){
+    [[SpotSession defaultSession].player stop];
     [[SpotSession defaultSession].player playNextTrack];
   }
   if([[n name] isEqual:@"playlistDidEnd"]){
