@@ -191,9 +191,13 @@ void audioqueue_global_statechange_callback_hack(int state){
 {
   NSLog(@"playTrack. state: %d was: %d want: %d", currentState, previousState, wantState);
 
-  SpotAlbum *album = track.album;
-  if(!album)NSLog(@"track has no album info");
-  SpotPlaylist *playlist = track.album.playlist;
+  SpotPlaylist *playlist = currentPlaylist;
+  
+  if(!playlist || ![currentPlaylist.tracks containsObject:track]){
+    SpotAlbum *album = track.album;
+    if(!album)NSLog(@"track has no album info");
+    playlist = track.album.playlist;
+  }
   
   return [self playPlaylist:playlist firstTrack:track];
 }
@@ -201,6 +205,11 @@ void audioqueue_global_statechange_callback_hack(int state){
 -(BOOL)playPlaylist:(SpotPlaylist*)playlist firstTrack:(SpotTrack*)track;
 {
   NSLog(@"playPlaylist. state: %d was: %d want: %d", currentState, previousState, wantState);
+  
+  if(!playlist)
+    [NSException raise:@"playPlaylist" format:@"Playlist is nil!"];
+  if(!track) 
+    track = [playlist.tracks objectAtIndex:0];
   
   [self setCurrentPlaylist:playlist];
   [self setCurrentTrack:track];
@@ -245,7 +254,7 @@ void audioqueue_global_statechange_callback_hack(int state){
   NSLog(@"next. state: %d was: %d want: %d", currentState, previousState, wantState);
   //handle as playback never stopped
   
-  if(currentState == PLAYER_PLAYING){
+  if(currentState == PLAYER_PLAYING || currentState == PLAYER_PAUSED){
     NSLog(@"next needs to stop playback");
     wantState = currentState;
     [self setState:PLAYER_CHANGE_TRACK];
@@ -272,7 +281,7 @@ void audioqueue_global_statechange_callback_hack(int state){
   NSLog(@"previous. state: %d was: %d want: %d", currentState, previousState, wantState);
   //handle as playback never stopped
   
-  if(currentState == PLAYER_PLAYING){
+  if(currentState == PLAYER_PLAYING || currentState == PLAYER_PAUSED){
     NSLog(@"previous needs to stop playback");
     wantState = currentState;
     [self setState:PLAYER_CHANGE_TRACK];

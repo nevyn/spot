@@ -57,9 +57,11 @@
   slots = [[NSMutableArray alloc] init];
   for(struct track *track = playlist->tracks; track != NULL; track = track->next){
     SpotTrack *a_track = [[SpotTrack alloc] initWithTrack:track];
-    SpotTrackSlot *slot = [[SpotTrackSlot alloc] initWithPlaylist:self track:a_track position:[slots count]];
-    [slots addObject:slot];
-    [slot release];
+    if(a_track.isPlayable){
+      SpotTrackSlot *slot = [[SpotTrackSlot alloc] initWithPlaylist:self track:a_track position:[slots count]];
+      [slots addObject:slot];
+      [slot release];
+    }
     [a_track release];
   }
     

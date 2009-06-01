@@ -53,7 +53,7 @@
 @property (readonly, retain) NSString *name;
 @property (readonly, nonatomic) NSString *author;
 @property (readonly, nonatomic) BOOL collaborative;
-@property (readonly, nonatomic) NSArray *tracks;
+@property (readonly, nonatomic) NSArray *tracks; //all playable
 
 @end
 

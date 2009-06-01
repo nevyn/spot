@@ -341,9 +341,9 @@ void cb_client_callback(int type, void*data){
 
 -(SpotPlaylist*)playlistByURI:(SpotURI*)uri;
 {
-  [networkLock unlock];
-  struct playlist* pl = despotify_link_get_playlist(session, uri.link);
   [networkLock lock];
+  struct playlist* pl = despotify_link_get_playlist(session, uri.link);
+  [networkLock unlock];
   return [[[SpotPlaylist alloc] initWithPlaylist:pl] autorelease];
 }
 
