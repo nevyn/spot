@@ -111,7 +111,7 @@
   //  url = [NSURL URLWithString:@"http://open.spotify.com/track/2QX7lSCOT4OESPUYzvR2wB"]; //track
   //  url = [NSURL URLWithString:@"http://open.spotify.com/artist/5K0IAf5mrtln8thyowRn2X"]; //artist
   //  url = [NSURL URLWithString:@"http://open.spotify.com/search/mumin"]; //search
-    url = [NSURL URLWithString:@"http://open.spotify.com/user/gujjdo/playlist/1qILpejEO16tlJDGEdX5Yq"]; //playlist
+  //  url = [NSURL URLWithString:@"http://open.spotify.com/user/gujjdo/playlist/1qILpejEO16tlJDGEdX5Yq"]; //playlist
   //  url = [NSURL URLWithString:@"spotify:user:gujjdo:playlist:1qILpejEO16tlJDGEdX5Yq"]; //playlist 
   if(url){
     [searchNav openURL:url];
