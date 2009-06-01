@@ -13,9 +13,10 @@
 
 @interface ArtistBrowseViewController : UIViewController <UITableViewDelegate, UIWebViewDelegate> {
   SpotArtist *artist;
+	NSArray *albums;
   IBOutlet SpotImageView *portrait;
   IBOutlet UIWebView *artistText;
-  IBOutlet UITableView *albums;
+  IBOutlet UITableView *albumTable;
   
   IBOutlet UILabel *artistName;
   IBOutlet UILabel *yearsActive;
