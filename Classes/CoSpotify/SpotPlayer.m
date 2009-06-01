@@ -17,7 +17,8 @@
 
 -(void)setCurrentPlaylist:(SpotPlaylist*)pl;
 -(void)setCurrentTrack:(SpotTrack*)track;
-
+-(void)trackDidStart;
+-(void)trackDidEnd;
 @end
 
 //TODO: While waiting for despotify to start or stop playback we need to queue other commands
@@ -53,9 +54,11 @@
   if(self.currentTrack){
     //if([self.savedTrack isEqual:self.currentTrack])
     
-    if([self.savedTrack isEqual:self.currentTrack])
+    if([self.savedTrack isEqual:self.currentTrack]){
       willPlay = despotify_resume([SpotSession defaultSession].session);
-    else
+      //callback does not fire when resumeing
+      [self trackDidStart];
+    }else
       willPlay = despotify_play([SpotSession defaultSession].session, self.currentTrack.de_track, NO); 
     return willPlay;
   }

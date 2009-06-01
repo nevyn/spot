@@ -210,7 +210,7 @@ PlayViewController *GlobalPlayViewController;
     [self selectCurrentTrack];
   }
   if([[n name] isEqual:@"trackDidEnd"]){
-    [[SpotSession defaultSession].player stop];
+//    [[SpotSession defaultSession].player stop];
     [[SpotSession defaultSession].player playNextTrack];
   }
   if([[n name] isEqual:@"playlistDidEnd"]){
