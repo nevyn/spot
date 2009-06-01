@@ -182,14 +182,24 @@ int audioqueue_play (AUDIOCTX *ctx)
 	
 	return 0;
 }
+
 int audioqueue_stop (AUDIOCTX *ctx)
 {
 	printf("stopping device\n");
 	state.mIsRunning = FALSE;
-	check(AudioQueuePause(state.mQueue));
-	return 0;
+	check(AudioQueueStop(state.mQueue, TRUE));
+  state.mQueue = NULL;
+  state.mBuffers[0] = NULL;
+  return 0;
 }
 
+int audioqueue_pause (AUDIOCTX *ctx)
+{
+	printf("pausing device\n");
+	state.mIsRunning = FALSE;
+	check(AudioQueuePause(state.mQueue));
+  return 0;
+}
 
 static void audio_callback (
 	void *ignore,
@@ -233,7 +243,7 @@ audioqueue_free_device,
 audioqueue_prepare_device,
 audioqueue_play,		/* Play */
 audioqueue_stop,		/* Stop */
-audioqueue_stop,		/* Pause */
+audioqueue_pause,		/* Pause */
 audioqueue_play,		/* Resume */
 }
 
