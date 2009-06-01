@@ -13,18 +13,37 @@
 #import "SpotNavigationController.h"
 #import "ArtistDetailViewController.h"
 
+@interface ArtistBrowseViewController ()
+@property (retain) SpotArtist *artist;
+@property (retain) NSArray *albums;
+@end
+
+NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
+{
+	// kan lägga in mer fancy grejer här sen...
+	return [[NSNumber numberWithInt:b.year] compare:[NSNumber numberWithInt:a.year]];
+}
+
+
 @implementation ArtistBrowseViewController
 -(id)initBrowsingArtist:(SpotArtist*)artist_;
 {
 	if( ! [super initWithNibName:@"ArtistBrowseView" bundle:nil])
 		return nil;
   
-	artist = [artist_ retain];
+	self.artist = artist_;
   [artist loadMoreInfo];
   
+	self.albums = [artist.albums sortedArrayUsingFunction:AlbumComparer context:NULL];
+	
 	return self;
 }
 
+- (void)dealloc {
+  self.artist = nil;
+	self.albums = nil;
+  [super dealloc];
+}
 /*
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
@@ -67,10 +86,6 @@
 }
 
 
-- (void)dealloc {
-  [artist release];
-  [super dealloc];
-}
 
 #pragma mark Table view callbacks
 
@@ -81,7 +96,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-  return [artist.albums count];
+  return [albums count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
@@ -100,7 +115,7 @@
   }
   
 	int idx = [indexPath indexAtPosition:1]; idx = idx;
-  SpotAlbum *album = [artist.albums objectAtIndex:idx];
+  SpotAlbum *album = [albums objectAtIndex:idx];
   cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
   NSString *yearString = [NSString stringWithFormat:@" (%d)", album.year];
   cell.text = [NSString stringWithFormat:@"%@%@", album.name, album.year ? yearString : @""];
@@ -112,15 +127,16 @@
 {
 	int idx = [indexPath indexAtPosition:1];
 
-  SpotAlbum *album = [artist.albums objectAtIndex:idx];
+  SpotAlbum *album = [albums objectAtIndex:idx];
   [[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
 }
 
 -(IBAction)showDetail:(id)sender;
 {
-  ArtistDetailViewController *detailView = [[ArtistDetailViewController alloc] initWithArtist:artist];
+  ArtistDetailViewController *detailView = [(ArtistDetailViewController*)[ArtistDetailViewController alloc] initWithArtist:artist];
   [self.navigationController pushViewController:detailView animated:YES];
   [detailView release];
 }
 
+@synthesize artist, albums;
 @end

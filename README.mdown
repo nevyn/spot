@@ -8,7 +8,7 @@ All dependencies are bundled.
 
 Contribution notes
 ------------------------
-Please follow these recommendations, or I might not be able to pull changes from your fork:2
+Please follow these recommendations, or I might not be able to pull changes from your fork:
 
 - Follow Cocoa naming conventions
 - Make atomic commits. One feature per commit.
