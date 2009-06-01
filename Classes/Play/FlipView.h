@@ -14,5 +14,6 @@
 }
 
 -(IBAction)flip;
+-(void)flipWithUIViewAnimation:(NSInteger)anim;
 
 @end

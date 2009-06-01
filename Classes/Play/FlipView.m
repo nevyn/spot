@@ -31,10 +31,16 @@
 
 -(void)flip;
 {
+  [self flipWithUIViewAnimation:UIViewAnimationTransitionFlipFromLeft];
+}
+
+-(void)flipWithUIViewAnimation:(NSInteger)anim;
+{
   CGContextRef context = UIGraphicsGetCurrentContext();
   [UIView beginAnimations:nil context:context];
   [UIView setAnimationDuration: 0.8];
-  [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self cache:YES];
+  
+  [UIView setAnimationTransition:anim forView:self cache:YES];
   [self exchangeSubviewAtIndex:0 withSubviewAtIndex:1];
   [[[self subviews] objectAtIndex:1] setHidden:NO];
   [[[self subviews] objectAtIndex:0] setHidden:YES];
@@ -54,13 +60,17 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 {
   CGPoint swipeEnd = [[touches anyObject] locationInView:self];
+  float dir = swipeEnd.x - swipeStart.x;
   float x = abs(swipeEnd.x - swipeStart.x);
   float y = abs(swipeEnd.y - swipeStart.y);
   float l = sqrt(x*x + y*y);
   x /= l;
   y /= l;
   if(x > 0.95 && l > 130)
-    [self flip];
+    if(dir > 0)
+      [self flipWithUIViewAnimation:UIViewAnimationTransitionFlipFromLeft];
+    else
+      [self flipWithUIViewAnimation:UIViewAnimationTransitionFlipFromRight];
   NSLog(@"sweep: %f, %f  %f", x, y, l);
 }
 

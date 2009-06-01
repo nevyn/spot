@@ -136,8 +136,8 @@
 		05447EED0FCF1167004CC539 /* LoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		05447EEE0FCF1167004CC539 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		05447EEF0FCF1167004CC539 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		05447EF10FCF1167004CC539 /* FlipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipView.h; sourceTree = "<group>"; };
-		05447EF20FCF1167004CC539 /* FlipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipView.m; sourceTree = "<group>"; };
+		05447EF10FCF1167004CC539 /* FlipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipView.h; path = ../Play/FlipView.h; sourceTree = "<group>"; };
+		05447EF20FCF1167004CC539 /* FlipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlipView.m; path = ../Play/FlipView.m; sourceTree = "<group>"; };
 		05447EF30FCF1167004CC539 /* PlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayView.xib; sourceTree = "<group>"; };
 		05447EF40FCF1167004CC539 /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
 		05447EF50FCF1167004CC539 /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
@@ -368,8 +368,6 @@
 			isa = PBXGroup;
 			children = (
 				05447EF30FCF1167004CC539 /* PlayView.xib */,
-				05447EF10FCF1167004CC539 /* FlipView.h */,
-				05447EF20FCF1167004CC539 /* FlipView.m */,
 				05447EF40FCF1167004CC539 /* PlayViewController.h */,
 				05447EF50FCF1167004CC539 /* PlayViewController.m */,
 				21F65B550FD1B564000403F8 /* PlayTitleView.h */,
@@ -529,6 +527,8 @@
 				21F6541D0FD12BC6000403F8 /* SpotNavigationController.m */,
 				21F6541E0FD12BC6000403F8 /* SpotTouchableLabel.h */,
 				21F6541F0FD12BC6000403F8 /* SpotTouchableLabel.m */,
+				05447EF10FCF1167004CC539 /* FlipView.h */,
+				05447EF20FCF1167004CC539 /* FlipView.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

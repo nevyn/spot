@@ -129,6 +129,9 @@ int audioqueue_init_device (void *dev)
 	memset(&state, 0, sizeof(state));
 	return 0;
 }
+
+
+//this never gets called from despotify btw.. 
 int audioqueue_free_device ()
 {
 	printf("free device\n");
@@ -136,15 +139,8 @@ int audioqueue_free_device ()
 		return 0;
 	
 	audioqueue_stop(NULL);
+  audioqueue_cleanup();
 	
-	
-//	for (int i = 0; i < kNumberBuffers; ++i)
-//		AudioQueueFreeBuffer(state.mQueue, state.mBuffers[i]);
-	
-	//check(AudioQueueDispose(state.mQueue, TRUE)); // <- Disposes buffers too! 
-  //done in _stop
-  // http://developer.apple.com/documentation/MusicAudio/Conceptual/AudioQueueProgrammingGuide/AQPlayback/PlayingAudio.html#//apple_ref/doc/uid/TP40005343-CH3-DontLinkElementID_13 
-	//state.mQueue = NULL;
 	return 0;
 }
 int audioqueue_prepare_device (AUDIOCTX *actx)
