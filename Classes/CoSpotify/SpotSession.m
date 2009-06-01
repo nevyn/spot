@@ -78,18 +78,6 @@ void cb_client_callback(int type, void*data){
   }
 }
 
-void audioqueue_global_statechange_callback_hack(int state){
-  SpotSession *ss = [SpotSession defaultSession];
-  if(state == 0){
-    //stopped
-    [ss.player performSelectorOnMainThread:@selector(trackDidEnd) withObject:nil waitUntilDone:NO];
-  } else if(state == 1){
-    //played
-    [ss.player performSelectorOnMainThread:@selector(trackDidStart) withObject:nil waitUntilDone:NO];
-  }
-}
-
-
 
 @interface SpotPlayer (ForSessionOnly)
 -(void)trackDidStart;

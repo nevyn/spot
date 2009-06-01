@@ -161,12 +161,12 @@ PlayViewController *GlobalPlayViewController;
 }
 -(IBAction)next;
 {
-  [[SpotSession defaultSession].player playNextTrack];
+  [[SpotSession defaultSession].player next];
 }
 
 -(IBAction)prev;
 {
-  [[SpotSession defaultSession].player playPreviousTrack];
+  [[SpotSession defaultSession].player previous];
 }
 
 -(void)showInfoForTrack:(SpotTrack*)track;
@@ -180,38 +180,37 @@ PlayViewController *GlobalPlayViewController;
 -(void)playerNotification:(NSNotification*)n;
 {
   //NSLog(@"PlayerView got notification %@", n);
-  if([[n name] isEqual:@"willplay"]){
+  if([[n name] isEqual:@"playbackWillStart"]){
     [waitForPlaySpinner startAnimating];
     [playPauseButton setHidden:YES];
   }
-  if([[n name] isEqual:@"play"]){
+  if([[n name] isEqual:@"playbackDidStart"]){
     [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
     [playPauseButton setHidden:NO];
     [waitForPlaySpinner stopAnimating];
     [self selectCurrentTrack];
   }
-  if([[n name] isEqual:@"pause"]){
+  if([[n name] isEqual:@"playbackDidPause"]){
     [playPauseButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
     [playPauseButton setHidden:NO];
     [waitForPlaySpinner stopAnimating];
   }
-  if([[n name] isEqual:@"stop"]){
+  if([[n name] isEqual:@"playbackDidStop"]){
     [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
     [playPauseButton setHidden:NO];
     [waitForPlaySpinner stopAnimating];
   }
-  if([[n name] isEqual:@"playlist"]){
+  if([[n name] isEqual:@"playlistDidChange"]){
     playlistDataSource.playlist = [[n userInfo] valueForKey:@"playlist"];
     [trackList reloadData];
     [self selectCurrentTrack];
   }
-  if([[n name] isEqual:@"track"]){
+  if([[n name] isEqual:@"trackDidChange"]){
     [self showInfoForTrack:[[n userInfo] valueForKey:@"track"]];
     [self selectCurrentTrack];
   }
   if([[n name] isEqual:@"trackDidEnd"]){
-//    [[SpotSession defaultSession].player stop];
-    [[SpotSession defaultSession].player playNextTrack];
+    //the playing of next track is handled by SpotPlayer
   }
   if([[n name] isEqual:@"playlistDidEnd"]){
     
