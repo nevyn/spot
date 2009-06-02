@@ -100,7 +100,7 @@
 {
 
   int idx = [indexPath indexAtPosition:1];
-	SpotPlaylist *playlist = [self.playlists objectAtIndex:[indexPath indexAtPosition:idx]];
+	SpotPlaylist *playlist = [self.playlists objectAtIndex:idx];
   
   static NSString *CellIdentifier = @"Cell";
   
@@ -122,7 +122,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
   int idx = [indexPath indexAtPosition:1];
-  SpotPlaylist *playlist = [self.playlists objectAtIndex:[indexPath indexAtPosition:idx]];
+  SpotPlaylist *playlist = [self.playlists objectAtIndex:idx];
   [[SpotSession defaultSession].player playPlaylist:playlist firstTrack:nil];
   [self.navigationController showPlayer];
     // Navigation logic may go here -- for example, create and push another view controller.
