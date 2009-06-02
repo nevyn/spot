@@ -80,6 +80,7 @@
 		05A665080FCF21D500C8DC40 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A665070FCF21D500C8DC40 /* libresolv.dylib */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		210998B60FD5C0750028F90F /* PlayView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 210998B50FD5C0750028F90F /* PlayView2.xib */; };
 		21F654200FD12BC6000403F8 /* SpotArtistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F654170FD12BC6000403F8 /* SpotArtistCell.m */; };
 		21F654210FD12BC6000403F8 /* SpotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F654190FD12BC6000403F8 /* SpotCell.m */; };
 		21F654220FD12BC6000403F8 /* SpotImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6541B0FD12BC6000403F8 /* SpotImageCell.m */; };
@@ -227,6 +228,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Spot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		210998B50FD5C0750028F90F /* PlayView2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlayView2.xib; path = Classes/Play/PlayView2.xib; sourceTree = "<group>"; };
 		21F654160FD12BC6000403F8 /* SpotArtistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotArtistCell.h; sourceTree = "<group>"; };
 		21F654170FD12BC6000403F8 /* SpotArtistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotArtistCell.m; sourceTree = "<group>"; };
 		21F654180FD12BC6000403F8 /* SpotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotCell.h; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 				05447F2B0FCF1173004CC539 /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				210998B50FD5C0750028F90F /* PlayView2.xib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -645,6 +648,7 @@
 				05A6649A0FCF1B1B00C8DC40 /* local.mk in Resources */,
 				21F65AC80FD1A327000403F8 /* Default.png in Resources */,
 				21F65C9D0FD1CAB8000403F8 /* arrow-left.png in Resources */,
+				210998B60FD5C0750028F90F /* PlayView2.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

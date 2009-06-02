@@ -33,7 +33,15 @@ PlayViewController *GlobalPlayViewController;
 }
 -init;
 {
-	if( ! [super initWithNibName:@"PlayView" bundle:nil] ) return nil;
+  //Nibs: 
+  //PlayView
+  //  with flipview. Flip cover art to show playlist
+  //PlayView2
+  //  cover art is header of playlist
+  NSString *nib = @"PlayView";
+  if([[NSUserDefaults standardUserDefaults] boolForKey:@"experimental"])
+    nib = @"PlayView2";
+	if( ! [super initWithNibName:nib bundle:nil] ) return nil;
 	
   AudioSessionInitialize (NULL, NULL, NULL, NULL); 
   AudioSessionSetActive (true);
@@ -62,7 +70,8 @@ PlayViewController *GlobalPlayViewController;
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
+  trackList.rowHeight = 70;
+    trackList.sectionIndexMinimumDisplayRowCount = 20;
   [self.navigationItem setTitleView:titleView];
   
 
@@ -126,7 +135,8 @@ PlayViewController *GlobalPlayViewController;
 
 -(void)selectCurrentTrack;
 {
-  if(self.defaultPlayer.currentPlaylist && self.defaultPlayer.currentTrack){
+  //bounds check if we are at top of list
+  if(trackList.bounds.origin.y > 80 && self.defaultPlayer.currentPlaylist && self.defaultPlayer.currentTrack){
     int idx = [self.defaultPlayer.currentPlaylist.tracks indexOfObject:self.defaultPlayer.currentTrack];
     if(idx != NSNotFound)
       [trackList selectRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
@@ -202,6 +212,10 @@ PlayViewController *GlobalPlayViewController;
   }
   if([[n name] isEqual:@"playlistDidChange"]){
     playlistDataSource.playlist = [[n userInfo] valueForKey:@"playlist"];
+    if(playlistDataSource.playlist.author || [playlistDataSource.playlist.author length] != 0)
+      trackList.sectionHeaderHeight = 44.0;
+    else
+      trackList.sectionHeaderHeight = 10;
     [trackList reloadData];
     [self selectCurrentTrack];
   }

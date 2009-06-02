@@ -19,9 +19,11 @@
   
   IBOutlet UISwitch *autoLoginSwitch;
   IBOutlet UISwitch *coversInSearchSwitch;
+  IBOutlet UISwitch *experimentalSwitch;
 }
 -(id)init;
 
 -(IBAction)toggleAutoLogin:(UISwitch*)sender;
 -(IBAction)toggleCovers:(UISwitch*)sender;
+-(IBAction)toggleExperimental:(UISwitch*)sender;
 @end

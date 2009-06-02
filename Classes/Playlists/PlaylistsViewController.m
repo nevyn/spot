@@ -9,6 +9,7 @@
 #import "PlaylistsViewController.h"
 #import "SpotNavigationController.h"
 #import "CoSpotify.h"
+#import "SpotCell.h"
 
 @implementation PlaylistsViewController
 -(id)init;
@@ -22,9 +23,11 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-	
-
+  [super viewDidLoad];
+  
+  tableView = (UITableView*)self.view;
+	tableView.rowHeight = 70;
+  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -102,15 +105,23 @@
   int idx = [indexPath indexAtPosition:1];
 	SpotPlaylist *playlist = [self.playlists objectAtIndex:idx];
   
-  static NSString *CellIdentifier = @"Cell";
+  static NSString *SpotCellIdentifier = @"SpotCell";
   
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-  }
-	
-	// Configure the cell. 
-	cell.text = playlist.name;
+  SpotCell *cell = (SpotCell *)[tableView dequeueReusableCellWithIdentifier:SpotCellIdentifier];
+  if (cell == nil) 
+    cell = [[[SpotCell alloc] initWithFrame:CGRectZero reuseIdentifier:SpotCellIdentifier] autorelease];
+  	
+  float totalTime = 0;
+  for(SpotTrack *t in playlist.tracks)
+    totalTime += t.length;
+  
+  //TODO: some nice way to show collaborative status
+  [cell setTitle:playlist.name 
+        subTitle:playlist.author 
+     bottomTitle:[NSString stringWithFormat:@"%.2f hours in %d tracks", totalTime/60.0/60.0, [playlist.tracks count]]
+      popularity:-1 
+           image:NO 
+         imageId:nil];
 
   return cell;
 }

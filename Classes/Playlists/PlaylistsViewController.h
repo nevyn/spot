@@ -8,6 +8,8 @@
 
 @interface PlaylistsViewController : UITableViewController {
 	NSArray *playlists;
+  
+  UITableView *tableView;
 }
 
 @end

@@ -190,7 +190,7 @@ enum {
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			//cell.text = [NSString stringWithFormat:@"%@", track.title];
       [cell setTitle:track.title 
-            subTitle:[NSString stringWithFormat:@"%@ -%.2f", track.artist.name, track.length/60.0] 
+            subTitle:track.artist.name 
          bottomTitle:track.albumName 
           popularity:track.popularity 
                image:NO 

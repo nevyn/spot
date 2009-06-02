@@ -57,7 +57,8 @@
   title.text = t;
   subTitle.text = s;
   bottomTitle.text = b;
-  popularity.progress = p;
+  popularity.hidden = p < 0.0;
+  popularity.progress = p < 0.0 ? 0.5 : p ;//to not go under 0
   spotArt.hidden = !i;
   if(i) self.artId = ii;
 }
