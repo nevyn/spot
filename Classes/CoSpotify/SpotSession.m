@@ -97,6 +97,12 @@ void cb_client_callback(int type, void*data){
 @implementation SpotSession
 @synthesize loggedIn, session, player;
 
+-(NSString*)pathForFile:(NSString *)f;
+{
+  NSString *docsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+  return [docsPath stringByAppendingPathComponent:f];
+}
+
 +(SpotSession*)defaultSession;
 {
 	if(!SpotSessionSingleton)
@@ -131,14 +137,14 @@ void cb_client_callback(int type, void*data){
   [self startThread];
   
   //load stored playlists
-  playlists = [NSKeyedUnarchiver unarchiveObjectWithFile:@"playlist"];
+  playlists = [NSKeyedUnarchiver unarchiveObjectWithFile:[self pathForFile:@"playlist"]];
   NSLog(@"got %@ %@", [playlists class], playlists);
   if([playlists isKindOfClass:[NSArray class]]){
     playlists = [[playlists mutableCopy] retain];
   } else {
     NSLog(@"playlists file is not a list! Recreating");
     playlists = [[NSMutableArray alloc] init];
-    [NSKeyedArchiver archiveRootObject:playlists toFile:@"playlist"];
+    [NSKeyedArchiver archiveRootObject:playlists toFile:[self pathForFile:@"playlist"]];
   }
 	return self;
 }
@@ -394,7 +400,7 @@ void cb_client_callback(int type, void*data){
     //add 
     [playlists addObject:playlist];
     //save to disc
-    [NSKeyedArchiver archiveRootObject:playlists toFile:@"playlist"];
+    [NSKeyedArchiver archiveRootObject:playlists toFile:[self pathForFile:@"playlist"]];
   } else {
     NSLog(@"playlist %@ exists", playlist.name);
   }
