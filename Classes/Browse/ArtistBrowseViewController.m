@@ -12,6 +12,7 @@
 #import "AlbumBrowseViewController.h"
 #import "SpotNavigationController.h"
 #import "ArtistDetailViewController.h"
+#import "SpotCell.h"
 
 @interface ArtistBrowseViewController ()
 @property (retain) SpotArtist *artist;
@@ -58,8 +59,9 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
   if(artist.portraitId){
     portrait.artId = artist.portraitId;
   }
-
-
+  albumTable.rowHeight = 70;
+//  albumTable.sectionHeaderHeight = 0;
+  
   artistName.text = artist.name;
   yearsActive.text = artist.yearsActive;
   popularity.progress = artist.popularity;
@@ -107,18 +109,25 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView_ cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-  static NSString *CellIdentifier = @"Cell";
+  static NSString *SpotCellIdentifier = @"SpotCell";
   
-  UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
-  if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-  }
+  SpotCell *cell = (SpotCell *)[albumTable dequeueReusableCellWithIdentifier:SpotCellIdentifier];
+  if (cell == nil) 
+    cell = [[[SpotCell alloc] initWithFrame:CGRectZero reuseIdentifier:SpotCellIdentifier] autorelease];
+  
   
 	int idx = [indexPath indexAtPosition:1];
   SpotAlbum *album = [albums objectAtIndex:idx];
   cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
   NSString *yearString = [NSString stringWithFormat:@" (%d)", album.year];
-  cell.text = [NSString stringWithFormat:@"%@%@", album.name, album.year ? yearString : @""];
+  
+  
+  [cell setTitle:album.name
+        subTitle:album.artistName
+     bottomTitle:album.year ? [NSString stringWithFormat:@"%d", album.year] : @""
+      popularity:album.popularity
+           image:YES
+         imageId:album.coverId];
   
   return cell;
 }

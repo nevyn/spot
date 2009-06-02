@@ -16,8 +16,12 @@
 	IBOutlet UILabel *expiry;
 	IBOutlet UILabel *server;
 	IBOutlet UILabel *lastServerContact;
+  
   IBOutlet UISwitch *autoLoginSwitch;
+  IBOutlet UISwitch *coversInSearchSwitch;
 }
 -(id)init;
+
 -(IBAction)toggleAutoLogin:(UISwitch*)sender;
+-(IBAction)toggleCovers:(UISwitch*)sender;
 @end

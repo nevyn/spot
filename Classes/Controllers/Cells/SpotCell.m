@@ -11,7 +11,7 @@
 
 @implementation SpotCell
 
-@synthesize title, subText;
+@synthesize title, subTitle, bottomTitle, popularity;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
   if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
@@ -20,29 +20,31 @@
     // we need a view to place our labels on.
     UIView *myContentView = self.contentView;
     
-    /*
-     init the title label.
-     set the text alignment to align on the left
-     add the label to the subview
-     release the memory
-     */
+    //title
     self.title = [self newLabelWithPrimaryColor:[UIColor blackColor] selectedColor:[UIColor whiteColor] fontSize:14.0 bold:YES];
     self.title.textAlignment = UITextAlignmentLeft; // default
     [myContentView addSubview:self.title];
     [self.title release];
     
-    /*
-     init the url label. (you will see a difference in the font color and size here!
-     set the text alignment to align on the left
-     add the label to the subview
-     release the memory
-     */
-    self.subText = [self newLabelWithPrimaryColor:[UIColor blackColor] selectedColor:[UIColor lightGrayColor] fontSize:10.0 bold:NO];
-    self.subText.textAlignment = UITextAlignmentLeft; // default
-    [myContentView addSubview:self.subText];
-    [self.subText release];
+    //subTitle
+    self.subTitle = [self newLabelWithPrimaryColor:[UIColor blackColor] selectedColor:[UIColor lightGrayColor] fontSize:12.0 bold:YES];
+    self.subTitle.textAlignment = UITextAlignmentLeft; // default
+    [myContentView addSubview:self.subTitle];
+    [self.subTitle release];
     
-    float size = [self bounds].size.height;
+    //bottomTitle
+    self.bottomTitle = [self newLabelWithPrimaryColor:[UIColor blackColor] selectedColor:[UIColor lightGrayColor] fontSize:10.0 bold:NO];
+    self.bottomTitle.textAlignment = UITextAlignmentLeft; // default
+    [myContentView addSubview:self.bottomTitle];
+    [self.bottomTitle release];
+    
+    //popularity
+    self.popularity = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+    [self addSubview:self.popularity];
+    self.popularity.progress = 0.5;
+    [self.popularity release];
+    
+    float size = [self bounds].size.height-1;
     spotArt = [[SpotImageView alloc] initWithFrame:CGRectMake(0, 0, size, size)];
     [spotArt setImage:[UIImage imageNamed:@"icon.png"]];
     [self addSubview:spotArt];
@@ -50,6 +52,15 @@
   return self;
 }
 
+-(void)setTitle:(NSString *)t subTitle:(NSString*)s bottomTitle:(NSString *)b popularity:(float)p image:(BOOL)i imageId:(NSString*)ii;
+{
+  title.text = t;
+  subTitle.text = s;
+  bottomTitle.text = b;
+  popularity.progress = p;
+  spotArt.hidden = !i;
+  if(i) self.artId = ii;
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
   
@@ -63,29 +74,32 @@
   [super layoutSubviews];
   
 	// getting the cell size
-  CGRect contentRect = self.contentView.bounds;
+  CGRect selfRect = [self bounds];
   
 	// In this example we will never be editing, but this illustrates the appropriate pattern
   if (!self.editing) {
     
-		// get the X pixel spot
-    CGFloat boundsX = contentRect.origin.x;
 		CGRect frame;
     
-    /*
-		 Place the title label.
-		 place the label whatever the current X is plus 10 pixels from the left
-		 place the label 4 pixels from the top
-		 make the label 200 pixels wide
-		 make the label 20 pixels high
-     */
-    float imageWidth = [self bounds].size.height;
-		frame = CGRectMake(boundsX + 10 + imageWidth, 4, 200-imageWidth, 20);
+    float imageWidth = spotArt.bounds.size.width;
+    if(spotArt.hidden) imageWidth = 0;
+    CGFloat xPos = selfRect.origin.x + imageWidth + 5;
+
+    //title
+		frame = CGRectMake(xPos, 4, selfRect.size.width-xPos-40, 20);
 		self.title.frame = frame;
     
-		// place the url label
-		frame = CGRectMake(boundsX + 10 + imageWidth, 28, 200-imageWidth, 14);
-		self.subText.frame = frame;
+		//subTitle
+		frame = CGRectMake(xPos, frame.origin.y+frame.size.height, selfRect.size.width-xPos-40, 14);
+		self.subTitle.frame = frame;
+    
+    //bottomTitle
+		frame = CGRectMake(xPos, frame.origin.y+frame.size.height, selfRect.size.width-xPos-40, 14);
+		self.bottomTitle.frame = frame;
+    
+    //popular?
+    frame = CGRectMake(xPos+10, frame.origin.y+frame.size.height+2, selfRect.size.width-xPos-80, self.popularity.bounds.size.height);
+    self.popularity.frame = frame;
 	}
 }
 
@@ -124,12 +138,10 @@
 - (void)dealloc {
 	// make sure you free the memory
 	[title dealloc];
-	[subText dealloc];
+	[subTitle dealloc];
   [spotArt dealloc];
 	[super dealloc];
 }
-
-
 
 
 @end

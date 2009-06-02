@@ -37,13 +37,15 @@
 
 -(void)addItem:(SpotItem*)item;
 {
+  if(!item || !item.id || [item.id length] == 0)return;
   [cache setObject:item forKey:item.id];
 }
 
 -(SpotItem *)itemById:(NSString*)id_;
 {
+  if(!id_ || [id_ length] == 0)return nil;
   SpotItem *item = [cache objectForKey:id_];
-  NSLog(@"Cache %s %@", item ? "hit" : "miss", item);
+  NSLog(@"Cache %s %@ %@", item ? "hit" : "miss", item, id_);
   return item;
 }
 

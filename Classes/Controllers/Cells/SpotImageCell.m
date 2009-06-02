@@ -26,6 +26,24 @@
     // Configure the view for the selected state
 }
 
+- (void)layoutSubviews {
+  
+  [super layoutSubviews];
+  
+	// getting the cell size
+  CGRect contentRect = self.contentView.bounds;
+  CGRect selfRect = [self bounds];
+  
+	// In this example we will never be editing, but this illustrates the appropriate pattern
+  if (!self.editing) {
+    CGRect frame;
+    
+    //image
+    frame = CGRectMake(selfRect.origin.x+10, selfRect.origin.y+1, selfRect.size.height, selfRect.size.height-1);
+    spotArt.frame = frame;
+    
+  }    
+}
 
 - (void)dealloc {
   [spotArt release];

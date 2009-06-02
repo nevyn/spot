@@ -15,7 +15,6 @@
   SpotArtist *artist;
 	NSArray *albums;
   IBOutlet SpotImageView *portrait;
-  IBOutlet UIWebView *artistText;
   IBOutlet UITableView *albumTable;
   
   IBOutlet UILabel *artistName;

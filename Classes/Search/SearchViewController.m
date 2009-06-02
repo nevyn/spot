@@ -56,7 +56,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   //UISegmentedControl *header = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Artists", @"Albums", @"Tracks", nil]];
-  
+  tableView.rowHeight = 70;
   //tableView.tableHeaderView = header;
   searchBar.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearch"];
 }
@@ -139,20 +139,29 @@ enum {
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView_ cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-  static NSString *CellIdentifier = @"Cell";
   static NSString *SpotCellIdentifier = @"AlbumCell";
   UITableViewCell *the_cell = nil;
+  
+  BOOL loadImage = [[NSUserDefaults standardUserDefaults] boolForKey:@"coversInSearch"];
 
 	int idx = [indexPath indexAtPosition:1]; idx = idx;
 	switch(showType) {
 		case ShowArtists: {
-      UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
+      SpotCell *cell = (SpotCell *)[tableView dequeueReusableCellWithIdentifier:SpotCellIdentifier];
       if (cell == nil) 
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[SpotCell alloc] initWithFrame:CGRectZero reuseIdentifier:SpotCellIdentifier] autorelease];
             
 			SpotArtist *artist = [searchResults.artists objectAtIndex:idx];
 			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-			cell.text = artist.name;
+      
+      
+      [cell setTitle:artist.name
+            subTitle:artist.genres
+         bottomTitle:artist.yearsActive
+          popularity:artist.popularity 
+               image:YES 
+             imageId:loadImage ? artist.portraitId : nil];
+      
       the_cell = cell;
 		} break;
 		case ShowAlbums: {
@@ -162,20 +171,31 @@ enum {
       
 			SpotAlbum *album = [searchResults.albums objectAtIndex:idx];
 			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-      cell.title.text = album.name;
-      cell.subText.text = album.artistName;
-      cell.artId = album.coverId;
-
+      
+      [cell setTitle:album.name
+            subTitle:album.artistName
+         bottomTitle:album.year ? [NSString stringWithFormat:@"%d", album.year] : nil
+          popularity:album.popularity 
+               image:YES 
+             imageId:loadImage ? album.coverId : nil];
+      
       the_cell = cell;
 		} break;
     case ShowTracks: {
-      UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
-      if (cell == nil) 
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+      SpotCell *cell = (SpotCell *)[tableView dequeueReusableCellWithIdentifier:SpotCellIdentifier];
+      if(!cell)
+        cell = [[[SpotCell alloc] initWithFrame:CGRectZero reuseIdentifier:SpotCellIdentifier] autorelease];
       
 			SpotTrack *track = [searchResults.tracks objectAtIndex:idx];
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-			cell.text = [NSString stringWithFormat:@"%@", track.title];
+			//cell.text = [NSString stringWithFormat:@"%@", track.title];
+      [cell setTitle:track.title 
+            subTitle:[NSString stringWithFormat:@"%@ -%.2f", track.artist.name, track.length/60.0] 
+         bottomTitle:track.albumName 
+          popularity:track.popularity 
+               image:NO 
+             imageId:nil];
+      
       the_cell = cell;
 		} break;
       

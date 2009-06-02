@@ -85,9 +85,11 @@
     artId = id;
     //default image while loading
     [self setImage:[UIImage imageNamed:@"icon.png"]];
-    if(artId){
+    if(artId && [artId length] > 0){
       //Begin load image
       [self loadImage];
+    } else {
+      [activityView stopAnimating];
     }
   } 
 }

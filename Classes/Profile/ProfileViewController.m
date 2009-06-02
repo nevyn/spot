@@ -68,6 +68,7 @@
 		lastServerContact.text = @"";
 	}
   autoLoginSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"useAutoLogin"];
+  coversInSearchSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"coversInSearch"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,6 +92,11 @@
 -(IBAction)toggleAutoLogin:(UISwitch*)sender;
 {
   [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"useAutoLogin"];
+}
+
+-(IBAction)toggleCovers:(UISwitch*)sender;
+{
+  [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"coversInSearch"];
 }
 
 @end
