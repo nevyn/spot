@@ -108,7 +108,7 @@ void audioqueue_global_statechange_callback_hack(int state){
   
   session = session_; //probably singleton, dont retain
   
-  playModeRepeat = NO;
+  playModeRepeat = YES;
   playModeShuffle = NO;
   playModeAutoNext = YES;
   
@@ -264,6 +264,11 @@ void audioqueue_global_statechange_callback_hack(int state){
   } else if(currentState == PLAYER_STOPPED) {
     NSLog(@"next changes the current track");
     SpotTrack *next = [currentPlaylist trackAfter:self.currentTrack];
+    if(!next && playModeRepeat){
+      next = [currentPlaylist trackAtPosition:0];
+    } else {
+      //TODO: set correct mode
+    }
     [self setCurrentTrack:next];
     if(previousState == PLAYER_PLAYING || previousState == PLAYER_CHANGE_TRACK){
       NSLog(@"next calls startPlayback");
@@ -291,6 +296,11 @@ void audioqueue_global_statechange_callback_hack(int state){
   } else if(currentState == PLAYER_STOPPED) {
     NSLog(@"previous changes the current track");
     SpotTrack *previous = [currentPlaylist trackBefore:self.currentTrack];
+    if(!previous && playModeRepeat){
+      previous = [currentPlaylist trackAtPosition:[currentPlaylist.tracks count]-1];
+    } else {
+      //TODO: set correct mode
+    }
     [self setCurrentTrack:previous];
     if(previousState == PLAYER_PLAYING || previousState == PLAYER_CHANGE_TRACK){
       NSLog(@"previous calls startPlayback");

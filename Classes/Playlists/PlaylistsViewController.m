@@ -96,30 +96,33 @@
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
 
-	SpotPlaylist *playlist = [self.playlists objectAtIndex:[indexPath indexAtPosition:0]];
-	//SpotTrack *track = [[playlist tracks] objectAtIndex:[indexPath indexAtPosition:1]];
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-    }
+  int idx = [indexPath indexAtPosition:1];
+	SpotPlaylist *playlist = [self.playlists objectAtIndex:[indexPath indexAtPosition:idx]];
+  
+  static NSString *CellIdentifier = @"Cell";
+  
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (cell == nil) {
+    cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+  }
 	
 	// Configure the cell. 
 	cell.text = playlist.name;
 
-    return cell;
+  return cell;
 }
 
 
 
 
 // Override to support row selection in the table view.
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  SpotPlaylist *playlist = [self.playlists objectAtIndex:[indexPath indexAtPosition:0]];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+  int idx = [indexPath indexAtPosition:1];
+  SpotPlaylist *playlist = [self.playlists objectAtIndex:[indexPath indexAtPosition:idx]];
   [[SpotSession defaultSession].player playPlaylist:playlist firstTrack:nil];
   [self.navigationController showPlayer];
     // Navigation logic may go here -- for example, create and push another view controller.

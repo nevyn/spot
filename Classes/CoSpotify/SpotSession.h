@@ -29,6 +29,8 @@
   SpotPlayer *player;
   
   SpotCache *cache;
+  
+  NSMutableArray *playlists;
 }
 +(SpotSession*)defaultSession;
 -(void)cleanup;
@@ -52,6 +54,8 @@
 -(SpotSearch*)searchByURI:(SpotURI*)uri;
 
 -(SpotItem *)cachedItemById:(NSString*)id;
+
+-(void)addPlaylist:(SpotPlaylist*)playlist;
 
 @property (nonatomic, readonly) BOOL loggedIn;
 @property (readonly) NSString *username;

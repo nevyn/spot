@@ -114,7 +114,7 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
     cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
   }
   
-	int idx = [indexPath indexAtPosition:1]; idx = idx;
+	int idx = [indexPath indexAtPosition:1];
   SpotAlbum *album = [albums objectAtIndex:idx];
   cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
   NSString *yearString = [NSString stringWithFormat:@" (%d)", album.year];

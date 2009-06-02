@@ -122,16 +122,24 @@ void cb_client_callback(int type, void*data){
 		return nil;
 	}
   
-  
   player = [[SpotPlayer alloc] initWithSession:self];
 	
 	self.loggedIn = NO;
   
   cache = [[SpotCache alloc] init];
-	
   networkLock = [[NSLock alloc] init];
   [self startThread];
   
+  //load stored playlists
+  playlists = [NSKeyedUnarchiver unarchiveObjectWithFile:@"playlist"];
+  NSLog(@"got %@ %@", [playlists class], playlists);
+  if([playlists isKindOfClass:[NSArray class]]){
+    playlists = [[playlists mutableCopy] retain];
+  } else {
+    NSLog(@"playlists file is not a list! Recreating");
+    playlists = [[NSMutableArray alloc] init];
+    [NSKeyedArchiver archiveRootObject:playlists toFile:@"playlist"];
+  }
 	return self;
 }
 
@@ -140,6 +148,7 @@ void cb_client_callback(int type, void*data){
   [self stopThread];
 	NSLog(@"Logged out");
   [player release];
+  [playlists release];
   [cache release];
 	despotify_exit(session);
 	despotify_cleanup();
@@ -177,7 +186,7 @@ void cb_client_callback(int type, void*data){
 -(NSArray*)playlists;
 {
   
-	NSMutableArray *playlists = [NSMutableArray array];
+//	NSMutableArray *playlists = [NSMutableArray array];
 	return playlists; // until they fix their playlist servers
 	
   [networkLock lock];
@@ -322,7 +331,7 @@ void cb_client_callback(int type, void*data){
   if(item) return (SpotPlaylist*)item;
 
   [networkLock lock];
-  struct playlist *pl = despotify_get_track(session, (char*)[id_ cStringUsingEncoding:NSASCIIStringEncoding]);
+  struct playlist *pl = despotify_get_playlist(session, (char*)[id_ cStringUsingEncoding:NSASCIIStringEncoding]);
   [networkLock unlock];
   SpotPlaylist *list = [[[SpotPlaylist alloc] initWithPlaylist:pl] autorelease];
   
@@ -375,6 +384,20 @@ void cb_client_callback(int type, void*data){
 -(SpotItem *)cachedItemById:(NSString*)id_;
 {
   return [cache itemById:id_];
+}
+
+-(void)addPlaylist:(SpotPlaylist*)playlist;
+{
+  NSLog(@"addPlaylist");
+  if(![playlists containsObject:playlist]){
+    NSLog(@"adding playlist %@", playlist.name);
+    //add 
+    [playlists addObject:playlist];
+    //save to disc
+    [NSKeyedArchiver archiveRootObject:playlists toFile:@"playlist"];
+  } else {
+    NSLog(@"playlist %@ exists", playlist.name);
+  }
 }
 
 #pragma mark Threading

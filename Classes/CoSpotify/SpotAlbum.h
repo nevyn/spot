@@ -43,6 +43,9 @@
 
 -(void)loadMoreInfo;
 
+-(id)initWithCoder:(NSCoder *)decoder;
+-(void)encodeWithCoder:(NSCoder *)encoder;
+
 -(NSComparisonResult)compare:(SpotAlbum*)other;
 
 @property (readonly, nonatomic) BOOL browsing;

@@ -27,7 +27,7 @@
   NSString *albumId;
   NSString *coverId;
   NSArray *similarTrackIds;
-  NSArray *files;
+  NSString *fileId;
   NSDictionary *restrictions;
   
   NSInteger trackNumber;
@@ -59,7 +59,7 @@
 @property (readonly, nonatomic) NSString *coverId;
 @property (readonly, nonatomic) NSInteger trackNumber;
 @property (readonly, nonatomic) float length;
-@property (readonly, nonatomic) NSArray *files;
+@property (readonly, nonatomic) NSString *fileId;
 @property (readonly, nonatomic) float popularity;
 @property (readonly, nonatomic) NSArray *similarTrackIds;
 @property (readonly, nonatomic) NSDictionary *restrictions;

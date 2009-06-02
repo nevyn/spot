@@ -100,7 +100,7 @@ void printFmt(AudioStreamBasicDescription fmt) {
 void audioqueue_propertylistener (void *inUserData, AudioQueueRef inAQ, AudioQueuePropertyID inID)
 {
   int running = 0;
-  int size = 4;
+  UInt32 size = 4;
   AudioQueueGetProperty(inAQ, kAudioQueueProperty_IsRunning, &running, &size);
   printf("Running?: %d\n", running);
   state.mIsRunning = running;

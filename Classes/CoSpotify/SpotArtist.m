@@ -89,6 +89,35 @@
   albums = a_albums;  
 }
 
+-(id)initWithCoder:(NSCoder *)decoder;
+{
+  self = [super initWithCoder:decoder];
+  browsing = [decoder decodeBoolForKey:@"SAbrowsing"];
+  name = [[decoder decodeObjectForKey:@"SAname"] retain];
+  artistId = [[decoder decodeObjectForKey:@"SAartistId"] retain];
+  portraitId = [[decoder decodeObjectForKey:@"SAportraitId"] retain];
+  genres = [[decoder decodeObjectForKey:@"SAgenres"] retain];
+  yearsActive = [[decoder decodeObjectForKey:@"SAyearsActive"] retain];
+  popularity = [decoder decodeFloatForKey:@"SApopularity"];
+  bios = [[decoder decodeObjectForKey:@"SAbio"] retain];
+  albums = [[decoder decodeObjectForKey:@"SAalbums"] retain];
+  return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)encoder;
+{
+  [super encodeWithCoder:encoder];
+  [encoder encodeBool:browsing forKey:@"SAbrowsing"];
+  [encoder encodeObject:name forKey:@"SAname"];
+  [encoder encodeObject:artistId forKey:@"SAartistId"];
+  [encoder encodeObject:portraitId forKey:@"SAportraitId"];
+  [encoder encodeObject:genres forKey:@"SAgenres"];
+  [encoder encodeObject:yearsActive forKey:@"SAyearsActive"];
+  [encoder encodeFloat:popularity forKey:@"SApopularity"];
+  [encoder encodeObject:bios forKey:@"SAbio"];
+  [encoder encodeObject:albums forKey:@"SAalbums"];
+}
+
 -(id)initWithArtistBrowse:(struct artist_browse*)artistBrowse_;
 {
 	if( ! [super init] ) return nil;
