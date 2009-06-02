@@ -14,7 +14,7 @@
 @class SpotURI;
 
 //Represents a movable slot in the playlist (mainly so that the same track can live in multiple playlists)
-@interface SpotTrackSlot : NSObject
+@interface SpotTrackSlot : NSObject <NSCoding>
 {
   SpotTrack *track;
   SpotPlaylist *playlist;
@@ -23,6 +23,8 @@
 
 
 -(id)initWithPlaylist:(SpotPlaylist *)p track:(SpotTrack*)t position:(NSInteger)pos;
+-(id)initWithCoder:(NSCoder *)decoder;
+-(void)encodeWithCoder:(NSCoder *)encoder;
 
 @property (readonly) SpotTrack *track;
 @property (readonly) SpotPlaylist *playlist;
@@ -30,7 +32,7 @@
 
 @end
 
-@interface SpotPlaylist : SpotItem {
+@interface SpotPlaylist : SpotItem <NSCoding> {
   
   NSMutableArray *slots;
   
@@ -44,6 +46,9 @@
 }
 -(id)initWithPlaylist:(struct playlist*)playlist_;
 -(id)initWithName:(NSString *)name author:(NSString *)author tracks:(NSArray*)tracks;
+
+-(id)initWithCoder:(NSCoder *)decoder;
+-(void)encodeWithCoder:(NSCoder *)encoder;
 
 -(SpotTrack*) trackBefore:(SpotTrack*)track;
 -(SpotTrack*) trackAfter:(SpotTrack*)track;

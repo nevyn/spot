@@ -38,4 +38,14 @@
 
 #endif
 
+-(id)initWithCoder:(NSCoder *)decoder;
+{
+  return [super init];
+}
+
+-(void)encodeWithCoder:(NSCoder *)encoder;
+{
+  
+}
+
 @end

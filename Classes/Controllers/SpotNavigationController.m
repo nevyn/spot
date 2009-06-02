@@ -130,6 +130,11 @@
       }break;
       case SpotLinkTypePlaylist:{
         SpotPlaylist *pl = [session playlistByURI:uri];
+        //try save
+        
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:pl];
+        [pl release];
+        pl = [[NSKeyedUnarchiver unarchiveObjectWithData:data] retain];
         [session.player playPlaylist:pl firstTrack:nil];
         [self showPlayer];
       }break;

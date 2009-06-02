@@ -176,18 +176,20 @@ void cb_client_callback(int type, void*data){
 
 -(NSArray*)playlists;
 {
-  [networkLock lock];
+  
 	NSMutableArray *playlists = [NSMutableArray array];
 	return playlists; // until they fix their playlist servers
 	
+  [networkLock lock];
 	struct playlist *rootlist = despotify_get_stored_playlists(session);
+  [networkLock unlock];
   NSLog(@"got lists");
 	for(struct playlist *pl = rootlist; pl; pl = pl->next) {
 		SpotPlaylist *playlist = [[[SpotPlaylist alloc] initWithPlaylist:pl] autorelease];
 		[playlists addObject:playlist];
 	}
 	despotify_free_playlist(rootlist);
-	[networkLock unlock];
+
 	return playlists;
 }
 
@@ -311,6 +313,21 @@ void cb_client_callback(int type, void*data){
   [cache addItem:the_track];
   
   return the_track;
+}
+
+
+-(SpotPlaylist *)playlistById:(NSString *)id_;
+{
+  SpotItem *item = [cache itemById:id_];
+  if(item) return (SpotPlaylist*)item;
+
+  [networkLock lock];
+  struct playlist *pl = despotify_get_track(session, (char*)[id_ cStringUsingEncoding:NSASCIIStringEncoding]);
+  [networkLock unlock];
+  SpotPlaylist *list = [[[SpotPlaylist alloc] initWithPlaylist:pl] autorelease];
+  
+  [cache addItem:list];
+  return list;
 }
 
 #pragma mark Get by uri

@@ -114,4 +114,53 @@
   return &de_track;
 }
 
+#pragma mark NSCoding
+
+-(id)initWithCoder:(NSCoder *)decoder;
+{
+  //struct track de_track; //we need a struct to send to despotify
+  
+  trackId = [[decoder decodeObjectForKey:@"Tid"] retain];
+  title = [[decoder decodeObjectForKey:@"Ttitle"] retain];
+  artistId = [[decoder decodeObjectForKey:@"TartistId"] retain];
+  artistName = [[decoder decodeObjectForKey:@"TartistName"] retain];
+  albumName = [[decoder decodeObjectForKey:@"TalbumName"] retain];
+  albumId = [[decoder decodeObjectForKey:@"TalbumId"] retain];
+  coverId = [[decoder decodeObjectForKey:@"TcoverId"] retain];
+  similarTrackIds = [[decoder decodeObjectForKey:@"Tsimilar"] retain];
+  files = [[decoder decodeObjectForKey:@"Tfiles"] retain];
+  restrictions = [[decoder decodeObjectForKey:@"Trestrictions"] retain];
+  
+  trackNumber = [decoder decodeIntForKey:@"TtrackNumber"];
+  year = [decoder decodeIntForKey:@"Tyear"];
+  length = [decoder decodeFloatForKey:@"Tlength"];
+  popularity = [decoder decodeFloatForKey:@"Tpopularity"];
+  
+
+  isPlayable = [decoder decodeBoolForKey:@"Tplayable"];
+  hasMetadata = [decoder decodeBoolForKey:@"ThasMeta"];
+  return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)encoder;
+{
+  [encoder encodeObject:trackId forKey:@"Tid"];
+  [encoder encodeObject:title forKey:@"Ttitle"];
+  [encoder encodeObject:artistId forKey:@"TartistId"];
+  [encoder encodeObject:artistName forKey:@"TartistName"];
+  [encoder encodeObject:albumName forKey:@"TalbumName"];
+  [encoder encodeObject:albumId forKey:@"TalbumId"];
+  [encoder encodeObject:coverId forKey:@"TcoverId"];
+  [encoder encodeObject:similarTrackIds forKey:@"Tsimilar"];
+  [encoder encodeObject:files forKey:@"Tfiles"];
+  [encoder encodeObject:restrictions forKey:@"Trestrictions"];
+  [encoder encodeInt:trackNumber forKey:@"TtrackNumber"];
+  [encoder encodeInt:year forKey:@"Tyear"];
+  [encoder encodeFloat:length forKey:@"Tlength"];
+  [encoder encodeFloat:popularity forKey:@"Tpopularity"];
+  [encoder encodeBool:isPlayable forKey:@"Tplayable"];
+  [encoder encodeBool:hasMetadata forKey:@"ThasMeta"];
+  
+}
+
 @end

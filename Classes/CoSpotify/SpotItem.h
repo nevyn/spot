@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "SpotURI.h"
 
-@interface SpotItem : NSObject {
+@interface SpotItem : NSObject <NSCoding> {
 
 }
+
+-(id)initWithCoder:(NSCoder *)decoder;
+-(void)encodeWithCoder:(NSCoder *)encoder;
 
 //Ensure that as much data as possible is loaded
 -(void)ensureFullProfile;

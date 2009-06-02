@@ -45,6 +45,9 @@
 }
 -(id)initWithTrack:(struct track*)track_;
 
+-(id)initWithCoder:(NSCoder *)decoder;
+-(void)encodeWithCoder:(NSCoder *)encoder;
+
 -(NSComparisonResult)compare:(SpotTrack*)other;
 
 @property (readonly, nonatomic) NSString *trackId;

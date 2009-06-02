@@ -43,6 +43,7 @@
 -(SpotArtist *)artistById:(NSString *)id_;
 -(SpotAlbum *)albumById:(NSString *)id;
 -(SpotTrack *)trackById:(NSString *)id;
+-(SpotPlaylist *)playlistById:(NSString *)id;
 
 -(SpotAlbum*)albumByURI:(SpotURI*)uri;
 -(SpotArtist*)artistByURI:(SpotURI*)uri;
