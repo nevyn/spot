@@ -11,17 +11,27 @@
 #import "SpotPlaylist.h"
 #import "SpotSearch.h"
 
+typedef enum{
+  ShowArtists,
+  ShowAlbums,
+  ShowTracks
+}SearchShowType;
+
 @interface SearchViewController : UIViewController
 	<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 {
 	IBOutlet UITableView *tableView;
 	IBOutlet UISearchBar *searchBar;
+  
+  SearchShowType showType;
 	
 	SpotSearch *searchResults;
 }
 -(id)initWithSearch:(SpotSearch*)search;
 
 -(void)searchForString:(NSString*)string;
+
+-(IBAction)headerChanged:(id)sender;
 
 @property (nonatomic, assign) SpotSearch *searchResults;
 

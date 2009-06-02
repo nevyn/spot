@@ -145,6 +145,7 @@
 {
   if(!browsing){
     NSLog(@"Artist %@ loading more info", self);
+    
     struct artist_browse *ab = despotify_get_artist([SpotSession defaultSession].session, (char*)[artistId UTF8String]);
     [self loadBrowse:ab];
   }

@@ -55,6 +55,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
   [super viewDidLoad];
+  //UISegmentedControl *header = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Artists", @"Albums", @"Tracks", nil]];
+  
+  //tableView.tableHeaderView = header;
   searchBar.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearch"];
 }
 
@@ -104,20 +107,23 @@ enum {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if( ! [SpotSession defaultSession].loggedIn || !searchResults) return 1;
-	return 4;
+	return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
+{
+  return 0;
+}
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
 	if( ! [SpotSession defaultSession].loggedIn || !searchResults) return 0;
 	
-	switch (section) {
-    case SuggestionSection: return searchResults.suggestion ? 1 : 0;
-		case ArtistsSection: return searchResults.artists.count;
-		case TracksSection:  return searchResults.tracks.count;
-		case AlbumsSection:  return searchResults.albums.count;
+	switch (showType) {
+		case ShowArtists: return searchResults.artists.count;
+		case ShowAlbums:  return searchResults.albums.count;
+		case ShowTracks:  return searchResults.tracks.count;
 	}
 	return 0;	
 }
@@ -126,12 +132,6 @@ enum {
 {
 	if( ! [SpotSession defaultSession].loggedIn || !searchResults) return @"Search results";
 	
-	switch (section) {
-    case SuggestionSection: return @"Did you mean";
-		case ArtistsSection: return @"Artists";
-		case TracksSection: return @"Tracks";
-		case AlbumsSection: return @"Albums";
-	}
 	return @"???";
 }
 
@@ -144,16 +144,8 @@ enum {
   UITableViewCell *the_cell = nil;
 
 	int idx = [indexPath indexAtPosition:1]; idx = idx;
-	switch([indexPath indexAtPosition:0]) {
-    case SuggestionSection:{	
-      UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
-      if (cell == nil) 
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];      
-			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-			cell.text = searchResults.suggestion;
-      the_cell = cell;
-    } break;
-		case ArtistsSection: {
+	switch(showType) {
+		case ShowArtists: {
       UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
       if (cell == nil) 
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
@@ -163,17 +155,7 @@ enum {
 			cell.text = artist.name;
       the_cell = cell;
 		} break;
-		case TracksSection: {
-      UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
-      if (cell == nil) 
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-            
-			SpotTrack *track = [searchResults.tracks objectAtIndex:idx];
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-			cell.text = [NSString stringWithFormat:@"%@", track.title];
-      the_cell = cell;
-		} break;
-		case AlbumsSection: {
+		case ShowAlbums: {
       SpotCell *cell = (SpotCell *)[tableView dequeueReusableCellWithIdentifier:SpotCellIdentifier];
       if(!cell)
         cell = [[[SpotCell alloc] initWithFrame:CGRectZero reuseIdentifier:SpotCellIdentifier] autorelease];
@@ -184,9 +166,19 @@ enum {
       cell.subText.text = album.artistName;
       cell.artId = album.coverId;
 
-      
       the_cell = cell;
 		} break;
+    case ShowTracks: {
+      UITableViewCell *cell = [tableView_ dequeueReusableCellWithIdentifier:CellIdentifier];
+      if (cell == nil) 
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+      
+			SpotTrack *track = [searchResults.tracks objectAtIndex:idx];
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			cell.text = [NSString stringWithFormat:@"%@", track.title];
+      the_cell = cell;
+		} break;
+      
 	}
 	
   return the_cell;
@@ -196,26 +188,22 @@ enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	int idx = [indexPath indexAtPosition:1];
-	switch([indexPath indexAtPosition:0]) {
-    case SuggestionSection:{
-      [searchBar setText:searchResults.suggestion];
-      [self searchForString:searchResults.suggestion];
-    } break;
-		case TracksSection: {
-			SpotTrack *track = [searchResults.tracks objectAtIndex:idx];
-			[[SpotSession defaultSession].player playTrack:track rewind:YES];
-      [self.navigationController showPlayer];
-		} break;
-		case ArtistsSection: {
+	switch(showType) {
+		case ShowArtists: {
 			SpotArtist *artist = [searchResults.artists objectAtIndex:idx];
 			
       [self.navigationController showArtist:artist];
 		} break;
-		case AlbumsSection: {
+		case ShowAlbums: {
 			SpotAlbum *album = [searchResults.albums objectAtIndex:idx];
 			[self.navigationController showAlbum:album];
 			break;
 		}
+		case ShowTracks: {
+			SpotTrack *track = [searchResults.tracks objectAtIndex:idx];
+			[[SpotSession defaultSession].player playTrack:track rewind:YES];
+      [self.navigationController showPlayer];
+		} break;
 	}
 }
 
@@ -248,6 +236,13 @@ enum {
   [self searchForString:[searchBar_ text]];
 }
 
+
+-(void)headerChanged:(id)sender;
+{
+  UISegmentedControl *e = sender;
+  showType = (SearchShowType)e.selectedSegmentIndex;
+  [tableView reloadData];
+}
 
 #pragma mark 
 #pragma mark Accessors
