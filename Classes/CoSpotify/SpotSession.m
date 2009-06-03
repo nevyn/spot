@@ -392,6 +392,19 @@ void cb_client_callback(int type, void*data){
   return [cache itemById:id_];
 }
 
+-(void)doPlayTrack:(SpotTrack*)track;
+{
+  [networkLock lock];
+  despotify_play(session, track.de_track, NO);
+  [networkLock unlock];
+}
+
+-(void)playTrack:(SpotTrack*)track;
+{
+  //queue on mainthread do we dont collide with loading of images
+  [self performSelector:@selector(doPlayTrack:) onThread:thread withObject:track waitUntilDone:NO];
+}
+
 -(void)addPlaylist:(SpotPlaylist*)playlist;
 {
   NSLog(@"addPlaylist");

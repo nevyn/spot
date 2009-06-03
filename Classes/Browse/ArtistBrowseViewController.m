@@ -33,7 +33,6 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
 		return nil;
   
 	self.artist = artist_;
-  [artist loadMoreInfo];
   
 	self.albums = [artist.albums sortedArrayUsingFunction:AlbumComparer context:NULL];
 	

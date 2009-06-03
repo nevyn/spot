@@ -19,7 +19,6 @@
 		return nil;
   
   album = [album_ retain];
-  [album loadMoreInfo];
   self.title = album.name;
   
 	return self;

@@ -88,14 +88,6 @@
   [super dealloc];
 }
 
--(void)loadMoreInfo;
-{
-  if(!browsing){
-    NSLog(@"Album %@ loading more info", self);
-    struct album_browse *ab = despotify_get_album([SpotSession defaultSession].session, (char*)[albumId UTF8String]);
-    [self loadBrowse:ab];
-  }
-}
 
 -(id)initWithCoder:(NSCoder *)decoder;
 {
@@ -145,7 +137,6 @@
 
 -(SpotPlaylist*)playlist;
 {
-  if(!browsing) [self loadMoreInfo];
   return [discs lastObject];
 }
 

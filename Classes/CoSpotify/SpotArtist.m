@@ -141,15 +141,6 @@
 	[super dealloc];
 }
 
--(void)loadMoreInfo;
-{
-  if(!browsing){
-    NSLog(@"Artist %@ loading more info", self);
-    
-    struct artist_browse *ab = despotify_get_artist([SpotSession defaultSession].session, (char*)[artistId UTF8String]);
-    [self loadBrowse:ab];
-  }
-}
 
 -(NSComparisonResult)compare:(SpotArtist*)other;
 {
@@ -180,14 +171,12 @@
 
 -(NSArray *)albums;
 {
-  if(!browsing) [self loadMoreInfo];
   return albums;
 }
 
 
 -(NSString *)text;
 {
-  if(!browsing) [self loadMoreInfo];
   if(!bios || [bios count] == 0) return @"";
   return ((SpotArtistBio*)[bios lastObject]).text;
 }

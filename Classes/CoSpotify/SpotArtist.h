@@ -48,7 +48,6 @@
 -(id)initWithCoder:(NSCoder *)decoder;
 -(void)encodeWithCoder:(NSCoder *)encoder;
 
--(void)loadMoreInfo;
 
 -(NSComparisonResult)compare:(SpotArtist*)other;
 

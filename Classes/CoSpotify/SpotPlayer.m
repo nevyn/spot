@@ -145,7 +145,8 @@ void audioqueue_global_statechange_callback_hack(int state){
     }
     if(currentState == PLAYER_STOPPED || currentState == PLAYER_CHANGE_TRACK){
       NSLog(@"calling de_play");
-      despotify_play(session.session, self.currentTrack.de_track, NO); 
+      [session playTrack:self.currentTrack];
+//      despotify_play(session.session, self.currentTrack.de_track, NO); 
     }
   }
   return YES; 

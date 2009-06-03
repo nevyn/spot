@@ -46,6 +46,8 @@
 
 -(void)setSpotImage:(SpotImage*)img;
 {
+  //we still want it?
+  if(![self.artId isEqual:img.id]) return;
   [img retain];
   [spotImage release];
   spotImage = img;

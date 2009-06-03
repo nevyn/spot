@@ -55,6 +55,9 @@
 
 -(SpotItem *)cachedItemById:(NSString*)id;
 
+
+-(void)playTrack:(SpotTrack*)track;
+
 -(void)addPlaylist:(SpotPlaylist*)playlist;
 
 @property (nonatomic, readonly) BOOL loggedIn;

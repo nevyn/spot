@@ -211,11 +211,14 @@ enum {
 	switch(showType) {
 		case ShowArtists: {
 			SpotArtist *artist = [searchResults.artists objectAtIndex:idx];
-			
+      //Get the fullprofile artist
+      artist = [[SpotSession defaultSession] artistById:artist.id];
       [self.navigationController showArtist:artist];
 		} break;
 		case ShowAlbums: {
 			SpotAlbum *album = [searchResults.albums objectAtIndex:idx];
+      //get the fullprofile album
+      album = [[SpotSession defaultSession] albumById:album.id];
 			[self.navigationController showAlbum:album];
 			break;
 		}
