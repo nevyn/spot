@@ -59,6 +59,7 @@
   tracks.sectionHeaderHeight = 0;
   
   playlistDataSource.playlist = album.playlist;
+  playlistDataSource.cellAccessoryType = UITableViewCellAccessoryDisclosureIndicator; //small arrow
   [tracks reloadData];
 }
 

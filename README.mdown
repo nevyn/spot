@@ -17,14 +17,10 @@ Please follow these recommendations, or I might not be able to pull changes from
 Known bugs
 ------------------------
 - Playlists don't work (despotify need fixing)
-
+- despotify might lock the device on rare occations (while reading from network)
 
 TODO
 ----
-- ArtistBrowseViewController
- - zoom art
- - zoom text
- - react on links in text
-- AlbumBrowseViewController
- - zoom art
- - add something in the empty space (artist info here too?)
+- Network stability
+- Handle disconnects
+- Rewrite despotify

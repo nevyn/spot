@@ -158,8 +158,8 @@ PlayViewController *GlobalPlayViewController;
 		[self play];
 	else
 		[self pause];
-
 }
+
 -(IBAction)pause;
 {
   [[SpotSession defaultSession].player pause];

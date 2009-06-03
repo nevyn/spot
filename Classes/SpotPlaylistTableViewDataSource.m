@@ -13,7 +13,14 @@
 
 @implementation SpotPlaylistTableViewDataSource
 
-@synthesize playlist;
+@synthesize playlist, cellAccessoryType;
+
+-(id)init;
+{
+  if(![super init]) return nil;
+  cellAccessoryType = UITableViewCellAccessoryNone;
+  return self;
+}
 
 -(void)dealloc;
 {
@@ -77,7 +84,7 @@
   if (cell == nil) 
     cell = [[[SpotCell alloc] initWithFrame:CGRectZero reuseIdentifier:SpotCellIdentifier] autorelease];
 
-  cell.accessoryType = track.isPlayable ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
+  cell.accessoryType = cellAccessoryType;
   
   [cell setTitle:track.title 
         subTitle:track.artist.name 

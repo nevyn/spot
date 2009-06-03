@@ -12,9 +12,12 @@
 
 @interface SpotPlaylistTableViewDataSource : NSObject <UITableViewDataSource> {
   SpotPlaylist *playlist;
+  
+  UITableViewCellAccessoryType cellAccessoryType;
 }
 
 @property (readwrite, retain) SpotPlaylist *playlist;
+@property (readwrite, nonatomic) UITableViewCellAccessoryType cellAccessoryType;
 
 -(void)playlistChanged:(NSNotification*)n;
 

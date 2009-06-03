@@ -115,6 +115,8 @@
   for(SpotTrack *t in playlist.tracks)
     totalTime += t.length;
   
+  cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+  
   //TODO: some nice way to show collaborative status
   [cell setTitle:playlist.name 
         subTitle:playlist.author 
@@ -134,6 +136,8 @@
 {
   int idx = [indexPath indexAtPosition:1];
   SpotPlaylist *playlist = [self.playlists objectAtIndex:idx];
+  
+  //TODO: Shud display tracks in playlist
   [[SpotSession defaultSession].player playPlaylist:playlist firstTrack:nil];
   [self.navigationController showPlayer];
     // Navigation logic may go here -- for example, create and push another view controller.
