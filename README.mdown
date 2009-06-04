@@ -5,7 +5,21 @@ Spot is a Spotify client for iPhone based on [despotify](http://despotify.se/ "d
 
 All dependencies are bundled.
 
+Important notice
+-----------------
+Spot will only work with a Spotify **Premium** account.  
+Supporting free accounts without ads and commercials would just not be fair (and probably put us in trouble)
 
+Installing
+----------
+- Jailbreak
+ * Compile or use nevyns [binaries](http://github.com/nevyn/spot/downloads)
+ * Copy Spot to the Applications folder on the iPhone
+ * Install random application from cydia which will reboot SpringBoard and do some magic to make Spot appear 
+
+- With iPhone developer licence: 
+ * Connect iPhone and build for device
+ 
 Contribution notes
 ------------------------
 Please follow these recommendations, or I might not be able to pull changes from your fork:
@@ -16,11 +30,12 @@ Please follow these recommendations, or I might not be able to pull changes from
 
 Known bugs
 ------------------------
-- Playlists don't work (despotify need fixing)
-- despotify might lock the device on rare occations (while reading from network)
+- Personal playlists don't work
+ - You can add playlists from URI (click link in safari) and they will be saved locally
+- despotify might lock the device on rare occations (while reading from network). Do a hard reboot if Spot stops responding and home button doesn't work (hold home and lock button pressed for 5 seconds)
 
 TODO
 ----
-- Network stability
-- Handle disconnects
-- Rewrite despotify
+- Network stability (buffer more, disconnect cleanly, handle dropped connections)
+- Handle disconnects (detect and reconnect)
+- Wait for despotify to get rewritten (previous 2 TODO's depend on this one)

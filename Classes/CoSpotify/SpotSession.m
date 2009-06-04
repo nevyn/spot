@@ -172,6 +172,7 @@ void cb_client_callback(int type, void*data){
 {
   [networkLock lock];
 	BOOL success = despotify_authenticate(session, [user UTF8String], [password UTF8String]);
+  [networkLock unlock];
 	if(!success && error)
 		*error = [NSError errorWithDomain:SpotSessionErrorDomain code:SpotSessionErrorCodeDefault userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%s", despotify_get_error(session)] forKey:NSLocalizedDescriptionKey]];
 	usleep(500000);
@@ -179,7 +180,7 @@ void cb_client_callback(int type, void*data){
 		NSLog(@"Successfully logged in as %@", user);
 	}
 	self.loggedIn = success;
-  [networkLock unlock];
+  
 	return success;
 }
 
