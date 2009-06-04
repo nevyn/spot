@@ -65,6 +65,7 @@
 						<string key="IBText"/>
 						<string key="IBPrompt"/>
 						<string key="IBPlaceholder">Search</string>
+						<bool key="IBShowsCancelButton">YES</bool>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
@@ -281,7 +282,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>SearchViewController</string>
 					<string>UIResponder</string>
-					<string>{{426, 322}, {320, 480}}</string>
+					<string>{{426, 248}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{426, 743}, {320, 51}}</string>
@@ -319,8 +320,17 @@
 					<string key="className">SearchViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">headerChanged:</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cancelKeyboard:</string>
+							<string>headerChanged:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -350,6 +360,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">UITableView</string>
+					<string key="superclassName">UIScrollView</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">tableHeaderView</string>
 						<string key="NS.object.0">id</string>

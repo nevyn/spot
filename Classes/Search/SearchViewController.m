@@ -207,6 +207,7 @@ enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+  [searchBar resignFirstResponder];
 	int idx = [indexPath indexAtPosition:1];
 	switch(showType) {
 		case ShowArtists: {
@@ -259,9 +260,15 @@ enum {
   [self searchForString:[searchBar_ text]];
 }
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar_;  
+{
+  [searchBar resignFirstResponder];
+}
+
 
 -(void)headerChanged:(id)sender;
 {
+  [searchBar resignFirstResponder];
   UISegmentedControl *e = sender;
   showType = (SearchShowType)e.selectedSegmentIndex;
   [tableView reloadData];
