@@ -159,7 +159,7 @@ enum {
             subTitle:artist.genres
          bottomTitle:artist.yearsActive
           popularity:artist.popularity 
-               image:loadImage 
+               image:loadImage
              imageId:loadImage ? artist.portraitId : nil];
       
       the_cell = cell;

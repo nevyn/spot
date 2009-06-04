@@ -71,7 +71,7 @@
       [a_artists addObject:[[[SpotArtist alloc] initWithArtist:artist] autorelease]];
     }
   }
-  [a_artists sortUsingSelector:@selector(compare:)];
+  //[a_artists sortUsingSelector:@selector(compare:)];
   artists = a_artists;
   
 
@@ -81,7 +81,7 @@
       [a_albums addObject:[[[SpotAlbum alloc] initWithAlbum:album] autorelease]];
     }
   }
-  [a_albums sortUsingSelector:@selector(compare:)];
+  //[a_albums sortUsingSelector:@selector(compare:)];
   albums = a_albums;
   
   return self;
