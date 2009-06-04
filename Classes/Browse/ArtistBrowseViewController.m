@@ -33,7 +33,6 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
 		return nil;
   
 	self.artist = artist_;
-  
 	self.albums = [artist.albums sortedArrayUsingFunction:AlbumComparer context:NULL];
 	
 	return self;
@@ -64,6 +63,8 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
   artistName.text = artist.name;
   yearsActive.text = artist.yearsActive;
   popularity.progress = artist.popularity;
+  
+  infoButton.hidden = ![artist.text length];
 }
 
 /*

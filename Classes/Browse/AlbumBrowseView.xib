@@ -223,6 +223,14 @@
 					</object>
 					<int key="connectionID">41</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">infoButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="789926732"/>
+					</object>
+					<int key="connectionID">42</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -347,7 +355,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">41</int>
+			<int key="maxID">42</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -366,6 +374,7 @@
 							<string>albumArt</string>
 							<string>albumName</string>
 							<string>artistName</string>
+							<string>infoButton</string>
 							<string>playlistDataSource</string>
 							<string>popularity</string>
 							<string>tracks</string>
@@ -375,6 +384,7 @@
 							<string>SpotImageView</string>
 							<string>UILabel</string>
 							<string>SpotTouchableLabel</string>
+							<string>UIButton</string>
 							<string>SpotPlaylistTableViewDataSource</string>
 							<string>UIProgressView</string>
 							<string>UITableView</string>
@@ -427,6 +437,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">UITableView</string>
+					<string key="superclassName">UIScrollView</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">tableHeaderView</string>
 						<string key="NS.object.0">id</string>

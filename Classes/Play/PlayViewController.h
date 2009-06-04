@@ -13,7 +13,7 @@
 #import "SpotTouchableLabel.h"
 #import "PlayTitleView.h"
 
-@interface PlayViewController : UIViewController {
+@interface PlayViewController : UIViewController <UIActionSheetDelegate> {
 
   BOOL isPlaying;
 	
@@ -40,5 +40,7 @@
 //-(IBAction)takeShuffling:(id)sender;
 
 -(void)playerNotification:(NSNotification*)n;
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end

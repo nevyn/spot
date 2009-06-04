@@ -12,7 +12,7 @@
 
 @implementation PlayTitleView
 
-@synthesize artistLabel, trackLabel, albumLabel;
+@synthesize artistLabel, trackLabel, albumLabel, delegate;
 
 
 /*
@@ -26,5 +26,13 @@
   }
 }
 */
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+  NSLog(@"touchy");
+  if([self.delegate respondsToSelector:@selector(titleViewTouched:)]){
+    [self.delegate performSelector:@selector(titleViewTouched:) withObject:self];
+  }
+}
 
 @end

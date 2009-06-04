@@ -10,13 +10,15 @@
 #import "SpotTouchableLabel.h"
 
 @interface PlayTitleView : UIView {
-	IBOutlet SpotTouchableLabel *artistLabel;
+	IBOutlet UILabel *artistLabel;
 	IBOutlet UILabel *trackLabel;
-	IBOutlet SpotTouchableLabel *albumLabel;
+	IBOutlet UILabel *albumLabel;
+  
+  id delegate;
 }
 
 @property (nonatomic, readonly) UILabel *artistLabel;
 @property (nonatomic, readonly) UILabel *trackLabel;
 @property (nonatomic, readonly) UILabel *albumLabel;
-
+@property (nonatomic, assign) id delegate;
 @end

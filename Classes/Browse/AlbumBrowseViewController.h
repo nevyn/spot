@@ -20,6 +20,8 @@
   IBOutlet UIProgressView *popularity;
   IBOutlet UILabel *albumName;
   IBOutlet SpotTouchableLabel *artistName;
+  
+  IBOutlet UIButton *infoButton;
 }
 -(id)initBrowsingAlbum:(SpotAlbum*)album;
 

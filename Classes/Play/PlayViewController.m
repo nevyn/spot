@@ -73,9 +73,7 @@ PlayViewController *GlobalPlayViewController;
   trackList.rowHeight = 70;
     trackList.sectionIndexMinimumDisplayRowCount = 20;
   [self.navigationItem setTitleView:titleView];
-  
-
-  
+  titleView.delegate = self;
   
   //register self as observer for the default player
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerNotification:) name:nil object:[self defaultPlayer]];
@@ -143,6 +141,27 @@ PlayViewController *GlobalPlayViewController;
   }
 }
 
+#pragma mark The more info action sheet
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
+{
+  NSLog(@"USER WANTS MOAR!");
+  //TODO: Flip view and to to artist, album
+  // When we support it, pull info from other sources 
+  //  like if user selects track, show similar tracks from last.fm and links to youtube etc
+}
+
+-(void)titleViewTouched:(id)title;
+{
+  //ActionSheet is just SOOO UGLY I wont even enable it
+  /*
+  UIActionSheet *moreInfoSheet = [[UIActionSheet alloc] initWithTitle:@"More information about" 
+                                                             delegate:self 
+                                                    cancelButtonTitle:@"Cancel" 
+                                               destructiveButtonTitle:nil 
+                                                    otherButtonTitles:titleView.artistLabel.text, titleView.albumLabel.text, titleView.trackLabel.text, nil];
+  [moreInfoSheet showInView:self.view];
+   */
+}
 
 #pragma mark 
 #pragma mark Actions

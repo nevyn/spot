@@ -22,7 +22,6 @@
   self.title = album.name;
   
 	return self;
-	
 }
 
 /*
@@ -49,6 +48,8 @@
   if(album.coverId){
     albumArt.artId = album.coverId;
   }
+  infoButton.hidden = ![album.review length];
+  
   [albumName setText:album.name];
   artistName.text = [NSString stringWithFormat:@"%@ - %d", album.artistName, album.year];
   artistName.delegate = self;

@@ -20,6 +20,8 @@
   IBOutlet UILabel *artistName;
   IBOutlet UILabel *yearsActive;
   IBOutlet UIProgressView *popularity;
+  
+  IBOutlet UIButton *infoButton;
 }
 
 -(id)initBrowsingArtist:(SpotArtist*)artist;

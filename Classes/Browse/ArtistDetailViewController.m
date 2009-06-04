@@ -34,7 +34,12 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
   [super viewDidLoad];
-  NSString *html = [NSString stringWithFormat:@"<html><body>%@</body></html>", artist.text];
+  NSArray *paragraphs = [artist.text componentsSeparatedByString:@"\n\n"];
+  NSMutableArray *pTags = [NSMutableArray array];
+  for(NSString *block in paragraphs)
+    [pTags addObject:[NSString stringWithFormat:@"<p>%@</p>", block]];
+  NSString *text = [pTags componentsJoinedByString:@""];
+  NSString *html = [NSString stringWithFormat:@"<html><body><font size=20>%@</body></html>", text];
   [webView loadHTMLString:html baseURL:[NSURL URLWithString:@"http://www.spotify.com"]];
   webView.delegate = self;
 }
