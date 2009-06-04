@@ -159,7 +159,7 @@ enum {
             subTitle:artist.genres
          bottomTitle:artist.yearsActive
           popularity:artist.popularity 
-               image:YES 
+               image:loadImage 
              imageId:loadImage ? artist.portraitId : nil];
       
       the_cell = cell;
@@ -176,7 +176,7 @@ enum {
             subTitle:album.artistName
          bottomTitle:album.year ? [NSString stringWithFormat:@"%d", album.year] : nil
           popularity:album.popularity 
-               image:YES 
+               image:loadImage 
              imageId:loadImage ? album.coverId : nil];
       
       the_cell = cell;
