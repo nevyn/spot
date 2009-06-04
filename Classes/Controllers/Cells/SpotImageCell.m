@@ -45,7 +45,6 @@
 }
 
 - (void)dealloc {
-  [spotArt release];
   [super dealloc];
 }
 

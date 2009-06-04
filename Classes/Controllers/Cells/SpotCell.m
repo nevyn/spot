@@ -138,9 +138,9 @@
 
 - (void)dealloc {
 	// make sure you free the memory
-	[title dealloc];
-	[subTitle dealloc];
-  [spotArt dealloc];
+	[title release];
+	[subTitle release];
+  [spotArt release];
 	[super dealloc];
 }
 
