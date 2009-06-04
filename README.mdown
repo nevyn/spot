@@ -38,4 +38,3 @@ TODO
 ----
 - Network stability (buffer more, disconnect cleanly, handle dropped connections)
 - Handle disconnects (detect and reconnect)
-- Wait for despotify to get rewritten (previous 2 TODO's depend on this one)
