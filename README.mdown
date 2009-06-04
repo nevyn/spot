@@ -5,6 +5,8 @@ Spot is a Spotify client for iPhone based on [despotify](http://despotify.se/ "d
 
 All dependencies are bundled.
 
+Please note: **You MUST have a Spotify Premium account to use Spot!** Otherwise it'll just crash. Yes, I need to add a check for that...
+
 
 Contribution notes
 ------------------------
