@@ -32,7 +32,7 @@ Known bugs
 ------------------------
 - Personal playlists don't work
  - You can add playlists from URI (click link in safari) and they will be saved locally
-- despotify might lock the device on rare occations (while reading from network). Do a hard reboot if Spot stops responding and home button doesn't work (hold home and lock button pressed for 5 seconds)
+- The device might freeze on rare occations (while reading from network). Do a hard reboot if Spot stops responding and home button doesn't work (hold home and lock button pressed for 5 seconds)
 
 TODO
 ----

@@ -136,6 +136,9 @@ void cb_client_callback(int type, void*data){
   networkLock = [[NSLock alloc] init];
   [self startThread];
   
+  //This is just to try to wake up the network
+  [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.google.com"]];
+  
   //load stored playlists
   playlists = [NSKeyedUnarchiver unarchiveObjectWithFile:[self pathForFile:@"playlist"]];
   NSLog(@"got %@ %@", [playlists class], playlists);

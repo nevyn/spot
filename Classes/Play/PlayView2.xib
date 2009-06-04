@@ -275,7 +275,7 @@
 			<object class="IBUIImageView" id="850592651">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
-				<string key="NSFrameSize">{320, 320}</string>
+				<string key="NSFrameSize">{320, 330}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -566,7 +566,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>SpotImageView</string>
-					<string>{{369, 262}, {320, 320}}</string>
+					<string>{{369, 252}, {320, 330}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>SpotPlaylistTableViewDataSource</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -713,6 +713,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">UITableView</string>
+					<string key="superclassName">UIScrollView</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">tableHeaderView</string>
 						<string key="NS.object.0">id</string>

@@ -228,7 +228,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Spot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		210998B50FD5C0750028F90F /* PlayView2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlayView2.xib; path = Classes/Play/PlayView2.xib; sourceTree = "<group>"; };
+		210998B50FD5C0750028F90F /* PlayView2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayView2.xib; sourceTree = "<group>"; };
 		21F654160FD12BC6000403F8 /* SpotArtistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotArtistCell.h; sourceTree = "<group>"; };
 		21F654170FD12BC6000403F8 /* SpotArtistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotArtistCell.m; sourceTree = "<group>"; };
 		21F654180FD12BC6000403F8 /* SpotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotCell.h; sourceTree = "<group>"; };
@@ -319,7 +319,6 @@
 		05447ED20FCF1167004CC539 /* CoSpotify */ = {
 			isa = PBXGroup;
 			children = (
-				21F654070FD12B44000403F8 /* SpotControllers */,
 				05447ED30FCF1167004CC539 /* CoSpotify.h */,
 				05447ED40FCF1167004CC539 /* CoSpotify.m */,
 				21F654A70FD13FAE000403F8 /* SpotImage.h */,
@@ -365,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				05447EF30FCF1167004CC539 /* PlayView.xib */,
+				210998B50FD5C0750028F90F /* PlayView2.xib */,
 				05447EF40FCF1167004CC539 /* PlayViewController.h */,
 				05447EF50FCF1167004CC539 /* PlayViewController.m */,
 				21F65B550FD1B564000403F8 /* PlayTitleView.h */,
@@ -509,13 +509,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		21F654070FD12B44000403F8 /* SpotControllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = SpotControllers;
-			sourceTree = "<group>";
-		};
 		21F654140FD12BC6000403F8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -561,7 +554,6 @@
 				05447F2B0FCF1173004CC539 /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				210998B50FD5C0750028F90F /* PlayView2.xib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";

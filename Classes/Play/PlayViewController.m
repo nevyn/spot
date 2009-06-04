@@ -195,18 +195,18 @@ PlayViewController *GlobalPlayViewController;
     [playPauseButton setHidden:YES];
   }
   if([[n name] isEqual:@"playbackDidStart"]){
-    [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
+    [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
     [playPauseButton setHidden:NO];
     [waitForPlaySpinner stopAnimating];
     [self selectCurrentTrack];
   }
   if([[n name] isEqual:@"playbackDidPause"]){
-    [playPauseButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
+    [playPauseButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
     [playPauseButton setHidden:NO];
     [waitForPlaySpinner stopAnimating];
   }
   if([[n name] isEqual:@"playbackDidStop"]){
-    [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal|UIControlStateHighlighted|UIControlStateDisabled|UIControlStateSelected];
+    [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
     [playPauseButton setHidden:NO];
     [waitForPlaySpinner stopAnimating];
   }
