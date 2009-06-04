@@ -31,7 +31,6 @@
   [super layoutSubviews];
   
 	// getting the cell size
-  CGRect contentRect = self.contentView.bounds;
   CGRect selfRect = [self bounds];
   
 	// In this example we will never be editing, but this illustrates the appropriate pattern

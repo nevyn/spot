@@ -99,7 +99,7 @@
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *)tableView:(UITableView *)tableView_ cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
 
   int idx = [indexPath indexAtPosition:1];
@@ -107,7 +107,7 @@
   
   static NSString *SpotCellIdentifier = @"SpotCell";
   
-  SpotCell *cell = (SpotCell *)[tableView dequeueReusableCellWithIdentifier:SpotCellIdentifier];
+  SpotCell *cell = (SpotCell *)[tableView_ dequeueReusableCellWithIdentifier:SpotCellIdentifier];
   if (cell == nil) 
     cell = [[[SpotCell alloc] initWithFrame:CGRectZero reuseIdentifier:SpotCellIdentifier] autorelease];
   	

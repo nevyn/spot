@@ -9,9 +9,6 @@
 #import "PlayTitleView.h"
 #import "SpotSession.h"
 
-@interface PlayTitleView ()
-- (SpotTouchableLabel *)newLabelWithPrimaryColor:(UIColor *)primaryColor selectedColor:(UIColor *)selectedColor fontSize:(CGFloat)fontSize bold:(BOOL)bold;
-@end
 
 @implementation PlayTitleView
 

@@ -18,7 +18,7 @@
 
 @synthesize delegate;
 
--(void)initWithFrame:(CGRect)frame;
+-(id)initWithFrame:(CGRect)frame;
 {
   if(![super initWithFrame:frame])return nil;
   [self setUserInteractionEnabled:YES];
