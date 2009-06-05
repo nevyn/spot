@@ -308,7 +308,7 @@ static void parse_browse_album(ezxml_t top, struct album_browse* a)
     xmlatof(&a->popularity, top, "popularity", -1);
     xmlstrncpy(a->artist, sizeof a->artist, top, "artist", -1);
     xmlstrncpy(a->artist_id, sizeof a->artist_id, top, "artist-id", -1);
-    
+    xmlstrncpy(a->type, sizeof a->type, top, "album-type", -1);
     ezxml_t x = ezxml_get(top, "review",-1);
     if (x) {
       int len = strlen(x->txt);

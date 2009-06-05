@@ -17,6 +17,9 @@
 @interface ArtistBrowseViewController ()
 @property (retain) SpotArtist *artist;
 @property (retain) NSArray *albums;
+@property (retain) NSArray *singles;
+@property (retain) NSArray *other;
+
 @end
 
 NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
@@ -33,7 +36,24 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
 		return nil;
   
 	self.artist = artist_;
-	self.albums = [artist.albums sortedArrayUsingFunction:AlbumComparer context:NULL];
+//	self.albums = [artist.albums sortedArrayUsingFunction:AlbumComparer context:NULL];
+  
+  //Sort into albums, singles, other
+  albums = [[NSMutableArray alloc] init];
+  singles = [[NSMutableArray alloc] init];
+  other = [[NSMutableArray alloc] init];
+  for(SpotAlbum *album in artist.albums){
+    if([album.type isEqual:@"album"])
+      [albums addObject:album];
+    else if([album.type isEqual:@"single"])
+      [singles addObject:album];
+    else
+      [other addObject:album];
+  }
+  
+  [albums sortUsingFunction:AlbumComparer context:NULL];
+  [singles sortUsingFunction:AlbumComparer context:NULL];
+  [other sortUsingFunction:AlbumComparer context:NULL];
 	
 	return self;
 }
@@ -41,6 +61,8 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
 - (void)dealloc {
   self.artist = nil;
 	self.albums = nil;
+  self.singles = nil;
+  self.other = nil;
   [super dealloc];
 }
 /*
@@ -92,18 +114,30 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
 #pragma mark Table view callbacks
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
+  return 3;
 }
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-  return [albums count];
+  NSArray *albumList = nil;
+  switch (section) {
+    case 0: albumList = albums; break;
+    case 1: albumList = singles; break;
+    case 2: albumList = other; break;
+  }
+  
+  return [albumList count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
 {
-	return @"Albums";
+  switch(section){
+    case 0: return @"Albums";
+    case 1: return @"Singles";
+    case 2: return @"Other";
+  }
+  return @"???";
 }
 
 // Customize the appearance of table view cells.
@@ -115,14 +149,20 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
   if (cell == nil) 
     cell = [[[SpotCell alloc] initWithFrame:CGRectZero reuseIdentifier:SpotCellIdentifier] autorelease];
   
+  NSArray *albumList = nil;
+  switch (indexPath.section) {
+    case 0: albumList = albums; break;
+    case 1: albumList = singles; break;
+    case 2: albumList = other; break;
+  }
   
 	int idx = [indexPath indexAtPosition:1];
-  SpotAlbum *album = [albums objectAtIndex:idx];
+  SpotAlbum *album = [albumList objectAtIndex:idx];
   cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-  
+  NSString *yearString = album.year ? [NSString stringWithFormat:@"%d", album.year] : @"";
   [cell setTitle:album.name
         subTitle:album.artistName
-     bottomTitle:album.year ? [NSString stringWithFormat:@"%d", album.year] : @""
+     bottomTitle:yearString
       popularity:album.popularity
            image:YES
          imageId:album.coverId];
@@ -133,8 +173,16 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	int idx = [indexPath indexAtPosition:1];
+  
+  NSArray *albumList = nil;
+  switch (indexPath.section) {
+    case 0: albumList = albums; break;
+    case 1: albumList = singles; break;
+    case 2: albumList = other; break;
+  }
+  
 
-  SpotAlbum *album = [albums objectAtIndex:idx];
+  SpotAlbum *album = [albumList objectAtIndex:idx];
   [[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
 }
 
@@ -145,5 +193,5 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
   [detailView release];
 }
 
-@synthesize artist, albums;
+@synthesize artist, albums, singles, other;
 @end

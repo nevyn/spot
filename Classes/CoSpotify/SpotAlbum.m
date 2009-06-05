@@ -39,6 +39,7 @@
   name = [[NSString alloc] initWithUTF8String:album->name];
   albumId = [[NSString alloc] initWithUTF8String:album->id];
   year = album->year;
+  type = [[NSString alloc] initWithUTF8String:album->type];
   coverId = [[NSString alloc] initWithUTF8String:album->cover_id];
   popularity = album->popularity;
   artistName = [[NSString alloc] initWithUTF8String:album->artist];
@@ -96,6 +97,7 @@
   name = [[decoder decodeObjectForKey:@"SAname"] retain];
   albumId = [[decoder decodeObjectForKey:@"SAalbumId"] retain];
   year = [decoder decodeIntForKey:@"SAyear"];
+  type = [decoder decodeObjectForKey:@"SAtype"];
   coverId = [[decoder decodeObjectForKey:@"SAcoverId"] retain];
   popularity = [decoder decodeFloatForKey:@"SApopularity"];
   artistName = [[decoder decodeObjectForKey:@"SAartistName"] retain];
@@ -112,6 +114,7 @@
   [encoder encodeObject:name forKey:@"SAname"];
   [encoder encodeObject:albumId forKey:@"SAalbumId"];
   [encoder encodeInt:year forKey:@"SAyear"];
+  [encoder encodeObject:type forKey:@"SAtype"];
   [encoder encodeObject:coverId forKey:@"SAcoverId"];
   [encoder encodeFloat:popularity forKey:@"SApopularity"];
   [encoder encodeObject:artistName forKey:@"SAartistName"];

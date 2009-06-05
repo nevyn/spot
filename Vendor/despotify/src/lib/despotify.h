@@ -78,6 +78,7 @@ struct album_browse
     char artist[STRING_LENGTH];
     char artist_id[33];
     char *review;
+    char type[STRING_LENGTH];
 };
 
 struct artist

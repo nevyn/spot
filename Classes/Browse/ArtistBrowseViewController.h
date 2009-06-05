@@ -13,7 +13,6 @@
 
 @interface ArtistBrowseViewController : UIViewController <UITableViewDelegate, UIWebViewDelegate> {
   SpotArtist *artist;
-	NSArray *albums;
   IBOutlet SpotImageView *portrait;
   IBOutlet UITableView *albumTable;
   
@@ -22,6 +21,10 @@
   IBOutlet UIProgressView *popularity;
   
   IBOutlet UIButton *infoButton;
+  
+  NSMutableArray *albums;
+  NSMutableArray *singles;
+  NSMutableArray *other;
 }
 
 -(id)initBrowsingArtist:(SpotArtist*)artist;
