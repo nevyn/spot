@@ -39,6 +39,14 @@
   [super dealloc];
 }
 
+- (void)layoutSubviews;
+{  
+  [super layoutSubviews];
+  CGFloat dx = self.bounds.size.width - activityView.bounds.size.width;
+  CGFloat dy = self.bounds.size.height - activityView.bounds.size.height;
+  activityView.frame = CGRectInset(self.bounds, dx/2, dy/2);
+}
+
 -(NSString*)artId;
 {
 	return artId;

@@ -30,7 +30,8 @@ Please follow these recommendations, or I might not be able to pull changes from
 
 Known bugs
 ------------------------
-- Personal playlists don't work
+- Changing tracks too fast (before sound starts playing) may result in crash
+- Personal playlists doesn't work
  - You can add playlists from URI (click link in safari) and they will be saved locally
 - The device might freeze on rare occations (while reading from network). Do a hard reboot if Spot stops responding and home button doesn't work (hold home and lock button pressed for 5 seconds)
 
