@@ -85,21 +85,22 @@
     float imageWidth = spotArt.bounds.size.width;
     if(spotArt.hidden) imageWidth = 0;
     CGFloat xPos = selfRect.origin.x + imageWidth + 5;
+    CGFloat width = selfRect.size.width - xPos - 55;
 
     //title
 		frame = CGRectMake(xPos, 4, selfRect.size.width-xPos-40, 20);
 		self.title.frame = frame;
     
 		//subTitle
-		frame = CGRectMake(xPos, frame.origin.y+frame.size.height, selfRect.size.width-xPos-40, 14);
+		frame = CGRectMake(xPos, frame.origin.y+frame.size.height, width, 14);
 		self.subTitle.frame = frame;
     
     //bottomTitle
-		frame = CGRectMake(xPos, frame.origin.y+frame.size.height, selfRect.size.width-xPos-40, 14);
+		frame = CGRectMake(xPos, frame.origin.y+frame.size.height, width, 14);
 		self.bottomTitle.frame = frame;
     
     //popular?
-    frame = CGRectMake(xPos+10, frame.origin.y+frame.size.height+2, selfRect.size.width-xPos-80, self.popularity.bounds.size.height);
+    frame = CGRectMake(xPos+10, frame.origin.y+frame.size.height+2, width-25, self.popularity.bounds.size.height);
     self.popularity.frame = frame;
 	}
 }

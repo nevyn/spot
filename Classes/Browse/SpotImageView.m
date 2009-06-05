@@ -57,7 +57,7 @@
     else
       [self setImage:spotImage.image];
   else
-    [self setImage:[UIImage imageNamed:@"icon.png"]]; //default image  
+    [self setImage:[UIImage imageNamed:@"noart.png"]]; //default image  
   [activityView stopAnimating];
 }
 
@@ -89,11 +89,12 @@
     [artId release];
     artId = id;
     //default image while loading
-    [self setImage:[UIImage imageNamed:@"icon.png"]];
     if(artId && [artId length] > 0){
+      [self setImage:[UIImage imageNamed:@"loading.png"]];
       //Begin load image
       [self loadImage];
     } else {
+      [self setImage:[UIImage imageNamed:@"noart.png"]];
       [activityView stopAnimating];
     }
   } 
