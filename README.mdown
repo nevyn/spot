@@ -13,12 +13,13 @@ Supporting free accounts without ads and commercials would just not be fair (and
 Installing
 ----------
 Jailbreak  (thanx @sveinhal)
- * Compile or use nevyns [binaries](http://github.com/nevyn/spot/downloads)
- * Unzip Spot.app dir from the zip file in /Applications/Spot.app (ignore other files and dirs, they don’t matter)
- * Respring device (reboot or killall SpringBoard won’t do). Respring is installed with e.g BossPrefs, but lots of other apps lets you Respring your device.
+* Compile or use nevyns [binaries](http://github.com/nevyn/spot/downloads)
+* Unzip Spot.app dir from the zip file in /Applications/Spot.app (ignore other files and dirs, they don’t matter)
+* Respring device (reboot or killall SpringBoard won’t do). Respring is installed with e.g BossPrefs, but lots of other apps lets you Respring your device.
+
 
 With iPhone developer licence: 
- * Connect iPhone and build for device
+* Connect iPhone and build for device
  
 Contribution notes
 ------------------------
