@@ -114,6 +114,10 @@ void cb_client_callback(int type, void*data){
 -(id)init;
 {
 	if( ! [super init] ) return nil;
+  
+  //This is just to try to wake up the network
+  [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.google.com"]];
+
 	
 	if(!despotify_init()) {
 		NSLog(@"Init failed");
@@ -135,10 +139,7 @@ void cb_client_callback(int type, void*data){
   cache = [[SpotCache alloc] init];
   networkLock = [[NSLock alloc] init];
   [self startThread];
-  
-  //This is just to try to wake up the network
-  [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.google.com"]];
-  
+    
   //load stored playlists
   playlists = [NSKeyedUnarchiver unarchiveObjectWithFile:[self pathForFile:@"playlist"]];
   NSLog(@"got %@ %@", [playlists class], playlists);
