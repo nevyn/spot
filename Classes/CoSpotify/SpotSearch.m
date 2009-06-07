@@ -32,18 +32,19 @@
 {
   if( ! [super init] ) return nil;
 
-  searchResult = despotify_search(session_.session, (char*)[searchText UTF8String], maxResults_);
-  if(!searchResult)NSLog(@"Search Error: %s", session_.session->last_error);
-  [self initWithSearchResult:searchResult];
+  struct search_result *sr = despotify_search(session_.session, (char*)[searchText UTF8String], maxResults_);
+  if(!sr)
+		NSLog(@"Search Error: %s", session_.session->last_error);
   
-  return self;
+  return [self initWithSearchResult:sr];;
 }
 
 -(id)initWithSearchResult:(struct search_result*)sr;
 {
-	if( ! [super init] ) return nil;
-  
-  if( ! sr ) return nil;
+	if( ! [super init] || !sr ) {
+		[self release];
+		return nil;
+	}
   
   //playlist = [[SpotPlaylist alloc] initWithPlaylist:sr->playlist];
   
@@ -91,7 +92,8 @@
 -(void) dealloc;
 {
   NSLog(@"Freeing search for %@", query);
-  despotify_free_search(searchResult); //frees all playlists, albums, artists found... 
+	if(searchResult)
+		despotify_free_search(searchResult); //frees all playlists, albums, artists found... 
   [suggestion release];
   [query release];
   [tracks release];
