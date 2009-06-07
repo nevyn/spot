@@ -14,7 +14,7 @@
 @implementation SpotAlbum
 
 @synthesize browsing;
-@synthesize version, name, artistName, artistId, type, year, coverId, review, copyright, allowed, catalogues, similarAlbumIds, discs, popularity;
+@synthesize version, name, artistName, artistId, type, year, coverId, review, copyright, catalogues, similarAlbumIds, discs, popularity;
 
 -(id)initWithAlbum:(struct album*)album;
 {
@@ -28,6 +28,16 @@
   artistId = [[NSString alloc] initWithUTF8String:album->artist_id];
   coverId  = [[NSString alloc] initWithUTF8String:album->cover_id];
   popularity = album->popularity;
+  
+  if(album->has_forbidden){
+    NSString *forbiddenString = [NSString stringWithUTF8String:album->forbidden];
+    forbidden = [[forbiddenString componentsSeparatedByString:@" "] retain];
+  }
+  
+  if(album->has_allowed){
+    NSString *allowedString = [NSString stringWithUTF8String:album->allowed];
+    allowed = [[allowedString componentsSeparatedByString:@" "] retain];
+  }
   
   return self;
 }
@@ -47,6 +57,16 @@
   if(album->review)
     review = [[NSString alloc] initWithUTF8String:album->review];
   
+  if(album->has_forbidden){
+    NSString *forbiddenString = [NSString stringWithUTF8String:album->forbidden];
+    forbidden = [[forbiddenString componentsSeparatedByString:@" "] retain];
+  }
+  
+  if(album->has_allowed){
+    NSString *allowedString = [NSString stringWithUTF8String:album->allowed];
+    allowed = [[allowedString componentsSeparatedByString:@" "] retain];
+  }
+
   
   //TODO: multiple discs when despotify has support for it
   NSMutableArray *tracks = [NSMutableArray array];
@@ -77,10 +97,11 @@
   [artistName release];
   [artistId release];
   [type release];
+  [allowed release];
+  [forbidden release];
   [coverId release];
   [review release];
   [copyright release];
-  [allowed release];
   [catalogues release];
   [similarAlbumIds release];
   [discs release];
@@ -98,6 +119,8 @@
   albumId = [[decoder decodeObjectForKey:@"SAalbumId"] retain];
   year = [decoder decodeIntForKey:@"SAyear"];
   type = [decoder decodeObjectForKey:@"SAtype"];
+  allowed = [decoder decodeObjectForKey:@"SAallowed"];
+  forbidden = [decoder decodeObjectForKey:@"SAforbidden"];
   coverId = [[decoder decodeObjectForKey:@"SAcoverId"] retain];
   popularity = [decoder decodeFloatForKey:@"SApopularity"];
   artistName = [[decoder decodeObjectForKey:@"SAartistName"] retain];
@@ -115,6 +138,8 @@
   [encoder encodeObject:albumId forKey:@"SAalbumId"];
   [encoder encodeInt:year forKey:@"SAyear"];
   [encoder encodeObject:type forKey:@"SAtype"];
+  [encoder encodeObject:allowed forKey:@"SAallowed"];
+  [encoder encodeObject:forbidden forKey:@"SAforbidden"];
   [encoder encodeObject:coverId forKey:@"SAcoverId"];
   [encoder encodeFloat:popularity forKey:@"SApopularity"];
   [encoder encodeObject:artistName forKey:@"SAartistName"];
@@ -158,6 +183,14 @@
 -(NSInteger)hash;
 {
   return [self.artistId hash];
+}
+
+-(BOOL)allowed;
+{
+  NSString *myCountry = [[SpotSession defaultSession] country];
+  if(forbidden && [forbidden containsObject:myCountry]) return NO;
+  if(allowed && ![allowed containsObject:myCountry]) return NO;
+  return YES;
 }
 
 @end

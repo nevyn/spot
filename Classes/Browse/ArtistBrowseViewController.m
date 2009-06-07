@@ -19,6 +19,7 @@
 @property (retain) NSArray *albums;
 @property (retain) NSArray *singles;
 @property (retain) NSArray *other;
+@property (retain) NSArray *unavailable;
 
 @end
 
@@ -42,8 +43,12 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
   albums = [[NSMutableArray alloc] init];
   singles = [[NSMutableArray alloc] init];
   other = [[NSMutableArray alloc] init];
+  unavailable = [[NSMutableArray alloc] init];
+  
   for(SpotAlbum *album in artist.albums){
-    if([album.type isEqual:@"album"])
+    if(!album.allowed)
+      [unavailable addObject:album];
+    else if([album.type isEqual:@"album"])
       [albums addObject:album];
     else if([album.type isEqual:@"single"])
       [singles addObject:album];
@@ -54,7 +59,8 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
   [albums sortUsingFunction:AlbumComparer context:NULL];
   [singles sortUsingFunction:AlbumComparer context:NULL];
   [other sortUsingFunction:AlbumComparer context:NULL];
-	
+	[unavailable sortUsingFunction:AlbumComparer context:NULL];
+  
 	return self;
 }
 
@@ -63,6 +69,7 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
 	self.albums = nil;
   self.singles = nil;
   self.other = nil;
+  self.unavailable = nil;
   [super dealloc];
 }
 /*
@@ -114,6 +121,7 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
 #pragma mark Table view callbacks
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  if(unavailable.count > 0) return 4;
   return 3;
 }
 
@@ -125,6 +133,7 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
     case 0: albumList = albums; break;
     case 1: albumList = singles; break;
     case 2: albumList = other; break;
+    case 3: albumList = unavailable; break;
   }
   
   return [albumList count];
@@ -136,6 +145,7 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
     case 0: return @"Albums";
     case 1: return @"Singles";
     case 2: return @"Other";
+    case 3: return @"Unavailable in your country";
   }
   return @"???";
 }
@@ -154,6 +164,7 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
     case 0: albumList = albums; break;
     case 1: albumList = singles; break;
     case 2: albumList = other; break;
+    case 3: albumList = unavailable; break;
   }
   
 	int idx = [indexPath indexAtPosition:1];
@@ -181,9 +192,9 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
     case 0: albumList = albums; break;
     case 1: albumList = singles; break;
     case 2: albumList = other; break;
+    case 3: albumList = unavailable; break;
   }
   
-
   SpotAlbum *album = [albumList objectAtIndex:idx];
   [[self navigationController] pushViewController:[[[AlbumBrowseViewController alloc] initBrowsingAlbum:album] autorelease] animated:YES];
 }
@@ -195,5 +206,5 @@ NSInteger AlbumComparer(SpotAlbum *a, SpotAlbum *b, void * ignore)
   [detailView release];
 }
 
-@synthesize artist, albums, singles, other;
+@synthesize artist, albums, singles, other, unavailable;
 @end

@@ -63,6 +63,10 @@ struct album
     char cover_id[41];
     float popularity;
     struct album* next;
+    char forbidden[STRING_LENGTH];
+    char allowed[STRING_LENGTH];
+  bool has_forbidden;
+  bool has_allowed;
 };
 
 struct album_browse
@@ -79,6 +83,10 @@ struct album_browse
     char artist_id[33];
     char *review;
     char type[STRING_LENGTH];
+    char forbidden[STRING_LENGTH];
+    char allowed[STRING_LENGTH];
+  bool has_forbidden;
+  bool has_allowed;
 };
 
 struct artist

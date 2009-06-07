@@ -15,7 +15,7 @@
 #include "util.h"
 #include "xml.h"
 
-void xmlstrncpy(char* dest, int len, ezxml_t xml, ...)
+int xmlstrncpy(char* dest, int len, ezxml_t xml, ...)
 {
     va_list ap;
     ezxml_t r;
@@ -27,7 +27,9 @@ void xmlstrncpy(char* dest, int len, ezxml_t xml, ...)
     if (r) {
         strncpy(dest, r->txt, len);
         dest[len-1] = 0;
+      return 1;
     }
+  return 0;
 }
 
 void xmlatoi(int* dest, ezxml_t xml, ...)
@@ -288,6 +290,8 @@ static void parse_album(ezxml_t top, struct album* a) {
     xmlstrncpy(a->artist, sizeof a->artist, top, "artist-name", -1);
     xmlstrncpy(a->artist_id, sizeof a->artist_id, top, "artist-id", -1);
     xmlstrncpy(a->cover_id, sizeof a->cover_id, top, "cover", -1);
+    a->has_forbidden = xmlstrncpy(a->forbidden, sizeof a->forbidden, top, "forbidden", -1);
+    a->has_allowed = xmlstrncpy(a->allowed, sizeof a->allowed, top, "allowed", -1);
     xmlatof(&a->popularity, top, "popularity", -1);
 }
 
@@ -309,6 +313,8 @@ static void parse_browse_album(ezxml_t top, struct album_browse* a)
     xmlstrncpy(a->artist, sizeof a->artist, top, "artist", -1);
     xmlstrncpy(a->artist_id, sizeof a->artist_id, top, "artist-id", -1);
     xmlstrncpy(a->type, sizeof a->type, top, "album-type", -1);
+    a->has_forbidden = xmlstrncpy(a->forbidden, sizeof a->forbidden, top, "forbidden", -1);
+    a->has_allowed = xmlstrncpy(a->allowed, sizeof a->allowed, top, "allowed", -1);
     ezxml_t x = ezxml_get(top, "review",-1);
     if (x) {
       int len = strlen(x->txt);

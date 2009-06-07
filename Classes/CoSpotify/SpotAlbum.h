@@ -26,9 +26,10 @@
   NSString *coverId;
   NSString *review;
   NSArray *copyright;
-  NSString *allowed;
   NSString *catalogues; //from restrictions
   NSArray *similarAlbumIds;
+  NSArray *allowed;
+  NSArray *forbidden;
   float popularity;
   
   NSArray *discs;
@@ -58,7 +59,6 @@
 @property (readonly, nonatomic) NSString *coverId;
 @property (readonly, nonatomic) NSString *review;
 @property (readonly, nonatomic) NSArray *copyright;
-@property (readonly, nonatomic) NSString *allowed;
 @property (readonly, nonatomic) NSString *catalogues; 
 @property (readonly, nonatomic) NSArray *similarAlbumIds;
 @property (readonly, nonatomic) float popularity;
@@ -69,5 +69,7 @@
 
 //Helpers
 @property (readonly, nonatomic) SpotArtist *artist;
+
+@property (readonly, nonatomic) BOOL allowed;
            
 @end

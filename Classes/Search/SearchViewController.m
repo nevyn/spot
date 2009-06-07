@@ -179,6 +179,10 @@ enum {
                image:loadImage 
              imageId:loadImage ? album.coverId : nil];
       
+      if(!album.allowed){
+        cell.bottomTitle.text = @"Unavailable in your country";
+      }
+      
       the_cell = cell;
 		} break;
     case ShowTracks: {

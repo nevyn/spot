@@ -24,7 +24,7 @@
   if(![super initWithFrame:frame]) return nil;
   NSLog(@"imageview init");
   
-  activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+  activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
   [self addSubview:activityView];
   [activityView setHidden:NO];
   activityView.hidesWhenStopped = YES;
@@ -98,7 +98,8 @@
     artId = id;
     //default image while loading
     if(artId && [artId length] > 0){
-      [self setImage:[UIImage imageNamed:@"loading.png"]];
+      //[self setImage:[UIImage imageNamed:@"loading.png"]];
+      [self setImage:nil];
       //Begin load image
       [self loadImage];
     } else {

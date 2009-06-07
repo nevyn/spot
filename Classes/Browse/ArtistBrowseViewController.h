@@ -25,6 +25,7 @@
   NSMutableArray *albums;
   NSMutableArray *singles;
   NSMutableArray *other;
+  NSMutableArray *unavailable;
 }
 
 -(id)initBrowsingArtist:(SpotArtist*)artist;
