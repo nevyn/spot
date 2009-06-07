@@ -14,6 +14,7 @@
   SpotPlaylist *playlist;
   
   UITableViewCellAccessoryType cellAccessoryType;
+  
 }
 
 @property (readwrite, retain) SpotPlaylist *playlist;

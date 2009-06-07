@@ -10,6 +10,7 @@
 #import "SpotPlaylist.h"
 #import "SpotTrack.h"
 #import "SpotCell.h"
+#import "SpotSession.h"
 
 @implementation SpotPlaylistTableViewDataSource
 
@@ -93,7 +94,7 @@
       popularity:track.popularity
            image:NO 
          imageId:nil];
-  
+    
   return cell;
 }
 

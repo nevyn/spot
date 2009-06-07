@@ -27,6 +27,8 @@
   IBOutlet UIView *flipView;
   
   IBOutlet PlayTitleView *titleView;
+  
+  UITableViewCell *oldTrackCell;
 }
 +defaultController;
 

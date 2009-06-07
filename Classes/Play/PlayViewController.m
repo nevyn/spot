@@ -136,8 +136,14 @@ PlayViewController *GlobalPlayViewController;
   //bounds check if we are at top of list
   if(trackList.bounds.origin.y > 80 && self.defaultPlayer.currentPlaylist && self.defaultPlayer.currentTrack){
     int idx = [self.defaultPlayer.currentPlaylist.tracks indexOfObject:self.defaultPlayer.currentTrack];
-    if(idx != NSNotFound)
-      [trackList selectRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    if(idx != NSNotFound){
+      if(oldTrackCell) oldTrackCell.accessoryType = UITableViewCellAccessoryNone;
+      NSIndexPath *path = [NSIndexPath indexPathForRow:idx inSection:0];
+      UITableViewCell *newCell = [trackList cellForRowAtIndexPath:path];
+      oldTrackCell = newCell;
+      newCell.accessoryType = UITableViewCellAccessoryCheckmark;
+      [trackList selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    }
   }
 }
 
