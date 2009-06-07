@@ -9,8 +9,8 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="28"/>
-			<integer value="56"/>
 			<integer value="1"/>
+			<integer value="56"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -40,12 +40,12 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIImageView" id="893589459">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">290</int>
+						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{0, 326}, {320, 61}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<int key="IBUIContentMode">4</int>
+						<int key="IBUIContentMode">2</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
@@ -54,7 +54,7 @@
 					</object>
 					<object class="IBUIButton" id="1031098777">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">268</int>
+						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{11, 331}, {76, 50}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -89,7 +89,7 @@
 					</object>
 					<object class="IBUIButton" id="288898960">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">268</int>
+						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{121, 331}, {76, 50}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -117,7 +117,7 @@
 					</object>
 					<object class="IBUIButton" id="593420951">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">268</int>
+						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{224, 331}, {76, 50}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -163,7 +163,7 @@
 					</object>
 					<object class="IBUIActivityIndicatorView" id="750639754">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483348</int>
+						<int key="NSvFlags">-2147483379</int>
 						<string key="NSFrame">{{136, 337}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -562,7 +562,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>PlayViewController</string>
 					<string>UIResponder</string>
-					<string>{{418, 170}, {320, 480}}</string>
+					<string>{{459, 311}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>SpotImageView</string>

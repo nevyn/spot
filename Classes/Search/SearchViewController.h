@@ -32,7 +32,6 @@ typedef enum{
 -(void)searchForString:(NSString*)string;
 
 -(IBAction)headerChanged:(id)sender;
-;
 
 @property (nonatomic, assign) SpotSearch *searchResults;
 

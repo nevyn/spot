@@ -133,7 +133,7 @@ void audioqueue_global_statechange_callback_hack(int state){
 -(BOOL)startPlayback;
 {
   NSLog(@"startPlayback. state: %d was: %d want: %d", currentState, previousState, wantState);
-  if(!self.currentTrack.isPlayable) NSLog(@"CANT play this track: %@");
+  if(!self.currentTrack.isPlayable) NSLog(@"CANT play this track: %@", self.currentTrack);
   if(self.currentTrack && self.currentTrack.isPlayable){
     wantState = PLAYER_PLAYING;
     

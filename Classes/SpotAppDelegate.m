@@ -63,12 +63,23 @@
     searchNav = searchPage;
 	}
     
+  //Browsing
+  SpotNavigationController *browsePage;
+	{
+		browsePage = [[[SpotNavigationController alloc] init] autorelease];
+		
+		SearchViewController *browse = [[[SearchViewController alloc] init] autorelease];
+		[browsePage pushViewController:browse animated:NO];
+	}
+  
+    
 	
 	NSArray *pages = [NSArray arrayWithObjects:
-					  profilePage,
-					  searchPage,
-					  playlistPage,
-					  nil];
+                    browsePage,
+                    searchPage,
+                    playlistPage,
+                    profilePage,
+                    nil];
 	
 	// Add it to the root
 	[tabs setViewControllers:pages animated:NO];

@@ -66,7 +66,6 @@
 		05A664960FCF1B1B00C8DC40 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A664610FCF1B1B00C8DC40 /* hmac.c */; };
 		05A664970FCF1B1B00C8DC40 /* keyexchange.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A664630FCF1B1B00C8DC40 /* keyexchange.c */; };
 		05A6649A0FCF1B1B00C8DC40 /* local.mk in Resources */ = {isa = PBXBuildFile; fileRef = 05A664680FCF1B1B00C8DC40 /* local.mk */; };
-		05A6649B0FCF1B1B00C8DC40 /* network.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A664690FCF1B1B00C8DC40 /* network.c */; };
 		05A6649C0FCF1B1B00C8DC40 /* packet.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A6646B0FCF1B1B00C8DC40 /* packet.c */; };
 		05A6649E0FCF1B1B00C8DC40 /* puzzle.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A6646F0FCF1B1B00C8DC40 /* puzzle.c */; };
 		05A6649F0FCF1B1B00C8DC40 /* session.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A664710FCF1B1B00C8DC40 /* session.c */; };
@@ -81,6 +80,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		210998B60FD5C0750028F90F /* PlayView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 210998B50FD5C0750028F90F /* PlayView2.xib */; };
+		2141682A0FDC3F0500E71233 /* network.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A664690FCF1B1B00C8DC40 /* network.c */; };
 		217F97EF0FD9123A00C0A6A4 /* noart.png in Resources */ = {isa = PBXBuildFile; fileRef = 217F97EE0FD9123A00C0A6A4 /* noart.png */; };
 		217F97FB0FD913A700C0A6A4 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 217F97FA0FD913A700C0A6A4 /* loading.png */; };
 		21F654200FD12BC6000403F8 /* SpotArtistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F654170FD12BC6000403F8 /* SpotArtistCell.m */; };
@@ -695,7 +695,6 @@
 				05A664950FCF1B1B00C8DC40 /* handlers.c in Sources */,
 				05A664960FCF1B1B00C8DC40 /* hmac.c in Sources */,
 				05A664970FCF1B1B00C8DC40 /* keyexchange.c in Sources */,
-				05A6649B0FCF1B1B00C8DC40 /* network.c in Sources */,
 				05A6649C0FCF1B1B00C8DC40 /* packet.c in Sources */,
 				05A6649E0FCF1B1B00C8DC40 /* puzzle.c in Sources */,
 				05A6649F0FCF1B1B00C8DC40 /* session.c in Sources */,
@@ -713,6 +712,7 @@
 				21F654A90FD13FAE000403F8 /* SpotImage.m in Sources */,
 				21F65A8A0FD1A168000403F8 /* audioqueue.c in Sources */,
 				21F65B570FD1B564000403F8 /* PlayTitleView.m in Sources */,
+				2141682A0FDC3F0500E71233 /* network.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

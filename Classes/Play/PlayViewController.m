@@ -39,8 +39,8 @@ PlayViewController *GlobalPlayViewController;
   //PlayView2
   //  cover art is header of playlist
   NSString *nib = @"PlayView";
-  if([[NSUserDefaults standardUserDefaults] boolForKey:@"experimental"])
-    nib = @"PlayView2";
+  if([[NSUserDefaults standardUserDefaults] boolForKey:@"experimental"]) nib = @"PlayView2";
+
 	if( ! [super initWithNibName:nib bundle:nil] ) return nil;
 	
   AudioSessionInitialize (NULL, NULL, NULL, NULL); 
@@ -80,13 +80,14 @@ PlayViewController *GlobalPlayViewController;
 }
 
 
-/*
+
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  return YES;
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-*/
+
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -171,6 +172,8 @@ PlayViewController *GlobalPlayViewController;
 
 #pragma mark 
 #pragma mark Actions
+
+
 -(void)backAction:(id)sender;
 {
   //navbarLeftButton??

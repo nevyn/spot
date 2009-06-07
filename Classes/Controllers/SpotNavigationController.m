@@ -71,6 +71,20 @@
 - (void)pushNavigationItem:(UIViewController *)item animated:(BOOL)animated;
 {
   [super pushViewController:item animated:animated];
+  if([[SpotSession defaultSession].player isPlaying]){
+    //TODO: Use custom view
+    self.topViewController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Now Playing" style:UIBarButtonItemStyleBordered target:self action:@selector(showPlayer)] autorelease];
+  }  
+}
+
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated;
+{
+  UIViewController *old = [super popViewControllerAnimated:animated];
+  if([[SpotSession defaultSession].player isPlaying]){
+    //TODO: Use custom view
+    self.topViewController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Now Playing" style:UIBarButtonItemStyleBordered target:self action:@selector(showPlayer)] autorelease];
+  }
+  return old;
 }
 
 -(void)showArtist:(SpotArtist*)artist;

@@ -204,7 +204,7 @@ enum {
 		} break;
       
 	}
-	
+
   return the_cell;
 }
 

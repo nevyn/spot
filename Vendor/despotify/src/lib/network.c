@@ -9,7 +9,11 @@
 #include <unistd.h>
 
 #include "network.h"
- 
+
+void disconnected(){
+  printf("*********** DISCONNECTED!\n");
+}
+
 // socket read, write
 int sock_send (int sock, void *buf, size_t nbyte) {
   #ifdef __use_winsock__
@@ -19,11 +23,14 @@ int sock_send (int sock, void *buf, size_t nbyte) {
   #endif
 }
 int sock_recv (int sock, void *buf, size_t nbyte) {
+  int nBytes = 0;
   #ifdef __use_winsock__
-	return recv (sock, buf, nbyte, 0);
+	nBytes = recv (sock, buf, nbyte, 0);
   #else
-	return read (sock, buf, nbyte);
+	nBytes = read (sock, buf, nbyte);
   #endif
+  if(nbyte > 0 && nBytes == 0) disconnected();
+  return nBytes;
 }
 int sock_close (int sock) {
   #ifdef __use_winsock__
