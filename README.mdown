@@ -5,23 +5,9 @@ Spot is a Spotify client for iPhone based on [despotify](http://despotify.se/ "d
 
 All dependencies are bundled.
 
-Important notice
------------------
-Spot will only work with a Spotify **Premium** account.  
-Supporting free accounts without ads and commercials would just not be fair (and probably put us in trouble)
+Please note: **You MUST have a Spotify Premium account to use Spot!** Otherwise it'll just crash. Yes, I need to add a check for that...
 
-Installing
-----------
-Jailbreak  (thanx @sveinhal)
----
-* Compile or use nevyns [binaries](http://github.com/nevyn/spot/downloads)
-* Unzip Spot.app dir from the zip file in /Applications/Spot.app (ignore other files and dirs, they don’t matter)
-* Respring device (reboot or killall SpringBoard won’t do). Respring is installed with e.g BossPrefs, but lots of other apps lets you Respring your device.
 
-With iPhone developer licence:
----
-* Connect iPhone and build for device
- 
 Contribution notes
 ------------------------
 Please follow these recommendations, or I might not be able to pull changes from your fork:
@@ -32,12 +18,15 @@ Please follow these recommendations, or I might not be able to pull changes from
 
 Known bugs
 ------------------------
-- Changing tracks too fast (before sound starts playing) may result in crash
-- Personal playlists doesn't work
- - You can add playlists from URI (click link in safari) and they will be saved locally
-- The device might freeze on rare occations (while reading from network). Do a hard reboot if Spot stops responding and home button doesn't work (hold home and lock button pressed for 5 seconds)
+- Playlists don't work (despotify need fixing)
+
 
 TODO
 ----
-- Network stability (buffer more, disconnect cleanly, handle dropped connections)
-- Handle disconnects (detect and reconnect)
+- ArtistBrowseViewController
+ - zoom art
+ - zoom text
+ - react on links in text
+- AlbumBrowseViewController
+ - zoom art
+ - add something in the empty space (artist info here too?)
