@@ -186,7 +186,7 @@ void cb_client_callback(int type, void*data){
 	self.loggedIn = success;
   
   if(self.loggedIn && ![self.accountType isEqual:@"premium"]){
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Account" message:[NSString stringWithFormat:@"You need a Premium account to use Spot. (You have %@)\nPlease visit spotify.com and upgrade.", self.accountType] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Account" message:[NSString stringWithFormat:@"You need a Premium account to use Spot. (You have %@)\nPlease visit spotify.com and upgrade.\nSpot will NOT exit but if you do a search it WILL crash :P", self.accountType] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alert show];
   }
 	return success;

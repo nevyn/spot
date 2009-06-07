@@ -229,7 +229,8 @@ enum {
 		}
 		case ShowTracks: {
 			SpotTrack *track = [searchResults.tracks objectAtIndex:idx];
-			[[SpotSession defaultSession].player playTrack:track rewind:YES];
+      SpotPlaylist *playlist = [[[SpotPlaylist alloc] initWithName:searchResults.query author:@"search" tracks:searchResults.tracks] autorelease];
+			[[SpotSession defaultSession].player playPlaylist:playlist firstTrack:track];
       [self.navigationController showPlayer];
 		} break;
 	}

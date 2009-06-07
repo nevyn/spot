@@ -231,7 +231,7 @@ PlayViewController *GlobalPlayViewController;
     [waitForPlaySpinner stopAnimating];
   }
   if([[n name] isEqual:@"playbackDidStop"]){
-    [playPauseButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
+    [playPauseButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
     [playPauseButton setHidden:NO];
     [waitForPlaySpinner stopAnimating];
   }
@@ -245,11 +245,15 @@ PlayViewController *GlobalPlayViewController;
     [self selectCurrentTrack];
   }
   if([[n name] isEqual:@"trackDidChange"]){
+    [waitForPlaySpinner startAnimating];
+    [playPauseButton setHidden:YES];
     [self showInfoForTrack:[[n userInfo] valueForKey:@"track"]];
     [self selectCurrentTrack];
   }
   if([[n name] isEqual:@"trackDidEnd"]){
-    //the playing of next track is handled by SpotPlayer
+    [playPauseButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
+    [playPauseButton setHidden:YES];
+    [waitForPlaySpinner stopAnimating];
   }
   if([[n name] isEqual:@"playlistDidEnd"]){
     

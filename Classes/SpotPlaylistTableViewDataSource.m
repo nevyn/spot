@@ -95,6 +95,13 @@
            image:NO 
          imageId:nil];
     
+  if([[[SpotSession defaultSession].player currentTrack] isEqual:track]){
+    //TODO: use a customview instead
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+  } else {
+    cell.accessoryType = cellAccessoryType;
+  }
+
   return cell;
 }
 
