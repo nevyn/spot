@@ -63,21 +63,10 @@
     searchNav = searchPage;
 	}
     
-  //Browsing
-  SpotNavigationController *browsePage;
-	{
-		browsePage = [[[SpotNavigationController alloc] init] autorelease];
-		
-		SearchViewController *browse = [[[SearchViewController alloc] init] autorelease];
-		[browsePage pushViewController:browse animated:NO];
-	}
-  
-    
 	
 	NSArray *pages = [NSArray arrayWithObjects:
-                    browsePage,
-                    searchPage,
                     playlistPage,
+                    searchPage,
                     profilePage,
                     nil];
 	
