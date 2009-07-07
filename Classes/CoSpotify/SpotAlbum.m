@@ -180,7 +180,7 @@
   return [self hash] == [other hash];
 }
 
--(NSInteger)hash;
+-(NSUInteger)hash;
 {
   return [self.artistId hash];
 }
