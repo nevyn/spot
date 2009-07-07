@@ -179,17 +179,23 @@ void cb_client_callback(int type, void*data){
   [networkLock unlock];
 	if(!success && error)
 		*error = [NSError errorWithDomain:SpotSessionErrorDomain code:SpotSessionErrorCodeDefault userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%s", despotify_get_error(session)] forKey:NSLocalizedDescriptionKey]];
-	usleep(500000);
+	usleep(500000); // This is what you get with an API without callbacks ;(
 	if(success) {
 		NSLog(@"Successfully logged in as %@", user);
 	}
 	self.loggedIn = success;
+	
+	[self performSelector:@selector(checkPremium) withObject:nil afterDelay:1.0];
   
-  if(self.loggedIn && ![self.accountType isEqual:@"premium"]){
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Account" message:[NSString stringWithFormat:@"You need a Premium account to use Spot. (You have %@)\nPlease visit spotify.com and upgrade.\nSpot will NOT exit but if you do a search it WILL crash :P", self.accountType] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+	return success;
+}
+-(void)checkPremium;
+{
+	if(self.loggedIn && ![self.accountType isEqual:@"premium"]){
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Account" message:[NSString stringWithFormat:@"You need a Premium account to use Spot. (You have %@)\nPlease visit spotify.com and upgrade.", self.accountType] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alert show];
   }
-	return success;
+	
 }
 
 -(void)receivedXML:(NSString*)xmlString;
