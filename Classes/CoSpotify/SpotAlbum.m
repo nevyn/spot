@@ -31,12 +31,12 @@
   
   if(album->has_forbidden){
     NSString *forbiddenString = [NSString stringWithUTF8String:album->forbidden];
-    forbidden = [[forbiddenString componentsSeparatedByString:@" "] retain];
+    forbiddenCountries = [[forbiddenString componentsSeparatedByString:@" "] retain];
   }
   
   if(album->has_allowed){
     NSString *allowedString = [NSString stringWithUTF8String:album->allowed];
-    allowed = [[allowedString componentsSeparatedByString:@" "] retain];
+    allowedCountries = [[allowedString componentsSeparatedByString:@" "] retain];
   }
   
   return self;
@@ -59,12 +59,12 @@
   
   if(album->has_forbidden){
     NSString *forbiddenString = [NSString stringWithUTF8String:album->forbidden];
-    forbidden = [[forbiddenString componentsSeparatedByString:@" "] retain];
+    forbiddenCountries = [[forbiddenString componentsSeparatedByString:@" "] retain];
   }
   
   if(album->has_allowed){
     NSString *allowedString = [NSString stringWithUTF8String:album->allowed];
-    allowed = [[allowedString componentsSeparatedByString:@" "] retain];
+    allowedCountries = [[allowedString componentsSeparatedByString:@" "] retain];
   }
 
   
@@ -97,8 +97,8 @@
   [artistName release];
   [artistId release];
   [type release];
-  [allowed release];
-  [forbidden release];
+  [allowedCountries release];
+  [forbiddenCountries release];
   [coverId release];
   [review release];
   [copyright release];
@@ -119,8 +119,8 @@
   albumId = [[decoder decodeObjectForKey:@"SAalbumId"] retain];
   year = [decoder decodeIntForKey:@"SAyear"];
   type = [decoder decodeObjectForKey:@"SAtype"];
-  allowed = [decoder decodeObjectForKey:@"SAallowed"];
-  forbidden = [decoder decodeObjectForKey:@"SAforbidden"];
+  allowedCountries = [decoder decodeObjectForKey:@"SAallowedCountries"];
+  forbiddenCountries = [decoder decodeObjectForKey:@"SAforbiddenCountries"];
   coverId = [[decoder decodeObjectForKey:@"SAcoverId"] retain];
   popularity = [decoder decodeFloatForKey:@"SApopularity"];
   artistName = [[decoder decodeObjectForKey:@"SAartistName"] retain];
@@ -138,8 +138,8 @@
   [encoder encodeObject:albumId forKey:@"SAalbumId"];
   [encoder encodeInt:year forKey:@"SAyear"];
   [encoder encodeObject:type forKey:@"SAtype"];
-  [encoder encodeObject:allowed forKey:@"SAallowed"];
-  [encoder encodeObject:forbidden forKey:@"SAforbidden"];
+  [encoder encodeObject:allowedCountries forKey:@"SAallowedCountries"];
+  [encoder encodeObject:forbiddenCountries forKey:@"SAforbiddenCountries"];
   [encoder encodeObject:coverId forKey:@"SAcoverId"];
   [encoder encodeFloat:popularity forKey:@"SApopularity"];
   [encoder encodeObject:artistName forKey:@"SAartistName"];
@@ -188,8 +188,8 @@
 -(BOOL)allowed;
 {
   NSString *myCountry = [[SpotSession defaultSession] country];
-  if(forbidden && [forbidden containsObject:myCountry]) return NO;
-  if(allowed && ![allowed containsObject:myCountry]) return NO;
+  if(forbiddenCountries && [forbiddenCountries containsObject:myCountry]) return NO;
+  if(allowedCountries && ![allowedCountries containsObject:myCountry]) return NO;
   return YES;
 }
 

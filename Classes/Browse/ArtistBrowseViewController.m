@@ -15,11 +15,11 @@
 #import "SpotCell.h"
 
 @interface ArtistBrowseViewController ()
-@property (retain) SpotArtist *artist;
-@property (retain) NSArray *albums;
-@property (retain) NSArray *singles;
-@property (retain) NSArray *other;
-@property (retain) NSArray *unavailable;
+@property (retain, nonatomic) SpotArtist *artist;
+@property (retain, nonatomic) NSMutableArray *albums;
+@property (retain, nonatomic) NSMutableArray *singles;
+@property (retain, nonatomic) NSMutableArray *other;
+@property (retain, nonatomic) NSMutableArray *unavailable;
 
 @end
 

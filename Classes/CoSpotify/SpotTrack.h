@@ -17,7 +17,7 @@
 @class SpotURI;
 
 @interface SpotTrack : SpotItem {
-  struct track de_track; //we need a struct to send to despotify
+  struct track m_de_track; //we need a struct to send to despotify
   
   NSString *trackId;
   NSString *title;

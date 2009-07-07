@@ -22,7 +22,7 @@
 {
 	if( ! [super init] ) return nil;
   
-  memcpy(&de_track, track, sizeof(struct track));
+  memcpy(&m_de_track, track, sizeof(struct track));
 	
   hasMetadata = track->has_meta_data;
   isPlayable = track->playable;
@@ -78,7 +78,7 @@
 
 -(struct track*)track;
 {
-	return &de_track;
+	return &m_de_track;
 }
 
 -(NSString *)id; { return trackId; }
@@ -86,7 +86,7 @@
 -(SpotURI*)uri;
 {
   char uri[50];
-  return [SpotURI uriWithURI:despotify_track_to_uri(&de_track, uri)];  
+  return [SpotURI uriWithURI:despotify_track_to_uri(&m_de_track, uri)];  
 }
 
 
@@ -111,14 +111,14 @@
 
 -(struct track*)de_track;
 {
-  return &de_track;
+  return &m_de_track;
 }
 
 #pragma mark NSCoding
 
 -(id)initWithCoder:(NSCoder *)decoder;
 {
-  //struct track de_track; //we need a struct to send to despotify
+  //struct track m_de_track; //we need a struct to send to despotify
   
   trackId = [[decoder decodeObjectForKey:@"Tid"] retain];
   title = [[decoder decodeObjectForKey:@"Ttitle"] retain];
@@ -143,18 +143,18 @@
   artist = [[decoder decodeObjectForKey:@"Tartist"] retain];
   
   //fill the struct for despotify
-  de_track.has_meta_data = hasMetadata;
-  de_track.playable = isPlayable;
-  strcpy((char*)de_track.track_id, [trackId UTF8String]);
-  strcpy((char*)de_track.file_id, [fileId UTF8String]);
-  strcpy((char*)de_track.album_id, [albumId UTF8String]);
-  strcpy((char*)de_track.cover_id, [coverId UTF8String]);
-  strcpy(de_track.title, [title UTF8String]);
-  strcpy(de_track.album, [albumName UTF8String]);
-  de_track.length = (int)(length * 1000);
-  de_track.tracknumber = trackNumber;
-  de_track.popularity = popularity;
-  de_track.artist = NULL;
+  m_de_track.has_meta_data = hasMetadata;
+  m_de_track.playable = isPlayable;
+  strcpy((char*)m_de_track.track_id, [trackId UTF8String]);
+  strcpy((char*)m_de_track.file_id, [fileId UTF8String]);
+  strcpy((char*)m_de_track.album_id, [albumId UTF8String]);
+  strcpy((char*)m_de_track.cover_id, [coverId UTF8String]);
+  strcpy(m_de_track.title, [title UTF8String]);
+  strcpy(m_de_track.album, [albumName UTF8String]);
+  m_de_track.length = (int)(length * 1000);
+  m_de_track.tracknumber = trackNumber;
+  m_de_track.popularity = popularity;
+  m_de_track.artist = NULL;
   
   return self;
 }

@@ -28,8 +28,8 @@
   NSArray *copyright;
   NSString *catalogues; //from restrictions
   NSArray *similarAlbumIds;
-  NSArray *allowed;
-  NSArray *forbidden;
+  NSArray *allowedCountries;
+  NSArray *forbiddenCountries;
   float popularity;
   
   NSArray *discs;
