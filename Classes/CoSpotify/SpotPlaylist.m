@@ -165,7 +165,7 @@
 
 #pragma mark Properties
 
-@synthesize tracks, name, author, collaborative;
+@synthesize name, author, collaborative;
 
 -(NSString *)id;
 {
