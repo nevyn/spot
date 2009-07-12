@@ -592,6 +592,7 @@
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				05917809100A99C8001402D1 /* Cydia Codesign */,
 			);
 			buildRules = (
 			);
@@ -653,6 +654,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05917809100A99C8001402D1 /* Cydia Codesign */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Cydia Codesign";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/ruby;
+			shellScript = "if ENV[\"BUILD_STYLE\"] == \"Cydia\" then\n  `#{ENV[\"PROJECT_DIR\"]}/Vendor/ldid-osx -a armv6 -S #{ENV[\"BUILT_PRODUCTS_DIR\"]}/#{ENV[\"EXECUTABLE_PATH\"]}`\nelse\n  puts \"Skipping; not a Cydia build\"\nend";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -756,9 +775,50 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Vendor\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Spot;
+				SDKROOT = iphoneos3.0;
 			};
 			name = "Beta Testing";
+		};
+		05AD88B8100A955800AD64EE /* Cydia */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos2.2.1;
+			};
+			name = Cydia;
+		};
+		05AD88B9100A955800AD64EE /* Cydia */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Other Sources/Spot_Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					Vendor/despotify/src/lib,
+					Vendor/libogg/include,
+					Vendor/libvorbis/include,
+					Vendor,
+				);
+				INFOPLIST_FILE = "Resources/Spot-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Vendor\"",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Spot;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Cydia;
 		};
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -781,7 +841,9 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Vendor\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Spot;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
@@ -792,19 +854,21 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Spot_Prefix.pch;
+				GCC_PREFIX_HEADER = "Other Sources/Spot_Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					Vendor/despotify/src/lib,
 					Vendor/libogg/include,
 					Vendor/libvorbis/include,
 					Vendor,
 				);
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "Resources/Spot-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Vendor\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Spot;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
 		};
@@ -847,6 +911,7 @@
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				05A665230FCF27C100C8DC40 /* Beta Testing */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				05AD88B9100A955800AD64EE /* Cydia */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -857,6 +922,7 @@
 				C01FCF4F08A954540054247B /* Debug */,
 				05A665220FCF27C100C8DC40 /* Beta Testing */,
 				C01FCF5008A954540054247B /* Release */,
+				05AD88B8100A955800AD64EE /* Cydia */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
