@@ -40,7 +40,7 @@
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIImageView" id="27249505">
+					<object class="IBUIImageView" id="851601820">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, -20}, {320, 480}}</string>
@@ -51,7 +51,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">profilebg.png</string>
+							<string key="NSResourceName">Default.png</string>
 						</object>
 					</object>
 					<object class="IBUIActivityIndicatorView" id="130069890">
@@ -190,7 +190,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="130069890"/>
-							<reference ref="27249505"/>
+							<reference ref="851601820"/>
 							<reference ref="162617949"/>
 							<reference ref="829411101"/>
 						</object>
@@ -224,7 +224,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
-						<reference key="object" ref="27249505"/>
+						<reference key="object" ref="851601820"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
