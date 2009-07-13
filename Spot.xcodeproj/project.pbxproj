@@ -53,6 +53,7 @@
 		05447F4D0FCF119A004CC539 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05447F480FCF119A004CC539 /* libvorbisfile.a */; };
 		05447F4E0FCF119A004CC539 /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05447F490FCF119A004CC539 /* libvorbis.a */; };
 		05447F510FCF119A004CC539 /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05447F4C0FCF119A004CC539 /* libogg.a */; };
+		0591785B100B53FF001402D1 /* profilebg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0591785A100B53FF001402D1 /* profilebg.png */; };
 		05A664830FCF1B1B00C8DC40 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A6643D0FCF1B1B00C8DC40 /* aes.c */; };
 		05A664840FCF1B1B00C8DC40 /* audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A6643F0FCF1B1B00C8DC40 /* audio.c */; };
 		05A664860FCF1B1B00C8DC40 /* auth.c in Sources */ = {isa = PBXBuildFile; fileRef = 05A664430FCF1B1B00C8DC40 /* auth.c */; };
@@ -170,6 +171,7 @@
 		05447F480FCF119A004CC539 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = Vendor/libvorbisfile.a; sourceTree = "<group>"; };
 		05447F490FCF119A004CC539 /* libvorbis.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbis.a; path = Vendor/libvorbis.a; sourceTree = "<group>"; };
 		05447F4C0FCF119A004CC539 /* libogg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libogg.a; path = Vendor/libogg.a; sourceTree = "<group>"; };
+		0591785A100B53FF001402D1 /* profilebg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profilebg.png; sourceTree = "<group>"; };
 		05A6643D0FCF1B1B00C8DC40 /* aes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aes.c; sourceTree = "<group>"; };
 		05A6643E0FCF1B1B00C8DC40 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
 		05A6643F0FCF1B1B00C8DC40 /* audio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = audio.c; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 		05447F2B0FCF1173004CC539 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0591785A100B53FF001402D1 /* profilebg.png */,
 				05447F2C0FCF1173004CC539 /* buttons */,
 				05447F310FCF1173004CC539 /* dist.plist */,
 				217F97EE0FD9123A00C0A6A4 /* noart.png */,
@@ -650,6 +653,7 @@
 				210998B60FD5C0750028F90F /* PlayView2.xib in Resources */,
 				217F97EF0FD9123A00C0A6A4 /* noart.png in Resources */,
 				217F97FB0FD913A700C0A6A4 /* loading.png in Resources */,
+				0591785B100B53FF001402D1 /* profilebg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
