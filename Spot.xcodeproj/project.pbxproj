@@ -164,7 +164,7 @@
 		05447F320FCF1173004CC539 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		05447F330FCF1173004CC539 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		05447F340FCF1173004CC539 /* playergloss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playergloss.png; sourceTree = "<group>"; };
-		05447F350FCF1173004CC539 /* Spot-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Spot-Info.plist"; sourceTree = "<group>"; };
+		05447F350FCF1173004CC539 /* Spot-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Spot-Info.plist"; plistStructureDefinitionIdentifier = "<none>"; sourceTree = "<group>"; };
 		05447F370FCF1173004CC539 /* playlists.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playlists.png; sourceTree = "<group>"; };
 		05447F380FCF1173004CC539 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		05447F480FCF119A004CC539 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = Vendor/libvorbisfile.a; sourceTree = "<group>"; };
